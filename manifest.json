@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Nord Spotify",
+        "description": "A better Nord Theme with no Ads",
+        "preview": "screenshot.png",
+        "usercss": "Nord-Spotify/user.css",
+        "schemes": "Nord-Spotify/color.ini",
+        "readme": "README.md"
+    }
+]
