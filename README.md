@@ -24,6 +24,12 @@ spicetify apply
 
 <br />
 
+## Bonus Extension to get this look
+
+[Hide-Sidebar-Items](https://github.com/Tetrax-10/Spicetify-Extensions)
+
+[playlist-icons](https://github.com/jeroentvb/spicetify-playlist-icons)
+
 ## Credits
 
 [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) theme by [harbassan](https://github.com/harbassan)
