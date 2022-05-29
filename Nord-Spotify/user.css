@@ -316,3 +316,19 @@ input {
 .main-avatar-image {
     border-radius: 50%;
 }
+
+/* Hide playlist gradient down */
+.main-actionBarBackground-background {
+    display: none !important;
+}
+
+/* Hide playlist gradient top */
+.main-entityHeader-backgroundColor {
+    display: none !important;
+}
+
+/* Hide playlist image shadow */
+.main-entityHeader-shadow {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
