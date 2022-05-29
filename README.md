@@ -8,17 +8,7 @@ A better Nord Theme with no Ads
 
 <br />
 
-## Get it on Spicetify Marketplace
-
-Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
-
-Step 2 : Open Spotify App -> Marketplace -> Themes
-
-Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
-
-<br />
-
-## Install Manually
+## Install Theme
 Copy `Nord-Spotify` folder into your [Spicetify](https://github.com/spicetify/spicetify-cli) themes directory:
 | **Platform** | **Path**                                                                            |
 |------------|-----------------------------------------------------------------------------------|
