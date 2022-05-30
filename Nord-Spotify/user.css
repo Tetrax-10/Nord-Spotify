@@ -332,3 +332,9 @@ input {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
+
+/* local files folder in library */
+.tlNAdRNP5lIeiD85nMcL,
+.main-cardImage-imageWrapper {
+    border-radius: 10px;
+}
