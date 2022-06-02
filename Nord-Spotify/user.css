@@ -121,7 +121,9 @@
 .ipxcyIaAWQfeUHO468Os,
 ._kySQxSksHLKYgofFfhl,
 .giO6cIQ8auPNZuTvC4Y8,
-.giO6cIQ8auPNZuTvC4Y8 {
+.giO6cIQ8auPNZuTvC4Y8,
+.BKsbV2Xl786X9a09XROH,
+.X1lXSiVj0pzhQCUo_72A {
     cursor: pointer !important;
 }
 
@@ -339,7 +341,7 @@ input {
     border-radius: 10px;
 }
 
-/* fix buttons */
+/* fix market place buttons */
 #playlist-phrase-submit,
 #marketplace-reload-okay,
 #marketplace-reload-cancel {
@@ -347,4 +349,135 @@ input {
     padding: 10px;
     border: none;
     border-radius: 10%;
+}
+
+/* fixed button hover color */
+.encore-dark-theme .encore-bright-accent-set {
+    --background-highlight: var(--spice-button);
+}
+
+/* fixed liked button hover color */
+.main-addButton-active:focus,
+.main-addButton-active:hover {
+    color: var(--spice-button);
+}
+
+/* change playing icon from gif to svg */
+.main-trackList-playingIcon {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg id='playing-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 24'%3E%3Cdefs%3E%3Cstyle%3E %23playing-icon %7B fill: %2320BC54; %7D @keyframes play %7B 0%25 %7Btransform: scaleY(1);%7D 3.3%25 %7Btransform: scaleY(0.9583);%7D 6.6%25 %7Btransform: scaleY(0.9166);%7D 9.9%25 %7Btransform: scaleY(0.8333);%7D 13.3%25 %7Btransform: scaleY(0.7083);%7D 16.6%25 %7Btransform: scaleY(0.5416);%7D 19.9%25 %7Btransform: scaleY(0.4166);%7D 23.3%25 %7Btransform: scaleY(0.25);%7D 26.6%25 %7Btransform: scaleY(0.1666);%7D 29.9%25 %7Btransform: scaleY(0.125);%7D 33.3%25 %7Btransform: scaleY(0.125);%7D 36.6%25 %7Btransform: scaleY(0.1666);%7D 39.9%25 %7Btransform: scaleY(0.1666);%7D 43.3%25 %7Btransform: scaleY(0.2083);%7D 46.6%25 %7Btransform: scaleY(0.2916);%7D 49.9%25 %7Btransform: scaleY(0.375);%7D 53.3%25 %7Btransform: scaleY(0.5);%7D 56.6%25 %7Btransform: scaleY(0.5833);%7D 59.9%25 %7Btransform: scaleY(0.625);%7D 63.3%25 %7Btransform: scaleY(0.6666);%7D 66.6%25 %7Btransform: scaleY(0.6666);%7D 69.9%25 %7Btransform: scaleY(0.6666);%7D 73.3%25 %7Btransform: scaleY(0.6666);%7D 76.6%25 %7Btransform: scaleY(0.7083);%7D 79.9%25 %7Btransform: scaleY(0.75);%7D 83.3%25 %7Btransform: scaleY(0.8333);%7D 86.6%25 %7Btransform: scaleY(0.875);%7D 89.9%25 %7Btransform: scaleY(0.9166);%7D 93.3%25 %7Btransform: scaleY(0.9583);%7D 96.6%25 %7Btransform: scaleY(1);%7D %7D %23bar1 %7B transform-origin: bottom; animation: play 0.9s -0.51s infinite; %7D %23bar2 %7B transform-origin: bottom; animation: play 0.9s infinite; %7D %23bar3 %7B transform-origin: bottom; animation: play 0.9s -0.15s infinite; %7D %23bar4 %7B transform-origin: bottom; animation: play 0.9s -0.75s infinite; %7D %3C/style%3E%3C/defs%3E%3Ctitle%3Eplaying-icon%3C/title%3E%3Crect id='bar1' class='cls-1' width='4' height='24'/%3E%3Crect id='bar2' class='cls-1' x='6' width='4' height='24'/%3E%3Crect id='bar3' class='cls-1' x='12' width='4' height='24'/%3E%3Crect id='bar4' class='cls-1' x='18' width='4' height='24'/%3E%3C/svg%3E");
+    background: var(--spice-button);
+    content-visibility: hidden;
+    -webkit-mask-repeat: no-repeat;
+}
+
+/* all playlist card view changed, now has a thick border */
+.main-card-card:hover,
+.main-card-card[data-context-menu-open="true"] {
+    background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
+}
+.main-card-card {
+    background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
+}
+.main-card-card {
+    transition: none;
+}
+
+/* cover art when not collapsed */
+.cover-art.shadow.cover-art--with-auto-height > div > img {
+    border-radius: 4px !important;
+}
+
+/* change playlist top side big image shadow */
+.main-entityHeader-shadow {
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 0.5) !important;
+}
+
+/* change color of 'explicit' badge */
+.main-tag-container {
+    background-color: var(--spice-subtext);
+}
+
+/* change background color of selected row */
+.main-trackList-trackListRow.main-trackList-selected,
+.main-trackList-trackListRow.main-trackList-selected:hover {
+    background-color: rgba(var(--spice-rgb-main-secondary), 0.6) !important;
+}
+.main-trackList-trackListRow:focus-within,
+.main-trackList-trackListRow:hover {
+    background-color: rgba(var(--spice-rgb-main-secondary), 0.4);
+}
+
+/* When song is currently playing */
+.main-trackList-active .main-type-mesto,
+.main-trackList-active .main-trackList-rowSubTitle,
+.main-trackList-active .main-trackList-rowSubTitle a,
+.main-trackList-active .main-trackList-rowMarker,
+.main-trackList-active .main-trackList-rowSectionVariable,
+.main-trackList-active .main-trackList-rowSectionVariable a,
+.main-trackList-active .main-trackList-rowSectionVariable span,
+.main-trackList-active .main-trackList-rowMarker,
+.main-trackList-active .main-trackList-rowDuration {
+    color: var(--spice-button) !important;
+}
+.main-trackList-active .main-tag-container {
+    background-color: var(--spice-button);
+}
+
+/* change appearance of 'playlist' tag  */
+.main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold {
+    border: 2px var(--spice-text) solid;
+    border-radius: 3px;
+    width: fit-content;
+    display: inline;
+    text-align: center;
+    padding: 3px 7px;
+}
+
+/* change progress bar color (how much filled) */
+.epWhU7hHGktzlO_dop6z {
+    background-color: var(--spice-button) !important;
+}
+
+/* change progress bar color (how much remaining) */
+.w699O0LgQRghXyl3bs9u {
+    background-color: var(--spice-main-secondary) !important;
+}
+
+/* change progress bar slider color */
+/* .progress-bar__slider {
+    background-color: var(--spice-button);
+} */
+
+/* home page most played playlist bg color */
+.Z35BWOA10YGn5uc9YgAp {
+    background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
+}
+.Z35BWOA10YGn5uc9YgAp:focus-within,
+.Z35BWOA10YGn5uc9YgAp:hover,
+.Z35BWOA10YGn5uc9YgAp[data-context-menu-open="true"] {
+    background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
+}
+
+/* title text area background color for editing playlist details */
+.main-playlistEditDetailsModal-titleInput {
+    background: rgba(var(--spice-rgb-main-secondary), 0.3) !important;
+    border-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* description text area background color for editing playlist details */
+.main-playlistEditDetailsModal-descriptionTextarea {
+    background: rgba(var(--spice-rgb-main-secondary), 0.3) !important;
+    border-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* hide card label in editing playlist details */
+.main-playlistEditDetailsModal-textElementLabel {
+    display: none;
+}
+
+/* playlist edit card save button color */
+.ButtonInner-sc-14ud5tc-0.fXheAs.encore-inverted-light-set {
+    --background-base: var(--spice-button);
+    --background-highlight: var(--spice-button);
+    border-radius: 20px !important;
 }
