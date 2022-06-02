@@ -28,7 +28,7 @@ spicetify apply
 
 [Hide-Sidebar-Items](https://github.com/Tetrax-10/Spicetify-Extensions)
 
-[playlist-icons](https://github.com/jeroentvb/spicetify-playlist-icons)
+[playlist-icons](https://github.com/Tetrax-10/Spicetify-Extensions/tree/master/Others%20Extension%20mod/Playlist-Icons-mod)
 
 ## Credits
 
