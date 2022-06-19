@@ -24,6 +24,16 @@ spicetify apply
 
 <br />
 
+## Get it on Spicetify Marketplace
+
+Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
+
+Step 2 : Open Spotify App -> Marketplace -> Themes
+
+Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
+
+<br />
+
 ## Bonus Extension to get this look
 
 [Hide-Sidebar-Items](https://github.com/Tetrax-10/Spicetify-Extensions)
