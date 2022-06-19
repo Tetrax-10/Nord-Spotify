@@ -1,6 +1,4 @@
-/* Form SpotifyNoPremium */
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////// Spotify No Premium ///////////////////////////////// */
 
 /* For versions below v1.66 */
 
@@ -229,9 +227,7 @@ button {
     display: none !important;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////// */
-
-/* My Nord Theme */
+/* ////////////////////////////////////// My Nord Theme //////////////////////////////////// */
 
 /* hides playlist scrollbar */
 .os-scrollbar:nth-child(6) .os-scrollbar-handle {
@@ -448,11 +444,6 @@ input {
     background-color: var(--spice-main-secondary) !important;
 }
 
-/* change progress bar slider color */
-/* .progress-bar__slider {
-    background-color: var(--spice-button);
-} */
-
 /* home page most played playlist bg color */
 .Z35BWOA10YGn5uc9YgAp {
     background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
@@ -491,4 +482,44 @@ input {
 .X1lXSiVj0pzhQCUo_72A,
 .progress-bar__slider {
     cursor: pointer !important;
+}
+
+/* moves progress bar to top */
+.playback-bar {
+    width: 100%;
+    bottom: 83px;
+    position: absolute;
+}
+
+/* hides info about other devices on player */
+.mVVxN9ZfIRjiQfDuzPCZ {
+    display: none;
+}
+
+/* hide and move progress time location right */
+.playback-bar__progress-time-elapsed,
+.npFSJSO1wsu3mEEGb5bh {
+    opacity: 0;
+    position: absolute;
+    bottom: 13px;
+    color: var(--spice-text);
+    background-color: var(--spice-button);
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+    text-align: center;
+}
+
+/* moves start time left */
+.playback-bar__progress-time-elapsed {
+    left: 0;
+}
+/* moves end time right */
+.npFSJSO1wsu3mEEGb5bh {
+    right: 0;
+}
+
+/* show time lapse on hover */
+.playback-bar:hover .playback-bar__progress-time-elapsed,
+.playback-bar:hover .npFSJSO1wsu3mEEGb5bh {
+    opacity: 1;
 }
