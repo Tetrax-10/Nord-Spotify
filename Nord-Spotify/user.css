@@ -503,7 +503,7 @@ input {
     position: absolute;
     bottom: 13px;
     color: var(--spice-text);
-    background-color: var(--spice-button);
+    background-color: var(--spice-main);
     border-top-left-radius: 10%;
     border-bottom-left-radius: 10%;
     text-align: center;
@@ -522,4 +522,14 @@ input {
 .playback-bar:hover .playback-bar__progress-time-elapsed,
 .playback-bar:hover .npFSJSO1wsu3mEEGb5bh {
     opacity: 1;
+}
+
+/* change appearance of play-button */
+.main-playPauseButton-button {
+    background-color: inherit;
+    color: var(--spice-text);
+}
+.main-playPauseButton-button svg {
+    height: 19px;
+    width: 19px;
 }
