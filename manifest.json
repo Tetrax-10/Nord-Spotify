@@ -1,0 +1,10 @@
+{
+    "name": "Nord Spotify",
+    "description": "Ad free Nord Theme",
+    "preview": "screenshot.png",
+    "readme": "README.md",
+    "usercss": "Nord-Spotify/user.css",
+    "schemes": "Nord-Spotify/color.ini",
+    "authors": [{ "name": "Tetrax-10", "url": "https://github.com/Tetrax-10" }],
+    "tags": ["dark", "minimal", "nord", "ad"]
+}
