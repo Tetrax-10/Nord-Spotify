@@ -533,3 +533,8 @@ input {
     height: 19px;
     width: 19px;
 }
+
+/* artist name color change in playlist (rows) */
+.main-trackList-rowSubTitle a[href] {
+    color: var(--text-subdued, #6a6a6a) !important;
+}
