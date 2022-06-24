@@ -489,6 +489,7 @@ input {
     width: 100%;
     bottom: 83px;
     position: absolute;
+    cursor: pointer;
 }
 
 /* hides info about other devices on player */
