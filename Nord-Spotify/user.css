@@ -188,7 +188,6 @@
 /* Download button */
 .BKsbV2Xl786X9a09XROH {
     display: none !important;
-    cursor: pointer !important;
 }
 
 /* Context menu download button */
@@ -229,39 +228,15 @@ button {
 
 /* ////////////////////////////////////// My Nord Theme //////////////////////////////////// */
 
+/* //////////// SideBar //////////// */
+
 /* hides playlist scrollbar */
 .os-scrollbar:nth-child(6) .os-scrollbar-handle {
     visibility: hidden;
 }
 
-/* Smooth Reveal Playlist Gradient */
-.main-entityHeader-overlay,
-.main-actionBarBackground-background,
-.main-entityHeader-overlay,
-.main-entityHeader-backgroundColor {
-    -webkit-transition: 1s;
-}
-
-/* remove top bar extension round container */
-.main-topBar-historyButtons .main-topBar-button {
-    background-color: unset;
-}
-
-/* change top bar color */
-.main-topBar-background {
-    background-color: unset !important;
-}
-.main-topBar-overlay {
-    background-color: var(--spice-main);
-}
-
 /* remove gradient shadow in sidebar above playlist */
 .Y8edH1Yjo4xrW_58czQj {
-    display: none !important;
-}
-
-/* remove gradient color on home screen */
-.n87ifzfQlmGX8vkeYGDL {
     display: none !important;
 }
 
@@ -270,59 +245,11 @@ button {
     background-color: var(--spice-nav-active);
 }
 
-/* notification */
-.main-userWidget-notificationIndicator {
-    display: none !important;
-}
-.main-userWidget-box {
-    color: var(--spice-subtext);
-    background-color: transparent !important;
-}
-.main-userWidget-chevron {
-    display: none;
-}
-
-/* change search bar appearance */
-input {
-    background-color: var(--spice-main-secondary) !important;
-    border-radius: 0 !important;
-    padding: 6px 10px 6px 48px;
-    color: var(--spice-text) !important;
-}
-
-/* change scrollbar appearance */
-.os-theme-spotify.os-host-transition > .os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle {
-    border-radius: 4px;
-    width: 6px;
-    background-color: var(--spice-button-disabled);
-}
-.os-theme-spotify.os-host-transition > .os-scrollbar-vertical > .os-scrollbar-track {
-    width: 6px;
-}
-
-/* all images */
-.main-image-image {
-    border-radius: 5%;
-}
-
-/* player cover image */
-.cover-art-image {
-    border-radius: 10%;
-}
+/* //////////// playlist //////////// */
 
 /* small cover image in playlist row */
 .main-trackList-rowImage {
     border-radius: 10%;
-}
-
-/* small profile photo on top right */
-.main-avatar-image {
-    border-radius: 50%;
-}
-
-/* Hide playlist gradient down */
-.main-actionBarBackground-background {
-    display: none !important;
 }
 
 /* Hide playlist gradient top */
@@ -330,37 +257,15 @@ input {
     display: none !important;
 }
 
-/* Hide playlist image shadow */
+/* Hide playlist gradient down */
+.main-actionBarBackground-background {
+    display: none !important;
+}
+
+/* playlist big image shadow */
 .main-entityHeader-shadow {
     -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
-
-/* local files folder in library */
-.tlNAdRNP5lIeiD85nMcL,
-.main-cardImage-imageWrapper {
-    border-radius: 10px;
-}
-
-/* fix market place buttons */
-#playlist-phrase-submit,
-#marketplace-reload-okay,
-#marketplace-reload-cancel {
-    background-color: var(--spice-main);
-    padding: 10px;
-    border: none;
-    border-radius: 10%;
-}
-
-/* fixed button hover color */
-.encore-dark-theme .encore-bright-accent-set {
-    --background-highlight: var(--spice-button);
-}
-
-/* fixed liked button hover color */
-.main-addButton-active:focus,
-.main-addButton-active:hover {
-    color: var(--spice-button);
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 0.5) !important;
 }
 
 /* change playing icon from gif to svg */
@@ -369,33 +274,6 @@ input {
     background: var(--spice-button);
     content-visibility: hidden;
     -webkit-mask-repeat: no-repeat;
-}
-
-/* all playlist card view changed, now has a thick border */
-.main-card-card:hover,
-.main-card-card[data-context-menu-open="true"] {
-    background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
-}
-.main-card-card {
-    background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
-}
-.main-card-card {
-    transition: none;
-}
-
-/* cover art when not collapsed */
-.cover-art.shadow.cover-art--with-auto-height > div > img {
-    border-radius: 4px !important;
-}
-
-/* change playlist top side big image shadow */
-.main-entityHeader-shadow {
-    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 0.5) !important;
-}
-
-/* change color of 'explicit' badge */
-.main-tag-container {
-    background-color: var(--spice-subtext);
 }
 
 /* change background color of selected row */
@@ -418,13 +296,16 @@ input {
 .main-trackList-active .main-trackList-rowSectionVariable span,
 .main-trackList-active .main-trackList-rowMarker,
 .main-trackList-active .main-trackList-rowDuration {
-    color: var(--spice-button) !important;
-}
-.main-trackList-active .main-tag-container {
-    background-color: var(--spice-button);
+    color: var(--text-subdued, #6a6a6a) !important;
 }
 
-/* change appearance of 'playlist' tag  */
+/* artist name color change in all playlist */
+.main-trackList-rowSubTitle a[href],
+.main-trackList-rowSectionVariable a[href] {
+    color: var(--text-subdued, #6a6a6a) !important;
+}
+
+/* change appearance of public/private playlist tag on top of playlist */
 .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold {
     border: 2px var(--spice-text) solid;
     border-radius: 3px;
@@ -432,26 +313,6 @@ input {
     display: inline;
     text-align: center;
     padding: 3px 7px;
-}
-
-/* change progress bar color (how much filled) */
-.epWhU7hHGktzlO_dop6z {
-    background-color: var(--spice-button) !important;
-}
-
-/* change progress bar color (how much remaining) */
-.w699O0LgQRghXyl3bs9u {
-    background-color: var(--spice-main-secondary) !important;
-}
-
-/* home page most played playlist bg color */
-.Z35BWOA10YGn5uc9YgAp {
-    background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
-}
-.Z35BWOA10YGn5uc9YgAp:focus-within,
-.Z35BWOA10YGn5uc9YgAp:hover,
-.Z35BWOA10YGn5uc9YgAp[data-context-menu-open="true"] {
-    background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
 }
 
 /* title text area background color for editing playlist details */
@@ -471,17 +332,128 @@ input {
     display: none;
 }
 
-/* playlist edit card save button color */
+/* save button color in editing playlist details */
 .ButtonInner-sc-14ud5tc-0.fXheAs.encore-inverted-light-set {
     --background-base: var(--spice-button);
     --background-highlight: var(--spice-button);
     border-radius: 20px !important;
 }
 
-/* make cursors pointer */
-.X1lXSiVj0pzhQCUo_72A,
+/* //////////// Home Screen //////////// */
+
+/* change search bar appearance */
+input {
+    background-color: var(--spice-main-secondary) !important;
+    border-radius: 0 !important;
+    padding: 6px 10px 6px 48px;
+    color: var(--spice-text) !important;
+}
+
+/* notification */
+.main-userWidget-notificationIndicator {
+    display: none !important;
+}
+.main-userWidget-box {
+    color: var(--spice-subtext);
+    background-color: transparent !important;
+}
+.main-userWidget-chevron {
+    display: none;
+}
+
+/* remove gradient color on home screen */
+.n87ifzfQlmGX8vkeYGDL {
+    display: none !important;
+}
+
+/* change scrollbar appearance */
+.os-theme-spotify.os-host-transition > .os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle {
+    border-radius: 4px;
+    width: 6px;
+    background-color: var(--spice-button-disabled);
+}
+.os-theme-spotify.os-host-transition > .os-scrollbar-vertical > .os-scrollbar-track {
+    width: 6px;
+}
+
+/* all images */
+.main-image-image {
+    border-radius: 5%;
+}
+
+/* small profile photo on top right of the home screen */
+.main-avatar-image {
+    border-radius: 50%;
+}
+
+/* fixed button hover color */
+.encore-dark-theme .encore-bright-accent-set {
+    --background-highlight: var(--spice-button);
+}
+
+/* change color of 'explicit' badge */
+.main-tag-container {
+    background-color: var(--spice-subtext);
+}
+
+/* home page most played playlist bg color */
+.Z35BWOA10YGn5uc9YgAp {
+    background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
+}
+.Z35BWOA10YGn5uc9YgAp:focus-within,
+.Z35BWOA10YGn5uc9YgAp:hover,
+.Z35BWOA10YGn5uc9YgAp[data-context-menu-open="true"] {
+    background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
+}
+
+/* //////////// Top bar //////////// */
+
+/* remove top bar extension round container */
+.main-topBar-historyButtons .main-topBar-button {
+    background-color: unset;
+}
+
+/* change top bar color */
+.main-topBar-background {
+    background-color: unset !important;
+}
+.main-topBar-overlay {
+    background-color: var(--spice-main);
+}
+
+/* //////////// Player //////////// */
+
+/* player cover image */
+.cover-art-image {
+    border-radius: 10%;
+}
+
+/* fixed liked button hover color */
+.main-addButton-active:focus,
+.main-addButton-active:hover {
+    color: var(--spice-button);
+}
+
+/* cover art when not collapsed */
+.cover-art.shadow.cover-art--with-auto-height > div > img {
+    border-radius: 4px !important;
+}
+
+/* change progress bar color (how much filled) and smooth transition */
+.epWhU7hHGktzlO_dop6z {
+    background-color: var(--spice-button) !important;
+    transition: transform, 0s, ease, 0.25s;
+}
+
+/* change progress bar color (how much remaining) */
+.w699O0LgQRghXyl3bs9u {
+    background-color: var(--spice-main-secondary) !important;
+}
+
+/* progress bar round ball made cursors pointer and smooth transition */
 .progress-bar__slider {
     cursor: pointer !important;
+    transition: left, 0s, ease, 0.25s;
 }
 
 /* moves progress bar to top */
@@ -527,15 +499,50 @@ input {
 
 /* change appearance of play-button */
 .main-playPauseButton-button {
-    background-color: inherit;
-    color: var(--spice-text);
+    color: inherit;
+    background-color: transparent;
 }
 .main-playPauseButton-button svg {
     height: 19px;
     width: 19px;
+    transform: scale(1.5);
 }
 
-/* artist name color change in playlist (rows) */
-.main-trackList-rowSubTitle a[href] {
-    color: var(--text-subdued, #6a6a6a) !important;
+/* //////////// Cards //////////// */
+
+/* all card view changed, now has a thick border */
+.main-card-card:hover,
+.main-card-card[data-context-menu-open="true"] {
+    background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
+}
+.main-card-card {
+    background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
+}
+.main-card-card {
+    transition: none;
+}
+
+/* local files folder in library */
+.tlNAdRNP5lIeiD85nMcL,
+.main-cardImage-imageWrapper {
+    border-radius: 10px;
+}
+
+/* //////////// Market Place //////////// */
+
+/* fix market place buttons */
+#playlist-phrase-submit,
+#marketplace-reload-okay,
+#marketplace-reload-cancel {
+    background-color: var(--spice-main);
+    padding: 10px;
+    border: none;
+    border-radius: 10%;
+}
+
+/* //////////// Pointer Change //////////// */
+
+/* collaborate button made cursors pointer */
+.X1lXSiVj0pzhQCUo_72A {
+    cursor: pointer !important;
 }
