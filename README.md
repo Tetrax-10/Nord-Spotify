@@ -4,7 +4,9 @@ A better Nord Theme with no Ads
 
 <br />
 
-![Screenshot](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/screenshot_1.png)
+
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/screenshot_2.png)
 
 <br />
 
