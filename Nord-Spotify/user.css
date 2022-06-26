@@ -339,7 +339,7 @@ button {
     border-radius: 20px !important;
 }
 
-/* //////////// Home Screen //////////// */
+/* //////////// Root //////////// */
 
 /* change search bar appearance */
 input {
@@ -404,6 +404,11 @@ input {
 .Z35BWOA10YGn5uc9YgAp:hover,
 .Z35BWOA10YGn5uc9YgAp[data-context-menu-open="true"] {
     background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
+}
+
+/* Profile photo hover edit button */
+.CdHBSRh3RhPwBNIBQtkD {
+    border-radius: 10px !important;
 }
 
 /* //////////// Top bar //////////// */
