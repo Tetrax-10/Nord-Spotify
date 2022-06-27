@@ -309,6 +309,7 @@ button {
 
 /* artist name color change in all playlist */
 .main-trackList-rowSubTitle a[href],
+.main-trackList-rowSubTitle,
 .main-trackList-rowSectionVariable a[href] {
     color: var(--text-subdued, #6a6a6a) !important;
 }
