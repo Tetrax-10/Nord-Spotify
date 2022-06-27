@@ -239,9 +239,17 @@ button {
 .Y8edH1Yjo4xrW_58czQj {
     display: none !important;
 }
+/* after 1.1.86 update */
+.main-rootlist-rootlistDividerGradient {
+    display: none !important;
+}
 
 /* change divider color in sidebar */
 .FBPrcmuqo3yv5UfWSRl5 {
+    background-color: var(--spice-nav-active);
+}
+/* after 1.1.86 update */
+.main-rootlist-rootlistDivider {
     background-color: var(--spice-nav-active);
 }
 
