@@ -411,6 +411,15 @@ input {
     border-radius: 10px !important;
 }
 
+/* If no profile pic the element will not be circle */
+.main-entityHeader-circle {
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
 /* //////////// Top bar //////////// */
 
 /* remove top bar extension round container */
@@ -511,6 +520,10 @@ input {
     height: 19px;
     width: 19px;
     transform: scale(1.5);
+}
+
+.main-playPauseButton-button[disabled] {
+    background-color: var(--spice-main);
 }
 
 /* //////////// Cards //////////// */
