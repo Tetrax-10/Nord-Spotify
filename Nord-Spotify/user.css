@@ -314,6 +314,11 @@ button {
     color: var(--text-subdued, #6a6a6a) !important;
 }
 
+/* local songs album name color change in playlist */
+.jsV182e49Puwz9SIYt2J {
+    color: var(--text-subdued, #6a6a6a) !important;
+}
+
 /* change appearance of public/private playlist tag on top of playlist */
 .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold {
     border: 2px var(--spice-text) solid;
