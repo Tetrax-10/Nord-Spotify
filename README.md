@@ -38,7 +38,7 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 ## Bonus Extension to get this look
 
-[Hide-Sidebar-Items](https://github.com/Tetrax-10/Spicetify-Extensions)
+[Hide-Items](https://github.com/Tetrax-10/Spicetify-Extensions)
 
 ## Credits
 
