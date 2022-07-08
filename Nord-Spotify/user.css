@@ -151,6 +151,20 @@ button {
     background-color: var(--spice-nav-active);
 }
 
+/* liked song icon mono color */
+.main-likedSongsButton-likedSongsIcon {
+    color: var(--spice-sidebar);
+    background: var(--spice-text);
+}
+
+/* episodes icon mono color */
+.main-yourEpisodesButton-yourEpisodesIcon {
+    background: var(--spice-text);
+}
+.main-yourEpisodesButton-yourEpisodesIcon path {
+    fill: var(--spice-sidebar);
+}
+
 /* //////////// playlist //////////// */
 
 /* small cover image in playlist row */
@@ -208,7 +222,8 @@ button {
 /* artist name color change in all playlist */
 .main-trackList-rowSubTitle a[href],
 .main-trackList-rowSubTitle,
-.main-trackList-rowSectionVariable a[href] {
+.main-trackList-rowSectionVariable a[href],
+.main-trackList-rowSectionVariable .ebHsEf {
     color: var(--text-subdued, #6a6a6a) !important;
 }
 
@@ -477,3 +492,14 @@ input {
 .X1lXSiVj0pzhQCUo_72A {
     cursor: pointer !important;
 }
+
+/* //////////////////////////////////////// Personal /////////////////////////////////////// */
+
+/* Hide Home Page Recommendation */
+/*
+section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
+    display: none !important;
+}
+*/
+
+/* //////////////////////////////////////// Testing /////////////////////////////////////// */
