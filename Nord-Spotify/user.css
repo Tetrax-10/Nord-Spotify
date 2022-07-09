@@ -406,8 +406,11 @@ input {
 }
 
 /* hides info about other devices on player */
-.mVVxN9ZfIRjiQfDuzPCZ {
-    display: none;
+.main-connectBar-connectBar {
+    display: none !important;
+}
+.control-button::after {
+    display: none !important;
 }
 
 /* hide and move progress time location right */
