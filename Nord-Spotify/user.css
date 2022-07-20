@@ -275,9 +275,14 @@ button {
 
 /* change search bar appearance */
 input {
-    background-color: var(--spice-main-secondary) !important;
+    background: var(--spice-main-soft-secondary) !important;
     border-radius: 0 !important;
     padding: 6px 10px 6px 48px;
+    color: var(--spice-text) !important;
+}
+
+/* search bar - search icon */
+.mOLTJ2mxkzHJj6Y9_na_ {
     color: var(--spice-text) !important;
 }
 
@@ -501,13 +506,38 @@ input {
     cursor: pointer !important;
 }
 
+/* //////////// quick search //////////// */
+
+/* quick search - text color */
+.v2oO4ItuH_0zk3OFj5dh {
+    color: var(--spice-text) !important;
+}
+
+/* quick search - input box */
+.kQ22nY00NOOrZjfmRP5J {
+    background: var(--spice-main-soft-secondary) !important;
+}
+
+/* quick search - search icon */
+.HN_3fmk5t15DGlzDbx1_ {
+    color: var(--spice-text) !important;
+}
+
 /* //////////////////////////////////////// Personal /////////////////////////////////////// */
 
 /* Hide Home Page Recommendation */
-/*
-section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
+/* section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
     display: none !important;
-}
-*/
+} */
+
+/* hide playlist description in library */
+/* spicetify 2.10.2 */
+/* .JUa6JJNj7R_Y3i4P8YUX .main-cardSubHeader-root {
+    display: none !important;
+} */
+/* spicetify 2.10.3 unreleased */
+/* .main-rootlist-wrapper .main-cardSubHeader-root {
+    display: none !important;
+} */
 
 /* //////////////////////////////////////// Testing /////////////////////////////////////// */
