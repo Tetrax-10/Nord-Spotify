@@ -523,21 +523,4 @@ input {
     color: var(--spice-text) !important;
 }
 
-/* //////////////////////////////////////// Personal /////////////////////////////////////// */
-
-/* Hide Home Page Recommendation */
-/* section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
-    display: none !important;
-} */
-
-/* hide playlist description in library */
-/* spicetify 2.10.2 */
-/* .JUa6JJNj7R_Y3i4P8YUX .main-cardSubHeader-root {
-    display: none !important;
-} */
-/* spicetify 2.10.3 unreleased */
-/* .main-rootlist-wrapper .main-cardSubHeader-root {
-    display: none !important;
-} */
-
-/* //////////////////////////////////////// Testing /////////////////////////////////////// */
+/* ///////////////////// Paste the Code below from the readme file //////////////////////// */
