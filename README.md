@@ -8,6 +8,19 @@ A better Nord Theme with no Ads
 
 ![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/screenshot_2.png)
 
+
+## disable recommendation
+
+![disable recommendation](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/disable%20recommendation.gif)
+
+### To disable recommendation paste this code at the end of the file
+
+```css
+section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
+    display: none !important;
+}
+```
+
 <br />
 
 ## Install Theme
@@ -35,10 +48,6 @@ Step 2 : Open Spotify App -> Marketplace -> Themes
 Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 <br />
-
-## Bonus Extension to get this look
-
-[Hide-Items](https://github.com/Tetrax-10/Spicetify-Extensions)
 
 ## Credits
 
