@@ -53,6 +53,10 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 <br />
 
+## Playlist Icons
+
+To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https://github.com/jeroentvb/spicetify-playlist-icons/tree/dist) made by [jeroentvb](https://github.com/jeroentvb)
+
 ## Credits
 
 [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) theme by [harbassan](https://github.com/harbassan)
