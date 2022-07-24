@@ -4,14 +4,13 @@ A better Nord Theme with no Ads
 
 <br />
 
-![Screenshot](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/screenshot_1.png)
+![Screenshot](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_1.png)
 
-![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/screenshot_2.png)
-
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_2.png)
 
 ## Disable Homepage Recommendation
 
-![disable recommendation](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/disable%20recommendation.gif)
+![disable recommendation](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/disable%20recommendation.gif)
 
 ### To disable homepage recommendation paste this code at the end of the CSS file
 
@@ -24,14 +23,17 @@ section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently pla
 <br />
 
 ## Install Theme
-Copy `Nord-Spotify` folder into your [Spicetify](https://github.com/spicetify/spicetify-cli) themes directory:
-| **Platform** | **Path**                                                                            |
-|------------|-----------------------------------------------------------------------------------|
-| **Linux**      | `~/.config/spicetify/Themes` or `$XDG_CONFIG_HOME/.config/spicetify/Themes/` |
-| **MacOS**      | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
-| **Windows**    | `%userprofile%\.spicetify\Themes\`                                              |
+
+Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.css` and `color.ini`
+
+| **Platform** | **Path**                                                                     |
+| ------------ | ---------------------------------------------------------------------------- |
+| **Linux**    | `~/.config/spicetify/Themes` or `$XDG_CONFIG_HOME/.config/spicetify/Themes/` |
+| **MacOS**    | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
+| **Windows**  | `%userprofile%\.spicetify\Themes\`                                           |
 
 After putting the `Nord-Spotify` folder into the themes folder, run the following command to install the theme:
+
 ```
 spicetify config current_theme Nord-Spotify color_scheme base
 spicetify apply
@@ -56,6 +58,7 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 [SpotifyNoPremium](https://github.com/Daksh777/SpotifyNoPremium) theme by [Daksh777](https://github.com/Daksh777)
 
 ## Support
+
 🌟 Like it? Gimme Some Love ! 💕
 
 [![Github Stars badge](https://img.shields.io/github/stars/Tetrax-10/Spicetify-Themes?logo=github&style=social)](https://github.com/Tetrax-10/Spicetify-Themes)
