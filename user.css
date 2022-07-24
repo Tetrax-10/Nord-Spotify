@@ -174,7 +174,7 @@ button {
 
 /* small cover image in playlist row */
 .main-trackList-rowImage {
-    border-radius: 10%;
+    border-radius: 10% !important;
 }
 
 /* Hide playlist gradient top */
