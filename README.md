@@ -10,7 +10,7 @@ A better Nord Theme with no Ads
 
 ## Disable Homepage Recommendation
 
-![disable recommendation](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/disable%20recommendation.gif)
+![disable recommendation](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/disable-recommendation.gif)
 
 ### To disable homepage recommendation paste this code at the end of the CSS file
 
