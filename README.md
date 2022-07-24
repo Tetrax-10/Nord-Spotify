@@ -26,13 +26,15 @@ section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently pla
 
 Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.css` and `color.ini`
 
+### Themes Folder Location
+
 | **Platform** | **Path**                                                                     |
 | ------------ | ---------------------------------------------------------------------------- |
 | **Linux**    | `~/.config/spicetify/Themes` or `$XDG_CONFIG_HOME/.config/spicetify/Themes/` |
 | **MacOS**    | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
 | **Windows**  | `%userprofile%\.spicetify\Themes\`                                           |
 
-After putting the `Nord-Spotify` folder into the themes folder, run the following command to install the theme:
+Now run the following command to install the theme:
 
 ```
 spicetify config current_theme Nord-Spotify color_scheme base
