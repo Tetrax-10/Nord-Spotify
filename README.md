@@ -43,7 +43,7 @@ spicetify apply
 
 <br />
 
-## Get it on Spicetify Marketplace
+## Get it on Spicetify Marketplace ( Not Recommended )
 
 Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
 
