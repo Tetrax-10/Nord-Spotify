@@ -43,7 +43,7 @@ spicetify apply
 
 <br />
 
-## Get it on Spicetify Marketplace
+## Get it on Spicetify Marketplace ( Not Recommended )
 
 Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
 
@@ -52,6 +52,10 @@ Step 2 : Open Spotify App -> Marketplace -> Themes
 Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 <br />
+
+## Playlist Icons
+
+To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https://github.com/jeroentvb/spicetify-playlist-icons/tree/dist) made by [jeroentvb](https://github.com/jeroentvb)
 
 ## Credits
 
