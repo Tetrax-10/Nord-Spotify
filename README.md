@@ -12,13 +12,17 @@ A better Nord Theme with no Ads
 
 ![disable recommendation](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/disable-recommendation.gif)
 
-### To disable homepage recommendation paste this code at the end of the CSS file
+### To disable homepage recommendation paste this code at the end of the CSS file or Install the Snippet
 
 ```css
 section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
     display: none !important;
 }
 ```
+
+### This Code is available in Marketplace Snippet
+
+![marketplace snippet](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/marketplace-snippet.png)
 
 <br />
 
