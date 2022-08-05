@@ -329,11 +329,6 @@ input {
     --background-highlight: var(--spice-button);
 }
 
-/* change color of 'explicit' badge */
-.main-tag-container {
-    background-color: var(--spice-subtext);
-}
-
 /* home page most played playlist bg color */
 .Z35BWOA10YGn5uc9YgAp {
     background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
