@@ -523,8 +523,3 @@ input {
 .KNUIWLKuuA1qIkTt4jus {
     background: none !important;
 }
-
-/* lyrics plus background noice set to none */
-.lyrics-lyricsContainer-LyricsContainer {
-    --lyrics-background-noise: none !important;
-}
