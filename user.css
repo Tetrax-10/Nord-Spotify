@@ -468,9 +468,10 @@ input {
 .main-trackInfo-container {
     margin-left: 74px;
 }
+/* static cover */
 .main-coverSlotExpanded-container {
     position: fixed;
-    top: calc(100% - 320px);
+    top: calc(100% - 305px);
     left: calc(100% - 220px);
     width: 200px;
     height: 200px;
@@ -513,9 +514,10 @@ input {
     transition-timing-function: ease-in;
     transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s, box-shadow 0.5s;
 }
+/* dynamic cover */
 .main-coverSlotCollapsed-container[aria-hidden="true"] {
     left: calc(100vw - 164px);
-    top: -255px;
+    top: -240px;
     width: 200px;
     height: 200px;
     visibility: hidden;
