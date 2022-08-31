@@ -1,48 +1,26 @@
-/* ////////////////////////////////// Spotify No Premium ///////////////////////////////// */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
+* {
+    font-family: "Quicksand", sans-serif !important;
+}
 
-/* Context menu upgrade button */
-.upgrade-button, button[data-menu-item="upgrade-account"], .main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"], button[id="upgradeAccount"]
+/* ////////////////////////////////// Hide Ads ///////////////////////////////// */
+
+/* Top Context menu upgrade button hide */
+.main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"]
 {
     display: none !important;
 }
 
-/* Ad placeholder */
-.main-leaderboardComponent-container {
-    display: none !important;
-}
-/* Upgrade button */
-.main-topBar-UpgradeButton,
-.Button-y0gtbx-0[aria-label="Upgrade to Premium"] {
+/* Remove upgrade button near username */
+.main-topBar-UpgradeButton {
     display: none !important;
 }
 
-/* Pointer cursors for accessibility */
-.show-followButton-button,
-.main-dropDown-dropDown,
-.x-toggle-wrapper,
-.main-playlistEditDetailsModal-closeBtn,
-.main-trackList-rowPlayPauseButton,
-.main-rootlist-rootlistItemLink:link,
-.main-rootlist-rootlistItemLink:visited,
-.x-sortBox-sortDropdown,
-.main-contextMenu-menuItemButton,
-.main-trackList-column,
-.main-moreButton-button,
-.x-downloadButton-button,
-.main-playButton-PlayButton,
-.main-coverSlotExpandedCollapseButton-chevron,
-.main-coverSlotCollapsed-chevron,
-.control-button:focus,
-.control-button:hover,
-.main-repeatButton-button,
-.main-skipForwardButton-button,
-.main-playPauseButton-button,
-.main-skipBackButton-button,
-.main-shuffleButton-button,
-.main-addButton-button,
-.progress-bar__slider,
-.main-editImageButton-image {
-    cursor: pointer !important;
+/* Ad placeholder */
+.main-leaderboardComponent-container,
+.ReyA3uE3K7oEz7PTTnAn,
+.X871RxPwx9V0MqpQdMom {
+    display: none !important;
 }
 
 /* Home page ad section */
@@ -50,60 +28,8 @@
     display: none !important;
 }
 
-/* Remove download button */
-.x-downloadButton-DownloadButton {
-    display: none !important;
-}
-
-/* Context menu download button */
-.main-contextMenu-disabled:not([as="a"]) {
-    display: none !important;
-}
-
 /* Remove sponsor ads in playlists */
 .sponsor-container {
-    display: none !important;
-}
-
-/* For update 1.1.74+ */
-
-/* Ad placeholder */
-.X871RxPwx9V0MqpQdMom {
-    display: none !important;
-}
-
-/* Upgrade button */
-.Qt5xfSWikz6CLU8Vobxs[aria-label="Upgrade to Premium"] {
-    display: none !important;
-}
-
-/* Context menu upgrade button */
-.DuEPSADpSwCcO880xjUG a[href="https://www.spotify.com/premium/"]
-{
-    display: none !important;
-}
-
-/* Download button */
-.BKsbV2Xl786X9a09XROH {
-    display: none !important;
-}
-
-/* Context menu download button */
-.wC9sIed7pfp47wZbmU6m[aria-disabled="true"] {
-    display: none !important;
-}
-
-/* Remove top padding above create playlist button */
-.eFQFeXVbY8rrcTagg0oH {
-    margin-top: 0 !important;
-}
-
-button {
-    cursor: pointer !important;
-}
-
-/* Remove upgrade button for v1.1.78 */
-.main-buttons-button[title="Upgrade to Premium"] {
     display: none !important;
 }
 
@@ -114,26 +40,11 @@ button {
     display: none !important;
 }
 
-/* Remove top padding above create playlist button for 1.1.84+ */
-.LKgm9fCDTO7wqig_5U1q {
-    margin-top: 0 !important;
-}
-
-/* Ad placeholder for 1.1.86+ */
-.ReyA3uE3K7oEz7PTTnAn {
-    display: none !important;
-}
-
-/* Remove extra padding for 1.1.89+ */
-.main-rootlist-rootlist {
-    margin-top: 0 !important;
-}
-
-/* ////////////////////////////////////// My Nord Theme //////////////////////////////////// */
+/* ////////////////////////////////////// Nord Theme //////////////////////////////////// */
 
 /* //////////// SideBar //////////// */
 
-/* hides playlist scrollbar */
+/* hides sidebar scrollbar */
 .os-scrollbar:nth-child(6) .os-scrollbar-handle {
     visibility: hidden;
 }
@@ -142,32 +53,10 @@ button {
 .main-rootlist-rootlistDividerGradient {
     display: none !important;
 }
-/* after 1.1.86 update */
-.main-rootlist-rootlistDividerGradient {
-    display: none !important;
-}
 
 /* change divider color in sidebar */
 .main-rootlist-rootlistDivider {
     background-color: var(--spice-nav-active);
-}
-/* after 1.1.86 update */
-.main-rootlist-rootlistDivider {
-    background-color: var(--spice-nav-active);
-}
-
-/* liked song icon mono color */
-.main-likedSongsButton-likedSongsIcon {
-    color: var(--spice-sidebar);
-    background: var(--spice-text);
-}
-
-/* episodes icon mono color */
-.main-yourEpisodesButton-yourEpisodesIcon {
-    background: var(--spice-text);
-}
-.main-yourEpisodesButton-yourEpisodesIcon path {
-    fill: var(--spice-sidebar);
 }
 
 /* //////////// playlist //////////// */
@@ -190,10 +79,10 @@ button {
 /* playlist big image shadow */
 .main-entityHeader-shadow {
     -webkit-box-shadow: none !important;
-    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 0.5) !important;
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 1) !important;
 }
 
-/* change playing icon from gif to svg */
+/* change playing icon color in playlist to theme color */
 .main-trackList-playingIcon {
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg id='playing-icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 24'%3E%3Cdefs%3E%3Cstyle%3E %23playing-icon %7B fill: %2320BC54; %7D @keyframes play %7B 0%25 %7Btransform: scaleY(1);%7D 3.3%25 %7Btransform: scaleY(0.9583);%7D 6.6%25 %7Btransform: scaleY(0.9166);%7D 9.9%25 %7Btransform: scaleY(0.8333);%7D 13.3%25 %7Btransform: scaleY(0.7083);%7D 16.6%25 %7Btransform: scaleY(0.5416);%7D 19.9%25 %7Btransform: scaleY(0.4166);%7D 23.3%25 %7Btransform: scaleY(0.25);%7D 26.6%25 %7Btransform: scaleY(0.1666);%7D 29.9%25 %7Btransform: scaleY(0.125);%7D 33.3%25 %7Btransform: scaleY(0.125);%7D 36.6%25 %7Btransform: scaleY(0.1666);%7D 39.9%25 %7Btransform: scaleY(0.1666);%7D 43.3%25 %7Btransform: scaleY(0.2083);%7D 46.6%25 %7Btransform: scaleY(0.2916);%7D 49.9%25 %7Btransform: scaleY(0.375);%7D 53.3%25 %7Btransform: scaleY(0.5);%7D 56.6%25 %7Btransform: scaleY(0.5833);%7D 59.9%25 %7Btransform: scaleY(0.625);%7D 63.3%25 %7Btransform: scaleY(0.6666);%7D 66.6%25 %7Btransform: scaleY(0.6666);%7D 69.9%25 %7Btransform: scaleY(0.6666);%7D 73.3%25 %7Btransform: scaleY(0.6666);%7D 76.6%25 %7Btransform: scaleY(0.7083);%7D 79.9%25 %7Btransform: scaleY(0.75);%7D 83.3%25 %7Btransform: scaleY(0.8333);%7D 86.6%25 %7Btransform: scaleY(0.875);%7D 89.9%25 %7Btransform: scaleY(0.9166);%7D 93.3%25 %7Btransform: scaleY(0.9583);%7D 96.6%25 %7Btransform: scaleY(1);%7D %7D %23bar1 %7B transform-origin: bottom; animation: play 0.9s -0.51s infinite; %7D %23bar2 %7B transform-origin: bottom; animation: play 0.9s infinite; %7D %23bar3 %7B transform-origin: bottom; animation: play 0.9s -0.15s infinite; %7D %23bar4 %7B transform-origin: bottom; animation: play 0.9s -0.75s infinite; %7D %3C/style%3E%3C/defs%3E%3Ctitle%3Eplaying-icon%3C/title%3E%3Crect id='bar1' class='cls-1' width='4' height='24'/%3E%3Crect id='bar2' class='cls-1' x='6' width='4' height='24'/%3E%3Crect id='bar3' class='cls-1' x='12' width='4' height='24'/%3E%3Crect id='bar4' class='cls-1' x='18' width='4' height='24'/%3E%3C/svg%3E");
     background: var(--spice-button);
@@ -353,6 +242,11 @@ input {
     border-bottom-left-radius: 10px;
 }
 
+/* home page each chart topic title height */
+.main-shelf-titleWrapper h2 {
+    line-height: 2em;
+}
+
 /* //////////// Top bar //////////// */
 
 /* remove top bar extension round container */
@@ -479,6 +373,16 @@ input {
     transform-origin: center;
     animation: 1s coverExpandedIn;
     animation-fill-mode: forwards;
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 1) !important;
+}
+/* dynamic cover */
+.main-coverSlotCollapsed-container[aria-hidden="true"] {
+    left: calc(100vw - 164px);
+    top: -240px;
+    width: 200px;
+    height: 200px;
+    visibility: hidden;
+    animation: 1s coverExpandedOut;
 }
 .Q4cc5RktWgz2H8_vDrIS {
     display: none;
@@ -512,20 +416,13 @@ input {
 .main-coverSlotCollapsed-container {
     transform-origin: center;
     transition-timing-function: ease-in;
-    transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s, box-shadow 0.5s;
-}
-/* dynamic cover */
-.main-coverSlotCollapsed-container[aria-hidden="true"] {
-    left: calc(100vw - 164px);
-    top: -240px;
-    width: 200px;
-    height: 200px;
-    visibility: hidden;
-    animation: 1s coverExpandedOut;
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 1) !important;
+    transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s, box-shadow 1s;
 }
 .main-coverSlotCollapsed-container[aria-hidden="false"] {
     transition-timing-function: ease-out !important;
-    transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s, box-shadow 0.5s !important;
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 1) !important;
+    transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s, box-shadow 1s !important;
 }
 .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
 .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
@@ -539,7 +436,7 @@ input {
     z-index: 1;
 }
 .cover-art.shadow {
-    box-shadow: 0 0 10px rgba(var(--spice-rgb-shadow), 1) !important;
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 1) !important;
     border-radius: 10px !important;
 }
 
@@ -576,9 +473,33 @@ input {
 }
 
 /* //////////// Pointer Change //////////// */
-
-/* collaborate button made cursors pointer */
-.X1lXSiVj0pzhQCUo_72A {
+button,
+.show-followButton-button,
+.main-dropDown-dropDown,
+.x-toggle-wrapper,
+.main-playlistEditDetailsModal-closeBtn,
+.main-trackList-rowPlayPauseButton,
+.main-rootlist-rootlistItemLink:link,
+.main-rootlist-rootlistItemLink:visited,
+.x-sortBox-sortDropdown,
+.main-contextMenu-menuItemButton,
+.main-trackList-column,
+.main-moreButton-button,
+.x-downloadButton-button,
+.main-playButton-PlayButton,
+.main-coverSlotExpandedCollapseButton-chevron,
+.main-coverSlotCollapsed-chevron,
+.control-button:focus,
+.control-button:hover,
+.main-repeatButton-button,
+.main-skipForwardButton-button,
+.main-playPauseButton-button,
+.main-skipBackButton-button,
+.main-shuffleButton-button,
+.main-addButton-button,
+.progress-bar__slider,
+.main-editImageButton-image,
+.X1lXSiVj0pzhQCUo_72A  /* collaborate button in playlist */ {
     cursor: pointer !important;
 }
 
