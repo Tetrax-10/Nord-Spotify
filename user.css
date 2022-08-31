@@ -3,7 +3,7 @@
     font-family: "Quicksand", sans-serif !important;
 }
 
-/* ////////////////////////////////// Hide Ads ///////////////////////////////// */
+/* ////////////////////////////////// No Ads ///////////////////////////////// */
 
 /* Top Context menu upgrade button hide */
 .main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"]
@@ -219,12 +219,12 @@ input {
 }
 
 /* home page most played playlist bg color */
-.Z35BWOA10YGn5uc9YgAp {
+.view-homeShortcutsGrid-shortcut {
     background-color: rgba(var(--spice-rgb-main-secondary), 0.5) !important;
 }
-.Z35BWOA10YGn5uc9YgAp:focus-within,
-.Z35BWOA10YGn5uc9YgAp:hover,
-.Z35BWOA10YGn5uc9YgAp[data-context-menu-open="true"] {
+.view-homeShortcutsGrid-shortcut:focus-within,
+.view-homeShortcutsGrid-shortcut:hover,
+.view-homeShortcutsGrid-shortcut[data-context-menu-open="true"] {
     background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
 }
 
@@ -244,7 +244,12 @@ input {
 
 /* home page each chart topic title height */
 .main-shelf-titleWrapper h2 {
-    line-height: 2em;
+    line-height: 1.2em;
+}
+
+/* Top extra padding above greeting */
+.main-home-content {
+    padding-top: 0px;
 }
 
 /* //////////// Top bar //////////// */
