@@ -160,6 +160,11 @@
     border-radius: 20px !important;
 }
 
+/* Profile photo hover edit button */
+.main-editImageButton-overlay {
+    border-radius: 10px;
+}
+
 /* //////////// Root //////////// */
 
 /* change search bar appearance */
@@ -188,6 +193,7 @@ input {
 }
 
 /* remove gradient color on home screen */
+.HsbczDqu9qjcYr7EIdHR,
 .main-home-homeHeader {
     display: none !important;
 }
@@ -228,11 +234,6 @@ input {
     background-color: rgba(var(--spice-rgb-main-secondary), 1) !important;
 }
 
-/* Profile photo hover edit button */
-.CdHBSRh3RhPwBNIBQtkD {
-    border-radius: 10px !important;
-}
-
 /* If no profile pic the element will not be circle */
 .main-entityHeader-circle {
     border-radius: 10px;
@@ -250,6 +251,11 @@ input {
 /* Top extra padding above greeting */
 .main-home-content {
     padding-top: 0px;
+}
+
+/* Home page top six playlist border radius */
+.view-homeShortcutsGrid-image {
+    border-radius: 0px !important;
 }
 
 /* //////////// Top bar //////////// */
@@ -460,7 +466,7 @@ input {
 }
 
 /* local files folder in library */
-.tlNAdRNP5lIeiD85nMcL,
+.main-entityHeader-imagePlaceholder,
 .main-cardImage-imageWrapper {
     border-radius: 10px;
 }
