@@ -538,7 +538,28 @@ button,
 
 /* //////////// lyrics page //////////// */
 
-/* better lyrics style */
+/* better lyrics style */ /* spicetify 2.13.0 */
+.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
+    filter: blur(1.5px);
+    padding: 15px;
+    font-size: 110%;
+}
+.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
+    filter: none;
+    padding: 20px;
+    font-size: 130%;
+}
+.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
+    filter: blur(1.5px);
+    padding: 15px;
+    font-size: 110%;
+}
+.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
+    filter: none;
+    padding: 10px;
+    font-size: 100%;
+}
+/* spicetify 2.13.0 */
 .Q2RPoHcoxygOoPLXLMww .NHVfxGs2HwmI_fly2JC4.H2J92dVdr0ykdOX5azL1 {
     filter: blur(1.5px);
     padding: 15px;
@@ -558,4 +579,22 @@ button,
     filter: none;
     padding: 10px;
     font-size: 100%;
+}
+
+/* lyrics plus compact off */
+.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
+    /* filter: blur(1.5px); */
+    padding: 15px;
+    /* font-size: 200%; */
+}
+/* .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-highlight {
+    filter: none;
+    color: red !important;
+    padding: 12px;
+    font-size: 250%;
+} */
+.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
+    /* filter: blur(1.5px); */
+    padding: 15px;
+    /* font-size: 200%; */
 }
