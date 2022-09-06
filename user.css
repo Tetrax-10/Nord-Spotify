@@ -258,6 +258,10 @@ input {
     border-radius: 0px !important;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 /* //////////// Top bar //////////// */
 
 /* remove top bar extension round container */
@@ -597,4 +601,9 @@ button,
     /* filter: blur(1.5px); */
     padding: 15px;
     /* font-size: 200%; */
+}
+
+/* lyrics plus extra margin top */
+.lyrics-lyricsContainer-LyricsContainer {
+    margin-top: -63px;
 }
