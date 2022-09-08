@@ -487,6 +487,7 @@ a {
 
 /* local files folder in library */
 .main-entityHeader-imagePlaceholder,
+.tlNAdRNP5lIeiD85nMcL,
 .main-cardImage-imageWrapper {
     border-radius: 10px;
 }
@@ -602,3 +603,13 @@ button,
 .lyrics-lyricsContainer-LyricsContainer {
     margin-top: -63px;
 }
+
+/* ///////////////////////////////////////////////////////////////////////////////////// */
+
+/* section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
+    display: none !important;
+}
+
+.collection-collectionEntityHeroCard-tracksContainer {
+    display: none;
+} */
