@@ -262,6 +262,22 @@ a {
     text-decoration: none !important;
 }
 
+/* fix heart color on click */
+#_R_G *:not([fill="none"]) {
+    color: var(--spice-button-active);
+    fill: var(--spice-button-active);
+}
+#_R_G *:not([stroke="none"]) {
+    stroke: var(--spice-button-active);
+}
+
+/* button pressed color fix */
+.encore-dark-theme .encore-bright-accent-set {
+    --background-base: var(--spice-button);
+    --background-highlight: var(--spice-button);
+    --background-press: var(--spice-button);
+}
+
 /* //////////// Top bar //////////// */
 
 /* remove top bar extension round container */
@@ -542,7 +558,7 @@ button,
 
 /* //////////// lyrics page //////////// */
 
-/* better lyrics style */ /* spicetify 2.13.0 */
+/* better spotify lyrics style  */
 .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
     filter: blur(1.5px);
     padding: 15px;
@@ -563,29 +579,8 @@ button,
     padding: 10px;
     font-size: 100%;
 }
-/* spicetify 2.13.0 */
-.Q2RPoHcoxygOoPLXLMww .NHVfxGs2HwmI_fly2JC4.H2J92dVdr0ykdOX5azL1 {
-    filter: blur(1.5px);
-    padding: 15px;
-    font-size: 110%;
-}
-.Q2RPoHcoxygOoPLXLMww .NHVfxGs2HwmI_fly2JC4.TDPh45khCfG51fNwNIiw {
-    filter: none;
-    padding: 20px;
-    font-size: 130%;
-}
-.Q2RPoHcoxygOoPLXLMww .NHVfxGs2HwmI_fly2JC4 {
-    filter: blur(1.5px);
-    padding: 15px;
-    font-size: 110%;
-}
-.Q2RPoHcoxygOoPLXLMww .NHVfxGs2HwmI_fly2JC4.E64X_eoy6xsJmDdKKHja {
-    filter: none;
-    padding: 10px;
-    font-size: 100%;
-}
 
-/* lyrics plus compact off */
+/* lyrics plus compact off style */
 .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
     /* filter: blur(1.5px); */
     padding: 15px;
