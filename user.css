@@ -193,7 +193,6 @@ input {
 }
 
 /* remove gradient color on home screen */
-.HsbczDqu9qjcYr7EIdHR,
 .main-home-homeHeader {
     display: none !important;
 }
@@ -264,11 +263,10 @@ a {
 
 /* fix heart color on click */
 #_R_G *:not([fill="none"]) {
-    color: var(--spice-button-active);
-    fill: var(--spice-button-active);
+    fill: var(--spice-button) !important;
 }
 #_R_G *:not([stroke="none"]) {
-    stroke: var(--spice-button-active);
+    stroke: var(--spice-button);
 }
 
 /* button pressed color fix */
@@ -301,6 +299,11 @@ a {
 } */
 
 /* fixed liked button hover color */
+.main-addButton-button[aria-checked="false"] {
+    color: rgba(var(--spice-rgb-selected-row), 0.7);
+}
+.control-button-heart[aria-checked="true"],
+.main-addButton-button,
 .main-addButton-active:focus,
 .main-addButton-active:hover {
     color: var(--spice-button);
@@ -322,9 +325,8 @@ a {
     background-color: var(--spice-main-secondary) !important;
 }
 
-/* progress bar round ball made cursors pointer and smooth transition */
+/* progress bar round ball made smooth transition */
 .progress-bar__slider {
-    cursor: pointer !important;
     transition: left, 0s, ease, 0.25s;
 }
 
@@ -333,7 +335,6 @@ a {
     width: 100%;
     bottom: 83px;
     position: absolute;
-    cursor: pointer;
 }
 
 /* hides info about other devices on player */
@@ -530,6 +531,7 @@ button,
 .main-shuffleButton-button,
 .main-addButton-button,
 .progress-bar__slider,
+.playback-bar,
 .main-editImageButton-image,
 .X1lXSiVj0pzhQCUo_72A  /* collaborate button in playlist */ {
     cursor: pointer !important;
@@ -606,10 +608,12 @@ button,
 
 /* ///////////////////////////////////////////////////////////////////////////////////// */
 
+/* disable homepage recommendation */
 /* section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
     display: none !important;
-}
+} */
 
-.collection-collectionEntityHeroCard-tracksContainer {
+/* remove text in liked playlist in your library */
+/* .collection-collectionEntityHeroCard-tracksContainer {
     display: none;
 } */
