@@ -274,7 +274,7 @@ a {
 /* button pressed color fix */
 .encore-dark-theme .encore-bright-accent-set {
     --background-base: var(--spice-button);
-    --background-highlight: var(--spice-button);
+    --background-highlight: var(--spice-button-active);
     --background-press: var(--spice-button);
 }
 
