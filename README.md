@@ -8,22 +8,6 @@ A better Nord Theme with no Ads
 
 ![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_2.png)
 
-## Disable Homepage Recommendation
-
-![disable recommendation](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/disable-recommendation.gif)
-
-### To disable homepage recommendation paste this code at the end of the CSS file or Install the Snippet
-
-```css
-section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
-    display: none !important;
-}
-```
-
-### This Code is available in Marketplace Snippet
-
-![marketplace snippet](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/marketplace-snippet.png)
-
 <br />
 
 ## Install Theme
@@ -64,6 +48,8 @@ To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https
 ## Credits
 
 [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) theme by [harbassan](https://github.com/harbassan)
+
+2.0 Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify)
 
 ## Support
 
