@@ -8,6 +8,17 @@ A better Nord Theme with no Ads
 
 ![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_2.png)
 
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_3.png)
+
+## Customized Spottify and Lyrics-Plus Integration
+
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_4.png)
+
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_5.png)
+
+## Customized 3rd party Extension Integration
+
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_6.png)
 <br />
 
 ## Install Theme
