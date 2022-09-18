@@ -49,7 +49,9 @@ To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https
 
 [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) theme by [harbassan](https://github.com/harbassan)
 
-2.0 Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify)
+Inspired from [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) Theme
+
+2.0 Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify) Theme
 
 ## Support
 
