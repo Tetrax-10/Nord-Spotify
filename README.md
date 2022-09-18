@@ -10,7 +10,7 @@ A better Nord Theme with no Ads
 
 ![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_3.png)
 
-## Customized Spottify and Lyrics-Plus Integration
+## Customized Spotify and Lyrics-Plus Integration
 
 ![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/screenshot_4.png)
 
@@ -57,8 +57,6 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https://github.com/jeroentvb/spicetify-playlist-icons/tree/dist) made by [jeroentvb](https://github.com/jeroentvb)
 
 ## Credits
-
-[Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) theme by [harbassan](https://github.com/harbassan)
 
 Inspired from [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) Theme
 
