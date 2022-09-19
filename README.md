@@ -36,13 +36,13 @@ Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.
 Now run the following command to install the theme:
 
 ```
-spicetify config current_theme Nord-Spotify color_scheme base
+spicetify config current_theme Nord-Spotify color_scheme Nord
 spicetify apply
 ```
 
 <br />
 
-## Get it on Spicetify Marketplace ( Not Recommended )
+## Get it on Spicetify Marketplace
 
 Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
 
@@ -58,9 +58,7 @@ To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https
 
 ## Credits
 
-Inspired from [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) Theme
-
-2.0 Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify) Theme
+Nord-Spotify 2.0 Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify) and [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) Theme
 
 ## Support
 
