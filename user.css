@@ -988,39 +988,39 @@ button,
 /* ///////////////////////////////////// Personal ///////////////////////////////////// */
 
 /* disable homepage recommendation */
-section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
+/* section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"], [aria-label="Your playlists"]) {
     display: none !important;
-}
+} */
 
 /* blue like card useless text in your library */
-.collection-collectionEntityHeroCard-tracksContainer {
+/* .collection-collectionEntityHeroCard-tracksContainer {
     display: none;
-}
+} */
 
 /* remove liked songs card in your library */
-.main-heroCard-card.collection-collectionEntityHeroCard-likedSongs.collection-collectionEntityHeroCard-container {
+/* .main-heroCard-card.collection-collectionEntityHeroCard-likedSongs.collection-collectionEntityHeroCard-container {
     display: none;
-}
+} */
 
 /* disable similar song suggestion in playlist */
-.STDuzt77yRCueC4Ohenl,
+/* .STDuzt77yRCueC4Ohenl,
 .kwe0I8sSNMv3gYBjkRYP {
     display: none !important;
-}
+} */
 
 /* remove playlist edit image button */
-.main-editImageButton-overlay {
+/* .main-editImageButton-overlay {
     display: none;
-}
+} */
 
 /* playlist icons */
-.big-icons .playlist-item__img {
+/* .big-icons .playlist-item__img {
     border-radius: 4px;
     width: 40px;
     height: 40px;
-}
+} */
 
 /* radio gradient hidden */
-.KNUIWLKuuA1qIkTt4jus {
+/* .KNUIWLKuuA1qIkTt4jus {
     background: none !important;
-}
+} */
