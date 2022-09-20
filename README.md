@@ -10,7 +10,21 @@ A better Nord Theme with no Ads
 
 ![artist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist.png)
 
+## Nord
+
 ![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search-2.png)
+
+## Nightly
+
+![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/Nightly.png)
+
+## Chocolatey
+
+![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/Chocolatey.png)
+
+## Ocean
+
+![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/Ocean.png)
 
 ![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search.png)
 
