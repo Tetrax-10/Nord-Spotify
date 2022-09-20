@@ -6,6 +6,8 @@ A better Nord Theme with no Ads
 
 ![home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/home.png)
 
+![artist 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist-2.png)
+
 ![artist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist.png)
 
 ![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search-2.png)
