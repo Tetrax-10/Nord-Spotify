@@ -343,16 +343,15 @@ a {
 }
 
 /* rounded context menu */
-.main-contextMenu-menuItemButton {
-    border-radius: 8px !important;
-}
-.main-contextMenu-menu {
-    border-radius: 10px !important;
-}
-
-/* context menu hover color */
-.main-contextMenu-menu .main-contextMenu-menuItem :hover {
+.main-contextMenu-menuItemButton:hover {
     background-color: var(--spice-main-soft-secondary);
+}
+.main-contextMenu-menuItemButton {
+    border-radius: 10px;
+}
+.main-contextMenu-menuItemButton::before,
+.main-contextMenu-menuItemButton::after {
+    display: none;
 }
 
 /* play buttons */
@@ -421,6 +420,19 @@ a {
 }
 
 /* top result in search page heading */
+/* .QVIrLvegL13F9cEdMqfT.EbZrO5qZMclA_AaI3NV8 .main-gridContainer-gridContainer,
+.main-heroCard-card {
+    background-color: rgba(var(--spice-rgb-main-soft-secondary), 0.8);
+    border-radius: 15px;
+} */
+/* top songs in search page heading */
+/* .QVIrLvegL13F9cEdMqfT.EbZrO5qZMclA_AaI3NV8 .main-gridContainer-gridContainer {
+    background-color: rgba(var(--spice-rgb-main-soft-secondary), 0.8);
+    border-radius: 15px;
+    padding: 10px;
+} */
+
+/* top result in search page heading */
 .iGyMsGo7FgYQQThBj2y9.main-shelf-shelf .main-shelf-header {
     border-radius: 15px;
     padding-top: 10px;
@@ -443,6 +455,14 @@ a {
     background-color: var(--spice-main-secondary);
     border-radius: 7px;
     height: 28px;
+}
+
+/* top songs in search page heading */
+.QVIrLvegL13F9cEdMqfT.EbZrO5qZMclA_AaI3NV8 {
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-left: 15px;
+    background-color: rgba(var(--spice-rgb-main-soft-secondary), 0.8);
 }
 
 /* search page card X button */
@@ -500,6 +520,32 @@ a {
 /* edit spotify user name */
 input[placeholder="Add a display name"] {
     background-color: var(--spice-main-soft-secondary);
+}
+
+/* 1 more release */
+.fLS8v3_EfBadEerbGVoR:hover,
+.fLS8v3_EfBadEerbGVoR {
+    background-color: var(--spice-main-soft-secondary);
+    border-radius: 10px;
+}
+
+/* Artist big image */
+.main-entityHeader-container.main-entityHeader-withBackgroundImage,
+.main-entityHeader-background,
+.main-entityHeader-background.main-entityHeader-overlay:after {
+    height: 90vh;
+}
+.main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
+    position: fixed;
+    justify-content: center;
+    top: 62vh;
+}
+.main-entityHeader-container.main-entityHeader-nonWrapped.main-entityHeader-withBackgroundImage {
+    padding-left: 3%;
+}
+
+.main-entityHeader-background.main-entityHeader-overlay {
+    display: none;
 }
 
 /* //////////// Top bar //////////// */
@@ -770,9 +816,14 @@ input[placeholder="Add a display name"] {
 .main-card-card .main-card-imageContainer img {
     border-radius: 0;
 }
+/* cause your library bug */
 .main-card-card .main-card-cardMetadata {
     padding: 16px;
 }
+/* fix for above bug but creates scrollbar */
+/* .main-view-container__scroll-node-child > main > section > div:nth-child(2) > div {
+    overflow: auto;
+} */
 
 /* local files folder in library */
 .main-entityHeader-imagePlaceholder,
@@ -828,6 +879,11 @@ input[placeholder="Add a display name"] {
 /* marketplace installed border */
 .marketplace-card--installed {
     border: 3px solid var(--spice-button);
+}
+
+/* marketplace item name hover */
+.main-cardHeader-link:hover {
+    color: var(--spice-button-active) !important;
 }
 
 /* //////////// Pointer Change //////////// */
@@ -1023,4 +1079,38 @@ button,
 /* radio gradient hidden */
 /* .KNUIWLKuuA1qIkTt4jus {
     background: none !important;
+} */
+
+/* ///////////////////////////////////// Testing ///////////////////////////////////// */
+
+/* artist discography album img comtainer */
+/* .main-entityHeader-image.n1EzbHQahSKztskTUAm3 {
+    padding: 30px;
+    padding-bottom: 150px;
+    padding-right: 150px;
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-main-soft-secondary), 0.8) !important;
+}
+.main-entityHeader-image.n1EzbHQahSKztskTUAm3 > img {
+    height: 120px;
+    width: 120px;
+} */
+
+/* artist discography album info */
+/* .hyHkMMynp3uUsmEtOkSN {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-main-soft-secondary), 0.8);
+} */
+
+/* artist discography tracks row */
+/* .contentSpacing.oxpxKtAxG4E2DCK0AJo9 .main-rootlist-wrapper {
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-main-soft-secondary), 0.8);
+} */
+
+/* playlist track row */
+/* .playlist-playlist-playlistContent .main-rootlist-wrapper {
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-main-soft-secondary), 0.4);
 } */
