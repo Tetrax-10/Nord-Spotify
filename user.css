@@ -538,7 +538,7 @@ input[placeholder="Add a display name"] {
 .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
     position: fixed;
     justify-content: center;
-    top: 60vh;
+    top: 55vh;
 }
 .main-entityHeader-container.main-entityHeader-nonWrapped.main-entityHeader-withBackgroundImage {
     padding-left: 3%;
