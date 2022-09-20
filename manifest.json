@@ -1,7 +1,7 @@
 {
     "name": "Nord Spotify",
     "description": "Ad free Nord Theme",
-    "preview": "assets/artist-2.png",
+    "preview": "assets/preview.png",
     "readme": "README.md",
     "usercss": "user.css",
     "schemes": "color.ini",
