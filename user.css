@@ -2,9 +2,10 @@
 * {
     font-family: "Quicksand", sans-serif !important;
     --text-subdued: var(--spice-custom-subdued);
+    --background-highlight: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.5);
 }
 
-/* ////////////////////////////////// No Ads ///////////////////////////////// */
+/* //////////////////////////////////// No Ads //////////////////////////////////// */
 
 /* Top Context menu upgrade button hide */
 .main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"]
@@ -41,7 +42,7 @@
     display: none !important;
 }
 
-/* ////////////////////////////////////// Nord Theme //////////////////////////////////// */
+/* //////////////////////////////////// Nord Theme //////////////////////////////////// */
 
 /* //////////// SideBar //////////// */
 
@@ -87,6 +88,20 @@
 .main-likedSongsButton-likedSongsIcon {
     color: var(--spice-sidebar);
     background: var(--spice-text);
+}
+
+/* selected playlist */
+.main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive:hover,
+.main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive {
+    color: var(--spice-custom-link-hover) !important;
+}
+.main-rootlist-rootlistItem span {
+    font-weight: bold;
+}
+
+/* sidebar divider invisible */
+.LayoutResizer__inline-end {
+    background: none;
 }
 
 /* //////////// playlist //////////// */
@@ -237,6 +252,13 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 .X1lXSiVj0pzhQCUo_72A,
 .main-actionBar-ActionBar.contentSpacing button {
     color: var(--spice-text);
+}
+
+/* explicit badge */
+.main-tag-container[aria-label="Explicit"]:hover,
+.main-tag-container[aria-label="Explicit"] {
+    border-radius: 3px !important;
+    background-color: var(--spice-custom-subdued);
 }
 
 /* //////////// Root //////////// */
@@ -468,19 +490,6 @@ a {
 }
 
 /* top result in search page heading */
-/* .QVIrLvegL13F9cEdMqfT.EbZrO5qZMclA_AaI3NV8 .main-gridContainer-gridContainer,
-.main-heroCard-card {
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
-    border-radius: 15px;
-} */
-/* top songs in search page heading */
-/* .QVIrLvegL13F9cEdMqfT.EbZrO5qZMclA_AaI3NV8 .main-gridContainer-gridContainer {
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
-    border-radius: 15px;
-    padding: 10px;
-} */
-
-/* top result in search page heading */
 .iGyMsGo7FgYQQThBj2y9.main-shelf-shelf .main-shelf-header {
     border-radius: 15px;
     padding-top: 10px;
@@ -614,6 +623,11 @@ input[placeholder="Add a display name"] {
 .x-categoryCard-CategoryCard {
     background-color: var(--spice-custom-main-soft-secondary) !important;
     padding-bottom: 90px;
+    transition: transform, 0s, ease, 0.25s;
+}
+.x-categoryCard-CategoryCard:hover {
+    background-color: var(--spice-custom-main-secondary) !important;
+    transition: transform, 0s, ease, 0.25s;
 }
 .tV9cjMpTPaykKsn2OVsw {
     border-top-left-radius: 0;
@@ -622,6 +636,19 @@ input[placeholder="Add a display name"] {
     height: 70%;
     width: 100%;
 }
+
+/* settings equalizer */
+.main-dropDown-dropDown::-webkit-scrollbar {
+    display: none;
+}
+.main-dropDown-dropDown {
+    background-color: var(--spice-custom-main-secondary);
+}
+
+.PiFWoUIRceOm8SHTCakS > button {
+    background-color: var(--spice-custom-main-secondary);
+}
+
 /* //////////// Top bar //////////// */
 
 /* top bar buttons */
@@ -1081,10 +1108,10 @@ button,
 .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
     filter: none;
     padding: 20px;
-    font-size: 130%;
+    font-size: 140%;
 }
 .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
-    filter: blur(1.5px);
+    filter: blur(2px);
     padding: 15px;
     font-size: 110%;
 }
@@ -1096,20 +1123,14 @@ button,
 
 /* lyrics plus compact off style */
 .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
-    /* filter: blur(1.5px); */
     padding: 15px;
-    /* font-size: 200%; */
-}
-/* .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-highlight {
     filter: none;
-    color: red !important;
-    padding: 12px;
     font-size: 250%;
-} */
+}
 .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
-    /* filter: blur(1.5px); */
     padding: 15px;
-    /* font-size: 200%; */
+    filter: blur(2px);
+    font-size: 210%;
 }
 
 /* lyrics plus fix extra space on top */
@@ -1161,6 +1182,11 @@ button,
     font-size: 14px;
 }
 
+.main-playlistEditDetailsModal-title input,
+.main-playlistEditDetailsModal-description textarea {
+    border: none;
+}
+
 /* ///////////////////////////////////// Personal ///////////////////////////////////// */
 
 /* disable homepage recommendation */
@@ -1199,6 +1225,19 @@ button,
 /* radio gradient hidden */
 /* .KNUIWLKuuA1qIkTt4jus {
     background: none !important;
+} */
+
+/* hide sidebar download status */
+/* .main-rootlist-statusIcons {
+    display: none;
+} */
+
+/* spotify lyrics background norded */
+/* * {
+    --lyrics-color-active: var(--spice-text);
+    --lyrics-color-background: none;
+    --lyrics-color-inactive: var(--spice-text);
+    --lyrics-color-messaging: var(--spice-text);
 } */
 
 /* ///////////////////////////////////// Testing ///////////////////////////////////// */
