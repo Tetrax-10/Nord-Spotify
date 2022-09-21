@@ -83,6 +83,12 @@
     color: var(--spice-text);
 }
 
+/* sidebar like button color */
+.main-likedSongsButton-likedSongsIcon {
+    color: var(--spice-sidebar);
+    background: var(--spice-text);
+}
+
 /* //////////// playlist //////////// */
 
 /* small cover image in playlist row */
@@ -604,6 +610,18 @@ input[placeholder="Add a display name"] {
     color: var(--spice-text);
 }
 
+/* seearch page genre card background */
+.x-categoryCard-CategoryCard {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    padding-bottom: 90px;
+}
+.tV9cjMpTPaykKsn2OVsw {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    transform: none !important;
+    height: 70%;
+    width: 100%;
+}
 /* //////////// Top bar //////////// */
 
 /* top bar buttons */
@@ -821,6 +839,9 @@ input[placeholder="Add a display name"] {
 .main-nowPlayingBar-center {
     z-index: 1;
 }
+.cover-art {
+    background-color: transparent;
+}
 
 /* artist name in player */
 .main-trackInfo-artists > span > a {
@@ -885,6 +906,16 @@ input[placeholder="Add a display name"] {
 /* .main-view-container__scroll-node-child > main > section > div:nth-child(2) > div {
     overflow: auto;
 } */
+
+/* no artist image in cards */
+.main-card-card .main-entityHeader-imagePlaceholder {
+    background-color: var(--spice-custom-main-soft-secondary);
+    transition: background-color 0.3s ease;
+}
+.main-card-card:hover .main-entityHeader-imagePlaceholder {
+    background-color: var(--spice-custom-main-secondary) !important;
+    transition: background-color 0.3s ease;
+}
 
 /* local files folder in library */
 .main-entityHeader-imagePlaceholder,
