@@ -12,6 +12,8 @@ A better Nord Theme with no Ads
 
 ![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search-2.png)
 
+![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search.png)
+
 ![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/genre.png)
 
 ![playlist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/playlist.png)
