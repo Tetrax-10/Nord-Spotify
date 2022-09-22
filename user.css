@@ -405,8 +405,14 @@ a {
 }
 
 /* rounded context menu */
+.main-contextMenu-menu {
+    border-radius: 15px; /* extra border radius so always rounded */
+}
+
+/* rounded context menu items */
+.main-contextMenu-menuItemButton[aria-expanded="true"],
 .main-contextMenu-menuItemButton:hover {
-    background-color: var(--spice-custom-main-soft-secondary);
+    background-color: var(--spice-custom-main-soft-secondary) !important;
 }
 .main-contextMenu-menuItemButton {
     border-radius: 10px;
@@ -587,7 +593,7 @@ input[placeholder="Add a display name"] {
 /* 1 more release */
 .fLS8v3_EfBadEerbGVoR:hover,
 .fLS8v3_EfBadEerbGVoR {
-    background-color: var(--spice-custom-main-soft-secondary);
+    background-color: var(--spice-custom-main-soft-secondary) !important;
     border-radius: 10px;
 }
 
@@ -622,7 +628,7 @@ input[placeholder="Add a display name"] {
 /* seearch page genre card background */
 .x-categoryCard-CategoryCard {
     background-color: var(--spice-custom-main-soft-secondary) !important;
-    padding-bottom: 90px;
+    padding-bottom: 30px;
     transition: transform, 0s, ease, 0.25s;
 }
 .x-categoryCard-CategoryCard:hover {
@@ -630,11 +636,7 @@ input[placeholder="Add a display name"] {
     transition: transform, 0s, ease, 0.25s;
 }
 .tV9cjMpTPaykKsn2OVsw {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    transform: none !important;
-    height: 70%;
-    width: 100%;
+    border-radius: 10px;
 }
 
 /* settings equalizer */
@@ -1182,9 +1184,49 @@ button,
     font-size: 14px;
 }
 
+/* playlist edit input and textarea */
 .main-playlistEditDetailsModal-title input,
 .main-playlistEditDetailsModal-description textarea {
     border: none;
+}
+
+/* keyboard shortcuts */
+.EhyK_jJzB2PcWXd5lg24 {
+    background-color: var(--spice-main);
+}
+.main-keyboardShortcutsHelpModal-sections::-webkit-scrollbar {
+    width: 8px;
+}
+.main-keyboardShortcutsHelpModal-sections::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-secondary);
+}
+
+/* quick search scrollbar */
+#search-modal-listbox::-webkit-scrollbar {
+    display: none;
+}
+
+/* //////////// Artist Discography //////////// */
+
+/* artist discography album img comtainer */
+.main-entityHeader-image.n1EzbHQahSKztskTUAm3 {
+    padding: 30px;
+    padding-bottom: 150px;
+    padding-right: 150px;
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8) !important;
+}
+.main-entityHeader-image.n1EzbHQahSKztskTUAm3 > img {
+    height: 120px;
+    width: 120px;
+}
+
+/* artist discography album info */
+.hyHkMMynp3uUsmEtOkSN {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
 }
 
 /* //////////// Spotify Connect //////////// */
@@ -1196,6 +1238,7 @@ button,
 }
 
 /* spotify connect dont see your device? */
+.HVCCFeUiHVwZVv74p34a > a:hover,
 .zFqMGX3h5z2CO3f2uEiL > a:hover {
     background-color: var(--spice-custom-main-soft-secondary) !important;
     border-radius: 10px;
