@@ -75,7 +75,7 @@ To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https
 
 ## Credits
 
-Nord Spotify 2.0 was Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify) and [Sleek](https://github.com/spicetify/spicetify-themes/tree/master/Sleek) Themes
+Nord Spotify 2.0 was Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify) Theme
 
 ## Support
 
