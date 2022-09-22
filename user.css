@@ -261,6 +261,13 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     background-color: var(--spice-custom-subdued);
 }
 
+/* playlist page buttons */
+.x-downloadButton-DownloadButton svg,
+.jMg2yhvAA3YfgM1Ix5GL svg,
+button[aria-haspopup="menu"] svg {
+    color: var(--spice-custom-subdued);
+}
+
 /* //////////// Root //////////// */
 
 /* search bar in search page */
@@ -640,20 +647,33 @@ input[placeholder="Add a display name"] {
 }
 
 /* settings equalizer */
+.x-settings-equalizerContainer {
+    border-radius: 10px;
+}
 .main-dropDown-dropDown::-webkit-scrollbar {
     display: none;
 }
 .main-dropDown-dropDown {
+    background-color: var(--spice-custom-main-soft-secondary);
+    color: var(--spice-text);
+}
+
+/* equalizer reset button */
+.PiFWoUIRceOm8SHTCakS > button {
     background-color: var(--spice-custom-main-secondary);
 }
 
-.PiFWoUIRceOm8SHTCakS > button {
-    background-color: var(--spice-custom-main-secondary);
+/* settings input */
+.x-settings-input::placeholder {
+    color: rgba(var(--spice-rgb-custom-subdued), 0.7);
 }
 
 /* //////////// Top bar //////////// */
 
 /* top bar buttons */
+.main-topBar-historyButtons {
+    gap: 15px;
+}
 .main-topBar-historyButtons .main-topBar-button {
     height: 40px;
     width: 40px;
@@ -1113,7 +1133,7 @@ button,
     font-size: 140%;
 }
 .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
-    filter: blur(2px);
+    filter: blur(1.5px);
     padding: 15px;
     font-size: 110%;
 }
@@ -1131,7 +1151,7 @@ button,
 }
 .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
     padding: 15px;
-    filter: blur(2px);
+    filter: blur(1.5px);
     font-size: 210%;
 }
 
@@ -1301,7 +1321,7 @@ button,
 /* * {
     --lyrics-color-active: var(--spice-text);
     --lyrics-color-background: none;
-    --lyrics-color-inactive: var(--spice-text);
+    --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
     --lyrics-color-messaging: var(--spice-text);
 } */
 
