@@ -10,9 +10,17 @@ A better Nord Theme with no Ads
 
 ![artist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist.png)
 
-## Nord
-
 ![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search-2.png)
+
+![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/genre.png)
+
+![playlist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/playlist.png)
+
+## Customized Spotify and 3rd parties Integration
+
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/spotify-lyrics.png)
+
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/lyrics-plus.png)
 
 ## Nightly
 
@@ -25,16 +33,6 @@ A better Nord Theme with no Ads
 ## Ocean
 
 ![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/Ocean.png)
-
-![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search.png)
-
-![playlist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/playlist.png)
-
-## Customized Spotify and 3rd parties Integration
-
-![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/spotify-lyrics.png)
-
-![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/lyrics-plus.png)
 
 <br />
 
