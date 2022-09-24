@@ -531,6 +531,23 @@ input[placeholder="Add a display name"] {
     color: rgba(var(--spice-rgb-custom-subdued), 0.7);
 }
 
+/* equalizer sliders color */
+.gv7Rcc2ouDRSd0pto7Df {
+    filter: sepia() saturate(90%) hue-rotate(170deg);
+}
+
+/* settings page toggles */
+.x-toggle-indicatorWrapper {
+    background-color: var(--spice-custom-main-secondary);
+}
+input:checked ~ .x-toggle-indicatorWrapper .x-toggle-indicator,
+.x-toggle-indicator {
+    background: var(--spice-text);
+}
+input:checked ~ .x-toggle-indicatorWrapper {
+    background-color: rgba(var(--spice-rgb-button), 0.4);
+}
+
 /* //////////// Artist Page //////////// */
 
 /* change appearance of follow button */
@@ -674,8 +691,10 @@ input[placeholder="Add a display name"] {
 }
 
 /* episode page date */
+.qfYkuLpETFW3axnfMntO p,
 .main-actionBar-ActionBarRow p,
 /* episode page duration */
+.qfYkuLpETFW3axnfMntO p > span,
 .main-actionBar-ActionBarRow p > span {
     color: var(--spice-text);
 }
@@ -760,9 +779,10 @@ a {
 .main-shelf-seeAll {
     background-color: var(--spice-custom-main-soft-secondary);
     border-radius: 10px;
-    padding-left: 10px;
+    padding-left: 12px;
     padding-right: 10px;
     padding-top: 3px;
+    height: 34px;
 }
 
 /* spotify popup close buttons */
@@ -810,6 +830,19 @@ a {
 /* marketplace */
 .marketplace-tabBar-headerItemLink.marketplace-tabBar-active {
     border-radius: 10px;
+}
+
+/* private session */
+.main-noConnection button {
+    height: 45px;
+}
+.main-noConnection-button {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+    padding: 10px;
+}
+.main-noConnection-button svg {
+    padding-right: 3px;
 }
 
 /* //////////// Player //////////// */
@@ -1150,8 +1183,13 @@ a {
 }
 
 /* marketplace item name hover */
-.main-cardHeader-link:hover {
+.marketplace-grid .main-cardHeader-link:hover {
     color: var(--spice-custom-link-hover) !important;
+}
+
+/* marketplace star count hover */
+.marketplace-cardSubHeader > span:hover {
+    color: var(--spice-text) !important;
 }
 
 /* marketplace color scheme scrollbar */
@@ -1172,6 +1210,17 @@ a {
     height: 30px;
     padding: 3px;
     width: 100px;
+}
+
+/* marketplace toogles */
+.toggle-module__toggle-indicator-wrapper___6Lcp0_marketplace {
+    background-color: var(--spice-custom-main-secondary);
+}
+.toggle-module__toggle-indicator___nCxwE_marketplace {
+    background: var(--spice-text) !important;
+}
+.toggle-module__toggle-input___ceLM4_marketplace:checked ~ .toggle-module__toggle-indicator-wrapper___6Lcp0_marketplace {
+    background-color: rgba(var(--spice-rgb-button), 0.4);
 }
 
 /* //////////// New Releases - Custom App //////////// */
@@ -1306,6 +1355,21 @@ button,
 
 /* //////////// Popup Modal //////////// */
 
+/* big popup modal height */
+.main-embedWidgetGenerator-container {
+    height: 90vh;
+}
+
+/* big popup modal rounded corner */
+.main-trackCreditsModal-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.main-trackCreditsModal-mainSection {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 /* entire popup Modal */
 .main-trackCreditsModal-container,
 .GenericModal {
@@ -1379,6 +1443,40 @@ button,
     color: var(--spice-text) !important;
 }
 
+/* experimanetal feature */
+.main-trackCreditsModal-header,
+.main-trackCreditsModal-mainSection {
+    background-color: var(--spice-main);
+}
+.main-trackCreditsModal-mainSection::-webkit-scrollbar {
+    width: 8px;
+}
+.main-trackCreditsModal-mainSection::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-secondary);
+}
+
+/* sort by playcount - Extension */
+.main-trackCreditsModal-originalCredits .login-button.green {
+    background-color: rgba(107, 203, 119, 0.5) !important;
+}
+.main-trackCreditsModal-originalCredits .login-button.red {
+    background-color: rgba(191, 97, 106, 0.7) !important;
+}
+
+#login-global-div > input::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+
+.main-trackCreditsModal-originalCredits button {
+    border: none !important;
+    border-radius: 7px !important;
+    background-color: var(--spice-custom-main-secondary) !important;
+    height: 40px !important;
+    padding: 10px !important;
+    color: var(--spice-text) !important;
+}
+
 /* //////////// Artist Discography //////////// */
 
 /* artist discography album img comtainer */
@@ -1399,6 +1497,17 @@ button,
     padding: 20px;
     border-radius: 15px;
     background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
+}
+
+/* artist discography view type near all drop down */
+.EvQHNTBhaU3rGCRRlAWj > button:hover,
+.EvQHNTBhaU3rGCRRlAWj > button[aria-checked="true"] {
+    color: var(--spice-text);
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+.EvQHNTBhaU3rGCRRlAWj > button[aria-checked="false"] {
+    color: var(--spice-text);
 }
 
 /* //////////// Spotify Connect //////////// */
