@@ -1464,10 +1464,14 @@ button,
     background-color: rgba(191, 97, 106, 0.7) !important;
 }
 
+/* sort by play count input */
+.popup-row .inputbox::placeholder,
+/* lastfm stats input */
 #login-global-div > input::placeholder {
     color: var(--spice-custom-subdued) !important;
 }
 
+/* popup buttons */
 .main-trackCreditsModal-originalCredits button {
     border: none !important;
     border-radius: 7px !important;
@@ -1475,6 +1479,11 @@ button,
     height: 40px !important;
     padding: 10px !important;
     color: var(--spice-text) !important;
+}
+
+/* popup checkbox */
+button.checkbox.disabled {
+    color: rgba(var(--spice-rgb-text), 0.3) !important;
 }
 
 /* //////////// Artist Discography //////////// */
