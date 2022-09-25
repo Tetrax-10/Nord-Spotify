@@ -713,7 +713,7 @@ input:checked ~ .x-toggle-indicatorWrapper {
 .main-userWidget-box {
     background-color: var(--spice-custom-main-soft-secondary) !important;
     padding-left: 10px;
-    padding-right: 22px;
+    padding-right: 10px;
     padding-top: 22px;
     padding-bottom: 22px;
     border-radius: 10px;
