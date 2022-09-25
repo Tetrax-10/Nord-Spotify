@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
 * {
-    font-family: "Quicksand", sans-serif !important;
+    font-family: "Quicksand" !important;
     --text-subdued: var(--spice-custom-subdued);
     --background-highlight: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.5);
 }
@@ -345,7 +345,7 @@ button[aria-haspopup="menu"] svg {
     background-color: var(--spice-custom-main-soft-secondary) !important;
     flex-direction: column;
     border-radius: 10px !important;
-    border: none;
+    border: 0 !important;
     color: var(--spice-text) !important;
 }
 
@@ -804,6 +804,8 @@ a {
 .main-topBar-historyButtons {
     gap: 15px;
 }
+.main-topBar-button,
+.main-topBar-button:hover,
 .main-topBar-historyButtons .main-topBar-button {
     height: 40px;
     width: 40px;
@@ -1088,14 +1090,9 @@ a {
 .main-card-card .main-card-imageContainer img {
     border-radius: 0;
 }
-/* cause your library bug */
 .main-card-card .main-card-cardMetadata {
     padding: 16px;
 }
-/* fixex above bug but creates scroll bar */
-/* .main-view-container__scroll-node-child > main > section > div:nth-child(2) > div {
-    overflow: auto;
-} */
 
 /* no artist image in cards */
 .main-card-card .main-entityHeader-imagePlaceholder {
@@ -1480,7 +1477,7 @@ button,
     background-color: var(--spice-custom-main-secondary) !important;
     height: 40px !important;
     padding: 10px !important;
-    color: var(--spice-text) !important;
+    color: var(--spice-text);
 }
 
 /* popup checkbox */
