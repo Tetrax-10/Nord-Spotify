@@ -602,7 +602,7 @@ input:checked ~ .x-toggle-indicatorWrapper {
 .main-entityHeader-container.main-entityHeader-withBackgroundImage,
 .main-entityHeader-background,
 .main-entityHeader-background.main-entityHeader-overlay:after {
-    height: 90vh;
+    height: 90vh !important;
 }
 .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
     position: fixed;
