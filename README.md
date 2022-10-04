@@ -1,4 +1,4 @@
-# Nord-Spotify
+# Nord-Spotify (Supports New UI)
 
 A better Nord Theme with no Ads
 
@@ -60,14 +60,6 @@ spicetify apply
 ```
 
 <br />
-
-## Playlist Icons
-
-To get Those Playlist Icons you need to Install [spicetify-playlist-icons](https://github.com/jeroentvb/spicetify-playlist-icons/tree/dist) made by [jeroentvb](https://github.com/jeroentvb)
-
-## Credits
-
-Nord Spotify 2.0 was Inspired from [Comfy](https://github.com/Comfy-Themes/Spicetify) Theme
 
 ## Support
 
