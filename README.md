@@ -26,15 +26,7 @@ A better Nord Theme with no Ads
 
 ## Nightly
 
-![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/Nightly.png)
-
-## Chocolatey
-
-![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/Chocolatey.png)
-
-## Ocean
-
-![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/Ocean.png)
+![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/nightly.png)
 
 <br />
 
