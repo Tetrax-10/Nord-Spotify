@@ -63,11 +63,6 @@ button[aria-label="Upgrade to Premium"],
     background-color: var(--spice-custom-selected-button);
 }
 
-/* sidebar playlist hover */
-.main-rootlist-wrapper {
-    cursor: pointer;
-}
-
 /* rounded sidebar */
 .Root__nav-bar {
     z-index: 1;
@@ -365,6 +360,11 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 /* playlist page hours */
 .UyzJidwrGk3awngSGIwv {
     color: var(--spice-text);
+}
+
+/* album name hover color */
+.main-trackList-rowSectionVariable .standalone-ellipsis-one-line:hover {
+    color: var(--spice-custom-link-hover) !important;
 }
 
 /* //////////// Home Page //////////// */
@@ -871,7 +871,9 @@ a {
 }
 
 /* Big play buttons */
-:root button > span.encore-bright-accent-set {
+:root button > span.encore-bright-accent-set,
+/* new release card play button */
+.main-playButton-PlayButton button > span {
     border-radius: 16px !important;
 }
 
@@ -1429,6 +1431,12 @@ a {
     border-radius: 10px;
 }
 
+/* marketplace dev tools code editor heading */
+.devtools-heading,
+.invalid-css-heading {
+    text-decoration: none;
+}
+
 /* marketplace add snippet input box */
 .marketplace-customCSS-input-container input {
     display: flex;
@@ -1475,6 +1483,15 @@ a {
     padding: 10px;
 }
 
+/* //////////// Lyrics Plus - Custom App //////////// */
+
+/* bottom settings icon */
+.lyrics-config-button {
+    background-color: var(--spice-custom-main-secondary);
+    border-radius: 10px;
+    color: var(--spice-text);
+}
+
 /* //////////// Change Pointers //////////// */
 
 button,
@@ -1504,7 +1521,8 @@ button,
 .progress-bar__slider,
 .playback-bar,
 .main-editImageButton-image,
-.X1lXSiVj0pzhQCUo_72A  /* collaborate button in playlist */ {
+.X1lXSiVj0pzhQCUo_72A  /* collaborate button in playlist */ ,
+#spicetify-playlist-list .main-rootlist-wrapper /* sidebar playlist hover */ {
     cursor: pointer !important;
 }
 
@@ -1672,14 +1690,14 @@ button,
 
 /* add song again and delete popup */
 /* AdF5F5BxQXGeWkfceg9A - add song again */
-/* j1BMy6Uh7sBoeNA18Rrh - delete popup */
-.j1BMy6Uh7sBoeNA18Rrh,
+/* K8PtC1Way9XetxDGwCGx - delete popup */
+.K8PtC1Way9XetxDGwCGx,
 .AdF5F5BxQXGeWkfceg9A {
     background-color: var(--spice-main);
 }
 .AdF5F5BxQXGeWkfceg9A > h2,
-.j1BMy6Uh7sBoeNA18Rrh > h2,
-.j1BMy6Uh7sBoeNA18Rrh > p,
+.K8PtC1Way9XetxDGwCGx > h2,
+.K8PtC1Way9XetxDGwCGx > p,
 .AdF5F5BxQXGeWkfceg9A > p {
     color: var(--spice-text);
 }
@@ -1688,7 +1706,8 @@ button,
     color: var(--spice-text) !important;
 }
 /* delete popup buttons border */
-.M_OJ9bgwzRmQFzKC7xq8 button:focus {
+.M_OJ9bgwzRmQFzKC7xq8 button:focus,
+.awGNDbf1c8TGBAFR0pv8 button:focus {
     outline: none;
     outline-offset: 0px;
 }
@@ -1719,6 +1738,11 @@ button,
 /* lastfm stats input */
 #login-global-div > input::placeholder {
     color: var(--spice-custom-subdued) !important;
+}
+#login-global-div > input,
+/* sort by playcount input */
+.popup-row .inputbox {
+    box-shadow: none !important;
 }
 
 /* popup buttons */
