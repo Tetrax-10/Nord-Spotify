@@ -192,11 +192,6 @@ button[aria-label="Upgrade to Premium"],
     color: var(--spice-custom-link-hover) !important;
 }
 
-/* local songs album name color change in playlist */
-.jsV182e49Puwz9SIYt2J {
-    color: var(--spice-custom-subdued) !important;
-}
-
 /* change appearance of public/private playlist tag on top of playlist */
 .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold {
     border: 2px var(--spice-text) solid;
@@ -299,7 +294,7 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 /* collaborate button */
 .main-actionBar-ActionBar .jMg2yhvAA3YfgM1Ix5GL svg,
 /* more */
-.main-actionBar-ActionBar button[aria-haspopup="menu"] svg {
+.main-actionBar-ActionBar .main-moreButton-button svg {
     color: var(--spice-custom-subdued);
 }
 
@@ -705,7 +700,7 @@ input:checked ~ .x-toggle-indicatorWrapper {
 .main-entityHeader-container.main-entityHeader-withBackgroundImage,
 .main-entityHeader-background,
 .main-entityHeader-background.main-entityHeader-overlay:after {
-    height: 87vh !important;
+    height: calc(100vh - 105px) !important;
 }
 .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
     position: fixed;
@@ -919,14 +914,6 @@ a {
 }
 
 /* //////////// Top bar //////////// */
-
-/* change top bar color */
-/* .nav-alt .main-topBar-background {
-    background-color: var(--spice-main);
-}
-.main-topBar-overlay {
-    background-color: var(--spice-main) !important;
-} */
 
 /* Top bar transparency in artist page */
 /* change top bar color */
@@ -1665,6 +1652,11 @@ button,
     height: unset;
 }
 
+/* dynamic height for sort by play count release notes modal */
+.GenericModal[aria-label="Sort By Play Count 2.6 Release Notes"] .main-embedWidgetGenerator-container {
+    height: unset;
+}
+
 /* big popup modal rounded corner */
 .main-trackCreditsModal-header {
     border-top-left-radius: 10px;
@@ -1964,6 +1956,11 @@ button.checkbox.disabled {
 /* hide friend activity */
 /* .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
     display: none;
+} */
+
+/* home page top extra padding above greeting */
+/* .main-home-content {
+    padding-top: 15px;
 } */
 
 /* //////////////////////////////////// Testing //////////////////////////////////// */
