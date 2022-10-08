@@ -30,6 +30,24 @@ A better Nord Theme with no Ads
 
 <br />
 
+## To Change Theme's Color Scheme run these commands in Powershell/Terminal
+
+### Nord
+
+```
+spicetify config color_scheme Nord
+spicetify apply
+```
+
+### Nightly
+
+```
+spicetify config color_scheme Nightly
+spicetify apply
+```
+
+<br />
+
 ## Install Theme
 
 Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.css` and `color.ini`
