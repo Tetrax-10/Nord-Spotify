@@ -7,40 +7,26 @@
 }
 /* //////////////////////////////////// No Ads //////////////////////////////////// */
 
-/* Top Context menu upgrade button hide */
-.main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"]
-{
-    display: none !important;
-}
-
-/* Remove upgrade button near username */
+/* upgrade button top bar */
 button[title="Upgrade to Premium"],
 button[aria-label="Upgrade to Premium"],
-.main-topBar-UpgradeButton {
-    display: none !important;
-}
-
-/* Ad placeholder */
-.main-leaderboardComponent-container,
-.ReyA3uE3K7oEz7PTTnAn,
-.X871RxPwx9V0MqpQdMom {
-    display: none !important;
-}
-
-/* Home page ad section */
-.desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer {
-    display: none !important;
-}
-
-/* Remove sponsor ads in playlists */
-.sponsor-container {
-    display: none !important;
-}
-
-/* Remove sponsored playlist in homepage */
+.main-topBar-UpgradeButton,
+/* top bar user context menu Upgrade to Premium */
+.main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"],
+/* top side ads */
 .WiPggcPDzbwGxoxwLWFf,
-.DHeG1dij5qSIc9nr0wDj,
-.hx2D0g_ursHte5bm62U2 {
+/* bottom ads */
+.Root__main-view > div:nth-child(2) /* mama div of main-leaderboardComponent-container */,
+.main-leaderboardComponent-container,
+/* popup video ad */
+.Root__modal-slot .GenericModal__overlay.QMMTQfEw3AIHFf4dTRp3.nPKDEvIoCzySBR24pZiN {
+    display: none !important;
+}
+
+/* no idea what these are */
+.Root__ads-container-desktop--is-hidden,
+.sponsor-container,
+.desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer {
     display: none !important;
 }
 
