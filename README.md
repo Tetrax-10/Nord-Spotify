@@ -64,6 +64,8 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.css` and `color.ini`
 
+Warning : The Folder must be named `Nord-Spotify`, So the Nord Extension works Correctly
+
 ### Themes Folder Location
 
 | **Platform** | **Path**                                                                     |
