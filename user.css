@@ -1839,6 +1839,14 @@ button.checkbox.disabled {
     border-radius: 10px;
 }
 
+/* no friends settings button */
+.MObmOrMxbQpO10ebAtZA .ralK8s_OmE8a8zWcfNKM:hover,
+.MObmOrMxbQpO10ebAtZA .ralK8s_OmE8a8zWcfNKM {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    color: var(--spice-text);
+}
+
 /* connect to facebook */
 .HgRmCE3NxfiYNtv6pF3H:hover,
 .HgRmCE3NxfiYNtv6pF3H {
