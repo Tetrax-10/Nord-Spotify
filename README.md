@@ -1,6 +1,6 @@
 # Nord-Spotify (Supports New UI)
 
-A better Nord Theme with no Ads
+Nord Themed Spotify with no UI Ads
 
 <br />
 
@@ -72,10 +72,18 @@ Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.
 | **MacOS**    | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
 | **Windows**  | `%userprofile%\.spicetify\Themes\`                                           |
 
+Copy `nord.js` and paste it inside your Extentions Folder
+
+| **Platform** | **Path**                                                                            |
+| ------------ | ----------------------------------------------------------------------------------- |
+| **Linux**    | `~/.config/spicetify/Extensions` or `$XDG_CONFIG_HOME/.config/spicetify/Extensions/`|
+| **MacOS**    | `~/spicetify_data/Extensions` or `$SPICETIFY_CONFIG/Extensions`                     |
+| **Windows**  | `%appdata%\spicetify\Extensions`                                                    |
+
 Now run the following command to apply the theme:
 
 ```
-spicetify config current_theme Nord-Spotify color_scheme Nord
+spicetify config current_theme Nord-Spotify color_scheme Nord extensions nord.js
 spicetify apply
 ```
 
@@ -83,6 +91,6 @@ spicetify apply
 
 ## Support
 
-🌟 Like it? Gimme Some Love ! 💕
+Like This Theme? Gimme Some ❤️ by Liking this Repository
 
 [![Github Stars badge](https://img.shields.io/github/stars/Tetrax-10/Spicetify-Themes?logo=github&style=social)](https://github.com/Tetrax-10/Spicetify-Themes)
