@@ -1,43 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
 * {
-    font-family: "Quicksand", sans-serif !important;
     --text-subdued: var(--spice-custom-subdued);
     --background-highlight: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.5);
     --progress-bar-radius: 0px;
-}
-/* //////////////////////////////////// No Ads //////////////////////////////////// */
-
-/* upgrade button top bar */
-button[title="Upgrade to Premium"],
-button[aria-label="Upgrade to Premium"],
-.main-topBar-UpgradeButton,
-/* top bar user context menu Upgrade to Premium */
-.main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"],
-/* top side ads */
-.WiPggcPDzbwGxoxwLWFf,
-/* bottom ads */
-.Root__main-view > div:nth-child(2) /* mama div of main-leaderboardComponent-container */,
-.main-leaderboardComponent-container,
-/* popup video ad */
-.Root__modal-slot .GenericModal__overlay.QMMTQfEw3AIHFf4dTRp3.nPKDEvIoCzySBR24pZiN {
-    display: none !important;
-}
-
-/* no idea what these are */
-.Root__ads-container-desktop--is-hidden,
-.sponsor-container,
-.desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer {
-    display: none !important;
 }
 
 /* //////////////////////////////////// Nord Theme //////////////////////////////////// */
 
 /* //////////// SideBar //////////// */
-
-/* hides sidebar scrollbar */
-.os-scrollbar:nth-child(6) .os-scrollbar-handle {
-    visibility: hidden;
-}
 
 /* remove gradient shadow in sidebar above playlist */
 .main-rootlist-rootlistDividerGradient {
@@ -55,13 +24,6 @@ button[aria-label="Upgrade to Premium"],
     border-radius: 10px !important;
 }
 
-/* sidebar selected item (main items) */
-.personal-library .main-collectionLinkButton-collectionLinkButton.main-collectionLinkButton-selected.active,
-.main-navBar-navBarItem .main-navBar-navBarLinkActive {
-    background-color: var(--spice-custom-main-soft-secondary);
-    border-radius: 10px;
-}
-
 /* sidebar icons color */
 .collection-active-icon,
 .collection-icon,
@@ -75,7 +37,7 @@ button[aria-label="Upgrade to Premium"],
 
 /* sidebar liked songs icon color */
 .main-likedSongsButton-likedSongsIcon {
-    color: var(--spice-sidebar);
+    color: var(--spice-main);
     background: var(--spice-text);
     border-radius: 5px;
 }
@@ -90,21 +52,7 @@ button[aria-label="Upgrade to Premium"],
     background: var(--spice-text);
 }
 .main-yourEpisodesButton-yourEpisodesIcon path {
-    fill: var(--spice-sidebar);
-}
-
-/* sidebar selected playlist */
-.main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive:hover,
-.main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive {
-    color: var(--spice-custom-link-hover) !important;
-}
-.main-rootlist-rootlistItem span {
-    font-weight: bold;
-}
-
-/* sidebar divider invisible */
-.LayoutResizer__resize-bar {
-    background: none;
+    fill: var(--spice-main);
 }
 
 /* liked songs your episodes and create playlist in sidebar color */
@@ -119,16 +67,6 @@ button[aria-label="Upgrade to Premium"],
 /* small cover image in playlist row */
 .main-trackList-rowImage {
     border-radius: 5px !important;
-}
-
-/* Hide playlist gradient top */
-.main-entityHeader-backgroundColor {
-    display: none !important;
-}
-
-/* Hide playlist gradient bottom */
-.main-actionBarBackground-background {
-    display: none !important;
 }
 
 /* playlist big image shadow */
@@ -201,17 +139,12 @@ button[aria-label="Upgrade to Premium"],
     border-radius: 10px;
 }
 
-.main-playlistEditDetailsModal-save .giJJBB:hover,
-.main-playlistEditDetailsModal-save .giJJBB {
+/* playlist details edit popup save button */
+.main-playlistEditDetailsModal-save span:hover,
+.main-playlistEditDetailsModal-save span {
     background-color: var(--spice-custom-main-soft-secondary) !important;
     color: var(--spice-text) !important;
     border-radius: 10px !important;
-}
-
-/* playlist edit popup save button */
-.main-playlistEditDetailsModal-save :hover,
-.main-playlistEditDetailsModal-save > button > span {
-    background-color: var(--spice-button) !important;
 }
 
 /* playlist tracks row rounded */
@@ -221,11 +154,7 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active:hover,
     border-radius: 10px;
 }
 
-/* current playing song background and color */
-div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
-    border-radius: 10px;
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.5);
-}
+/* current playing song color */
 div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.standalone-ellipsis-one-line {
     color: var(--spice-text);
 }
@@ -289,9 +218,6 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     background-color: var(--spice-custom-main-soft-secondary);
     border-radius: 10px;
     color: var(--spice-text);
-    /* color: red; */
-}
-.x-sortBox-sortDropdown {
     text-decoration: none !important;
 }
 
@@ -360,11 +286,6 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 
 /* //////////// Home Page //////////// */
 
-/* remove gradient color on home screen */
-.main-home-homeHeader {
-    display: none !important;
-}
-
 /* home page top six playlist bg color */
 .view-homeShortcutsGrid-shortcut {
     background-color: var(--spice-custom-main-soft-secondary) !important;
@@ -404,9 +325,6 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     color: var(--spice-text) !important;
     height: 40px !important;
 }
-.main-topBar-searchBar {
-    border: 0 !important;
-}
 
 /* search bar placeholder */
 .x-searchInput-searchInputInput::placeholder {
@@ -416,6 +334,14 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 /* search bar - search icon in left */
 .x-searchInput-searchInputSearchIcon svg {
     color: var(--spice-text) !important;
+}
+
+/* search bar border */
+.nav-alt .x-searchInput-searchInputInput,
+.nav-alt .x-searchInput-searchInputInput:hover,
+.nav-alt .x-searchInput-searchInputInput:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 /* search page tab options */
@@ -470,29 +396,6 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
 }
 
-/* seearch page genre card background */
-.x-categoryCard-CategoryCard {
-    background-color: var(--spice-custom-main-soft-secondary) !important;
-    padding-bottom: 30px;
-    transition: transform, 0s, ease, 0.25s;
-}
-.x-categoryCard-CategoryCard:hover {
-    background-color: var(--spice-custom-main-secondary) !important;
-    transition: transform, 0s, ease, 0.25s;
-}
-/* search page genre images */
-.tV9cjMpTPaykKsn2OVsw {
-    border-radius: 10px;
-}
-
-/* search bar border */
-.nav-alt .x-searchInput-searchInputInput,
-.nav-alt .x-searchInput-searchInputInput:hover,
-.nav-alt .x-searchInput-searchInputInput:focus {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 /* //////////// Profile Page //////////// */
 
 /* If no profile pic the element will not be circle (not working) */
@@ -505,7 +408,7 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 }
 
 /* Profile photo hover edit button */
-.PsrXxenHUFXYM1ub1xWw {
+.main-editImage-buttonContainer button {
     border-radius: 10px;
 }
 
@@ -682,24 +585,6 @@ input:checked ~ .x-toggle-indicatorWrapper {
     padding-top: 10px;
 }
 
-/* Artist big image */
-.main-entityHeader-container.main-entityHeader-withBackgroundImage,
-.main-entityHeader-background,
-.main-entityHeader-background.main-entityHeader-overlay:after {
-    height: calc(100vh - 105px) !important;
-}
-.main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
-    position: fixed;
-    justify-content: center;
-    bottom: 3%;
-}
-.main-entityHeader-container.main-entityHeader-nonWrapped.main-entityHeader-withBackgroundImage {
-    padding-left: 3%;
-}
-.main-entityHeader-background.main-entityHeader-overlay {
-    display: none;
-}
-
 /* //////////// Episodes Page //////////// */
 
 /* .hTRqaN61SDG95erQGMmx = podcast page */
@@ -802,10 +687,6 @@ input:checked ~ .x-toggle-indicatorWrapper {
 .main-userWidget-box:hover,
 .main-userWidget-box {
     background-color: var(--spice-custom-main-soft-secondary) !important;
-    /* padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 22px;
-    padding-bottom: 22px; */
     border-radius: 10px;
 }
 .main-userWidget-chevron {
@@ -923,11 +804,6 @@ a {
     border-radius: 10px;
 }
 
-/* remove play button from topbar */
-:root .Root__top-bar header .main-playButton-PlayButton {
-    display: none !important;
-}
-
 /* top bar tabs */
 /* queue page */
 .queue-tabBar-headerItemLink.queue-tabBar-active,
@@ -955,7 +831,6 @@ a {
 .nav-alt .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader,
 .main-trackList-trackListHeader {
     background: var(--spice-main);
-    /* display: none; */
 }
 
 /* //////////// Player //////////// */
@@ -1071,86 +946,6 @@ a {
     background-color: var(--spice-main);
 }
 
-/* player cover art to right with animation */
-.main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
-.main-trackInfo-container {
-    margin-left: 74px;
-}
-/* static cover */
-.main-coverSlotExpanded-container {
-    border-radius: 10px;
-    position: fixed;
-    top: calc(100% - 307px);
-    left: calc(100% - 208px);
-    width: 200px;
-    height: 200px;
-    visibility: hidden;
-    transform-origin: center;
-    animation: 1s coverExpandedIn;
-    animation-fill-mode: forwards;
-}
-/* dynamic cover */
-.main-coverSlotCollapsed-container[aria-hidden="true"] {
-    left: calc(100vw - 162px);
-    top: -231px;
-    width: 200px;
-    height: 200px;
-    visibility: hidden;
-    animation: 1s coverExpandedOut;
-}
-.Q4cc5RktWgz2H8_vDrIS {
-    display: none;
-}
-@keyframes coverExpandedIn {
-    99% {
-        visibility: hidden;
-    }
-    100% {
-        visibility: visible;
-    }
-}
-@keyframes coverExpandedOut {
-    99% {
-        visibility: visible;
-    }
-    100% {
-        visibility: hidden;
-    }
-}
-.main-coverSlotCollapsed-container {
-    position: fixed;
-    top: -6px;
-    left: 0px;
-    width: 56px;
-    height: 56px;
-    visibility: visible;
-    z-index: 1;
-}
-.cover-art .cover-art-image,
-.main-coverSlotCollapsed-container {
-    transform-origin: center;
-    transition-timing-function: ease-in;
-    transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
-}
-.main-coverSlotCollapsed-container[aria-hidden="false"] {
-    transition-timing-function: ease-out !important;
-    transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
-}
-.main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
-.main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
-    width: 200px;
-    height: 200px;
-}
-.main-nowPlayingBar-left {
-    z-index: 2;
-}
-.main-nowPlayingBar-center {
-    z-index: 1;
-}
-.cover-art {
-    background-color: transparent;
-}
-
 /* artist name in player */
 .main-trackInfo-artists > span > a {
     font-size: 0.875rem;
@@ -1192,14 +987,6 @@ a {
 .main-nowPlayingBar-nowPlayingBar button[aria-expanded="true"],
 .main-nowPlayingBar-nowPlayingBar button[aria-checked="true"] {
     color: var(--spice-button-active) !important;
-}
-
-/* hide dots under active button */
-.main-shuffleButton-button.main-shuffleButton-active:after,
-.main-repeatButton-button.main-repeatButton-active:after,
-/* queue */
-.control-button--active-dot:after {
-    display: none;
 }
 
 /* //////////// Cards //////////// */
@@ -1417,6 +1204,7 @@ a {
     color: var(--spice-custom-success);
 }
 
+/* marketplace tags */
 .marketplace-card__tag {
     background-color: var(--spice-custom-highlight) !important;
     color: var(--spice-custom-subdued);
@@ -1475,40 +1263,6 @@ input.search[placeholder="Search for a feature"]::placeholder {
     color: var(--spice-text);
 }
 
-/* //////////// Change Pointers //////////// */
-
-button,
-.show-followButton-button,
-.main-dropDown-dropDown,
-.x-toggle-wrapper,
-.main-playlistEditDetailsModal-closeBtn,
-.main-trackList-rowPlayPauseButton,
-.main-rootlist-rootlistItemLink:link,
-.main-rootlist-rootlistItemLink:visited,
-.x-sortBox-sortDropdown,
-.main-contextMenu-menuItemButton,
-.main-trackList-column,
-.main-moreButton-button,
-.x-downloadButton-button,
-.main-playButton-PlayButton,
-.main-coverSlotExpandedCollapseButton-chevron,
-.main-coverSlotCollapsed-chevron,
-.control-button:focus,
-.control-button:hover,
-.main-repeatButton-button,
-.main-skipForwardButton-button,
-.main-playPauseButton-button,
-.main-skipBackButton-button,
-.main-shuffleButton-button,
-.main-addButton-button,
-.progress-bar__slider,
-.playback-bar,
-.main-editImageButton-image,
-.X1lXSiVj0pzhQCUo_72A  /* collaborate button in playlist */ ,
-#spicetify-playlist-list .main-rootlist-wrapper /* sidebar playlist hover */ {
-    cursor: pointer !important;
-}
-
 /* //////////// quick search //////////// */
 
 /* quick search - text color */
@@ -1553,47 +1307,6 @@ button,
 /* quick search popup rounded corner */
 ._p8ywioveAdTZ8yZmPfr {
     border-radius: 10px;
-}
-
-/* //////////// lyrics page //////////// */
-
-/* better spotify lyrics style  */
-.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
-    filter: blur(1.5px);
-    padding: 15px;
-    font-size: 110%;
-}
-.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
-    filter: none;
-    padding: 20px;
-    font-size: 140%;
-}
-.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
-    filter: blur(1.5px);
-    padding: 15px;
-    font-size: 110%;
-}
-.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
-    filter: none;
-    padding: 10px;
-    font-size: 100%;
-}
-
-/* lyrics plus compact off style */
-.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
-    padding: 15px;
-    filter: none;
-    font-size: 250%;
-}
-.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
-    padding: 15px;
-    filter: blur(1.5px);
-    font-size: 210%;
-}
-
-/* lyrics plus fix extra space on top */
-.lyrics-lyricsContainer-LyricsContainer {
-    margin-top: -63px;
 }
 
 /* //////////// Popup Modal //////////// */
@@ -1853,88 +1566,9 @@ button.checkbox.disabled {
 
 /* //////////////////////////////////// Personal //////////////////////////////////// */
 
-/* disable homepage recommendation */
-/* section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"]) {
-    display: none !important;
-} */
-
-/* blue like card useless text in your library */
-/* .collection-collectionEntityHeroCard-tracksContainer {
-    display: none;
-} */
-
-/* remove liked songs card in your library */
-/* .main-heroCard-card.collection-collectionEntityHeroCard-likedSongs.collection-collectionEntityHeroCard-container {
-    display: none;
-} */
-
-/* disable similar song suggestion in playlist */
-/* .playlist-playlist-seeMore,
-.playlist-playlist-playlistInlineCurationSection,
-.playlist-playlist-searchResultListContainer,
-.playlist-playlist-recommendedTrackList {
-    display: none !important;
-} */
-
-/* remove playlist edit image button */
-/* .main-editImageButton-overlay {
-    display: none;
-} */
-
-/* playlist icons */
-/* .big-icons .playlist-item__img {
-    border-radius: 4px;
-    width: 40px;
-    height: 40px;
-} */
-
-/* radio gradient hidden */
-/* .KNUIWLKuuA1qIkTt4jus:after {
-    background: none !important;
-} */
-
-/* hide sidebar download status */
-/* .main-rootlist-statusIcons {
-    display: none;
-} */
-
-/* hide cards download status */
-/* .main-card-DownloadStatusIndicator {
-    display: none;
-} */
-
-/* spotify lyrics background norded */
-/* * {
-    --lyrics-color-active: var(--spice-text);
-    --lyrics-color-background: none;
-    --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
-    --lyrics-color-messaging: var(--spice-text);
-} */
-
-/* hide friend activity */
-/* .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
-    display: none;
-} */
-
 /* home page top extra padding above greeting */
-/* .main-home-content {
+.main-home-content {
     padding-top: 15px;
-} */
-
-/* Hide windows controls */
-/* Mama element */
-/* .nav-alt .Root__top-container {
-    background-image: linear-gradient(#515c71, #515c71);
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 135px 31px;
-} */
-/* Top Bar element */
-/* .Root__fixed-top-bar {
-    background-image: linear-gradient(#515c71, #515c71);
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 127px 23.5px;
-} */
+}
 
 /* //////////////////////////////////// Testing //////////////////////////////////// */

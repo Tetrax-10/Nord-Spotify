@@ -8,6 +8,10 @@ Nord Themed Spotify with no UI Ads
 
 ![artist 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist-2.png)
 
+## Snippets Support - Deeply Customize
+
+![snippets](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/snippets.png)
+
 ![artist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist.png)
 
 ![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search-2.png)
@@ -76,11 +80,11 @@ Warning : The Folder must be named `Nord-Spotify`, So the Nord Extension works C
 
 Copy `nord.js` and paste it inside your Extentions Folder
 
-| **Platform** | **Path**                                                                            |
-| ------------ | ----------------------------------------------------------------------------------- |
-| **Linux**    | `~/.config/spicetify/Extensions` or `$XDG_CONFIG_HOME/.config/spicetify/Extensions/`|
-| **MacOS**    | `~/spicetify_data/Extensions` or `$SPICETIFY_CONFIG/Extensions`                     |
-| **Windows**  | `%appdata%\spicetify\Extensions`                                                    |
+| **Platform** | **Path**                                                                             |
+| ------------ | ------------------------------------------------------------------------------------ |
+| **Linux**    | `~/.config/spicetify/Extensions` or `$XDG_CONFIG_HOME/.config/spicetify/Extensions/` |
+| **MacOS**    | `~/spicetify_data/Extensions` or `$SPICETIFY_CONFIG/Extensions`                      |
+| **Windows**  | `%appdata%\spicetify\Extensions`                                                     |
 
 Now run the following command to apply the theme:
 
