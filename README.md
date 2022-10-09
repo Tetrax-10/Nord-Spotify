@@ -32,8 +32,6 @@ A better Nord Theme with no Ads
 
 ## Install Theme
 
-Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.css` and `color.ini`
-
 ## Get it on Spicetify Marketplace
 
 Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
@@ -44,6 +42,10 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 <br />
 
+## Install Manually
+
+Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.css` and `color.ini`
+
 ### Themes Folder Location
 
 | **Platform** | **Path**                                                                     |
@@ -52,7 +54,7 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 | **MacOS**    | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
 | **Windows**  | `%userprofile%\.spicetify\Themes\`                                           |
 
-Now run the following command to install the theme:
+Now run the following command to apply the theme:
 
 ```
 spicetify config current_theme Nord-Spotify color_scheme Nord
