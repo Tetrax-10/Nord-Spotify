@@ -4,14 +4,14 @@
 // AUTHOR: Tetrax-10
 // DESCRIPTION: Nord Spotify Extension
 
-/// <reference path="../globals.d.ts" />
+/// <reference path="./globals.d.ts" />
 
 (async function nord() {
     if (!(Spicetify.Platform && Spicetify.LocalStorage && Spicetify.Config)) {
         setTimeout(nord, 300);
         return;
     }
-    if (Spicetify.Config.current_theme == "Nord-Spotify") {
+    if (Spicetify.Config.current_theme == "Nord-Spotify" || Spicetify.Config.current_theme == "Nord Spotify") {
         await initNord();
     }
 })();
