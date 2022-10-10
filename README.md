@@ -64,11 +64,9 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 <br />
 
-## Install Manually (Recommended for better UI Experience )
+## Install Manually
 
-Create a Folder named `Nord-Spotify` inside your Themes Folder then paste `user.css` and `color.ini`
-
-Warning : The Folder must be named `Nord-Spotify`, So the Nord Extension works Correctly
+Copy `Nord-Spotify` Folder to your Themes folder
 
 ### Themes Folder Location
 
@@ -78,7 +76,7 @@ Warning : The Folder must be named `Nord-Spotify`, So the Nord Extension works C
 | **MacOS**    | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
 | **Windows**  | `%userprofile%\.spicetify\Themes\`                                           |
 
-Copy `nord.js` and paste it inside your Extentions Folder
+Copy `nord.js` to your Extentions Folder
 
 | **Platform** | **Path**                                                                             |
 | ------------ | ------------------------------------------------------------------------------------ |
@@ -96,7 +94,7 @@ spicetify apply
 Run the following command to remove the theme:
 
 ```
-spicetify config current_theme marketplace extensions nord.js-
+spicetify config current_theme marketplace color_scheme Marketplace extensions nord.js-
 spicetify apply
 ```
 
