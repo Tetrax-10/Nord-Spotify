@@ -318,35 +318,6 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 
 /* //////////// Search Page //////////// */
 
-/* search bar in search page */
-.x-searchInput-searchInputInput {
-    display: flex;
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.7) !important;
-    flex-direction: column;
-    border-radius: 10px !important;
-    border: 0 !important;
-    color: var(--spice-text) !important;
-    height: 40px !important;
-}
-
-/* search bar placeholder */
-.x-searchInput-searchInputInput::placeholder {
-    color: var(--spice-custom-subdued) !important;
-}
-
-/* search bar - search icon in left */
-.x-searchInput-searchInputSearchIcon svg {
-    color: var(--spice-text) !important;
-}
-
-/* search bar border */
-.nav-alt .x-searchInput-searchInputInput,
-.nav-alt .x-searchInput-searchInputInput:hover,
-.nav-alt .x-searchInput-searchInputInput:focus {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 /* search page tab options */
 :root .KjPUGV8uMbl_0bvk9ePv button > span {
     height: 40px;
@@ -789,6 +760,40 @@ a {
 }
 
 /* //////////// Top bar //////////// */
+
+/* top bar home button */
+.main-topBar-center .main-topBar-button svg {
+    color: var(--spice-custom-subdued);
+}
+
+/* search bar in search page */
+.x-searchInput-searchInputInput {
+    display: flex;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.7) !important;
+    flex-direction: column;
+    border-radius: 10px !important;
+    border: 0 !important;
+    color: var(--spice-text) !important;
+    height: 40px !important;
+}
+
+/* search bar placeholder */
+.x-searchInput-searchInputInput::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+
+/* search bar - search icon in left */
+.x-searchInput-searchInputSearchIcon svg {
+    color: var(--spice-custom-subdued) !important;
+}
+
+/* search bar border */
+.nav-alt .x-searchInput-searchInputInput,
+.nav-alt .x-searchInput-searchInputInput:hover,
+.nav-alt .x-searchInput-searchInputInput:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 
 /* top bar color */
 .main-topBar-background {
