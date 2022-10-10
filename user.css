@@ -537,6 +537,11 @@ input:checked ~ .x-toggle-indicatorWrapper {
     padding: 10px;
 }
 
+/* artist big image disabled gradient overlay  */
+.main-entityHeader-background.main-entityHeader-overlay {
+    --bgColor: transparent !important;
+}
+
 /* artist page discography tab options */
 :root .Jr6tcq7gSdKFSqofza3T button > span {
     height: 40px;
