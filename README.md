@@ -93,6 +93,13 @@ spicetify config current_theme Nord-Spotify color_scheme Nord extensions nord.js
 spicetify apply
 ```
 
+Run the following command to remove the theme:
+
+```
+spicetify config current_theme marketplace extensions nord.js-
+spicetify apply
+```
+
 <br />
 
 ## Support
