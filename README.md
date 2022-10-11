@@ -48,6 +48,14 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 ## Install Manually - Auto Update Method (No Offline Support)
 
+### Windows Powershell
+
+```ps
+iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.ps1 | iex
+```
+
+(Or)
+
 Copy `Nord-Spotify` Folder to your Themes folder
 
 Copy `injectNord.js` to your Extentions Folder
@@ -59,7 +67,15 @@ spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectN
 spicetify apply
 ```
 
-If you wanna remove the theme run these commands:
+## Uninstall Manually - Auto Update Method
+
+### Windows Powershell
+
+```ps
+iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.ps1 | iex
+```
+
+(Or)
 
 ```
 spicetify config current_theme marketplace color_scheme Marketplace extensions injectNord.js-
