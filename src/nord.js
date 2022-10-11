@@ -11,7 +11,7 @@
         setTimeout(nord, 300);
         return;
     }
-    if (Spicetify.Config.current_theme == "Nord-Spotify" || Spicetify.Config.current_theme == "Nord Spotify" || Spicetify.Config.current_theme == "marketplace") {
+    if (Spicetify.Config.current_theme == "Nord-Spotify" || Spicetify.Config.current_theme == "Nord Spotify") {
         await initNord();
     }
 })();
@@ -24,7 +24,7 @@ async function initNord() {
 
     let server = "https://tetrax-10.github.io/Nord-Spotify";
 
-    if (Spicetify.Config.current_theme == "Nord Spotify" || Spicetify.Config.current_theme == "marketplace") {
+    if (Spicetify.Config.current_theme == "Nord Spotify") {
         injectStyleSheet(`${server}/src/nord.css`, "nord--nordSpotify");
     }
 
