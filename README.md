@@ -69,7 +69,7 @@ Copy `injectNord.js` to your Extentions Folder
 Then run the following command to apply the theme:
 
 ```
-spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js
+spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
 spicetify apply
 ```
 
@@ -90,7 +90,7 @@ curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/insta
 (Or)
 
 ```
-spicetify config current_theme marketplace color_scheme Marketplace extensions injectNord.js-
+spicetify config current_theme " " color_scheme " " extensions injectNord.js-
 spicetify apply
 ```
 
@@ -103,14 +103,14 @@ Copy [nord.js](https://github.com/Tetrax-10/Nord-Spotify/blob/master/src/nord.js
 Then run the following command to apply the theme:
 
 ```
-spicetify config current_theme Nord-Spotify color_scheme Nord extensions nord.js
+spicetify config current_theme Nord-Spotify color_scheme Nord extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1
 spicetify apply
 ```
 
 If you wanna remove the theme run these commands:
 
 ```
-spicetify config current_theme marketplace color_scheme Marketplace extensions nord.js-
+spicetify config current_theme " " color_scheme " " extensions nord.js-
 spicetify apply
 ```
 
