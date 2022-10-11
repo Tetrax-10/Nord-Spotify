@@ -1,4 +1,4 @@
-# Nord-Spotify (Under Maintenance)
+# Nord-Spotify
 
 Nord Themed Spotify with no UI Ads
 
