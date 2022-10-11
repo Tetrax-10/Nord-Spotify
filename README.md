@@ -54,6 +54,12 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.ps1 | iex
 ```
 
+### Mac/Linux
+
+```ps
+curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.sh | sh
+```
+
 (Or)
 
 Copy `Nord-Spotify` Folder to your Themes folder
@@ -72,7 +78,13 @@ spicetify apply
 ### Windows Powershell
 
 ```ps
-iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/uninstall.ps1 | iex
+```
+
+### Mac/Linux
+
+```ps
+curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/uninstall.sh | sh
 ```
 
 (Or)

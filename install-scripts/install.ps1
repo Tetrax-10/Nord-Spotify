@@ -34,7 +34,7 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/injectNord.js" -UseBasicParsing -OutFile "$spicePath\Extensions\injectNord.js"
 
     # Installing
-    spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js
+    spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
 
     # applying
     $configFile = Get-Content "$spicePath\config-xpui.ini"
