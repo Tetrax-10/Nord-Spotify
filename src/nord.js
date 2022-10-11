@@ -11,9 +11,9 @@
         setTimeout(nord, 300);
         return;
     }
-    if (Spicetify.Config.current_theme == "Nord-Spotify" || Spicetify.Config.current_theme == "Nord Spotify") {
-        await initNord();
-    }
+    // if (Spicetify.Config.current_theme == "Nord-Spotify" || Spicetify.Config.current_theme == "Nord Spotify") {
+    await initNord();
+    // }
 })();
 
 async function initNord() {
