@@ -6,7 +6,7 @@
 //         "readme": "README.md",
 //         "usercss": "marketplace/user.css",
 //         "schemes": "Nord-Spotify/color.ini",
-//         "include": ["https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/nord.js"],
+//         "include": ["https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/injectNord.js"],
 //         "authors": [{ "name": "Tetrax-10", "url": "https://github.com/Tetrax-10" }]
 //     },
 //     {

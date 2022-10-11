@@ -1,4 +1,0 @@
-/* disable homepage recommendation */
-section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"]) {
-    display: none !important;
-}

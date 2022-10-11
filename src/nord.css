@@ -1050,6 +1050,11 @@ a {
     transition: background-color 0.3s ease;
 }
 
+/* cards no profile pic user icon */
+.main-entityHeader-imagePlaceholder svg {
+    color: var(--spice-custom-subdued);
+}
+
 /* remove card shadow below the image */
 .main-cardImage-imageWrapper {
     -webkit-box-shadow: none;
@@ -1575,11 +1580,4 @@ button.checkbox.disabled {
     border-radius: 20px;
 }
 
-/* //////////////////////////////////// Personal //////////////////////////////////// */
-
-/* home page top extra padding above greeting */
-.main-home-content {
-    padding-top: 15px;
-}
-
-/* //////////////////////////////////// Testing //////////////////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////////////////////////////// */
