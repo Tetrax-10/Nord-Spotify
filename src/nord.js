@@ -23,7 +23,7 @@ async function initNord() {
     let body = document.querySelector("body");
 
     if (Spicetify.Config.current_theme == "Nord Spotify") {
-        injectStyleSheet("https://tetrax-10.github.io/Nord-Spotify/src/user.css", "nord--nordSpotify");
+        injectStyleSheet("https://tetrax-10.github.io/Nord-Spotify/src/nord.css", "nord--nordSpotify");
     }
 
     ////////////////////////////////////// CONFIG ///////////////////////////////////////////

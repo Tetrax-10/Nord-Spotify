@@ -4,7 +4,7 @@
 // AUTHOR: Tetrax-10
 // DESCRIPTION: Nord Spotify Extension Injector
 
-/// <reference path="../dev/globals.d.ts" />
+/// <reference path="./dev/globals.d.ts" />
 
 (function injectNord() {
     let body = document.querySelector("body");
@@ -18,5 +18,7 @@
         }
     }
 
-    injectJS("https://tetrax-10.github.io/Nord-Spotify/src/nord.js", "nord--js");
+    let server = "https://tetrax-10.github.io/Nord-Spotify";
+
+    injectJS(`${server}/src/nord.js`, "nord--js");
 })();
