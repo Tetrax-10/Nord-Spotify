@@ -12,6 +12,7 @@
     function injectJS(src, id) {
         if (!body.classList.contains(id)) {
             let script = document.createElement("script");
+            script.id = id;
             script.src = src;
             body.appendChild(script);
             body.classList.add(id);
