@@ -34,7 +34,87 @@ Nord Themed Spotify with no UI Ads
 
 <br />
 
-## To Change Theme's Color Scheme run these commands in Powershell/Terminal
+## Install Theme
+
+## Get it on Spicetify Marketplace
+
+Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
+
+Step 2 : Open Spotify App -> Marketplace -> Themes
+
+Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
+
+<br />
+
+## Install Manually - Auto Update Method (No Offline Support)
+
+Copy `Nord-Spotify` Folder to your Themes folder
+
+Copy `injectNord.js` to your Extentions Folder
+
+Then run the following command to apply the theme:
+
+```
+spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js
+spicetify apply
+```
+
+If you wanna remove the theme run these commands:
+
+```
+spicetify config current_theme marketplace color_scheme Marketplace extensions injectNord.js-
+spicetify apply
+```
+
+## Install Manually - Offline Support (No Auto Update)
+
+Copy `Nord-Spotify` Folder to your Themes folder, But replace the `user.css` with [nord.css](https://github.com/Tetrax-10/Nord-Spotify/blob/master/src/nord.css) and rename it to `user.css`
+
+Copy [nord.js](https://github.com/Tetrax-10/Nord-Spotify/blob/master/src/nord.js) to your Extentions Folder
+
+Then run the following command to apply the theme:
+
+```
+spicetify config current_theme Nord-Spotify color_scheme Nord extensions nord.js
+spicetify apply
+```
+
+If you wanna remove the theme run these commands:
+
+```
+spicetify config current_theme marketplace color_scheme Marketplace extensions nord.js-
+spicetify apply
+```
+
+### Themes Folder Location
+
+| **Platform** | **Path**                                                                     |
+| ------------ | ---------------------------------------------------------------------------- |
+| **Linux**    | `~/.config/spicetify/Themes` or `$XDG_CONFIG_HOME/.config/spicetify/Themes/` |
+| **MacOS**    | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
+| **Windows**  | `%userprofile%\.spicetify\Themes\`                                           |
+
+### Extension Folder Location
+
+| **Platform** | **Path**                                                                             |
+| ------------ | ------------------------------------------------------------------------------------ |
+| **Linux**    | `~/.config/spicetify/Extensions` or `$XDG_CONFIG_HOME/.config/spicetify/Extensions/` |
+| **MacOS**    | `~/spicetify_data/Extensions` or `$SPICETIFY_CONFIG/Extensions`                      |
+| **Windows**  | `%appdata%\spicetify\Extensions`                                                     |
+
+<br />
+
+## To Change and Customize Theme Colors
+
+## Marketplace Method
+
+In Marketplace near the settings icon there will a drop down on top right corner, you can change color schemes there
+
+To Customize Colors enable theme developer tools in marketplace settings
+
+## Manual Method
+
+### To Change Theme's Color Scheme run these commands in Powershell/Terminal
 
 ### Nord
 
@@ -50,53 +130,7 @@ spicetify config color_scheme Nightly
 spicetify apply
 ```
 
-<br />
-
-## Install Theme
-
-## Get it on Spicetify Marketplace
-
-Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace) readme and install it.
-
-Step 2 : Open Spotify App -> Marketplace -> Themes
-
-Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
-
-<br />
-
-## Install Manually
-
-Copy `Nord-Spotify` Folder to your Themes folder
-
-### Themes Folder Location
-
-| **Platform** | **Path**                                                                     |
-| ------------ | ---------------------------------------------------------------------------- |
-| **Linux**    | `~/.config/spicetify/Themes` or `$XDG_CONFIG_HOME/.config/spicetify/Themes/` |
-| **MacOS**    | `~/spicetify_data/Themes` or `$SPICETIFY_CONFIG/Themes`                      |
-| **Windows**  | `%userprofile%\.spicetify\Themes\`                                           |
-
-Copy `nord.js` to your Extentions Folder
-
-| **Platform** | **Path**                                                                             |
-| ------------ | ------------------------------------------------------------------------------------ |
-| **Linux**    | `~/.config/spicetify/Extensions` or `$XDG_CONFIG_HOME/.config/spicetify/Extensions/` |
-| **MacOS**    | `~/spicetify_data/Extensions` or `$SPICETIFY_CONFIG/Extensions`                      |
-| **Windows**  | `%appdata%\spicetify\Extensions`                                                     |
-
-Now run the following command to apply the theme:
-
-```
-spicetify config current_theme Nord-Spotify color_scheme Nord extensions nord.js
-spicetify apply
-```
-
-Run the following command to remove the theme:
-
-```
-spicetify config current_theme marketplace color_scheme Marketplace extensions nord.js-
-spicetify apply
-```
+To Customize Colors edit `color.ini` located inside `Nord-Spotify` Folder
 
 <br />
 
