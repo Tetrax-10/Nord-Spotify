@@ -287,6 +287,11 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 
 /* //////////// Home Page //////////// */
 
+/* home page top extra padding above greeting */
+.main-home-content {
+    padding-top: 15px;
+}
+
 /* home page top six playlist bg color */
 .view-homeShortcutsGrid-shortcut {
     background-color: var(--spice-custom-main-soft-secondary) !important;
