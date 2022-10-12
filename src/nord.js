@@ -20,6 +20,8 @@ async function initNord() {
     const { React } = Spicetify;
     const { useState } = React;
 
+    let versionInfo = await Spicetify.CosmosAsync.get("sp://desktop/v1/version");
+
     let body = document.querySelector("body");
 
     let server = "https://tetrax-10.github.io/Nord-Spotify";
@@ -83,6 +85,9 @@ async function initNord() {
                 pointers: true,
                 rightSideCoverArt: true,
                 hideMarketplace: false,
+                quickSearch: false,
+                search: false,
+                redo: false,
             };
         }
     }
@@ -94,7 +99,7 @@ async function initNord() {
     const CONFIG = await getConfig();
     await saveConfig();
 
-    ////////////////////////////////////// Snippets ///////////////////////////////////////////
+    ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
 
     let hideArtistTopBar = `
     .main-topBar-background {
@@ -142,7 +147,7 @@ async function initNord() {
         visibility: hidden;
         animation: 1s coverExpandedOut;
     }
-    .Q4cc5RktWgz2H8_vDrIS {
+    .main-coverSlotExpanded-exitActive {
         display: none;
     }
     @keyframes coverExpandedIn {
@@ -512,6 +517,24 @@ async function initNord() {
         display: none;
     }`;
 
+    ////////////////////////////////////// JS Snippets ///////////////////////////////////////////
+
+    function quickSearchKeyBind() {
+        changeKeyBind({ key: "k", ctrl: true }, { key: "space", ctrl: true }, CONFIG.quickSearch);
+    }
+
+    function searchKeyBind() {
+        changeKeyBind({ key: "l", ctrl: true }, { key: "/", ctrl: true }, CONFIG.search);
+    }
+
+    async function redoKeyBind() {
+        if (os("Win") && CONFIG.redo) {
+            Spicetify.Mousetrap.bind("ctrl+shift+z", async () => {
+                await Spicetify.CosmosAsync.post("sp://desktop/v1/redo");
+            });
+        }
+    }
+
     ////////////////////////////////////// UI ///////////////////////////////////////////
 
     let style = React.createElement(
@@ -621,31 +644,35 @@ async function initNord() {
         });
     }
 
-    function checkBoxItem({ name, field, onclickFun = () => {} }) {
-        let [value, setValue] = useState(CONFIG[field]);
-        return React.createElement(
-            "div",
-            { className: "popup-row" },
-            React.createElement("label", { className: "col description" }, name),
-            React.createElement(
+    function checkBoxItem({ name, field, bool = true, onclickFun = () => {} }) {
+        if (bool) {
+            let [value, setValue] = useState(CONFIG[field]);
+            return React.createElement(
                 "div",
-                { className: "col action" },
+                { className: "popup-row" },
+                React.createElement("label", { className: "col description" }, name),
                 React.createElement(
-                    "button",
-                    {
-                        className: "checkbox" + (value ? "" : " disabled"),
-                        onClick: async () => {
-                            let state = !value;
-                            CONFIG[field] = state;
-                            setValue(state);
-                            await saveConfig();
-                            onclickFun();
+                    "div",
+                    { className: "col action" },
+                    React.createElement(
+                        "button",
+                        {
+                            className: "checkbox" + (value ? "" : " disabled"),
+                            onClick: async () => {
+                                let state = !value;
+                                CONFIG[field] = state;
+                                setValue(state);
+                                await saveConfig();
+                                onclickFun();
+                            },
                         },
-                    },
-                    React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.check, size: 16 })
+                        React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.check, size: 16 })
+                    )
                 )
-            )
-        );
+            );
+        } else {
+            return null;
+        }
     }
 
     function ButtonItem({ name, color = "", onclickFun }) {
@@ -671,7 +698,7 @@ async function initNord() {
             name: "Hide Home Page Recommendation",
             field: "hideHomePageRecommendation",
             onclickFun: () => {
-                snippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
+                cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
             },
         }),
         React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
@@ -681,49 +708,49 @@ async function initNord() {
             name: "Hide Marketplace",
             field: "hideMarketplace",
             onclickFun: () => {
-                snippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
+                cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide SideBar ScrollBar",
             field: "hideSideBarScrollBar",
             onclickFun: () => {
-                snippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
+                cssSnippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Highlight SideBar Selected Items (Main Items)",
             field: "highlightSideBarItem",
             onclickFun: () => {
-                snippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
+                cssSnippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Highlight SideBar Items (Playlists)",
             field: "highlightSideBarSelectedItem",
             onclickFun: () => {
-                snippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
+                cssSnippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "SideBar Playlist Names bold",
             field: "boldedSideBarItems",
             onclickFun: () => {
-                snippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
+                cssSnippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide SideBar Divider",
             field: "hideSideBarDivider",
             onclickFun: () => {
-                snippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
+                cssSnippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide SideBar Status",
             field: "hideSideBarStatus",
             onclickFun: () => {
-                snippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
+                cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
             },
         }),
         React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
@@ -735,36 +762,36 @@ async function initNord() {
             onclickFun: () => {
                 CONFIG.leftSideCoverArt = !CONFIG.rightSideCoverArt;
                 saveConfig();
-                snippet(rightSideCoverArt, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
-                snippet(leftSideCoverArt, "nord--leftSideCoverArt", CONFIG.leftSideCoverArt);
+                cssSnippet(rightSideCoverArt, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
+                cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", CONFIG.leftSideCoverArt);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Player Friend Activity",
             field: "hideFriendActivity",
             onclickFun: () => {
-                snippet(hideFriendActivity, "nord--hideFriendActivity", CONFIG.hideFriendActivity);
+                cssSnippet(hideFriendActivity, "nord--hideFriendActivity", CONFIG.hideFriendActivity);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Player Spotify Connect",
             field: "hideSpotifyConnect",
             onclickFun: () => {
-                snippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
+                cssSnippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Player Spotify Full Screen",
             field: "hideSpotifyFullScreen",
             onclickFun: () => {
-                snippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
+                cssSnippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Dots Under Player Buttons",
             field: "hideDotsUnderPlayerButtons",
             onclickFun: () => {
-                snippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
+                cssSnippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
             },
         }),
         React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
@@ -774,28 +801,28 @@ async function initNord() {
             name: "Hide Playlist Similar Songs Recommendation",
             field: "hideSimilarSongsRecommendation",
             onclickFun: () => {
-                snippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
+                cssSnippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Current Playing Song BG",
             field: "hideCurrentPlayingSongBG",
             onclickFun: () => {
-                snippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
+                cssSnippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Playlist Image Edit Button",
             field: "hidePlaylistImageEditButton",
             onclickFun: () => {
-                snippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
+                cssSnippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Radio Gradient",
             field: "hideRadioGradient",
             onclickFun: () => {
-                snippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
+                cssSnippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
             },
         }),
         React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
@@ -805,14 +832,14 @@ async function initNord() {
             name: "Hide Your Library Liked Song's Card",
             field: "hideLikedSongsCard",
             onclickFun: () => {
-                snippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
+                cssSnippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Your Library Liked Song's Card Text",
             field: "hideLikedSongsCardTexts",
             onclickFun: () => {
-                snippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
+                cssSnippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
             },
         }),
         React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
@@ -822,91 +849,117 @@ async function initNord() {
             name: "Hide Ads",
             field: "hideAds",
             onclickFun: () => {
-                snippet(hideAds, "nord--hideAds", CONFIG.hideAds);
+                cssSnippet(hideAds, "nord--hideAds", CONFIG.hideAds);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Better Font",
             field: "betterFont",
             onclickFun: () => {
-                snippet(betterFont, "nord--betterFont", CONFIG.betterFont);
+                cssSnippet(betterFont, "nord--betterFont", CONFIG.betterFont);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Top Gradient",
             field: "hideTopGradient",
             onclickFun: () => {
-                snippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
+                cssSnippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Better Genre",
             field: "betterGenre",
             onclickFun: () => {
-                snippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
+                cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Big Artist Image",
             field: "artistBigImage",
             onclickFun: () => {
-                snippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
+                cssSnippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Pointers",
             field: "pointers",
             onclickFun: () => {
-                snippet(pointers, "nord--pointers", CONFIG.pointers);
+                cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Spotify Lyrics Nord BG",
             field: "nordLyrics",
             onclickFun: () => {
-                snippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
+                cssSnippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Better Spotify Lyrics",
             field: "betterSpotifyLyrics",
             onclickFun: () => {
-                snippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
+                cssSnippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Better Lyrics Plus",
             field: "betterLyricsPlus",
             onclickFun: () => {
-                snippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
+                cssSnippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide TopBar Play Button",
             field: "hideTopBarPlayButton",
             onclickFun: () => {
-                snippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
+                cssSnippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Cards Download Status",
             field: "hideCardsDownloadStatus",
             onclickFun: () => {
-                snippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
+                cssSnippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
             },
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Windows OS Control - Nord Only (Experimental Feature)",
+            name: "Hide Windows Control on top right corner (Nord Only)",
             field: "hideWindowsControl",
+            bool: os("Win"),
             onclickFun: () => {
-                snippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
+                cssSnippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Bubble UI",
             field: "bubbleUI",
             onclickFun: () => {
-                snippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
+                cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
+            },
+        }),
+        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Keybinds")),
+        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+        React.createElement(checkBoxItem, {
+            name: "Quick Search ( Ctrl + Space )",
+            field: "quickSearch",
+            onclickFun: () => {
+                injectJS(quickSearchKeyBind);
+            },
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Search ( Ctrl + / )",
+            field: "search",
+            onclickFun: () => {
+                injectJS(searchKeyBind);
+            },
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Redo ( Ctrl + Shift + z )",
+            field: "redo",
+            bool: os("Win"),
+            onclickFun: () => {
+                injectJS(redoKeyBind);
             },
         }),
         React.createElement(ButtonItem, {
@@ -963,7 +1016,11 @@ async function initNord() {
         }
     }
 
-    function snippet(data, id, bool) {
+    function injectJS(callback = () => {}) {
+        callback();
+    }
+
+    function cssSnippet(data, id, bool) {
         if (bool) {
             injectCSS(data, id);
         } else {
@@ -979,6 +1036,20 @@ async function initNord() {
             }
         });
         return count;
+    }
+
+    function changeKeyBind(oldKey, newKey, bool) {
+        try {
+            if (bool) {
+                Spicetify.Keyboard.changeShortcut(oldKey, newKey);
+            } else {
+                Spicetify.Keyboard.changeShortcut(newKey, oldKey);
+            }
+        } catch {}
+    }
+
+    function os(os) {
+        return versionInfo.platform.includes(os);
     }
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
@@ -999,69 +1070,75 @@ async function initNord() {
         }
     });
 
-    snippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
+    cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
 
-    snippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
+    cssSnippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
 
-    snippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
+    cssSnippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
 
-    snippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
+    cssSnippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
 
-    snippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
+    cssSnippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
 
-    snippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
+    cssSnippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
 
-    snippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
+    cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
 
-    snippet(rightSideCoverArt, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
+    cssSnippet(rightSideCoverArt, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
 
-    snippet(leftSideCoverArt, "nord--leftSideCoverArt", CONFIG.leftSideCoverArt);
+    cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", CONFIG.leftSideCoverArt);
 
-    snippet(hideFriendActivity, "nord--hideFriendActivity", CONFIG.hideFriendActivity);
+    cssSnippet(hideFriendActivity, "nord--hideFriendActivity", CONFIG.hideFriendActivity);
 
-    snippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
+    cssSnippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
 
-    snippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
+    cssSnippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
 
-    snippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
+    cssSnippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
 
-    snippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
+    cssSnippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
 
-    snippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
+    cssSnippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
 
-    snippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
+    cssSnippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
 
-    snippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
+    cssSnippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
 
-    snippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
+    cssSnippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
 
-    snippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
+    cssSnippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
 
-    snippet(hideAds, "nord--hideAds", CONFIG.hideAds);
+    cssSnippet(hideAds, "nord--hideAds", CONFIG.hideAds);
 
-    snippet(betterFont, "nord--betterFont", CONFIG.betterFont);
+    cssSnippet(betterFont, "nord--betterFont", CONFIG.betterFont);
 
-    snippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
+    cssSnippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
 
-    snippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
+    cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
 
-    snippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
+    cssSnippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
 
-    snippet(pointers, "nord--pointers", CONFIG.pointers);
+    cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
 
-    snippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
+    cssSnippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
 
-    snippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
+    cssSnippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
 
-    snippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
+    cssSnippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
 
-    snippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
+    cssSnippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
 
-    snippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
+    cssSnippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
 
-    snippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
+    cssSnippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
 
-    snippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
+    cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
 
-    snippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
+    cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
+
+    injectJS(quickSearchKeyBind);
+
+    injectJS(searchKeyBind);
+
+    injectJS(redoKeyBind);
 }
