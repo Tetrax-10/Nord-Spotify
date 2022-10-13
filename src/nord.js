@@ -22,11 +22,13 @@ async function initNord() {
 
     let versionInfo = await Spicetify.CosmosAsync.get("sp://desktop/v1/version");
 
+    let SpicetifyConfig = Spicetify.Config;
+
     let body = document.querySelector("body");
 
     let server = "https://tetrax-10.github.io/Nord-Spotify";
 
-    if (Spicetify.Config.current_theme == "Nord Spotify") {
+    if (SpicetifyConfig.current_theme == "Nord Spotify") {
         injectStyleSheet(`${server}/src/nord.css`, "nord--nordSpotify");
     }
 
@@ -528,7 +530,6 @@ async function initNord() {
     }
 
     async function redoKeyBind() {
-        console.log(CONFIG.redo);
         if (os("Win")) {
             if (CONFIG.redo) {
                 Spicetify.Mousetrap.bind("ctrl+shift+z", async () => {
@@ -649,8 +650,8 @@ async function initNord() {
         });
     }
 
-    function checkBoxItem({ name, field, bool = true, onclickFun = () => {} }) {
-        if (bool) {
+    function checkBoxItem({ name, field, bool = true, color = SpicetifyConfig.color_scheme, onclickFun = () => {} }) {
+        if (bool && color == SpicetifyConfig.color_scheme) {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
                 "div",
@@ -930,7 +931,8 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide Windows Control ( Experimental Feature )",
             field: "hideWindowsControl",
-            bool: os("Win") && color("Nord"),
+            bool: os("Win"),
+            color: "Nord",
             onclickFun: () => {
                 cssSnippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
             },
@@ -1055,10 +1057,6 @@ async function initNord() {
 
     function os(os) {
         return versionInfo.platform.includes(os);
-    }
-
-    function color(name) {
-        return Spicetify.Config.color_scheme == name;
     }
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
