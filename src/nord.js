@@ -285,14 +285,14 @@ async function initNord() {
         background-image: linear-gradient(#515c71, #515c71); /* depends on the color */
         background-repeat: no-repeat;
         background-position: top right;
-        background-size: 135px 31px; /* depends on the set page zoom - this value is for 100% */
+        background-size: 135px 31.5px; /* depends on the set page zoom - this value is for 100% */
     }
     /* Top Bar element */
     .Root__fixed-top-bar {
         background-image: linear-gradient(#515c71, #515c71); /* depends on the color */
         background-repeat: no-repeat;
         background-position: top right;
-        background-size: 127px 23.5px; /* depends on the set page zoom - this value is for 100% */
+        background-size: 127.5px 23.5px; /* depends on the set page zoom - this value is for 100% */
     }`;
 
     let betterFont = `
@@ -928,9 +928,9 @@ async function initNord() {
             },
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Windows Control on top right corner (Nord Only)",
+            name: "Hide Windows Control ( Experimental Feature )",
             field: "hideWindowsControl",
-            bool: os("Win"),
+            bool: os("Win") && color("Nord"),
             onclickFun: () => {
                 cssSnippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
             },
@@ -1055,6 +1055,10 @@ async function initNord() {
 
     function os(os) {
         return versionInfo.platform.includes(os);
+    }
+
+    function color(name) {
+        return Spicetify.Config.color_scheme == name;
     }
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
