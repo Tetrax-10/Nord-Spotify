@@ -504,7 +504,7 @@ async function initNord() {
     let bubbleUI = `
     /* bubble UI */
     :root {
-        --spice-sidebar: var(--spice-main);
+        --spice-sidebar: var(--spice-main) !important;
     }`;
 
     let hideSpotifyFullScreen = `
