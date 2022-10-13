@@ -528,10 +528,15 @@ async function initNord() {
     }
 
     async function redoKeyBind() {
-        if (os("Win") && CONFIG.redo) {
-            Spicetify.Mousetrap.bind("ctrl+shift+z", async () => {
-                await Spicetify.CosmosAsync.post("sp://desktop/v1/redo");
-            });
+        console.log(CONFIG.redo);
+        if (os("Win")) {
+            if (CONFIG.redo) {
+                Spicetify.Mousetrap.bind("ctrl+shift+z", async () => {
+                    await Spicetify.CosmosAsync.post("sp://desktop/v1/redo");
+                });
+            } else {
+                Spicetify.Mousetrap.unbind("ctrl+shift+z");
+            }
         }
     }
 
