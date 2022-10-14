@@ -505,6 +505,9 @@ async function initNord() {
     /* bubble UI */
     :root {
         --spice-sidebar: var(--spice-main) !important;
+    }
+    .main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
+        border-radius: 10px !important;
     }`;
 
     let hideSpotifyFullScreen = `
