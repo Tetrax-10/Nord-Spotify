@@ -1,0 +1,93 @@
+/* //////////// SideBar //////////// */
+
+/* sidebar liked songs icon color */
+.main-likedSongsButton-likedSongsIcon {
+    color: var(--spice-sidebar);
+}
+
+/* sidebar your episodes icon color inside */
+.main-yourEpisodesButton-yourEpisodesIcon path {
+    fill: var(--spice-sidebar);
+}
+
+/* //////////// Root //////////// */
+
+/* username on top right corner customization */
+.main-userWidget-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+
+/* small profile photo on top right corner */
+.main-userWidget-box .main-avatar-image {
+    border-radius: 6px;
+}
+
+/* //////////// Top bar //////////// */
+
+/* search bar in search page */
+.x-searchInput-searchInputInput {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+
+.main-noConnection-button {
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+/* //////////// Player //////////// */
+
+/* progress bar ball (visible when hovered) */
+.progress-bar__slider {
+    width: 15px !important;
+    height: 15px !important;
+    top: 3.5px;
+    transition: left, 0s, ease, 0.25s;
+}
+
+/* Old UI better progress bar */
+/* moves progress bar to top */
+.playback-bar {
+    border-radius: 0px !important;
+    bottom: 83px;
+    width: 100%;
+    position: absolute;
+}
+
+/* progress bar time style */
+.playback-bar__progress-time-elapsed,
+.main-playbackBarRemainingTime-container {
+    opacity: 0;
+    position: absolute;
+    bottom: 13px;
+    color: var(--spice-text);
+    background-color: var(--spice-main);
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* moves start time left */
+.playback-bar__progress-time-elapsed {
+    font-size: 13px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    left: 0;
+}
+/* moves end time right */
+.main-playbackBarRemainingTime-container {
+    font-size: 13px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    right: 0;
+}
+
+/* //////////// Friend Activity //////////// */
+
+/* friend activity bar left side shadow */
+.main-buddyFeed-buddyFeed {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
