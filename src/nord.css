@@ -2,7 +2,6 @@
 * {
     --text-subdued: var(--spice-custom-subdued);
     --background-highlight: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.5);
-    --progress-bar-radius: 0px;
 }
 
 /* //////////////////////////////////// Nord Theme //////////////////////////////////// */
@@ -899,6 +898,8 @@ a {
 .main-playbackBarRemainingTime-container {
     opacity: 0;
 }
+
+/* show time lapse on hover */
 .playback-bar:hover .playback-bar__progress-time-elapsed,
 .playback-bar:hover .main-playbackBarRemainingTime-container {
     transition: all 0.3s ease;
@@ -922,12 +923,11 @@ a {
 
 /* progress bar ball (visible when hovered) */
 .progress-bar__slider {
-    /* display: none !important; */
     width: 12px !important;
     height: 12px !important;
+    top: 3.5px;
     border-radius: 50%;
     transition: left, 0s, ease, 0.25s;
-    top: 3.5px;
 }
 
 /* rounded player */
@@ -1453,7 +1453,7 @@ input.search[placeholder="Search for a feature"]::placeholder {
 
 /* sort by play count input */
 .popup-row .inputbox::placeholder,
-/* lut */
+/* lastfm stats input */
 #login-global-div > input::placeholder {
     color: var(--spice-custom-subdued) !important;
 }
