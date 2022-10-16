@@ -659,6 +659,9 @@ async function initNord() {
     /* Hide Overlay */
     .GenericModal__overlay {
         background-color: transparent;
+    }
+    .main-embedWidgetGenerator-container {
+        box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
     }`;
 
     function customFont(url, name) {
@@ -995,6 +998,7 @@ async function initNord() {
         Spicetify.PopupModal.display({
             title: "Hide Windows Controls",
             content: editHideWindowsControlsContainer,
+            isLarge: true,
         });
 
         waitForUserToTriggerClosePopup();
