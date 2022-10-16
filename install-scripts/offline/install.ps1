@@ -74,6 +74,8 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
         Write-Host "Making Backup and Applying Theme" -ForegroundColor Green
         spicetify backup apply -q
     }
+
+    Write-Host "Theme Applied Successfully. Ignore any Error Message" -ForegroundColor Green
 }
 else {
     Write-Host "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";
