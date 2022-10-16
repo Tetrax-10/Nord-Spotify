@@ -1,5 +1,5 @@
 param (
-    [string] $version
+  [string] $version
 )
 
 $PSMinVersion = 3
@@ -8,44 +8,66 @@ if ($v) {
     $version = $v
 }
 
+function Write-Emphasized ([string] $Text) {
+    Write-Host $Text -ForegroundColor "Cyan"
+}
+
 if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     $ErrorActionPreference = "Stop"
 
     # Enable TLS 1.2 since it is required for connections to GitHub.
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+    # Silent Invoke-WebRequest
+    $ProgressPreference = 'SilentlyContinue'
+
     # Check if Spicetify exists
     $checkSpice = Get-Command spicetify -ErrorAction Silent
     if ($null -eq $checkSpice) {
-        Write-Host -ForegroundColor Red "Spicetify not found, So Installing Spicetify"
-        iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
-        Write-Done
+        Write-Host "Spicetify not found" -ForegroundColor Red
+        Write-Host "Installing Spicetify" -ForegroundColor DarkCyan
+        Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
     }
 
-    # Check if Spicetify Themes folder already exists
+    # get Spicetify path
     $spicePath = spicetify -c | Split-Path
-    $sp_dot_dir = "$spicePath\Themes"
-    Remove-Item -Recurse -Force "$sp_dot_dir\Nord-Spotify" -ErrorAction Ignore
-    New-Item -Path "$sp_dot_dir\Nord-Spotify" -ItemType Directory | Out-Null
+    # Spicetify Themes path
+    $themeDir = "$spicePath\Themes"
+    # Spicetify Extensions path
+    $extensionsDir = "$spicePath\Extensions"
 
+    # remove old folders
+    Write-Host "Removing old version if any" -ForegroundColor DarkCyan
+    Remove-Item -Recurse -Force "$themeDir\Nord-Spotify" -ErrorAction Ignore
+
+    # create folders
+    Write-Host "Installing Nord Spotify (Remote version)" -ForegroundColor DarkCyan
+    New-Item -Path "$themeDir\Nord-Spotify" -ItemType Directory | Out-Null
+
+    Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
     # Clone to spicetify folder
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/color.ini" -UseBasicParsing -OutFile "$sp_dot_dir\Nord-Spotify\color.ini"
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/user.css" -UseBasicParsing -OutFile "$sp_dot_dir\Nord-Spotify\user.css"
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/injectNord.js" -UseBasicParsing -OutFile "$spicePath\Extensions\injectNord.js"
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/color.ini" -UseBasicParsing -OutFile "$themeDir\Nord-Spotify\color.ini"
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/user.css" -UseBasicParsing -OutFile "$themeDir\Nord-Spotify\user.css"
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/injectNord.js" -UseBasicParsing -OutFile "$extensionsDir\injectNord.js"
 
     # Installing
-    spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
+    Write-Host "Changing Config" -ForegroundColor DarkCyan
+    spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
 
     # applying
     $configFile = Get-Content "$spicePath\config-xpui.ini"
     $backupVer = $configFile -match "^version"
     if ($backupVer.Length -gt 0) {
-        spicetify apply
+        Write-Host "Applying Theme" -ForegroundColor DarkCyan
+        spicetify apply -q
     } else {
-        spicetify backup apply
+        Write-Host "Making Backup and Applying Theme" -ForegroundColor DarkCyan
+        spicetify backup apply -q
     }
+
+    Write-Host "Theme Applied Successfully. Ignore any Error Message" -ForegroundColor Green
 }
 else {
-    Write-Part "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";
-    Write-Part "`nPlease, update your Powershell downloading the "; Write-Emphasized "'Windows Management Framework'"; Write-Part " greater than "; Write-Emphasized "$PSMinVersion"
+    Write-Host "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";
+    Write-Host "`nPlease, update your Powershell downloading the "; Write-Emphasized "'Windows Management Framework'"; Write-Host " greater than "; Write-Emphasized "$PSMinVersion"
 }

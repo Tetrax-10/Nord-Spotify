@@ -22,18 +22,20 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     Remove-Item -Force "$spicePath\Extensions\injectNord.js" -ErrorAction Ignore
 
     # spicetify default theme
-    spicetify config current_theme " " color_scheme " " extensions injectNord.js-
+    spicetify config current_theme " " color_scheme " " extensions injectNord.js- -q
 
     # spicetify apply
     $configFile = Get-Content "$spicePath\config-xpui.ini"
     $backupVer = $configFile -match "^version"
     if ($backupVer.Length -gt 0) {
-        spicetify apply
+        spicetify apply -q
     } else {
-        spicetify backup apply
+        spicetify backup apply -q
     }
+
+    Write-Host "Uninstalled Successfully. Ignore any Error Message" -ForegroundColor Green
 }
 else {
-    Write-Part "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";
-    Write-Part "`nPlease, update your Powershell downloading the "; Write-Emphasized "'Windows Management Framework'"; Write-Part " greater than "; Write-Emphasized "$PSMinVersion"
+    Write-Host "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";
+    Write-Host "`nPlease, update your Powershell downloading the "; Write-Emphasized "'Windows Management Framework'"; Write-Host " greater than "; Write-Emphasized "$PSMinVersion"
 }

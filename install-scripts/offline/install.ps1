@@ -25,7 +25,7 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     $checkSpice = Get-Command spicetify -ErrorAction Silent
     if ($null -eq $checkSpice) {
         Write-Host "Spicetify not found" -ForegroundColor Red
-        Write-Host "Installing Spicetify" -ForegroundColor Green
+        Write-Host "Installing Spicetify" -ForegroundColor DarkCyan
         Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
     }
 
@@ -39,20 +39,17 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     $extensionsDir = "$spicePath\Extensions"
 
     # remove old folders
-    Write-Host "Removing old version if any" -ForegroundColor Green
+    Write-Host "Removing old version if any" -ForegroundColor DarkCyan
     Remove-Item -Recurse -Force "$themeDir\Nord-Spotify" -ErrorAction Ignore
     Remove-Item -Recurse -Force "$xpuiPath\src" -ErrorAction Ignore
 
     # create folders
-    Write-Host "Installing Nord Spotify (offline)" -ForegroundColor Green
-    New-Item -Path "$xpuiPath\src\Colors" -ItemType Directory | Out-Null
+    Write-Host "Installing Nord Spotify (Offline version)" -ForegroundColor DarkCyan
     New-Item -Path "$xpuiPath\src\Snippets" -ItemType Directory | Out-Null
     New-Item -Path "$themeDir\Nord-Spotify" -ItemType Directory | Out-Null
 
+    Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
     # Clone to xpui folder
-    Write-Host "Fetching Theme from GitHub" -ForegroundColor Green
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Colors/NordColor.css" -UseBasicParsing -OutFile "$xpuiPath\src\Colors\NordColor.css"
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Colors/NightlyColor.css" -UseBasicParsing -OutFile "$xpuiPath\src\Colors\NightlyColor.css"
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Snippets/NewUI.css" -UseBasicParsing -OutFile "$xpuiPath\src\Snippets\NewUI.css"
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Snippets/OldUI.css" -UseBasicParsing -OutFile "$xpuiPath\src\Snippets\OldUI.css"
     # Clone to spicetify folder
@@ -61,17 +58,17 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/nord.js" -UseBasicParsing -OutFile "$extensionsDir\nord.js"
 
     # Installing
-    Write-Host "Changing Config" -ForegroundColor Green
-    spicetify config current_theme Nord-Spotify color_scheme NordColor extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
+    Write-Host "Changing Config" -ForegroundColor DarkCyan
+    spicetify config current_theme Nord-Spotify color_scheme Nord extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
 
     # applying
     $configFile = Get-Content "$spicePath\config-xpui.ini"
     $backupVer = $configFile -match "^version"
     if ($backupVer.Length -gt 0) {
-        Write-Host "Applying Theme" -ForegroundColor Green
+        Write-Host "Applying Theme" -ForegroundColor DarkCyan
         spicetify apply -q
     } else {
-        Write-Host "Making Backup and Applying Theme" -ForegroundColor Green
+        Write-Host "Making Backup and Applying Theme" -ForegroundColor DarkCyan
         spicetify backup apply -q
     }
 

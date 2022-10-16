@@ -1280,7 +1280,7 @@ input.search[placeholder="Search for a feature"]::placeholder {
 /* select style */
 .main-embedWidgetGenerator-container select {
     background-color: var(--spice-tab-active);
-    color: var(--spice-text);
+    color: rgba(var(--spice-rgb-selected-row), 0.7);
     padding: 0 32px 0 12px;
     border: 0;
     border-radius: 5px;
@@ -1435,3 +1435,21 @@ button.checkbox.disabled {
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* //////////////////////////////////// Personal //////////////////////////////////// */
+
+/* home page bottom extra padding */
+.main-view-container__scroll-node-child {
+    padding-bottom: 0px;
+}
+
+/* //////////////////////////////////// To Do //////////////////////////////////// */
+
+/* queue remaining time */
+/* lastfm stats */
+/* hide player stars */
+/* windows controls all size */
+/* add color init */
+/* dynamic filer */
+
+/* //////////////////////////////////// Testing //////////////////////////////////// */

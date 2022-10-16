@@ -7,13 +7,11 @@
 /// <reference path="../dev/globals.d.ts" />
 
 (async function nord() {
-    if (!(Spicetify.Platform && Spicetify.LocalStorage && Spicetify.Config)) {
+    if (!Spicetify.Platform) {
         setTimeout(nord, 300);
         return;
     }
-    if (Spicetify.Config.current_theme == "Nord-Spotify" || Spicetify.Config.current_theme == "Nord Spotify") {
-        await initNord();
-    }
+    await initNord();
 })();
 
 async function initNord() {
@@ -22,15 +20,17 @@ async function initNord() {
 
     let versionInfo = await Spicetify.CosmosAsync.get("sp://desktop/v1/version");
 
-    let SpicetifyConfig = Spicetify.Config;
+    let userConfig = Spicetify.Config;
 
-    let body = document.querySelector("body");
+    let body = await waitForElement("body", 5000);
 
-    let server = "https://tetrax-10.github.io/Nord-Spotify";
+    let isNewUI = await isNewUIFunc();
 
-    if (SpicetifyConfig.current_theme == "Nord Spotify") {
-        injectStyleSheet(`${server}/src/nord.css`, "nord--nordSpotify");
-    }
+    let isPremium = await isPremiumFunc();
+
+    let server = "https://tetrax-10.github.io/Nord-Spotify/";
+
+    let isMarketplace = userConfig.current_theme == "Nord Spotify" ? true : false;
 
     ////////////////////////////////////// CONFIG ///////////////////////////////////////////
 
@@ -51,59 +51,101 @@ async function initNord() {
             throw "Config Error Nord";
         } catch {
             await setLocalStorageDataWithKey("nord:settings", `{}`);
-            // default settings
-            return {
-                artistBigImage: true,
-                betterFont: true,
-                betterGenre: true,
-                betterLyricsPlus: true,
-                betterSpotifyLyrics: true,
-                boldedSideBarItems: true,
-                bubbleUI: true,
-                hideAds: true,
-                hideCardsDownloadStatus: true,
-                hideCurrentPlayingSongBG: false,
-                hideDotsUnderPlayerButtons: true,
-                hideFriendActivity: false,
-                hideHomePageRecommendation: false,
-                hideLikedSongsCard: false,
-                hideLikedSongsCardTexts: false,
-                hidePlaylistImageEditButton: false,
-                hideRadioGradient: true,
-                hideSideBarDivider: true,
-                hideSideBarDownloadStatus: true,
-                hideSideBarScrollBar: true,
-                hideSideBarStatus: true,
-                hideSimilarSongsRecommendation: false,
-                hideSpotifyConnect: false,
-                hideSpotifyFullScreen: false,
-                hideTopBarPlayButton: true,
-                hideTopGradient: true,
-                hideWindowsControl: false,
-                highlightSideBarItem: true,
-                highlightSideBarSelectedItem: true,
-                leftSideCoverArt: false,
-                nordLyrics: true,
-                pointers: true,
-                rightSideCoverArt: true,
-                hideMarketplace: false,
-                quickSearch: false,
-                search: false,
-                redo: false,
-            };
+            return {};
         }
     }
+
+    const defaultSettings = {
+        artistBigImage: true,
+        customFont: true,
+        betterGenre: true,
+        betterLyricsPlus: true,
+        betterSpotifyLyrics: true,
+        boldedSideBarItems: true,
+        bubbleUI: true,
+        hideAds: true,
+        hideCardsDownloadStatus: true,
+        hideCurrentPlayingSongBG: false,
+        hideDotsUnderPlayerButtons: true,
+        hideFriendActivity: false,
+        hideHomePageRecommendation: false,
+        hideLikedSongsCard: false,
+        hideLikedSongsCardTexts: false,
+        hidePlaylistImageEditButton: false,
+        hideRadioGradient: true,
+        hideSideBarDivider: true,
+        hideSideBarDownloadStatus: true,
+        hideSideBarScrollBar: true,
+        hideSideBarStatus: true,
+        hideSimilarSongsRecommendation: false,
+        hideSpotifyConnect: false,
+        hideSpotifyFullScreen: false,
+        hideTopBarPlayButton: true,
+        hideTopGradient: true,
+        hideWindowsControls: true,
+        hideWindowsControlsHeight: "31",
+        hideWindowsControlsWidth: "135",
+        hideWindowsControlsFilter: "2.13",
+        highlightSideBarItem: true,
+        highlightSideBarSelectedItem: true,
+        nordLyrics: true,
+        pointers: true,
+        rightSideCoverArt: true,
+        hideMarketplace: false,
+        quickSearch: false,
+        search: false,
+        redo: false,
+        darkSideBar: false,
+        dev: false,
+        localCSS: false,
+        reload: false,
+        customFontURL: "https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap",
+        customFontName: "Quicksand",
+    };
 
     async function saveConfig() {
         await setLocalStorageDataWithKey("nord:settings", JSON.stringify(CONFIG));
     }
 
-    const CONFIG = await getConfig();
+    let CONFIG = await getConfig();
+
+    function initConfigItems(item, value) {
+        if (CONFIG[item] == undefined) {
+            CONFIG[item] = value;
+        } else {
+            return;
+        }
+    }
+
+    Object.keys(defaultSettings).forEach((key) => {
+        initConfigItems(key, defaultSettings[key]);
+    });
+
     await saveConfig();
+
+    ////////////////////////////////////// Preprocessor ///////////////////////////////////////////
+
+    if (CONFIG.dev && CONFIG.localCSS) {
+        server = "";
+    } else {
+        injectStyleSheet(`${server}src/nord.css`, "nord--nordSpotify");
+    }
+
+    if (isNewUI) {
+        injectStyleSheet(`${server}src/Snippets/NewUI.css`, "nord--NewUI");
+    } else {
+        injectStyleSheet(`${server}src/Snippets/OldUI.css`, "nord--OldUI");
+    }
+
+    let windowsControlsValues = {
+        hideWindowsControlsHeight: CONFIG.hideWindowsControlsHeight ? CONFIG.hideWindowsControlsHeight : "96.2",
+        hideWindowsControlsWidth: CONFIG.hideWindowsControlsWidth ? CONFIG.hideWindowsControlsWidth : "83.4",
+        hideWindowsControlsFilter: CONFIG.hideWindowsControlsFilter ? CONFIG.hideWindowsControlsFilter : "2.13",
+    };
 
     ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
 
-    let hideArtistTopBar = `
+    let hideArtistTopBarNew = `
     .main-topBar-background {
         background-color: unset !important;
     }
@@ -123,7 +165,25 @@ async function initNord() {
         transition: all 0s ease;
     }`;
 
-    let rightSideCoverArt = `
+    let hideArtistTopBarOld = `
+    .main-topBar-background {
+        background-color: unset !important;
+    }
+    .main-topBar-overlay {
+        background-color: unset !important;
+    }
+    .main-entityHeader-topbarTitle {
+        background-color: var(--spice-main);
+        padding: 10px;
+        width: 100%;
+        padding-top: 15px;
+        padding-left: 32px;
+        position: absolute;
+        left: 0px;
+        transition: all 0s ease;
+    }`;
+
+    let rightSideCoverArtNew = `
     /* right side cover art */
     .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
     .main-trackInfo-container {
@@ -144,6 +204,87 @@ async function initNord() {
     .main-coverSlotCollapsed-container[aria-hidden="true"] {
         left: calc(100vw - 162px);
         top: -231px;
+        width: 200px;
+        height: 200px;
+        visibility: hidden;
+        animation: 1s coverExpandedOut;
+    }
+    .main-coverSlotExpanded-exitActive {
+        display: none;
+    }
+    @keyframes coverExpandedIn {
+        99% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+    }
+    @keyframes coverExpandedOut {
+        99% {
+            visibility: visible;
+        }
+        100% {
+            visibility: hidden;
+        }
+    }
+    .main-coverSlotCollapsed-container {
+        position: fixed;
+        top: -6px;
+        left: 0px;
+        width: 56px;
+        height: 56px;
+        visibility: visible;
+        z-index: 1;
+    }
+    .cover-art .cover-art-image,
+    .main-coverSlotCollapsed-container {
+        transform-origin: center;
+        transition-timing-function: ease-in;
+        transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
+    }
+    .main-coverSlotCollapsed-container[aria-hidden="false"] {
+        transition-timing-function: ease-out !important;
+        transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
+    }
+    .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
+    .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
+        width: 200px;
+        height: 200px;
+    }
+    .main-nowPlayingBar-left {
+        z-index: 2;
+    }
+    .main-nowPlayingBar-center {
+        z-index: 1;
+    }
+    .cover-art {
+        background-color: transparent;
+    }`;
+
+    let rightSideCoverArtOld = `
+    /* right side cover art */
+    .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
+    .main-trackInfo-container {
+        margin-left: 74px;
+    }
+    /* static cover */
+    .main-coverSlotExpanded-container {
+        border-radius: 10px;
+        position: fixed;
+        top: calc(100% - 300px);
+        left: calc(100% - 210px);
+        width: 200px;
+        height: 200px;
+        visibility: hidden;
+        transform-origin: center;
+        animation: 1s coverExpandedIn;
+        animation-fill-mode: forwards;
+    }
+    /* dynamic cover */
+    .main-coverSlotCollapsed-container[aria-hidden="true"] {
+        left: calc(100vw - 154px);
+        top: -233px;
         width: 200px;
         height: 200px;
         visibility: hidden;
@@ -280,30 +421,6 @@ async function initNord() {
         display: none;
     }`;
 
-    let hideWindowsControl = `
-    /* Hide windows controls */
-    /* Mama element */
-    .nav-alt .Root__top-container {
-        background-image: linear-gradient(#515c71, #515c71); /* depends on the color */
-        background-repeat: no-repeat;
-        background-position: top right;
-        background-size: 135px 31.5px; /* depends on the set page zoom - this value is for 100% */
-    }
-    /* Top Bar element */
-    .Root__fixed-top-bar {
-        background-image: linear-gradient(#515c71, #515c71); /* depends on the color */
-        background-repeat: no-repeat;
-        background-position: top right;
-        background-size: 127.5px 23.5px; /* depends on the set page zoom - this value is for 100% */
-    }`;
-
-    let betterFont = `
-    /* Better Font (Quicksand) */
-    @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
-    * {
-        font-family: "Quicksand", sans-serif !important;
-    }`;
-
     let hideAds = `
     /* upgrade button top bar */
     button[title="Upgrade to Premium"],
@@ -314,7 +431,6 @@ async function initNord() {
     /* top side ads */
     .WiPggcPDzbwGxoxwLWFf,
     /* bottom ads */
-    .Root__main-view > div:nth-child(2) /* mama div of main-leaderboardComponent-container */,
     .main-leaderboardComponent-container,
     /* popup video ad */
     .Root__modal-slot .GenericModal__overlay.QMMTQfEw3AIHFf4dTRp3.nPKDEvIoCzySBR24pZiN {
@@ -400,11 +516,6 @@ async function initNord() {
 
     let artistBigImage = `
     /* Artist big image */
-    .main-entityHeader-container.main-entityHeader-withBackgroundImage,
-    .main-entityHeader-background,
-    .main-entityHeader-background.main-entityHeader-overlay:after {
-        height: calc(100vh - 105px) !important;
-    }
     .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
         position: fixed;
         justify-content: center;
@@ -415,6 +526,20 @@ async function initNord() {
     }
     .main-entityHeader-background.main-entityHeader-overlay {
         display: none;
+    }`;
+
+    let artistBigImageNew = `
+    .main-entityHeader-container.main-entityHeader-withBackgroundImage,
+    .main-entityHeader-background,
+    .main-entityHeader-background.main-entityHeader-overlay:after {
+        height: calc(100vh - 105px) !important;
+    }`;
+
+    let artistBigImageOld = `
+    .main-entityHeader-container.main-entityHeader-withBackgroundImage,
+    .main-entityHeader-background,
+    .main-entityHeader-background.main-entityHeader-overlay:after {
+        height: calc(100vh - 90px) !important;
     }`;
 
     let hideTopBarPlayButton = `
@@ -522,6 +647,50 @@ async function initNord() {
         display: none;
     }`;
 
+    let darkSideBar = `
+    /* Dark SideBar */
+    :root {
+        --spice-sidebar: var(--spice-main) !important;
+    }`;
+
+    let hideOverlay = `
+    /* Hide Overlay */
+    .GenericModal__overlay {
+        background-color: transparent;
+    }`;
+
+    function customFont(url, name) {
+        let customFont = `
+        /* Better Font (Quicksand) */
+        @import url("${url}");
+        * {
+            font-family: "${name}", sans-serif, serif !important;
+        }`;
+
+        return customFont;
+    }
+
+    function hideWindowsControlsCSS() {
+        let hideWindowsControlsHeight = windowsControlsValues.hideWindowsControlsHeight;
+        let hideWindowsControlsWidth = windowsControlsValues.hideWindowsControlsWidth;
+        let hideWindowsControlsFilter = windowsControlsValues.hideWindowsControlsFilter;
+
+        let color = isNewUI ? "var(--spice-sidebar)" : "var(--spice-main)";
+
+        let hideWindowsControlsCSS = `
+        #nord--hideWindowsControls {
+            height: ${hideWindowsControlsHeight}px;
+            width: ${hideWindowsControlsWidth}px;
+            background-color: ${color};
+            position: absolute;
+            filter: brightness(${hideWindowsControlsFilter});
+            top: 0px;
+            right: 0px;
+        }`;
+
+        return hideWindowsControlsCSS;
+    }
+
     ////////////////////////////////////// JS Snippets ///////////////////////////////////////////
 
     function quickSearchKeyBind() {
@@ -546,7 +715,7 @@ async function initNord() {
 
     ////////////////////////////////////// UI ///////////////////////////////////////////
 
-    let style = React.createElement(
+    let settingsMenuCSS = React.createElement(
         "style",
         null,
         `.popup-row::after {
@@ -582,7 +751,7 @@ async function initNord() {
                 .popup-row .info {
                     /* font-size: 13px; */
                 }
-                .popup-row .demo {
+                .popup-row .red {
                     font-size: 13px;
                     color: #59CE8F;
                 }
@@ -599,14 +768,10 @@ async function initNord() {
                 }
                 button.checkbox {
                     align-items: center;
-                    border: 0px;
-                    border-radius: 50%;
-                    background-color: rgba(var(--spice-rgb-shadow), 0.7);
                     color: var(--spice-text);
                     cursor: pointer;
                     display: flex;
                     margin-inline-start: 12px;
-                    padding: 8px;
                 }
                 button.checkbox.disabled {
                     color: rgba(var(--spice-rgb-text), 0.3);
@@ -633,11 +798,19 @@ async function initNord() {
                     text-align: center;
                 }
                 .green {
-                    background-color: #6BCB77;
+                    background-color: #76ba99;
                     color: #25316D;
                 }
                 .red {
-                    background-color: #bf616a;
+                    background-color: #A9555E;
+                }
+                input.small-input {
+                    padding: 5px !important;
+                    border-radius: 6px !important;
+                    right: 0px !important;
+                }
+                .small-button {
+                    margin-right: 20px;
                 }`
     );
 
@@ -653,8 +826,8 @@ async function initNord() {
         });
     }
 
-    function checkBoxItem({ name, field, bool = true, color = SpicetifyConfig.color_scheme, onclickFun = () => {} }) {
-        if (bool && color == SpicetifyConfig.color_scheme) {
+    function checkBoxItem({ name, field, bool = true, check = true, more = false, onClickCheckFun = () => {}, onClickMoreFun = () => {} }) {
+        if (bool) {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
                 "div",
@@ -663,20 +836,34 @@ async function initNord() {
                 React.createElement(
                     "div",
                     { className: "col action" },
-                    React.createElement(
-                        "button",
-                        {
-                            className: "checkbox" + (value ? "" : " disabled"),
-                            onClick: async () => {
-                                let state = !value;
-                                CONFIG[field] = state;
-                                setValue(state);
-                                await saveConfig();
-                                onclickFun();
-                            },
-                        },
-                        React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.check, size: 16 })
-                    )
+                    more
+                        ? React.createElement(
+                              "button",
+                              {
+                                  className: "checkbox" + (value ? "" : " disabled"),
+                                  onClick: async () => {
+                                      onClickMoreFun();
+                                  },
+                              },
+                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.more, size: 16 })
+                          )
+                        : null,
+                    check
+                        ? React.createElement(
+                              "button",
+                              {
+                                  className: "checkbox" + (value ? "" : " disabled"),
+                                  onClick: async () => {
+                                      let state = !value;
+                                      CONFIG[field] = state;
+                                      setValue(state);
+                                      await saveConfig();
+                                      onClickCheckFun();
+                                  },
+                              },
+                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.check, size: 16 })
+                          )
+                        : null
                 )
             );
         } else {
@@ -684,7 +871,45 @@ async function initNord() {
         }
     }
 
-    function ButtonItem({ name, color = "", onclickFun }) {
+    function inputBoxItem({ name, field, bool = true, onChangeFun = () => {} }) {
+        if (bool) {
+            return React.createElement(
+                "div",
+                { className: "popup-row" },
+                React.createElement("label", { className: "col description" }, name),
+                React.createElement(
+                    "div",
+                    { className: "col action" },
+                    React.createElement("input", {
+                        className: "small-input",
+                        placeholder: CONFIG[field],
+                        required: true,
+                        onChange: async (e) => {
+                            onChangeFun(field, e.target.value);
+                        },
+                    })
+                )
+            );
+        } else {
+            return null;
+        }
+    }
+
+    function heading({ name, bool = true }) {
+        if (bool) {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+                React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, name)),
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null))
+            );
+        } else {
+            return null;
+        }
+    }
+
+    function ButtonItem({ name, color = "", onclickFun, onContextMenuFun }) {
         return React.createElement(
             "button",
             {
@@ -692,290 +917,374 @@ async function initNord() {
                 onClick: async () => {
                     onclickFun();
                 },
+                onContextMenu: async () => {
+                    onContextMenuFun();
+                },
             },
             name
         );
     }
 
+    function editHideWindowsControls() {
+        injectCSS(hideOverlay, "nord--hideOverlay");
+
+        let editHideWindowsControlsContainer = React.createElement(
+            "div",
+            null,
+            settingsMenuCSS,
+            React.createElement(
+                "div",
+                { className: "popup-row" },
+                React.createElement("p", { className: "popup-row" }, "Tutorial"),
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+                React.createElement("p", { className: "popup-row" }, `1. First Edit Height and Width`),
+                React.createElement("p", { className: "popup-row" }, `2. After the Height and Width are perfect, Now try adjusting Filter`),
+                React.createElement("div", { className: "popup-row little-space" }, null),
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+                React.createElement(inputBoxItem, {
+                    name: "Height",
+                    field: "hideWindowsControlsHeight",
+                    onChangeFun: updateWindowsControls,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Width",
+                    field: "hideWindowsControlsWidth",
+                    onChangeFun: updateWindowsControls,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Filter ( Adjusts Color )",
+                    field: "hideWindowsControlsFilter",
+                    onChangeFun: updateWindowsControls,
+                })
+            ),
+            React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button green",
+                    onClick: async () => {
+                        CONFIG.hideWindowsControlsHeight = windowsControlsValues.hideWindowsControlsHeight;
+                        CONFIG.hideWindowsControlsWidth = windowsControlsValues.hideWindowsControlsWidth;
+                        CONFIG.hideWindowsControlsFilter = windowsControlsValues.hideWindowsControlsFilter;
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Save`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button red",
+                    onClick: async () => {
+                        CONFIG.hideWindowsControlsHeight = "31";
+                        CONFIG.hideWindowsControlsWidth = "135";
+                        CONFIG.hideWindowsControlsFilter = "2.13";
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Reset`
+            )
+        );
+
+        Spicetify.PopupModal.display({
+            title: "Edit Windows Controls",
+            content: editHideWindowsControlsContainer,
+        });
+
+        waitForUserToTriggerClosePopup();
+    }
+
+    function customFontInfo() {
+        let customFontInfoContainer = React.createElement(
+            "div",
+            null,
+            settingsMenuCSS,
+            React.createElement(
+                "div",
+                { className: "popup-row" },
+                React.createElement("p", { className: "popup-row" }, "If you dont have the font locally, then enter the Font's URL"),
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+                React.createElement(inputBoxItem, {
+                    name: "Font Url",
+                    field: "customFontURL",
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Font Name",
+                    field: "customFontName",
+                })
+            ),
+            React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button green",
+                    onClick: async () => {
+                        let values = document.querySelectorAll(".popup-row .small-input");
+                        let customFontURL = values[0].value;
+                        let customFontName = values[1].value;
+
+                        CONFIG.customFontURL = customFontURL;
+                        CONFIG.customFontName = customFontName;
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Save`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button red",
+                    onClick: async () => {
+                        CONFIG.customFontURL = "https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap";
+                        CONFIG.customFontName = "Quicksand";
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Reset`
+            )
+        );
+
+        Spicetify.PopupModal.display({
+            title: "Custom Font",
+            content: customFontInfoContainer,
+        });
+
+        waitForUserToTriggerClosePopup();
+    }
+
     let settingsDOMContent = React.createElement(
         "div",
         null,
-        style,
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Home")),
+        settingsMenuCSS,
+        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Settings")),
         React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
         React.createElement(checkBoxItem, {
-            name: "Hide Home Page Recommendation",
-            field: "hideHomePageRecommendation",
-            onclickFun: () => {
-                cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
-            },
-        }),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "SideBar")),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-        React.createElement(checkBoxItem, {
-            name: "Hide Marketplace",
-            field: "hideMarketplace",
-            onclickFun: () => {
-                cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
+            name: "Custom Font",
+            field: "customFont",
+            more: true,
+            onClickMoreFun: async () => {
+                Spicetify.PopupModal.hide();
+                setTimeout(customFontInfo, 300);
             },
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide SideBar ScrollBar",
-            field: "hideSideBarScrollBar",
-            onclickFun: () => {
-                cssSnippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Highlight SideBar Selected Items (Main Items)",
-            field: "highlightSideBarItem",
-            onclickFun: () => {
-                cssSnippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Highlight SideBar Items (Playlists)",
-            field: "highlightSideBarSelectedItem",
-            onclickFun: () => {
-                cssSnippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "SideBar Playlist Names bold",
-            field: "boldedSideBarItems",
-            onclickFun: () => {
-                cssSnippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide SideBar Divider",
-            field: "hideSideBarDivider",
-            onclickFun: () => {
-                cssSnippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide SideBar Status",
-            field: "hideSideBarStatus",
-            onclickFun: () => {
-                cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
-            },
-        }),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Player")),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-        React.createElement(checkBoxItem, {
-            name: "Right Side Cover Art",
-            field: "rightSideCoverArt",
-            onclickFun: () => {
-                CONFIG.leftSideCoverArt = !CONFIG.rightSideCoverArt;
-                saveConfig();
-                cssSnippet(rightSideCoverArt, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
-                cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", CONFIG.leftSideCoverArt);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Player Friend Activity",
-            field: "hideFriendActivity",
-            onclickFun: () => {
-                cssSnippet(hideFriendActivity, "nord--hideFriendActivity", CONFIG.hideFriendActivity);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Player Spotify Connect",
-            field: "hideSpotifyConnect",
-            onclickFun: () => {
-                cssSnippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Player Spotify Full Screen",
-            field: "hideSpotifyFullScreen",
-            onclickFun: () => {
-                cssSnippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Dots Under Player Buttons",
-            field: "hideDotsUnderPlayerButtons",
-            onclickFun: () => {
-                cssSnippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
-            },
-        }),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Playlist")),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-        React.createElement(checkBoxItem, {
-            name: "Hide Playlist Similar Songs Recommendation",
-            field: "hideSimilarSongsRecommendation",
-            onclickFun: () => {
-                cssSnippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Current Playing Song BG",
-            field: "hideCurrentPlayingSongBG",
-            onclickFun: () => {
-                cssSnippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Playlist Image Edit Button",
-            field: "hidePlaylistImageEditButton",
-            onclickFun: () => {
-                cssSnippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Radio Gradient",
-            field: "hideRadioGradient",
-            onclickFun: () => {
-                cssSnippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
-            },
-        }),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Your Library")),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-        React.createElement(checkBoxItem, {
-            name: "Hide Your Library Liked Song's Card",
-            field: "hideLikedSongsCard",
-            onclickFun: () => {
-                cssSnippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Your Library Liked Song's Card Text",
-            field: "hideLikedSongsCardTexts",
-            onclickFun: () => {
-                cssSnippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
-            },
-        }),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Misc")),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-        React.createElement(checkBoxItem, {
-            name: "Hide Ads",
-            field: "hideAds",
-            onclickFun: () => {
-                cssSnippet(hideAds, "nord--hideAds", CONFIG.hideAds);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Better Font",
-            field: "betterFont",
-            onclickFun: () => {
-                cssSnippet(betterFont, "nord--betterFont", CONFIG.betterFont);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Top Gradient",
-            field: "hideTopGradient",
-            onclickFun: () => {
-                cssSnippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Better Genre",
-            field: "betterGenre",
-            onclickFun: () => {
-                cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Big Artist Image",
-            field: "artistBigImage",
-            onclickFun: () => {
-                cssSnippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
+            name: "Hide Windows Control",
+            field: "hideWindowsControls",
+            bool: os("Win"),
+            more: true,
+            onClickMoreFun: async () => {
+                Spicetify.PopupModal.hide();
+                setTimeout(editHideWindowsControls, 300);
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Pointers",
             field: "pointers",
-            onclickFun: () => {
-                cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
-            },
+        }),
+        React.createElement(heading, {
+            name: "Home",
         }),
         React.createElement(checkBoxItem, {
-            name: "Spotify Lyrics Nord BG",
+            name: "Hide Home Page Recommendation",
+            field: "hideHomePageRecommendation",
+        }),
+        React.createElement(heading, {
+            name: "SideBar",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Marketplace",
+            field: "hideMarketplace",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Dark SideBar",
+            field: "darkSideBar",
+            bool: !isNewUI,
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide SideBar ScrollBar",
+            field: "hideSideBarScrollBar",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Highlight SideBar Selected Items (Main Items)",
+            field: "highlightSideBarItem",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Highlight SideBar Items (Playlists)",
+            field: "highlightSideBarSelectedItem",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "SideBar Playlist Names bold",
+            field: "boldedSideBarItems",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide SideBar Divider",
+            field: "hideSideBarDivider",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide SideBar Status",
+            field: "hideSideBarStatus",
+        }),
+        React.createElement(heading, {
+            name: "Player",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Right Side Cover Art",
+            field: "rightSideCoverArt",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Friend Activity",
+            field: "hideFriendActivity",
+            bool: isNewUI,
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Spotify Connect",
+            field: "hideSpotifyConnect",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Spotify Full Screen",
+            field: "hideSpotifyFullScreen",
+            bool: isPremium,
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Dots Under Player Controls",
+            field: "hideDotsUnderPlayerButtons",
+        }),
+        React.createElement(heading, {
+            name: "Playlist",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Playlist Similar Songs Recommendation",
+            field: "hideSimilarSongsRecommendation",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Current Playing Song BG",
+            field: "hideCurrentPlayingSongBG",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Playlist Image Edit Button",
+            field: "hidePlaylistImageEditButton",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Radio Gradient",
+            field: "hideRadioGradient",
+        }),
+        React.createElement(heading, {
+            name: "Your Library",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Your Library Liked Song's Card",
+            field: "hideLikedSongsCard",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Your Library Liked Song's Card Text",
+            field: "hideLikedSongsCardTexts",
+        }),
+        React.createElement(heading, {
+            name: "Misc",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Ads",
+            field: "hideAds",
+            bool: !isPremium,
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Top Gradient",
+            field: "hideTopGradient",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Norded Genre Cards",
+            field: "betterGenre",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Big Artist Image",
+            field: "artistBigImage",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Norded Spotify Lyrics",
             field: "nordLyrics",
-            onclickFun: () => {
-                cssSnippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
-            },
         }),
         React.createElement(checkBoxItem, {
-            name: "Better Spotify Lyrics",
+            name: "Beautify Spotify Lyrics",
             field: "betterSpotifyLyrics",
-            onclickFun: () => {
-                cssSnippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
-            },
         }),
         React.createElement(checkBoxItem, {
-            name: "Better Lyrics Plus",
+            name: "Beautify Lyrics Plus",
             field: "betterLyricsPlus",
-            onclickFun: () => {
-                cssSnippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
-            },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide TopBar Play Button",
             field: "hideTopBarPlayButton",
-            onclickFun: () => {
-                cssSnippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
-            },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Cards Download Status",
             field: "hideCardsDownloadStatus",
-            onclickFun: () => {
-                cssSnippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
-            },
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Windows Control ( Experimental Feature )",
-            field: "hideWindowsControl",
-            bool: os("Win"),
-            color: "Nord",
-            onclickFun: () => {
-                cssSnippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
-            },
         }),
         React.createElement(checkBoxItem, {
             name: "Bubble UI",
             field: "bubbleUI",
-            onclickFun: () => {
-                cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
-            },
+            bool: isNewUI,
         }),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Keybinds")),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+        React.createElement(heading, {
+            name: "Keybinds",
+        }),
         React.createElement(checkBoxItem, {
             name: "Quick Search ( Ctrl + Space )",
             field: "quickSearch",
-            onclickFun: () => {
-                injectJS(quickSearchKeyBind);
-            },
         }),
         React.createElement(checkBoxItem, {
             name: "Search ( Ctrl + / )",
             field: "search",
-            onclickFun: () => {
-                injectJS(searchKeyBind);
-            },
         }),
         React.createElement(checkBoxItem, {
             name: "Redo ( Ctrl + Shift + z )",
             field: "redo",
             bool: os("Win"),
-            onclickFun: () => {
-                injectJS(redoKeyBind);
+        }),
+        React.createElement(heading, {
+            name: "Developer Settings",
+            bool: CONFIG.dev && !isMarketplace,
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Use Local CSS",
+            field: "localCSS",
+            bool: CONFIG.dev && !isMarketplace,
+            onclickFun: async () => {
+                reload();
             },
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Right Click Nord Spotify Settings Icon to Refresh",
+            field: "reload",
+            bool: CONFIG.dev && !isMarketplace,
         }),
         React.createElement(ButtonItem, {
             name: "Like on GitHub 👍",
             onclickFun: () => {
                 window.open("https://github.com/Tetrax-10/Nord-Spotify");
+            },
+            onContextMenuFun: async () => {
+                if (!isMarketplace) {
+                    CONFIG.dev = !CONFIG.dev;
+                    await saveConfig();
+                    reload();
+                }
+            },
+        }),
+        React.createElement(ButtonItem, {
+            name: "Reset Settings",
+            color: " red",
+            onclickFun: async () => {
+                CONFIG = defaultSettings;
+                await saveConfig();
+                reload();
             },
         })
     );
@@ -1038,6 +1347,14 @@ async function initNord() {
         }
     }
 
+    async function dynamicUI(newUICode, newID, oldUICode, oldID, bool) {
+        if (isNewUI) {
+            cssSnippet(newUICode, newID, bool);
+        } else {
+            cssSnippet(oldUICode, oldID, bool);
+        }
+    }
+
     function countNoOfSlashes(string) {
         let count = 0;
         string.split("").forEach((char) => {
@@ -1062,23 +1379,109 @@ async function initNord() {
         return versionInfo.platform.includes(os);
     }
 
+    async function isNewUIFunc() {
+        return (await waitForElement(".nav-alt", 500)) ? true : false;
+    }
+
+    async function isPremiumFunc() {
+        let data = await Spicetify.CosmosAsync.get("sp://product-state/v1/values");
+        if (data.catalogue == "premium" || data.name == "Spotify Premium" || data.type == "premium") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function injectReload(bool) {
+        if (bool) {
+            settingsButton.addEventListener("contextmenu", reload);
+        } else {
+            settingsButton.removeEventListener("contextmenu", reload);
+        }
+    }
+
+    async function waitForUserToTriggerClosePopup() {
+        const closeButton = await waitForElement("body > generic-modal button.main-trackCreditsModal-closeBtn", 1000);
+        const modalOverlay = await waitForElement("body > generic-modal > div", 1000);
+        if (closeButton && modalOverlay) {
+            closeButton.onclick = () => reload();
+            modalOverlay.onclick = (e) => {
+                if (e.target === modalOverlay) {
+                    reload();
+                }
+            };
+        }
+    }
+
+    async function waitForElement(selector, timeout, location = document.body) {
+        return new Promise((resolve) => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
+
+            const observer = new MutationObserver(async () => {
+                if (document.querySelector(selector)) {
+                    resolve(document.querySelector(selector));
+                    observer.disconnect();
+                } else {
+                    async function timeOver() {
+                        return new Promise((resolve) => {
+                            setTimeout(() => {
+                                observer.disconnect();
+                                resolve(false);
+                            }, timeout);
+                        });
+                    }
+                    resolve(await timeOver());
+                }
+            });
+
+            observer.observe(location, {
+                childList: true,
+                subtree: true,
+            });
+        });
+    }
+
+    function reload() {
+        Spicetify.PopupModal.hide();
+        location.reload();
+    }
+
+    function hideWindowsControls(id = "nord--hideWindowsControls") {
+        let element = document.createElement("div");
+        element.id = id;
+        body.appendChild(element);
+        body.classList.add(id);
+    }
+
+    async function updateWindowsControls(field, value) {
+        windowsControlsValues[field] = value;
+        removeInjectedElement("nord--hideWindowsControlsCSS");
+        cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls);
+    }
+
     ////////////////////////////////////// Main ///////////////////////////////////////////
 
     let data = Spicetify.Platform.History.location;
 
     if ((data.pathname.includes("/artist/") || data.pathname.includes("/playlist/")) && countNoOfSlashes(data.pathname) == 2) {
-        injectCSS(hideArtistTopBar, "nord--hideArtistTopBar");
+        await dynamicUI(hideArtistTopBarNew, "nord--hideArtistTopBarNew", hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
     } else {
-        removeInjectedElement("nord--hideArtistTopBar");
+        removeInjectedElement("nord--hideArtistTopBarNew");
+        removeInjectedElement("nord--hideArtistTopBarOld");
     }
 
-    Spicetify.Platform.History.listen((data) => {
+    Spicetify.Platform.History.listen(async (data) => {
         if ((data.pathname.includes("/artist/") || data.pathname.includes("/playlist/")) && countNoOfSlashes(data.pathname) == 2) {
-            injectCSS(hideArtistTopBar, "nord--hideArtistTopBar");
+            await dynamicUI(hideArtistTopBarNew, "nord--hideArtistTopBarNew", hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
         } else {
-            removeInjectedElement("nord--hideArtistTopBar");
+            removeInjectedElement("nord--hideArtistTopBarNew");
+            removeInjectedElement("nord--hideArtistTopBarOld");
         }
     });
+
+    cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
 
     cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
 
@@ -1094,11 +1497,11 @@ async function initNord() {
 
     cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
 
-    cssSnippet(rightSideCoverArt, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
+    await dynamicUI(rightSideCoverArtNew, "nord--rightSideCoverArt", rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
 
     cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", CONFIG.leftSideCoverArt);
 
-    cssSnippet(hideFriendActivity, "nord--hideFriendActivity", CONFIG.hideFriendActivity);
+    await dynamicUI(hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
 
     cssSnippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
 
@@ -1120,13 +1523,12 @@ async function initNord() {
 
     cssSnippet(hideAds, "nord--hideAds", CONFIG.hideAds);
 
-    cssSnippet(betterFont, "nord--betterFont", CONFIG.betterFont);
-
     cssSnippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
 
     cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
 
     cssSnippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
+    await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", CONFIG.artistBigImage);
 
     cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
 
@@ -1140,8 +1542,6 @@ async function initNord() {
 
     cssSnippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
 
-    cssSnippet(hideWindowsControl, "nord--hideWindowsControl", CONFIG.hideWindowsControl);
-
     cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
 
     cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
@@ -1151,4 +1551,15 @@ async function initNord() {
     injectJS(searchKeyBind);
 
     injectJS(redoKeyBind);
+
+    await dynamicUI(null, null, darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
+
+    hideWindowsControls(); // injects div
+    cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
+
+    let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 5000);
+
+    injectReload(CONFIG.dev && CONFIG.reload);
+
+    settingsButton.addEventListener("click", waitForUserToTriggerClosePopup);
 }
