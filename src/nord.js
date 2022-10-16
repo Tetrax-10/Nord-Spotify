@@ -993,7 +993,7 @@ async function initNord() {
         );
 
         Spicetify.PopupModal.display({
-            title: "Edit Windows Controls",
+            title: "Hide Windows Controls",
             content: editHideWindowsControlsContainer,
         });
 
