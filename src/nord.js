@@ -128,7 +128,9 @@ async function initNord() {
     if (CONFIG.dev && CONFIG.localCSS) {
         server = "";
     } else {
-        injectStyleSheet(`${server}src/nord.css`, "nord--nordSpotify");
+        if (isMarketplace) {
+            injectStyleSheet(`${server}src/nord.css`, "nord--nordSpotify");
+        }
     }
 
     if (isNewUI) {
