@@ -18,6 +18,9 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     # Enable TLS 1.2 since it is required for connections to GitHub.
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+    # Silent Invoke-WebRequest
+    $ProgressPreference = 'SilentlyContinue'
+
     # Check if Spicetify exists
     $checkSpice = Get-Command spicetify -ErrorAction Silent
     if ($null -eq $checkSpice) {
@@ -59,17 +62,17 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
 
     # Installing
     Write-Host "Changing Config" -ForegroundColor Green
-    spicetify config current_theme Nord-Spotify color_scheme NordColor extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1
+    spicetify config current_theme Nord-Spotify color_scheme NordColor extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
 
     # applying
     $configFile = Get-Content "$spicePath\config-xpui.ini"
     $backupVer = $configFile -match "^version"
     if ($backupVer.Length -gt 0) {
         Write-Host "Applying Theme" -ForegroundColor Green
-        spicetify apply
+        spicetify apply -q
     } else {
         Write-Host "Making Backup and Applying Theme" -ForegroundColor Green
-        spicetify backup apply
+        spicetify backup apply -q
     }
 }
 else {
