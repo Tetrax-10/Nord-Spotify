@@ -1228,14 +1228,7 @@ input.search[placeholder="Search for a feature"]::placeholder {
 
 /* big popup modal height */
 .main-embedWidgetGenerator-container {
-    height: 90vh;
-}
-
-/* dynamic height for add snippet modal */
-.GenericModal[aria-label="Add Snippet"] .main-embedWidgetGenerator-container,
-/* dynamic height for sort by play count release notes modal */
-.GenericModal[aria-label="Sort By Play Count 2.6 Release Notes"] .main-embedWidgetGenerator-container {
-    height: unset;
+    max-height: 90vh !important;
 }
 
 /* big popup modal rounded corner */
