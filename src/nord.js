@@ -1560,8 +1560,10 @@ async function initNord() {
 
     await dynamicUI(null, null, darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
 
-    hideWindowsControls(); // injects div
-    cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
+    if (os("Win")) {
+        hideWindowsControls(); // injects div
+        cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
+    }
 
     let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 5000);
 
