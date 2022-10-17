@@ -125,7 +125,7 @@ async function initNord() {
 
     ////////////////////////////////////// Preprocessor ///////////////////////////////////////////
 
-    if (CONFIG.dev && CONFIG.localCSS) {
+    if (CONFIG.dev && CONFIG.localCSS && !isMarketplace) {
         server = "";
     } else {
         if (isMarketplace) {
