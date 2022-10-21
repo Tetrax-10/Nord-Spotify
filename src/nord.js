@@ -112,7 +112,8 @@ async function initNord() {
         dev: false,
         localCSS: false,
         localColor: false,
-        reload: false,
+        rightClickToReload: false,
+        isReload: true,
         customFontURL: "https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap",
         customFontName: "Quicksand",
         colorScheme: "Nord",
@@ -249,7 +250,9 @@ async function initNord() {
 
     NordSpotify.Config = CONFIG;
     NordSpotify.Save = saveConfig;
-    NordSpotify.Reload = reload;
+    NordSpotify.Reload = () => {
+        location.reload();
+    };
 
     ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
 
@@ -1464,6 +1467,32 @@ async function initNord() {
             React.createElement(
                 "button",
                 {
+                    className: "small-button",
+                    onClick: async () => {
+                        let importData = await stringToJSON(await getFromClipboard());
+                        CONFIG.colorSchemes[camalize(importData.Name)] = importData;
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Import`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button",
+                    onClick: async () => {
+                        sendToClipboard(await JSONToString(CONFIG.colorSchemes[userConfig.color_scheme]));
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Export`
+            ),
+            React.createElement(
+                "button",
+                {
                     className: "small-button red",
                     onClick: async () => {
                         let currentColorScheme = userConfig.color_scheme;
@@ -1512,7 +1541,7 @@ async function initNord() {
         }
     }
 
-    function editHideWindowsControls() {
+    async function editHideWindowsControls() {
         injectCSS(hideOverlayBig, "nord--hideOverlayBig");
 
         let editHideWindowsControlsContainer = React.createElement(
@@ -1583,6 +1612,10 @@ async function initNord() {
         });
 
         waitForUserToTriggerClosePopup();
+
+        if (await waitForElementDeath(`.GenericModal[aria-label="Hide Windows Controls"]`)) {
+            removeInjectedElement("nord--hideOverlayBig");
+        }
     }
 
     function customFontInfo() {
@@ -1755,6 +1788,17 @@ async function initNord() {
             onClickMoreFun: async () => {
                 Spicetify.PopupModal.hide();
                 setTimeout(editHideWindowsControls, 300);
+            },
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Save and Refresh Settings on Settings Close",
+            field: "isReload",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Right Click Nord Spotify Settings Icon to Refresh",
+            field: "rightClickToReload",
+            onClickCheckFun: () => {
+                injectReload(CONFIG.rightClickToReload);
             },
         }),
         React.createElement(checkBoxItem, {
@@ -1934,11 +1978,6 @@ async function initNord() {
             field: "localColor",
             bool: CONFIG.dev && !isMarketplace,
         }),
-        React.createElement(checkBoxItem, {
-            name: "Right Click Nord Spotify Settings Icon to Refresh",
-            field: "reload",
-            bool: CONFIG.dev && !isMarketplace,
-        }),
         React.createElement(ButtonItem, {
             name: "Like on GitHub 👍",
             onclickFun: () => {
@@ -2077,9 +2116,9 @@ async function initNord() {
 
     function injectReload(bool) {
         if (bool) {
-            settingsButton.addEventListener("contextmenu", reload);
+            settingsButton.addEventListener("contextmenu", forceReload);
         } else {
-            settingsButton.removeEventListener("contextmenu", reload);
+            settingsButton.removeEventListener("contextmenu", forceReload);
         }
     }
 
@@ -2146,6 +2185,13 @@ async function initNord() {
 
     function reload() {
         Spicetify.PopupModal.hide();
+        if (CONFIG.isReload) {
+            location.reload();
+        }
+    }
+
+    function forceReload() {
+        Spicetify.PopupModal.hide();
         location.reload();
     }
 
@@ -2196,6 +2242,25 @@ async function initNord() {
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    async function JSONToString(data) {
+        return JSON.stringify(data);
+    }
+
+    async function stringToJSON(data) {
+        return JSON.parse(data);
+    }
+
+    async function sendToClipboard(data, text) {
+        if (data) {
+            await Spicetify.Platform.ClipboardAPI.copy(data);
+            notification(`${text}`);
+        }
+    }
+
+    async function getFromClipboard() {
+        return await Spicetify.Platform.ClipboardAPI.paste();
     }
 
     function createColorScheme(colors) {
@@ -2397,7 +2462,7 @@ async function initNord() {
 
     let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 5000);
 
-    injectReload(CONFIG.dev && CONFIG.reload);
+    injectReload(CONFIG.rightClickToReload);
 
     settingsButton.addEventListener("click", waitForUserToTriggerClosePopup);
 }
