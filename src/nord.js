@@ -6,6 +6,13 @@
 
 /// <reference path="../dev/globals.d.ts" />
 
+window.NordSpotify = {
+    Reset: () => {
+        localStorage.removeItem("nord:settings");
+        console.log("%cNord Spotify Reset Successful", "color: #59CE8F");
+    },
+};
+
 (async function nord() {
     if (!Spicetify.Platform) {
         setTimeout(nord, 300);
@@ -28,9 +35,13 @@ async function initNord() {
 
     let isPremium = await isPremiumFunc();
 
+    let isWindows = os("Win");
+
     let server = "https://tetrax-10.github.io/Nord-Spotify/";
 
     let isMarketplace = userConfig.current_theme == "Nord Spotify" ? true : false;
+
+    let priority = isMarketplace ? " !important" : "";
 
     ////////////////////////////////////// CONFIG ///////////////////////////////////////////
 
@@ -83,9 +94,11 @@ async function initNord() {
         hideTopBarPlayButton: true,
         hideTopGradient: true,
         hideWindowsControls: true,
-        hideWindowsControlsHeight: "31",
-        hideWindowsControlsWidth: "135",
-        hideWindowsControlsFilter: "2.13",
+        hideWindowsControlsValues: {
+            height: "31",
+            width: "135",
+            filter: "2.13",
+        },
         highlightSideBarItem: true,
         highlightSideBarSelectedItem: true,
         nordLyrics: true,
@@ -98,9 +111,94 @@ async function initNord() {
         darkSideBar: false,
         dev: false,
         localCSS: false,
+        localColor: false,
         reload: false,
         customFontURL: "https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap",
         customFontName: "Quicksand",
+        colorScheme: "Nord",
+        colorSchemeBasedOn: "Nord",
+        fontSize: "100%",
+        fontSizeBool: false,
+        colorSchemes: {
+            Nord: {
+                Name: "Nord",
+                text: "#B2BCCC",
+                subtext: "#B2BCCC",
+                main: "#2E3440",
+                sidebar: "#262B35",
+                player: "#2E3440",
+                card: "#2E3440",
+                button: "#8A99AF",
+                buttonActive: "#718CAD",
+                buttonDisabled: "#434C5E",
+                notification: "#363D4C",
+                notificationError: "#A9555E",
+                shadow: "#1D2128",
+                tabActive: "#363D4C",
+                playbackBar: "#DEDEDE",
+                misc: "#DEDEDE",
+                selectedRow: "#DEDEDE",
+                customMainSecondary: "#3B4354",
+                customMainSoftSecondary: "#363D4C",
+                customHighlight: "#454E61",
+                customLinkHover: "#5687C5",
+                customSelectedButton: "#4C566A",
+                customSubdued: "#8A99AF",
+                customSuccess: "#76BA99",
+            },
+            Nightly: {
+                Name: "Nightly",
+                text: "#8A9CBC",
+                subtext: "#8A9CBC",
+                main: "#1D2428",
+                sidebar: "#181E24",
+                player: "#1D2428",
+                card: "#1D2428",
+                button: "#687791",
+                buttonActive: "#879ABC",
+                buttonDisabled: "#33424A",
+                notification: "#242D35",
+                notificationError: "#A9555E",
+                shadow: "#1D2128",
+                tabActive: "#242D35",
+                playbackBar: "#DEDEDE",
+                misc: "#DEDEDE",
+                selectedRow: "#DEDEDE",
+                customMainSecondary: "#2B363E",
+                customMainSoftSecondary: "#242D35",
+                customHighlight: "#34414B",
+                customLinkHover: "#95B5F0",
+                customSelectedButton: "#33424A",
+                customSubdued: "#7084A1",
+                customSuccess: "#76BA99",
+            },
+            Spotify: {
+                Name: "Spotify",
+                text: "#B3B3B3",
+                subtext: "#B3B3B3",
+                main: "#121212",
+                sidebar: "#000000",
+                player: "#121212",
+                card: "#121212",
+                button: "#1DB954",
+                buttonActive: "#1ED760",
+                buttonDisabled: "#535353",
+                notification: "#4687D6",
+                notificationError: "#E22134",
+                shadow: "#000000",
+                tabActive: "#333333",
+                playbackBar: "#DEDEDE",
+                misc: "#DEDEDE",
+                selectedRow: "#DEDEDE",
+                customMainSecondary: "#2A2A2A",
+                customMainSoftSecondary: "#202020",
+                customHighlight: "#5A5A5A",
+                customLinkHover: "#FFFFFF",
+                customSelectedButton: "#505050",
+                customSubdued: "#7A7A7A",
+                customSuccess: "#1DB954",
+            },
+        },
     };
 
     async function saveConfig() {
@@ -125,6 +223,16 @@ async function initNord() {
 
     ////////////////////////////////////// Preprocessor ///////////////////////////////////////////
 
+    let hideWindowsControlsValues = structuredClone(CONFIG.hideWindowsControlsValues);
+    let colorSchemes = structuredClone(CONFIG.colorSchemes);
+
+    let colorSchemesOptions = {};
+    Object.keys(CONFIG.colorSchemes).forEach((key) => {
+        colorSchemesOptions[key] = colorSchemes[key]["Name"];
+    });
+
+    injectColor(`${CONFIG.colorScheme}`);
+
     if (CONFIG.dev && CONFIG.localCSS && !isMarketplace) {
         server = "";
     } else {
@@ -139,11 +247,9 @@ async function initNord() {
         injectStyleSheet(`${server}src/Snippets/OldUI.css`, "nord--OldUI");
     }
 
-    let windowsControlsValues = {
-        hideWindowsControlsHeight: CONFIG.hideWindowsControlsHeight ? CONFIG.hideWindowsControlsHeight : "96.2",
-        hideWindowsControlsWidth: CONFIG.hideWindowsControlsWidth ? CONFIG.hideWindowsControlsWidth : "83.4",
-        hideWindowsControlsFilter: CONFIG.hideWindowsControlsFilter ? CONFIG.hideWindowsControlsFilter : "2.13",
-    };
+    NordSpotify.Config = CONFIG;
+    NordSpotify.Save = saveConfig;
+    NordSpotify.Reload = reload;
 
     ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
 
@@ -163,6 +269,7 @@ async function initNord() {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         position: absolute;
+        margin-top: -1px;
         left: 0px;
         transition: all 0s ease;
     }`;
@@ -655,13 +762,32 @@ async function initNord() {
         --spice-sidebar: var(--spice-main) !important;
     }`;
 
-    let hideOverlay = `
+    let hideOverlayBig = `
     /* Hide Overlay */
     .GenericModal__overlay {
         background-color: transparent;
     }
     .main-embedWidgetGenerator-container {
         box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+    }`;
+
+    let hideOverlaySmall = `
+    /* Hide Overlay */
+    .GenericModal__overlay {
+        background-color: transparent;
+    }
+    .main-trackCreditsModal-container {
+        box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+        width: 100% !important;
+        max-width: 520px !important;
+    }`;
+
+    let injectPopupCSS = `
+    .GenericModal__overlay {
+        visibility: hidden;
+    }
+    .GenericModal {
+        visibility: visible;
     }`;
 
     function customFont(url, name) {
@@ -675,20 +801,25 @@ async function initNord() {
         return customFont;
     }
 
-    function hideWindowsControlsCSS() {
-        let hideWindowsControlsHeight = windowsControlsValues.hideWindowsControlsHeight;
-        let hideWindowsControlsWidth = windowsControlsValues.hideWindowsControlsWidth;
-        let hideWindowsControlsFilter = windowsControlsValues.hideWindowsControlsFilter;
+    function fontSize(size) {
+        let fontSize = `
+        :root {
+            font-size: ${size};
+        }`;
 
+        return fontSize;
+    }
+
+    function hideWindowsControlsCSS() {
         let color = isNewUI ? "var(--spice-sidebar)" : "var(--spice-main)";
 
         let hideWindowsControlsCSS = `
         #nord--hideWindowsControls {
-            height: ${hideWindowsControlsHeight}px;
-            width: ${hideWindowsControlsWidth}px;
+            height: ${hideWindowsControlsValues.height}px;
+            width: ${hideWindowsControlsValues.width}px;
             background-color: ${color};
             position: absolute;
-            filter: brightness(${hideWindowsControlsFilter});
+            filter: brightness(${hideWindowsControlsValues.filter});
             top: 0px;
             right: 0px;
         }`;
@@ -707,7 +838,7 @@ async function initNord() {
     }
 
     async function redoKeyBind() {
-        if (os("Win")) {
+        if (isWindows) {
             if (CONFIG.redo) {
                 Spicetify.Mousetrap.bind("ctrl+shift+z", async () => {
                     await Spicetify.CosmosAsync.post("sp://desktop/v1/redo");
@@ -764,9 +895,7 @@ async function initNord() {
                     margin-bottom: 10px;
                 }
                 .popup-row .inputbox {
-                    display: flex;
-                    flex-direction: column;
-                    padding: 15px;
+                    padding: 10px;
                     border-radius: 15px;
                     border: 0;
                     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
@@ -809,6 +938,9 @@ async function initNord() {
                 .red {
                     background-color: #A9555E;
                 }
+                .small-button.red {
+                    background-color: #A9555E !important;
+                }
                 input.small-input {
                     padding: 5px !important;
                     border-radius: 6px !important;
@@ -816,6 +948,17 @@ async function initNord() {
                 }
                 .small-button {
                     margin-right: 20px;
+                }
+                .popup-row .inputbox[type="color"] {
+                    background-color: var(--spice-custom-main-secondary) !important;
+                    padding: 0px;
+                    border-radius: 5px !important;
+                    border: none;
+                    margin-right: 10px;
+                }
+                .popup-row .inputbox[type="color"]::-webkit-color-swatch {
+                    border-radius: 5px !important;
+                    border: none;
                 }`
     );
 
@@ -876,7 +1019,84 @@ async function initNord() {
         }
     }
 
-    function inputBoxItem({ name, field, bool = true, onChangeFun = () => {} }) {
+    function dropDownItem({ name, field, options, add = false, edit = false, bool = true, onChangeFun = () => {}, onClickAddFun = () => {}, onClickEditFun = () => {} }) {
+        if (bool) {
+            let [value, setValue] = useState(CONFIG[field]);
+            return React.createElement(
+                "div",
+                { className: "popup-row" },
+                React.createElement("label", { className: "col description" }, name),
+                React.createElement(
+                    "div",
+                    { className: "col action" },
+                    edit
+                        ? React.createElement(
+                              "button",
+                              {
+                                  className: "checkbox" + (value ? "" : " disabled"),
+                                  onClick: async () => {
+                                      onClickEditFun();
+                                  },
+                              },
+                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.edit, size: 16 })
+                          )
+                        : null,
+                    add
+                        ? React.createElement(
+                              "button",
+                              {
+                                  className: "checkbox" + (value ? "" : " disabled"),
+                                  onClick: async () => {
+                                      onClickAddFun();
+                                  },
+                              },
+                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.plus2px, size: 16 })
+                          )
+                        : null
+                ),
+                React.createElement(
+                    "div",
+                    { className: "col action" },
+                    React.createElement(
+                        "select",
+                        {
+                            value,
+                            onChange: async (e) => {
+                                setValue(e.target.value);
+                                CONFIG[field] = e.target.value;
+                                await saveConfig();
+                                onChangeFun();
+                            },
+                        },
+                        Object.keys(options).map((item) =>
+                            React.createElement(
+                                "option",
+                                {
+                                    value: item,
+                                },
+                                options[item]
+                            )
+                        )
+                    )
+                )
+            );
+        } else {
+            return null;
+        }
+    }
+
+    function inputBoxItem({ name, field, chooseColor = false, subProperty = false, ChildSubProperty = false, bool = true, onChangeFun = () => {} }) {
+        let tempConfig;
+        if (ChildSubProperty) {
+            tempConfig = structuredClone(CONFIG[subProperty][ChildSubProperty]);
+        } else if (subProperty) {
+            tempConfig = structuredClone(CONFIG[subProperty]);
+        } else {
+            tempConfig = structuredClone(CONFIG);
+        }
+
+        let [value, setValue] = useState(tempConfig[field]);
+
         if (bool) {
             return React.createElement(
                 "div",
@@ -885,11 +1105,31 @@ async function initNord() {
                 React.createElement(
                     "div",
                     { className: "col action" },
+                    chooseColor
+                        ? React.createElement(
+                              "div",
+                              { className: "popup-row" },
+                              React.createElement(
+                                  "input",
+                                  {
+                                      type: "color",
+                                      className: `inputbox`,
+                                      value: value,
+                                      onChange: async (e) => {
+                                          setValue(e.target.value.toUpperCase());
+                                          onChangeFun(field, e.target.value);
+                                      },
+                                  },
+                                  null
+                              )
+                          )
+                        : null,
                     React.createElement("input", {
                         className: "small-input",
-                        placeholder: CONFIG[field],
+                        placeholder: value,
                         required: true,
                         onChange: async (e) => {
+                            setValue(e.target.value);
                             onChangeFun(field, e.target.value);
                         },
                     })
@@ -930,8 +1170,350 @@ async function initNord() {
         );
     }
 
+    async function addcustomColorInfo() {
+        let addcustomColorInfoContainer = React.createElement(
+            "div",
+            null,
+            settingsMenuCSS,
+            React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Color Scheme Details")),
+            React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+            React.createElement(
+                "div",
+                { className: "popup-row" },
+                React.createElement("label", { className: "col description" }, "Color Scheme Name"),
+                React.createElement(
+                    "div",
+                    { className: "col action" },
+                    React.createElement("input", {
+                        className: "inputbox",
+                        required: true,
+                    })
+                )
+            ),
+            React.createElement(dropDownItem, {
+                name: "Based on",
+                field: "colorSchemeBasedOn",
+                options: colorSchemesOptions,
+            }),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button green",
+                    onClick: async () => {
+                        let name = document.querySelector(".popup-row .inputbox").value;
+                        let basedOn = document.querySelector(".popup-row select").value;
+                        name = name.trim();
+                        let nameObject = camalize(name);
+                        if (colorSchemesOptions[nameObject]) {
+                            notification("Color Scheme already exist, you can edit it", true);
+                        } else if (!nameObject) {
+                            notification("Give your Color Scheme a Name", true);
+                        } else {
+                            colorSchemes[nameObject] = structuredClone(CONFIG.colorSchemes[basedOn]);
+                            colorSchemes[nameObject]["Name"] = name;
+                            CONFIG.colorSchemes = colorSchemes;
+                            CONFIG.colorScheme = nameObject;
+                            await saveConfig();
+                            reload();
+                        }
+                    },
+                },
+                `Save`
+            )
+        );
+
+        Spicetify.PopupModal.display({
+            title: "Create Custom Color",
+            content: addcustomColorInfoContainer,
+        });
+
+        waitForUserToTriggerClosePopup();
+    }
+
+    async function editCustomColor() {
+        injectPopup();
+        injectCSS(hideOverlaySmall, "nord--hideOverlaySmall");
+
+        let name = colorSchemesOptions[userConfig.color_scheme];
+
+        let editCustomColorContainer = React.createElement(
+            "div",
+            null,
+            settingsMenuCSS,
+            React.createElement(
+                "div",
+                { className: "popup-row" },
+                React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Tutorial")),
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+                React.createElement(
+                    "p",
+                    { className: "popup-row" },
+                    React.createElement("span", null, "1. Hex values only. ["),
+                    React.createElement("span", { style: { color: "#bf616a" } }, "#BF616A"),
+                    React.createElement("span", null, " (3/6 digits)]")
+                ),
+                React.createElement(
+                    "div",
+                    { className: "popup-row" },
+                    React.createElement("span", null, "2. Install "),
+                    React.createElement("span", { style: { color: "#bf616a" } }, "Spotify Backup"),
+                    React.createElement("span", null, " extension to Backup your Custom Color Scheme")
+                ),
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+                React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, `${name} Values`)),
+                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+                React.createElement(inputBoxItem, {
+                    name: "Text",
+                    field: "text",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Subtext",
+                    field: "subtext",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Main",
+                    field: "main",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Sidebar",
+                    field: "sidebar",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Player",
+                    field: "player",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Card",
+                    field: "card",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Button",
+                    field: "button",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Button Active",
+                    field: "buttonActive",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Button Disabled",
+                    field: "buttonDisabled",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Notification",
+                    field: "notification",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Notification Error",
+                    field: "notificationError",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Shadow",
+                    field: "shadow",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Tab Active",
+                    field: "tabActive",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Playback Bar",
+                    field: "playbackBar",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Misc",
+                    field: "misc",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Selected Row",
+                    field: "selectedRow",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Custom Main Secondary",
+                    field: "customMainSecondary",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Custom Main Soft Secondary",
+                    field: "customMainSoftSecondary",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Custom Highlight",
+                    field: "customHighlight",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Custom Link Hover",
+                    field: "customLinkHover",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Custom Selected Button",
+                    field: "customSelectedButton",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Custom Subdued",
+                    field: "customSubdued",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Custom Success",
+                    field: "customSuccess",
+                    chooseColor: true,
+                    subProperty: "colorSchemes",
+                    ChildSubProperty: userConfig.color_scheme,
+                    onChangeFun: updateColors,
+                })
+            ),
+            React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button green",
+                    onClick: async () => {
+                        CONFIG.colorSchemes = colorSchemes;
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Save`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button red",
+                    onClick: async () => {
+                        let currentColorScheme = userConfig.color_scheme;
+                        if (defaultSettings.colorSchemes[currentColorScheme] == undefined) {
+                            delete CONFIG.colorSchemes[currentColorScheme];
+                            CONFIG.colorScheme = "Nord";
+                            await saveConfig();
+                            Spicetify.PopupModal.hide();
+                            reload();
+                        } else {
+                            notification("Stock Color Schemes can't be Deleted", true);
+                        }
+                    },
+                },
+                `Delete`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button red",
+                    onClick: async () => {
+                        if (defaultSettings.colorSchemes[userConfig.color_scheme] == undefined) {
+                            CONFIG.colorSchemes[userConfig.color_scheme] = defaultSettings.colorSchemes["Spotify"];
+                        } else {
+                            CONFIG.colorSchemes[userConfig.color_scheme] = defaultSettings.colorSchemes[userConfig.color_scheme];
+                        }
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Reset`
+            )
+        );
+
+        Spicetify.PopupModal.display({
+            title: "Custom Colors",
+            content: editCustomColorContainer,
+        });
+
+        waitForUserToTriggerClosePopup();
+
+        if (await waitForElementDeath(`.GenericModal[aria-label="Custom Colors"]`)) {
+            removeInjectedElement("nord--hideOverlaySmall");
+            removeInjectedElement("nord--injectPopupCSS");
+        }
+    }
+
     function editHideWindowsControls() {
-        injectCSS(hideOverlay, "nord--hideOverlay");
+        injectCSS(hideOverlayBig, "nord--hideOverlayBig");
 
         let editHideWindowsControlsContainer = React.createElement(
             "div",
@@ -948,17 +1530,20 @@ async function initNord() {
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
                 React.createElement(inputBoxItem, {
                     name: "Height",
-                    field: "hideWindowsControlsHeight",
+                    field: "height",
+                    subProperty: "hideWindowsControlsValues",
                     onChangeFun: updateWindowsControls,
                 }),
                 React.createElement(inputBoxItem, {
                     name: "Width",
-                    field: "hideWindowsControlsWidth",
+                    field: "width",
+                    subProperty: "hideWindowsControlsValues",
                     onChangeFun: updateWindowsControls,
                 }),
                 React.createElement(inputBoxItem, {
                     name: "Filter ( Adjusts Color )",
-                    field: "hideWindowsControlsFilter",
+                    field: "filter",
+                    subProperty: "hideWindowsControlsValues",
                     onChangeFun: updateWindowsControls,
                 })
             ),
@@ -968,9 +1553,7 @@ async function initNord() {
                 {
                     className: "small-button green",
                     onClick: async () => {
-                        CONFIG.hideWindowsControlsHeight = windowsControlsValues.hideWindowsControlsHeight;
-                        CONFIG.hideWindowsControlsWidth = windowsControlsValues.hideWindowsControlsWidth;
-                        CONFIG.hideWindowsControlsFilter = windowsControlsValues.hideWindowsControlsFilter;
+                        CONFIG.hideWindowsControlsValues = hideWindowsControlsValues;
                         await saveConfig();
                         Spicetify.PopupModal.hide();
                         reload();
@@ -983,9 +1566,7 @@ async function initNord() {
                 {
                     className: "small-button red",
                     onClick: async () => {
-                        CONFIG.hideWindowsControlsHeight = "31";
-                        CONFIG.hideWindowsControlsWidth = "135";
-                        CONFIG.hideWindowsControlsFilter = "2.13";
+                        CONFIG.hideWindowsControlsValues = defaultSettings.hideWindowsControlsValues;
                         await saveConfig();
                         Spicetify.PopupModal.hide();
                         reload();
@@ -1047,8 +1628,8 @@ async function initNord() {
                 {
                     className: "small-button red",
                     onClick: async () => {
-                        CONFIG.customFontURL = "https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap";
-                        CONFIG.customFontName = "Quicksand";
+                        CONFIG.customFontURL = defaultSettings.customFontURL;
+                        CONFIG.customFontName = defaultSettings.customFontName;
                         await saveConfig();
                         Spicetify.PopupModal.hide();
                         reload();
@@ -1066,12 +1647,88 @@ async function initNord() {
         waitForUserToTriggerClosePopup();
     }
 
+    function customFontSize() {
+        let customFontSizeInfoContainer = React.createElement(
+            "div",
+            null,
+            settingsMenuCSS,
+            React.createElement(
+                "div",
+                { className: "popup-row" },
+                React.createElement(inputBoxItem, {
+                    name: "Font Size",
+                    field: "fontSize",
+                })
+            ),
+            React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button",
+                    onClick: async () => {
+                        let values = document.querySelector(".popup-row .small-input");
+                        let customFontSize = values.value;
+                        CONFIG.fontSize = customFontSize;
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Save`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button red",
+                    onClick: async () => {
+                        CONFIG.fontSize = defaultSettings.customFontURL;
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        reload();
+                    },
+                },
+                `Reset`
+            )
+        );
+
+        Spicetify.PopupModal.display({
+            title: "Font Size",
+            content: customFontSizeInfoContainer,
+        });
+
+        waitForUserToTriggerClosePopup();
+    }
+
     let settingsDOMContent = React.createElement(
         "div",
         null,
         settingsMenuCSS,
         React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Settings")),
         React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+        React.createElement(dropDownItem, {
+            name: "Spotify Color",
+            field: "colorScheme",
+            add: true,
+            edit: true,
+            bool: !CONFIG.localColor,
+            options: colorSchemesOptions,
+            onClickEditFun: () => {
+                Spicetify.PopupModal.hide();
+                setTimeout(() => {
+                    editCustomColor();
+                }, 300);
+            },
+            onClickAddFun: () => {
+                Spicetify.PopupModal.hide();
+                setTimeout(() => {
+                    addcustomColorInfo();
+                }, 300);
+            },
+            onChangeFun: () => {
+                removeInjectedElement(`nord--${userConfig.color_scheme}`);
+                injectColor(`${CONFIG.colorScheme}`);
+            },
+        }),
         React.createElement(checkBoxItem, {
             name: "Custom Font",
             field: "customFont",
@@ -1082,9 +1739,18 @@ async function initNord() {
             },
         }),
         React.createElement(checkBoxItem, {
+            name: "Font Size",
+            field: "fontSizeBool",
+            more: true,
+            onClickMoreFun: async () => {
+                Spicetify.PopupModal.hide();
+                setTimeout(customFontSize, 300);
+            },
+        }),
+        React.createElement(checkBoxItem, {
             name: "Hide Windows Control",
             field: "hideWindowsControls",
-            bool: os("Win"),
+            bool: isWindows,
             more: true,
             onClickMoreFun: async () => {
                 Spicetify.PopupModal.hide();
@@ -1252,7 +1918,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Redo ( Ctrl + Shift + z )",
             field: "redo",
-            bool: os("Win"),
+            bool: isWindows,
         }),
         React.createElement(heading, {
             name: "Developer Settings",
@@ -1262,9 +1928,11 @@ async function initNord() {
             name: "Use Local CSS",
             field: "localCSS",
             bool: CONFIG.dev && !isMarketplace,
-            onclickFun: async () => {
-                reload();
-            },
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Use Local Color Schemes",
+            field: "localColor",
+            bool: CONFIG.dev && !isMarketplace,
         }),
         React.createElement(checkBoxItem, {
             name: "Right Click Nord Spotify Settings Icon to Refresh",
@@ -1288,8 +1956,7 @@ async function initNord() {
             name: "Reset Settings",
             color: " red",
             onclickFun: async () => {
-                CONFIG = defaultSettings;
-                await saveConfig();
+                Spicetify.LocalStorage.remove("nord:settings");
                 reload();
             },
         })
@@ -1361,6 +2028,16 @@ async function initNord() {
         }
     }
 
+    async function injectColor(colorScheme) {
+        if (CONFIG.localColor) {
+            return;
+        }
+
+        userConfig.color_scheme = colorScheme;
+
+        injectCSS(createColorScheme(colorSchemes[colorScheme]), `nord--${colorScheme}`);
+    }
+
     function countNoOfSlashes(string) {
         let count = 0;
         string.split("").forEach((char) => {
@@ -1419,7 +2096,7 @@ async function initNord() {
         }
     }
 
-    async function waitForElement(selector, timeout, location = document.body) {
+    async function waitForElement(selector, timeout = null, location = document.body) {
         return new Promise((resolve) => {
             if (document.querySelector(selector)) {
                 return resolve(document.querySelector(selector));
@@ -1430,15 +2107,33 @@ async function initNord() {
                     resolve(document.querySelector(selector));
                     observer.disconnect();
                 } else {
-                    async function timeOver() {
-                        return new Promise((resolve) => {
-                            setTimeout(() => {
-                                observer.disconnect();
-                                resolve(false);
-                            }, timeout);
-                        });
+                    if (timeout) {
+                        async function timeOver() {
+                            return new Promise((resolve) => {
+                                setTimeout(() => {
+                                    observer.disconnect();
+                                    resolve(false);
+                                }, timeout);
+                            });
+                        }
+                        resolve(await timeOver());
                     }
-                    resolve(await timeOver());
+                }
+            });
+
+            observer.observe(location, {
+                childList: true,
+                subtree: true,
+            });
+        });
+    }
+
+    async function waitForElementDeath(selector, location = document.body) {
+        return new Promise((resolve) => {
+            const observer = new MutationObserver(async () => {
+                if (!document.querySelector(selector)) {
+                    resolve(true);
+                    observer.disconnect();
                 }
             });
 
@@ -1454,6 +2149,10 @@ async function initNord() {
         location.reload();
     }
 
+    function notification(text, isError = false) {
+        Spicetify.showNotification(text, isError);
+    }
+
     function hideWindowsControls(id = "nord--hideWindowsControls") {
         let element = document.createElement("div");
         element.id = id;
@@ -1461,10 +2160,139 @@ async function initNord() {
         body.classList.add(id);
     }
 
-    async function updateWindowsControls(field, value) {
-        windowsControlsValues[field] = value;
+    function updateWindowsControls(field, value) {
+        hideWindowsControlsValues[field] = value;
         removeInjectedElement("nord--hideWindowsControlsCSS");
         cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls);
+    }
+
+    function updateColors(field, value) {
+        if (!isHex(value)) {
+            value = CONFIG.colorSchemes[userConfig.color_scheme][field];
+        }
+        colorSchemes[userConfig.color_scheme][field] = value.toUpperCase();
+        removeInjectedElement(`nord--${userConfig.color_scheme}`);
+        injectCSS(createColorScheme(colorSchemes[userConfig.color_scheme]), `nord--${userConfig.color_scheme}`);
+    }
+
+    function hexToRgb(hex) {
+        try {
+            hex = hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => {
+                return r + r + g + g + b + b;
+            });
+
+            let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`;
+        } catch {}
+    }
+
+    function isHex(hex) {
+        return /^#([0-9A-F]{3}){1,2}$/i.test(hex);
+    }
+
+    function camalize(str) {
+        return capitalizeFirstLetter(str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase()));
+    }
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function createColorScheme(colors) {
+        return `
+        :root {
+            --spice-text: ${colors["text"]}${priority};
+            --spice-subtext: ${colors["subtext"]}${priority};
+            --spice-main: ${colors["main"]}${priority};
+            --spice-sidebar: ${colors["sidebar"]}${priority};
+            --spice-player: ${colors["player"]}${priority};
+            --spice-card: ${colors["card"]}${priority};
+            --spice-button: ${colors["button"]}${priority};
+            --spice-button-active: ${colors["buttonActive"]}${priority};
+            --spice-button-disabled: ${colors["buttonDisabled"]}${priority};
+            --spice-notification: ${colors["notification"]}${priority};
+            --spice-notification-error: ${colors["notificationError"]}${priority};
+            --spice-shadow: ${colors["shadow"]}${priority};
+            --spice-tab-active: ${colors["tabActive"]}${priority};
+            --spice-playback-bar: ${colors["playbackBar"]}${priority};
+            --spice-misc: ${colors["misc"]}${priority};
+            --spice-selected-row: ${colors["selectedRow"]}${priority};
+            --spice-custom-main-secondary: ${colors["customMainSecondary"]}${priority};
+            --spice-custom-main-soft-secondary: ${colors["customMainSoftSecondary"]}${priority};
+            --spice-custom-highlight: ${colors["customHighlight"]}${priority};
+            --spice-custom-link-hover: ${colors["customLinkHover"]}${priority};
+            --spice-custom-selected-button: ${colors["customSelectedButton"]}${priority};
+            --spice-custom-subdued: ${colors["customSubdued"]}${priority};
+            --spice-custom-success: ${colors["customSuccess"]}${priority};
+
+            --spice-rgb-text: ${hexToRgb(colors["text"])}${priority};
+            --spice-rgb-subtext: ${hexToRgb(colors["subtext"])}${priority};
+            --spice-rgb-main: ${hexToRgb(colors["main"])}${priority};
+            --spice-rgb-sidebar: ${hexToRgb(colors["sidebar"])}${priority};
+            --spice-rgb-player: ${hexToRgb(colors["player"])}${priority};
+            --spice-rgb-card: ${hexToRgb(colors["card"])}${priority};
+            --spice-rgb-button: ${hexToRgb(colors["button"])}${priority};
+            --spice-rgb-button-active: ${hexToRgb(colors["buttonActive"])}${priority};
+            --spice-rgb-button-disabled: ${hexToRgb(colors["buttonDisabled"])}${priority};
+            --spice-rgb-notification: ${hexToRgb(colors["notification"])}${priority};
+            --spice-rgb-notification-error: ${hexToRgb(colors["notificationError"])}${priority};
+            --spice-rgb-shadow: ${hexToRgb(colors["shadow"])}${priority};
+            --spice-rgb-tab-active: ${hexToRgb(colors["tabActive"])}${priority};
+            --spice-rgb-playback-bar: ${hexToRgb(colors["playbackBar"])}${priority};
+            --spice-rgb-misc: ${hexToRgb(colors["misc"])}${priority};
+            --spice-rgb-selected-row: ${hexToRgb(colors["selectedRow"])}${priority};
+            --spice-rgb-custom-main-secondary: ${hexToRgb(colors["customMainSecondary"])}${priority};
+            --spice-rgb-custom-main-soft-secondary: ${hexToRgb(colors["customMainSoftSecondary"])}${priority};
+            --spice-rgb-custom-highlight: ${hexToRgb(colors["customHighlight"])}${priority};
+            --spice-rgb-custom-link-hover: ${hexToRgb(colors["customLinkHover"])}${priority};
+            --spice-rgb-custom-selected-button: ${hexToRgb(colors["customSelectedButton"])}${priority};
+            --spice-rgb-custom-subdued: ${hexToRgb(colors["customSubdued"])}${priority};
+            --spice-rgb-custom-success: ${hexToRgb(colors["customSuccess"])}${priority};
+        }`;
+    }
+
+    async function injectPopup() {
+        injectCSS(injectPopupCSS, "nord--injectPopupCSS");
+
+        let mousePosition;
+        let offset = [0, 0];
+        let isDown = false;
+
+        let div = await waitForElement(`.GenericModal[aria-label="Custom Colors"]`);
+        div.style.position = "absolute";
+
+        div.addEventListener(
+            "mousedown",
+            (e) => {
+                isDown = true;
+                offset = [div.offsetLeft - e.clientX, div.offsetTop - e.clientY];
+            },
+            true
+        );
+
+        document.addEventListener(
+            "mouseup",
+            () => {
+                isDown = false;
+            },
+            true
+        );
+
+        document.addEventListener(
+            "mousemove",
+            (event) => {
+                event.preventDefault();
+                if (isDown) {
+                    mousePosition = {
+                        x: event.clientX,
+                        y: event.clientY,
+                    };
+                    div.style.left = mousePosition.x + offset[0] + "px";
+                    div.style.top = mousePosition.y + offset[1] + "px";
+                }
+            },
+            true
+        );
     }
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
@@ -1488,6 +2316,8 @@ async function initNord() {
     });
 
     cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
+
+    cssSnippet(fontSize(CONFIG.fontSize, CONFIG.fontSize), "nord-fontSize", CONFIG.fontSizeBool);
 
     cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
 
@@ -1560,7 +2390,7 @@ async function initNord() {
 
     await dynamicUI(null, null, darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
 
-    if (os("Win")) {
+    if (isWindows) {
         hideWindowsControls(); // injects div
         cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
     }

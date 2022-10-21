@@ -277,7 +277,7 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 
 /* home page top extra padding above greeting */
 .main-home-content {
-    padding-top: 12px;
+    padding-top: 15px;
 }
 
 /* home page top six playlist bg color */
@@ -1425,6 +1425,42 @@ button.checkbox.disabled {
 /* song image */
 .npv-cross-fade-image.npv-cross-fade--next {
     border-radius: 20px;
+}
+
+/* //////////// Playlist Filter - Extension //////////// */
+
+/* playlist filter main container */
+#playlist-filter-main-container {
+    padding-top: 0px !important;
+}
+
+/* playlist filter input box */
+#playlist-filter-input::placeholder {
+    color: rgba(var(--spice-rgb-custom-subdued), 0.7);
+}
+#playlist-filter-input:not([value=""]):not(:focus),
+#playlist-filter-input:focus {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border-radius: 10px !important;
+    color: var(--text-text) !important;
+}
+
+/* playlist filter clear button */
+#playlist-filter-clear-btn {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border-radius: 10px !important;
+    margin-left: 10px;
+}
+
+/* playlist filter highlighted text */
+.playlist-filter-results-highlight {
+    background-color: transparent !important;
+    color: var(--spice-custom-link-hover) !important;
+}
+
+/* playlist filter scrollbar */
+#playlist-filter-results::-webkit-scrollbar {
+    display: none !important;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////// */
