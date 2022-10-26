@@ -1791,7 +1791,7 @@ async function initNord() {
             },
         }),
         React.createElement(checkBoxItem, {
-            name: "Save and Refresh Settings on Settings Close",
+            name: "Apply Changes on Settings Close ( Recommended: On )",
             field: "isReload",
         }),
         React.createElement(checkBoxItem, {
@@ -1829,11 +1829,11 @@ async function initNord() {
             field: "hideSideBarScrollBar",
         }),
         React.createElement(checkBoxItem, {
-            name: "Highlight SideBar Selected Items (Main Items)",
+            name: "Highlight SideBar Selected Items ( Main Items )",
             field: "highlightSideBarItem",
         }),
         React.createElement(checkBoxItem, {
-            name: "Highlight SideBar Items (Playlists)",
+            name: "Highlight SideBar Items ( Playlists )",
             field: "highlightSideBarSelectedItem",
         }),
         React.createElement(checkBoxItem, {
@@ -2398,7 +2398,6 @@ async function initNord() {
     cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
 
     await dynamicUI(rightSideCoverArtNew, "nord--rightSideCoverArt", rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
-
     cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
 
     await dynamicUI(hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
