@@ -173,6 +173,32 @@ async function initNord() {
                 customSubdued: "#7084A1",
                 customSuccess: "#76BA99",
             },
+            Comfy: {
+                Name: "Comfy",
+                text: "#9199BA",
+                subtext: "#9199BA",
+                main: "#23283D",
+                sidebar: "#1E2233",
+                player: "#23283D",
+                card: "#23283D",
+                button: "#7289DA",
+                buttonActive: "#849DF5",
+                buttonDisabled: "#38436B",
+                notification: "#2B3046",
+                notificationError: "#A9555E",
+                shadow: "#000519",
+                tabActive: "#2B3046",
+                playbackBar: "#DEDEDE",
+                misc: "#DEDEDE",
+                selectedRow: "#DEDEDE",
+                customMainSecondary: "#32374D",
+                customMainSoftSecondary: "#2B3046",
+                customHighlight: "#40486D",
+                customLinkHover: "#A4B1EA",
+                customSelectedButton: "#3E4460",
+                customSubdued: "#6774A2",
+                customSuccess: "#76BA99",
+            },
             Spotify: {
                 Name: "Spotify",
                 text: "#B3B3B3",
@@ -198,32 +224,6 @@ async function initNord() {
                 customSelectedButton: "#505050",
                 customSubdued: "#7A7A7A",
                 customSuccess: "#1DB954",
-            },
-            Comfy: {
-                Name: "Comfy",
-                text: "#9199BA",
-                subtext: "#9199BA",
-                main: "#23283D",
-                sidebar: "#1E2233",
-                player: "#23283D",
-                card: "#23283D",
-                button: "#7289DA",
-                buttonActive: "#849DF5",
-                buttonDisabled: "#38436B",
-                notification: "#2B3046",
-                notificationError: "#A9555E",
-                shadow: "#000519",
-                tabActive: "#2B3046",
-                playbackBar: "#DEDEDE",
-                misc: "#DEDEDE",
-                selectedRow: "#DEDEDE",
-                customMainSecondary: "#32374D",
-                customMainSoftSecondary: "#2B3046",
-                customHighlight: "#40486D",
-                customLinkHover: "#A4B1EA",
-                customSelectedButton: "#40486D",
-                customSubdued: "#6774A2",
-                customSuccess: "#76BA99",
             },
         },
     };
@@ -282,9 +282,8 @@ async function initNord() {
 
     NordSpotify.Config = CONFIG;
     NordSpotify.Save = saveConfig;
-    NordSpotify.Reload = () => {
-        location.reload();
-    };
+    NordSpotify.Reload = forceReload;
+    NordSpotify.ResetItem = ResetItem;
 
     ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
 
@@ -2292,6 +2291,11 @@ async function initNord() {
 
     async function getFromClipboard() {
         return await Spicetify.Platform.ClipboardAPI.paste();
+    }
+
+    async function ResetItem(item) {
+        CONFIG[item] = undefined;
+        await saveConfig();
     }
 
     function createColorScheme(colors) {
