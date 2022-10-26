@@ -38,7 +38,7 @@
 
 /* search bar in search page */
 .x-searchInput-searchInputInput {
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.7) !important;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8) !important;
     height: 40px !important;
 }
 
