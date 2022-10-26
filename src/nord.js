@@ -199,6 +199,32 @@ async function initNord() {
                 customSubdued: "#7A7A7A",
                 customSuccess: "#1DB954",
             },
+            Comfy: {
+                Name: "Comfy",
+                text: "#9199BA",
+                subtext: "#9199BA",
+                main: "#23283D",
+                sidebar: "#1E2233",
+                player: "#23283D",
+                card: "#23283D",
+                button: "#7289DA",
+                buttonActive: "#849DF5",
+                buttonDisabled: "#38436B",
+                notification: "#2A304B",
+                notificationError: "#A9555E",
+                shadow: "#000519",
+                tabActive: "#2A304B",
+                playbackBar: "#DEDEDE",
+                misc: "#DEDEDE",
+                selectedRow: "#DEDEDE",
+                customMainSecondary: "#323957",
+                customMainSoftSecondary: "#2A304B",
+                customHighlight: "#40486D",
+                customLinkHover: "#A4B1EA",
+                customSelectedButton: "#40486D",
+                customSubdued: "#6774A2",
+                customSuccess: "#1DB954",
+            },
         },
     };
 
@@ -218,6 +244,12 @@ async function initNord() {
 
     Object.keys(defaultSettings).forEach((key) => {
         initConfigItems(key, defaultSettings[key]);
+    });
+
+    Object.keys(defaultSettings.colorSchemes).forEach((key) => {
+        if (CONFIG.colorSchemes[key] == undefined) {
+            CONFIG.colorSchemes[key] = defaultSettings.colorSchemes[key];
+        }
     });
 
     await saveConfig();
@@ -1485,7 +1517,7 @@ async function initNord() {
                     onClick: async () => {
                         sendToClipboard(await JSONToString(CONFIG.colorSchemes[userConfig.color_scheme]));
                         Spicetify.PopupModal.hide();
-                        reload();
+                        notification("Exported Successfully");
                     },
                 },
                 `Export`
