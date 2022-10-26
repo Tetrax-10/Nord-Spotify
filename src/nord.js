@@ -223,7 +223,7 @@ async function initNord() {
                 customLinkHover: "#A4B1EA",
                 customSelectedButton: "#40486D",
                 customSubdued: "#6774A2",
-                customSuccess: "#1DB954",
+                customSuccess: "#76BA99",
             },
         },
     };
