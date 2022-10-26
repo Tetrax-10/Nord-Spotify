@@ -2252,10 +2252,9 @@ async function initNord() {
         return JSON.parse(data);
     }
 
-    async function sendToClipboard(data, text) {
+    async function sendToClipboard(data) {
         if (data) {
             await Spicetify.Platform.ClipboardAPI.copy(data);
-            notification(`${text}`);
         }
     }
 
@@ -2400,7 +2399,7 @@ async function initNord() {
 
     await dynamicUI(rightSideCoverArtNew, "nord--rightSideCoverArt", rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
 
-    cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", CONFIG.leftSideCoverArt);
+    cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
 
     await dynamicUI(hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
 
