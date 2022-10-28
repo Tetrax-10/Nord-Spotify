@@ -31,6 +31,23 @@
 
 /* //////////// Top bar //////////// */
 
+/* home button */
+.zuf9gCpkf86KkzzCtkJN {
+    border-radius: 10px;
+    height: 40px;
+    padding: 7px 16px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
+    color: var(--spice-text);
+}
+.zuf9gCpkf86KkzzCtkJN:hover {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
+}
+
+/* home button active icon */
+.main-topBar-buttonActive .home-active-icon {
+    color: var(--spice-custom-subdued);
+}
+
 /* top bar home button */
 .main-topBar-center .main-topBar-button svg {
     color: var(--spice-custom-subdued);

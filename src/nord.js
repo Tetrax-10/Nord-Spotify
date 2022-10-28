@@ -287,13 +287,15 @@ async function initNord() {
 
     ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
 
-    let hideArtistTopBarNew = `
+    let hideTopBar = `
     .main-topBar-background {
         background-color: unset !important;
     }
     .main-topBar-overlay {
         background-color: unset !important;
-    }
+    }`;
+
+    let hideArtistTopBarNew = `
     .main-entityHeader-topbarTitle {
         background-color: var(--spice-main);
         padding: 10px;
@@ -309,12 +311,6 @@ async function initNord() {
     }`;
 
     let hideArtistTopBarOld = `
-    .main-topBar-background {
-        background-color: unset !important;
-    }
-    .main-topBar-overlay {
-        background-color: unset !important;
-    }
     .main-entityHeader-topbarTitle {
         background-color: var(--spice-main);
         padding: 10px;
@@ -2395,24 +2391,29 @@ async function initNord() {
         );
     }
 
+    async function hideTopBarRules(data) {
+        let cond1 = (data.pathname.includes("/artist/") || data.pathname.includes("/playlist/")) && countNoOfSlashes(data.pathname) == 2;
+        let cond2 = data.pathname == "/new-releases" && isNewUI;
+        if (cond1 || cond2) {
+            injectCSS(hideTopBar, "nord--hideTopBar");
+            if (cond1) {
+                await dynamicUI(hideArtistTopBarNew, "nord--hideArtistTopBarNew", hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
+            }
+        } else {
+            removeInjectedElement("nord--hideArtistTopBarNew");
+            removeInjectedElement("nord--hideArtistTopBarOld");
+            removeInjectedElement("nord--hideTopBar");
+        }
+    }
+
     ////////////////////////////////////// Main ///////////////////////////////////////////
 
     let data = Spicetify.Platform.History.location;
 
-    if ((data.pathname.includes("/artist/") || data.pathname.includes("/playlist/")) && countNoOfSlashes(data.pathname) == 2) {
-        await dynamicUI(hideArtistTopBarNew, "nord--hideArtistTopBarNew", hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
-    } else {
-        removeInjectedElement("nord--hideArtistTopBarNew");
-        removeInjectedElement("nord--hideArtistTopBarOld");
-    }
+    hideTopBarRules(data);
 
     Spicetify.Platform.History.listen(async (data) => {
-        if ((data.pathname.includes("/artist/") || data.pathname.includes("/playlist/")) && countNoOfSlashes(data.pathname) == 2) {
-            await dynamicUI(hideArtistTopBarNew, "nord--hideArtistTopBarNew", hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
-        } else {
-            removeInjectedElement("nord--hideArtistTopBarNew");
-            removeInjectedElement("nord--hideArtistTopBarOld");
-        }
+        hideTopBarRules(data);
     });
 
     cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
