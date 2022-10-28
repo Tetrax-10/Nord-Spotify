@@ -2290,7 +2290,7 @@ async function initNord() {
     }
 
     async function ResetItem(item) {
-        CONFIG[item] = undefined;
+        CONFIG[item] = defaultSettings[item];
         await saveConfig();
     }
 
