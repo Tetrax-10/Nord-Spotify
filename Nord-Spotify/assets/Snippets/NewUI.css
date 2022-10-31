@@ -1,0 +1,195 @@
+/* //////////// SideBar //////////// */
+
+/* rounded sidebar */
+.Root__nav-bar {
+    z-index: 1;
+    border-radius: 10px !important;
+}
+
+/* sidebar liked songs icon color */
+.main-likedSongsButton-likedSongsIcon {
+    color: var(--spice-main);
+}
+
+/* sidebar your episodes icon color inside */
+.main-yourEpisodesButton-yourEpisodesIcon path {
+    fill: var(--spice-main);
+}
+
+/* //////////// Root //////////// */
+
+/* rounded root */
+.nav-alt .Root__main-view {
+    z-index: 0;
+    border-radius: 10px !important;
+}
+
+/* small profile photo on top right corner */
+.main-userWidget-box .main-avatar-image {
+    border-radius: 10px;
+}
+
+/* //////////// Top bar //////////// */
+
+/* home button */
+.zuf9gCpkf86KkzzCtkJN {
+    border-radius: 10px;
+    height: 40px;
+    padding: 7px 16px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
+    color: var(--spice-text);
+}
+.zuf9gCpkf86KkzzCtkJN:hover {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
+}
+
+/* home button active icon */
+.main-topBar-buttonActive .home-active-icon {
+    color: var(--spice-custom-subdued);
+}
+
+/* top bar home button */
+.main-topBar-center .main-topBar-button svg {
+    color: var(--spice-custom-subdued);
+}
+
+/* search bar in search page */
+.x-searchInput-searchInputInput {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8) !important;
+    height: 40px !important;
+}
+
+/* search bar border */
+.nav-alt .x-searchInput-searchInputInput,
+.nav-alt .x-searchInput-searchInputInput:hover,
+.nav-alt .x-searchInput-searchInputInput:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/* top bar buttons */
+.main-topBar-historyButtons {
+    padding-left: 10px;
+}
+
+.main-noConnection-button {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.7) !important;
+}
+
+/* top bar table heading background */
+.nav-alt .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader,
+.main-trackList-trackListHeader {
+    background: var(--spice-main);
+}
+
+/* //////////// Player //////////// */
+
+/* progress bar ball (visible when hovered) */
+.progress-bar__slider {
+    width: 12px !important;
+    height: 12px !important;
+    top: 3.5px;
+    border-radius: 50%;
+    transition: left, 0s, ease, 0.25s;
+}
+
+/* rounded player */
+.Root__now-playing-bar {
+    z-index: 1;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: var(--spice-main);
+}
+
+/* New UI better progress bar */
+/* moves progress bar to bottom */
+.playback-bar {
+    border-radius: 0px !important;
+    bottom: 6px;
+    width: 98.8%;
+    position: absolute;
+}
+/* moves progress bar to left */
+:root .Root__now-playing-bar .playback-bar {
+    left: 9px !important;
+    position: fixed !important;
+}
+.x-progressBar-progressBarBg {
+    background-color: unset;
+}
+.main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
+    border-radius: 0px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+/* progress bar time style */
+.playback-bar__progress-time-elapsed,
+.main-playbackBarRemainingTime-container {
+    position: absolute;
+    bottom: 14px;
+    right: 0px;
+}
+.playback-bar__progress-time-elapsed {
+    transform: translateX(calc(-100% - 20px));
+}
+.playback-bar__progress-time-elapsed::after {
+    position: absolute;
+    left: calc(100% + 10px);
+    font-weight: bold;
+    color: var(--spotify-main-color);
+    color: rgba(var(--spice-rgb-custom-subdued), 0.8);
+    content: "/";
+    transform: translateX(-50%);
+}
+.playback-bar__progress-time-elapsed,
+.main-playbackBarRemainingTime-container {
+    opacity: 0;
+}
+
+/* ///////////////// Check ///////////////// */
+/* top bar artist name */
+.artist-artistDiscography-topBar a {
+    padding-left: 35px;
+}
+
+/* //////////// Friend Activity //////////// */
+
+/* rounded friend activity */
+.nav-alt .main-buddyFeed-buddyFeedRoot {
+    border-radius: 10px !important;
+}
+
+/* Find friends container */
+.SQHCRmgNjRywo1Lt7rP3 {
+    background-color: var(--spice-main);
+    height: 69px;
+}
+
+/* friend activity close button */
+.main-buddyFeed-findFriendsButton {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+.main-buddyFeed-findFriendsButton:hover {
+    background-color: var(--spice-custom-main-secondary) !important;
+    border-radius: 10px;
+}
+
+/* no friends settings button */
+.MObmOrMxbQpO10ebAtZA .ralK8s_OmE8a8zWcfNKM:hover,
+.MObmOrMxbQpO10ebAtZA .ralK8s_OmE8a8zWcfNKM {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    color: var(--spice-text);
+}
+
+/* connect to facebook */
+.HgRmCE3NxfiYNtv6pF3H:hover,
+.HgRmCE3NxfiYNtv6pF3H {
+    border: none;
+    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    color: var(--spice-text);
+    height: 40px;
+    padding: 10px;
+}
