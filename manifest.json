@@ -1,12 +1,12 @@
 [
     {
         "name": "Nord Spotify",
-        "description": "Nord Themed Spotify with no UI Ads",
+        "description": "Norded Spotify with no UI Ads",
         "preview": "assets/preview.png",
         "readme": "README.md",
-        "usercss": "marketplace/user.css",
+        "usercss": "Nord-Spotify/user.css",
         "schemes": "Nord-Spotify/color.ini",
-        "include": ["https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/injectNord.js"],
-        "authors": [{ "name": "Tetrax-10", "url": "https://github.com/Tetrax-10" }]
+        "include": ["https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/injectNord.js"],
+        "tags": ["Nord", "Dark"]
     }
 ]

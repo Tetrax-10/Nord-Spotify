@@ -34,7 +34,7 @@ curl --silent --output "${theme_dir}/Nord-Spotify/color.ini" "${theme_url}/color
 pids+=($!)
 curl --silent --output "${theme_dir}/Nord-Spotify/user.css" "${theme_url}/user.css" &
 pids+=($!)
-curl --silent --output "${ext_dir}/injectNord.js" "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/injectNord.js" &
+curl --silent --output "${ext_dir}/injectNord.js" "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/injectNord.js" &
 pids+=($!)
 
 # Wait for all curls to finish and kill dots
@@ -46,7 +46,8 @@ echo " Done"
 
 # Apply theme
 echo "Applying theme"
-spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
+spicetify config extensions nord.js-
+spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
 spicetify apply
 
 echo "All done!"

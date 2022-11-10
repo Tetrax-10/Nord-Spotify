@@ -37,7 +37,7 @@ async function initNord() {
 
     let isWindows = os("Win");
 
-    let server = "https://tetrax-10.github.io/Nord-Spotify/";
+    let server = "https://tetrax-10.github.io/Nord-Spotify";
 
     let isMarketplace = userConfig.current_theme == "Nord Spotify" ? true : false;
 
@@ -68,6 +68,7 @@ async function initNord() {
 
     const defaultSettings = {
         artistBigImage: true,
+        artistImageOverlay: true,
         customFont: true,
         betterGenre: true,
         betterLyricsPlus: true,
@@ -109,8 +110,6 @@ async function initNord() {
         search: false,
         redo: false,
         darkSideBar: false,
-        dev: false,
-        localCSS: false,
         localColor: false,
         rightClickToReload: false,
         isReload: true,
@@ -120,6 +119,7 @@ async function initNord() {
         colorSchemeBasedOn: "Nord",
         fontSize: "100%",
         fontSizeBool: false,
+        hoverTime: true,
         colorSchemes: {
             Nord: {
                 Name: "Nord",
@@ -228,11 +228,11 @@ async function initNord() {
         },
     };
 
+    let CONFIG = await getConfig();
+
     async function saveConfig() {
         await setLocalStorageDataWithKey("nord:settings", JSON.stringify(CONFIG));
     }
-
-    let CONFIG = await getConfig();
 
     function initConfigItems(item, value) {
         if (CONFIG[item] == undefined) {
@@ -266,18 +266,14 @@ async function initNord() {
 
     injectColor(`${CONFIG.colorScheme}`);
 
-    if (CONFIG.dev && CONFIG.localCSS && !isMarketplace) {
-        server = "";
-    } else {
-        if (isMarketplace) {
-            injectStyleSheet(`${server}src/nord.css`, "nord--nordSpotify");
-        }
+    if (!window.NordSpotify.remote) {
+        server = "Nord-Spotify";
     }
 
     if (isNewUI) {
-        injectStyleSheet(`${server}src/Snippets/NewUI.css`, "nord--NewUI");
+        injectStyleSheet(`${server}/src/Snippets/NewUI.css`, "nord--NewUI");
     } else {
-        injectStyleSheet(`${server}src/Snippets/OldUI.css`, "nord--OldUI");
+        injectStyleSheet(`${server}/src/Snippets/OldUI.css`, "nord--OldUI");
     }
 
     NordSpotify.Config = CONFIG;
@@ -496,7 +492,7 @@ async function initNord() {
 
     let hideLikedSongsCard = `
     /* remove liked songs card in your library */
-    .main-heroCard-card.collection-collectionEntityHeroCard-likedSongs.collection-collectionEntityHeroCard-container {
+    .collection-collectionEntityHeroCard-likedSongs {
         display: none;
     }`;
 
@@ -681,6 +677,20 @@ async function initNord() {
         height: calc(100vh - 90px) !important;
     }`;
 
+    let artistImageOverlay = `
+    /* artist image overlay */
+    .main-entityHeader-container.main-entityHeader-withBackgroundImage:after {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: block;
+        content: "";
+        background: #00000080;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+    }`;
+
     let hideTopBarPlayButton = `
     /* remove play button from topbar */
     :root .Root__top-bar header .main-playButton-PlayButton {
@@ -820,6 +830,12 @@ async function initNord() {
         visibility: visible;
     }`;
 
+    let hoverTime = `
+    .playback-bar__progress-time-elapsed,
+    .main-playbackBarRemainingTime-container {
+        opacity: 0;
+    }`;
+
     function customFont(url, name) {
         let customFont = `
         /* Better Font (Quicksand) */
@@ -918,6 +934,10 @@ async function initNord() {
                     /* font-size: 13px; */
                 }
                 .popup-row .red {
+                    font-size: 13px;
+                    color: #59CE8F;
+                }
+                .popup-row .demo {
                     font-size: 13px;
                     color: #59CE8F;
                 }
@@ -1653,15 +1673,23 @@ async function initNord() {
             React.createElement(
                 "div",
                 { className: "popup-row" },
-                React.createElement("p", { className: "popup-row" }, "If you dont have the font locally, then enter the Font's URL"),
+                React.createElement("p", { className: "popup-row" }, "If you have the font installed in your PC, then just enter the font's name. Else paste font's URL"),
+                React.createElement(
+                    "a",
+                    {
+                        href: "https://tetrax-10.github.io/Nord-Spotify/#custom-fonts",
+                        className: "demo",
+                    },
+                    "Click for Tutorial"
+                ),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-                React.createElement(inputBoxItem, {
-                    name: "Font Url",
-                    field: "customFontURL",
-                }),
                 React.createElement(inputBoxItem, {
                     name: "Font Name",
                     field: "customFontName",
+                }),
+                React.createElement(inputBoxItem, {
+                    name: "Font Url",
+                    field: "customFontURL",
                 })
             ),
             React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
@@ -1670,12 +1698,12 @@ async function initNord() {
                 {
                     className: "small-button green",
                     onClick: async () => {
-                        let values = document.querySelectorAll(".popup-row .small-input");
-                        let customFontURL = values[0].value;
-                        let customFontName = values[1].value;
+                        let inputField = document.querySelectorAll(".popup-row .small-input");
+                        let customFontName = inputField[0].value;
+                        let customFontURL = inputField[1].value;
 
-                        CONFIG.customFontURL = customFontURL;
                         CONFIG.customFontName = customFontName;
+                        CONFIG.customFontURL = customFontURL;
                         await saveConfig();
                         Spicetify.PopupModal.hide();
                         reload();
@@ -1818,17 +1846,6 @@ async function initNord() {
             },
         }),
         React.createElement(checkBoxItem, {
-            name: "Apply Changes on Settings Close ( Recommended: On )",
-            field: "isReload",
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Right Click Nord Spotify Settings Icon to Refresh",
-            field: "rightClickToReload",
-            onClickCheckFun: () => {
-                injectReload(CONFIG.rightClickToReload);
-            },
-        }),
-        React.createElement(checkBoxItem, {
             name: "Pointers",
             field: "pointers",
         }),
@@ -1883,6 +1900,10 @@ async function initNord() {
             field: "rightSideCoverArt",
         }),
         React.createElement(checkBoxItem, {
+            name: "Show Timestamp on Hover",
+            field: "hoverTime",
+        }),
+        React.createElement(checkBoxItem, {
             name: "Hide Friend Activity",
             field: "hideFriendActivity",
             bool: isNewUI,
@@ -1931,6 +1952,22 @@ async function initNord() {
             field: "hideLikedSongsCardTexts",
         }),
         React.createElement(heading, {
+            name: "Lyrics",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Beautify Spotify Lyrics",
+            field: "betterSpotifyLyrics",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Beautify Lyrics Plus",
+            field: "betterLyricsPlus",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Remove Lyrics BG Color",
+            field: "nordLyrics",
+            onClickCheckFun: nordLyricsFun,
+        }),
+        React.createElement(heading, {
             name: "Misc",
         }),
         React.createElement(checkBoxItem, {
@@ -1951,16 +1988,8 @@ async function initNord() {
             field: "artistBigImage",
         }),
         React.createElement(checkBoxItem, {
-            name: "Norded Spotify Lyrics",
-            field: "nordLyrics",
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Beautify Spotify Lyrics",
-            field: "betterSpotifyLyrics",
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Beautify Lyrics Plus",
-            field: "betterLyricsPlus",
+            name: "Artist Image Overlay",
+            field: "artistImageOverlay",
         }),
         React.createElement(checkBoxItem, {
             name: "Hide TopBar Play Button",
@@ -1992,30 +2021,25 @@ async function initNord() {
             bool: isWindows,
         }),
         React.createElement(heading, {
-            name: "Developer Settings",
-            bool: CONFIG.dev && !isMarketplace,
+            name: "Advanced Settings",
         }),
         React.createElement(checkBoxItem, {
-            name: "Use Local CSS",
-            field: "localCSS",
-            bool: CONFIG.dev && !isMarketplace,
+            name: "Apply Changes on Settings Close ( Recommended: On )",
+            field: "isReload",
         }),
         React.createElement(checkBoxItem, {
-            name: "Use Local Color Schemes",
+            name: "Right Click Nord Spotify Settings Icon to Refresh",
+            field: "rightClickToReload",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Use Local Colors ( color.ini )",
             field: "localColor",
-            bool: CONFIG.dev && !isMarketplace,
+            bool: !isMarketplace,
         }),
         React.createElement(ButtonItem, {
             name: "Like on GitHub 👍",
             onclickFun: () => {
                 window.open("https://github.com/Tetrax-10/Nord-Spotify");
-            },
-            onContextMenuFun: async () => {
-                if (!isMarketplace) {
-                    CONFIG.dev = !CONFIG.dev;
-                    await saveConfig();
-                    reload();
-                }
             },
         }),
         React.createElement(ButtonItem, {
@@ -2023,7 +2047,7 @@ async function initNord() {
             color: " red",
             onclickFun: async () => {
                 Spicetify.LocalStorage.remove("nord:settings");
-                reload();
+                forceReload();
             },
         })
     );
@@ -2095,7 +2119,7 @@ async function initNord() {
     }
 
     async function injectColor(colorScheme) {
-        if (CONFIG.localColor) {
+        if (CONFIG.localColor && !isMarketplace) {
             return;
         }
 
@@ -2144,8 +2168,6 @@ async function initNord() {
     function injectReload(bool) {
         if (bool) {
             settingsButton.addEventListener("contextmenu", forceReload);
-        } else {
-            settingsButton.removeEventListener("contextmenu", forceReload);
         }
     }
 
@@ -2406,6 +2428,16 @@ async function initNord() {
         }
     }
 
+    function nordLyricsFun() {
+        if (CONFIG.nordLyrics) {
+            setLocalStorageDataWithKey("lyrics-plus:visual:colorful", "false");
+            setLocalStorageDataWithKey("lyrics-plus:visual:noise", "false");
+        } else {
+            setLocalStorageDataWithKey("lyrics-plus:visual:colorful", "true");
+            setLocalStorageDataWithKey("lyrics-plus:visual:noise", "true");
+        }
+    }
+
     ////////////////////////////////////// Main ///////////////////////////////////////////
 
     let data = Spicetify.Platform.History.location;
@@ -2415,6 +2447,8 @@ async function initNord() {
     Spicetify.Platform.History.listen(async (data) => {
         hideTopBarRules(data);
     });
+
+    nordLyricsFun();
 
     cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
 
@@ -2466,6 +2500,8 @@ async function initNord() {
     cssSnippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
     await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", CONFIG.artistBigImage);
 
+    cssSnippet(artistImageOverlay, "nord--artistImageOverlay", CONFIG.artistImageOverlay);
+
     cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
 
     cssSnippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
@@ -2481,6 +2517,8 @@ async function initNord() {
     cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
 
     cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
+
+    cssSnippet(hoverTime, "nord--hoverTime", CONFIG.hoverTime);
 
     injectJS(quickSearchKeyBind);
 

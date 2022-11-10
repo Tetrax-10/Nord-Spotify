@@ -31,28 +31,63 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
 
     # get Spicetify path
     $spicePath = spicetify -c | Split-Path
+    # get spotify path
+    $spotifyPath = spicetify config spotify_path
+    # get xpui path
+    $xpuiPath = -join("$spotifyPath", "Apps\xpui")
     # Spicetify Themes path
-    $themeDir = "$spicePath\Themes"
+    $themePath = "$spicePath\Themes"
     # Spicetify Extensions path
-    $extensionsDir = "$spicePath\Extensions"
+    $extensionsPath = "$spicePath\Extensions"
+    # Nord Spotify Snippets path
+    $snippetsPath = "$themePath\Nord-Spotify\assets\Nord-Spotify\src\Snippets"
+
+    $title    = 'Nord Spotify Mode:'
+    $question = "Auto Update - Theme will not work without internet. But Updates the Theme Automatically if there is a new Update`nOffline - Works without internet also gives Better Performance. Re-running this powershell command installs the Latest Update"
+    $choices  = '&Auto Update', '&Offline'
 
     # remove old folders
     Write-Host "Removing old version if any" -ForegroundColor DarkCyan
-    Remove-Item -Recurse -Force "$themeDir\Nord-Spotify" -ErrorAction Ignore
+    Remove-Item -Recurse -Force "$themePath\Nord-Spotify" -ErrorAction Ignore
+    Remove-Item -Recurse -Force "$xpuiPath\Nord-Spotify" -ErrorAction Ignore
+    Remove-Item -Force "$extensionsPath\injectNord.js" -ErrorAction Ignore
+    Remove-Item -Force "$extensionsPath\nord.js" -ErrorAction Ignore
 
-    # create folders
-    Write-Host "Installing Nord Spotify (Remote version)" -ForegroundColor DarkCyan
-    New-Item -Path "$themeDir\Nord-Spotify" -ItemType Directory | Out-Null
+    $decision = $Host.UI.PromptForChoice($title, $question, $choices, 0)
+    if ($decision -eq 0) {
+        # create folders
+        Write-Host "Installing Nord Spotify (Auto Update Version)" -ForegroundColor DarkCyan
+        New-Item -Path "$themePath\Nord-Spotify" -ItemType Directory | Out-Null
+        
+        # Clone to themes folder
+        Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/color.ini" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\color.ini"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/user.css" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\user.css"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/injectNord.js" -UseBasicParsing -OutFile "$extensionsPath\injectNord.js"
 
-    Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
-    # Clone to spicetify folder
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/color.ini" -UseBasicParsing -OutFile "$themeDir\Nord-Spotify\color.ini"
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/user.css" -UseBasicParsing -OutFile "$themeDir\Nord-Spotify\user.css"
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/injectNord.js" -UseBasicParsing -OutFile "$extensionsDir\injectNord.js"
+        # Installing
+        Write-Host "Changing Config" -ForegroundColor DarkCyan
+        spicetify config extensions nord.js- -q
+        spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q  
+    } else {
+        # create folders
+        Write-Host "Installing Nord Spotify (Offline Version)" -ForegroundColor DarkCyan
+        New-Item -Path $snippetsPath -ItemType Directory | Out-Null
 
-    # Installing
-    Write-Host "Changing Config" -ForegroundColor DarkCyan
-    spicetify config current_theme Nord-Spotify color_scheme Nord extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
+        Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
+        # Clone to assets folder
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Snippets/NewUI.css" -UseBasicParsing -OutFile "$snippetsPath\NewUI.css"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Snippets/OldUI.css" -UseBasicParsing -OutFile "$snippetsPath\OldUI.css"
+        # Clone to themes folder
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/color.ini" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\color.ini"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/nord.css" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\user.css"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/nord.js" -UseBasicParsing -OutFile "$extensionsPath\nord.js"
+
+        # Installing
+        Write-Host "Changing Config" -ForegroundColor DarkCyan
+        spicetify config extensions injectNord.js- -q
+        spicetify config current_theme Nord-Spotify color_scheme Spotify extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
+    }
 
     # applying
     $configFile = Get-Content "$spicePath\config-xpui.ini"
@@ -65,7 +100,7 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
         spicetify backup apply -q
     }
 
-    Write-Host "Theme Applied Successfully. Ignore any Error Message" -ForegroundColor Green
+    Write-Host 'Theme Applied Successfully. Run "spicetify apply" if theme not applied' -ForegroundColor Green
 }
 else {
     Write-Host "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";

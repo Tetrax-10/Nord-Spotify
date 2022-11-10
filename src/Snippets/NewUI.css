@@ -141,10 +141,6 @@
     content: "/";
     transform: translateX(-50%);
 }
-.playback-bar__progress-time-elapsed,
-.main-playbackBarRemainingTime-container {
-    opacity: 0;
-}
 
 /* ///////////////// Check ///////////////// */
 /* top bar artist name */

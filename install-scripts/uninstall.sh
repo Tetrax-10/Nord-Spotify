@@ -3,6 +3,7 @@
 set -e
 
 echo "Uninstalling"
+spicetify config extensions nord.js-
 spicetify config current_theme " " color_scheme " " extensions injectNord.js-
 
 echo "Deleting files"
@@ -17,6 +18,7 @@ while true; do
         rm -rf "${theme_dir}/Nord-Spotify"
         # Use -f to ignore if missing
         rm -f "${ext_dir}/injectNord.js"
+        rm -f "${ext_dir}/nord.js"
         break
         ;;
     [Nn]*)

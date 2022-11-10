@@ -58,7 +58,6 @@
 /* progress bar time style */
 .playback-bar__progress-time-elapsed,
 .main-playbackBarRemainingTime-container {
-    opacity: 0;
     position: absolute;
     bottom: 13px;
     color: var(--spice-text);

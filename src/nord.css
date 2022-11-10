@@ -210,6 +210,12 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     text-decoration: none !important;
 }
 
+/* your library and playlist sort drop down selected item */
+.main-contextMenu-menuItemButton:focus,
+.main-contextMenu-menuItemButton:hover {
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
 /* your library and playlist small search button */
 .x-filterBox-expandButton,
 .x-filterBox-expandButton:hover {
@@ -434,6 +440,12 @@ input[placeholder="Add a display name"] {
     display: none;
 }
 
+/* create similar playlist */
+.main-contextMenu-menuItemButton.main-contextMenu-disabled,
+.main-contextMenu-menuItemButton.main-contextMenu-disabled:hover {
+    color: var(--spice-text) !important;
+}
+
 /* //////////// Album Page //////////// */
 
 /* album page playcount color */
@@ -455,8 +467,8 @@ input[placeholder="Add a display name"] {
 
 /* //////////// Settings Page //////////// */
 
-/* settings page buttons */
-.cuhCvm,
+/* settings page buttons, enhance button, find friends button */
+.wKCsR,
 /* settings page connect to facebook */
 .xm2mOJwSu9_GfODYzx8M {
     border: none;
@@ -467,7 +479,7 @@ input[placeholder="Add a display name"] {
 }
 
 /* settings page connect to facebook button icon */
-.IconWrapper__Wrapper-ihacte-0.bhgxOC {
+.IconWrapper__Wrapper-ihacte-0.kDAUDl {
     display: none;
 }
 
@@ -513,6 +525,15 @@ input:checked ~ .x-toggle-indicatorWrapper {
 
 /* //////////// Artist Page //////////// */
 
+/* artist verified badge */
+.artist-artistVerifiedBadge-badge {
+    fill: var(--spice-custom-subdued);
+}
+/* artist verified tick */
+.bn2UNQDs5GLY5rjp5Ljh {
+    background-color: var(--spice-main);
+}
+
 /* change appearance of follow button */
 .idI9vydtCzXVhU1BaKLw {
     border: none;
@@ -549,7 +570,7 @@ input:checked ~ .x-toggle-indicatorWrapper {
 
 /* artist page liked songs container */
 .artist-artistOverview-sideBlock {
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
     border-radius: 10px;
     padding-left: 20px;
     padding-top: 10px;
@@ -642,7 +663,7 @@ input:checked ~ .x-toggle-indicatorWrapper {
 }
 
 /* green episodes icon rounded corner */
-.main-entityHeader-imageContainer .oezNMICqWdJHdR3QV9La {
+.main-yourEpisodes-coverContainer {
     border-radius: 10px;
 }
 
@@ -699,14 +720,14 @@ input:checked ~ .x-toggle-indicatorWrapper {
     --background-highlight: var(--spice-button);
 }
 
-/* fix anchor tag */
+/* fix hover links */
 a {
     text-decoration: none !important;
 }
 /* liked songs of a artist in artist page (you have liked n songs) */
-.Type__TypeElement-goli3j-0.dqBHkz> a:hover,
+.Type__TypeElement-goli3j-0.iLCTEQ> a:hover,
 /* charts topic name in home page */
-.Type__TypeElement-goli3j-0.dnNHjd > a:hover,
+.Type__TypeElement-goli3j-0.eJZNLq > a:hover,
 /* player song name */
 .main-trackInfo-name :hover > a {
     color: var(--spice-custom-link-hover) !important;
@@ -891,7 +912,7 @@ a {
     color: var(--spice-custom-subdued) !important;
 }
 
-/* active button */
+/* player active button */
 .main-nowPlayingBar-nowPlayingBar button.control-button--active,
 .main-nowPlayingBar-nowPlayingBar button[aria-checked="mixed"],
 .main-nowPlayingBar-nowPlayingBar button[aria-expanded="true"],
@@ -924,10 +945,10 @@ a {
     padding: 16px;
 }
 
-/* cards play buttons */
+/* cards play buttons fix */
 .main-card-card .main-card-PlayButtonContainer {
-    right: 8px;
-    bottom: 8px;
+    right: 8px !important;
+    bottom: 8px !important;
 }
 
 /* no artist image in cards */
@@ -1297,9 +1318,9 @@ input.search[placeholder="Search for a feature"]::placeholder {
 /* add song again and delete popup */
 /* AdF5F5BxQXGeWkfceg9A - add song again */
 /* J0xJcBaKhwl9EIuzvhLg - delete songs popup */
-/* K8PtC1Way9XetxDGwCGx - delete playlist popup */
+/* RVgHI2ejYct8LjT1AO7m - delete playlist popup */
 /* j1BMy6Uh7sBoeNA18Rrh - delete folder popup */
-.K8PtC1Way9XetxDGwCGx,
+.RVgHI2ejYct8LjT1AO7m,
 .AdF5F5BxQXGeWkfceg9A,
 .J0xJcBaKhwl9EIuzvhLg,
 .j1BMy6Uh7sBoeNA18Rrh {
@@ -1307,24 +1328,28 @@ input.search[placeholder="Search for a feature"]::placeholder {
 }
 .AdF5F5BxQXGeWkfceg9A > h2,
 .J0xJcBaKhwl9EIuzvhLg > h2,
-.K8PtC1Way9XetxDGwCGx > h2,
+.RVgHI2ejYct8LjT1AO7m > h2,
 .j1BMy6Uh7sBoeNA18Rrh > h2,
 .AdF5F5BxQXGeWkfceg9A > p,
 .J0xJcBaKhwl9EIuzvhLg > p,
 .j1BMy6Uh7sBoeNA18Rrh > p,
-.K8PtC1Way9XetxDGwCGx > p {
+.RVgHI2ejYct8LjT1AO7m > p {
     color: var(--spice-text);
 }
 .AdF5F5BxQXGeWkfceg9A div button:focus,
 .J0xJcBaKhwl9EIuzvhLg div button:focus,
-.K8PtC1Way9XetxDGwCGx div button:focus,
+.RVgHI2ejYct8LjT1AO7m div button:focus,
 .j1BMy6Uh7sBoeNA18Rrh div button:focus {
     outline: none;
     outline-offset: 0px;
 }
 /* add anyway, cancel */
-.Button-sc-1dqy6lx-0.daAltg:hover {
+.Button-sc-1dqy6lx-0.dZYxEP:hover {
     color: var(--spice-text) !important;
+}
+/* delete playlist and folders cancel */
+.Button-sc-1dqy6lx-0.ifQjGL {
+    color: var(--spice-text);
 }
 
 /* sort by playcount - Extension */
