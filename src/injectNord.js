@@ -44,5 +44,5 @@
 
     injectJS(`${server}/src/nord.js`, "nord--js");
 
-    window.NordSpotify.remote = true;
+    window.NordSpotifyRemote = true;
 })();

@@ -266,7 +266,7 @@ async function initNord() {
 
     injectColor(`${CONFIG.colorScheme}`);
 
-    if (!window.NordSpotify.remote) {
+    if (!window.NordSpotifyRemote) {
         server = "Nord-Spotify";
     }
 
