@@ -1769,7 +1769,7 @@ async function initNord() {
                 {
                     className: "small-button red",
                     onClick: async () => {
-                        CONFIG.fontSize = defaultSettings.customFontURL;
+                        CONFIG.fontSize = defaultSettings.fontSize;
                         await saveConfig();
                         Spicetify.PopupModal.hide();
                         reload();
