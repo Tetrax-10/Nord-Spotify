@@ -50,13 +50,13 @@ Step 2 : Then Type the Font name in `Font Name` box in Nord Spotify and click sa
 
 ### Custom Fonts (Remote Method)
 
-You can use custom fonts in Nord Spotify. [Google Fonts](https://fonts.google.com/) are Recommended
+You can use custom fonts in Nord Spotify remotely. [Google Fonts](https://fonts.google.com/) are Recommended
 
 Step 1 : Choose a font and click the plus button at styles section at the end
 
 ![plus button](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/plus-button.png)
 
-Step 2 : Go to selected families and select `@import` Check Box
+Step 2 : Go to `selected families` and select `@import` Check Box
 
 ![selected family](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/selected-family.png)
 
