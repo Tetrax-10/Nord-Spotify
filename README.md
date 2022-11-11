@@ -34,6 +34,42 @@ Nord Themed Spotify with no UI Ads
 
 <br />
 
+## Custom Fonts
+
+![Custom Fonts Preview](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/custom-fonts.png)
+
+<br />
+
+### Custom Fonts (Local Install Method)
+
+Step 1 : Just install the Font you like in your PC
+
+Step 2 : Then Type the Font name in `Font Name` box in Nord Spotify and click save. (No need to fill `Font URL` leave it empty)
+
+<br />
+
+### Custom Fonts (Remote Method)
+
+You can use custom fonts in Nord Spotify. [Google Fonts](https://fonts.google.com/) are Recommended
+
+Step 1 : Choose a font and click the plus button at styles section at the end
+
+![plus button](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/plus-button.png)
+
+Step 2 : Go to selected families and select `@import` Check Box
+
+![selected family](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/selected-family.png)
+
+Step 3 : Then Copy that URL and paste that in `Font URL` box in Nord Spotify
+
+![font url](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/font-url.png)
+
+Step 4 : Then Copy that Font Name and paste that in `Font Name` box in Nord Spotify and click save
+
+![font name](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/font-name.png)
+
+<br />
+
 ## Install Theme via Marketplace
 
 ## Get it on Spicetify Marketplace
