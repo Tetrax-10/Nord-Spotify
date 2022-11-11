@@ -1677,7 +1677,7 @@ async function initNord() {
                 React.createElement(
                     "a",
                     {
-                        href: "https://tetrax-10.github.io/Nord-Spotify/#custom-fonts",
+                        href: "https://github.com/Tetrax-10/Nord-Spotify#custom-fonts",
                         className: "demo",
                     },
                     "Click for Tutorial"
