@@ -2887,14 +2887,16 @@ async function initNord() {
         let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
         if (delta == 1 && currentPos < 100) {
+            currentPos = 95 < currentPos ? 100 : currentPos;
             banner.style.backgroundPositionY = currentPos + 5 + "%";
+            updateConfigPos();
         }
 
-        if (delta == -1 && 5 <= currentPos) {
+        if (delta == -1 && 0 < currentPos) {
+            currentPos = currentPos < 5 ? 0 : currentPos;
             banner.style.backgroundPositionY = currentPos - 5 + "%";
+            updateConfigPos();
         }
-
-        updateConfigPos();
     });
 
     window.addEventListener("keydown", (event) => {
