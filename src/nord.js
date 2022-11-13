@@ -67,8 +67,7 @@ async function initNord() {
     }
 
     const defaultSettings = {
-        artistBigImage: true,
-        artistImageOverlay: true,
+        bannerOverlay: true,
         customFont: true,
         betterGenre: true,
         betterLyricsPlus: true,
@@ -120,6 +119,13 @@ async function initNord() {
         fontSize: "100%",
         fontSizeBool: false,
         hoverTime: true,
+        hideDefaultCoverArt: true,
+        changeCoverArtOnSongChange: true,
+        bannerBlurValue: "0",
+        fitBannerSize: false,
+        bannerPosition: {
+            "spotify:album:3S4AQxtnqGJOtw1k6ZT111": "35",
+        },
         colorSchemes: {
             Nord: {
                 Name: "Nord",
@@ -230,7 +236,13 @@ async function initNord() {
 
     let CONFIG = await getConfig();
 
-    async function saveConfig() {
+    async function saveConfig(item, value) {
+        if (item) {
+            let tempConfig = await getConfig("nord:settings");
+            tempConfig[item] = value;
+            await setLocalStorageDataWithKey("nord:settings", JSON.stringify(tempConfig));
+            return;
+        }
         await setLocalStorageDataWithKey("nord:settings", JSON.stringify(CONFIG));
     }
 
@@ -656,28 +668,32 @@ async function initNord() {
         justify-content: center;
         bottom: 3%;
     }
-    .main-entityHeader-container.main-entityHeader-nonWrapped.main-entityHeader-withBackgroundImage {
-        padding-left: 3%;
-    }
     .main-entityHeader-background.main-entityHeader-overlay {
         display: none;
+    }
+    /* Big Playlists */
+    .main-entityHeader-nonWrapped {
+        max-height: unset !important;
     }`;
 
     let artistBigImageNew = `
-    .main-entityHeader-container.main-entityHeader-withBackgroundImage,
-    .main-entityHeader-background,
-    .main-entityHeader-background.main-entityHeader-overlay:after {
+    /* Big Playlists */
+    .nav-alt .main-entityHeader-nonWrapped,
+    .main-entityHeader-background {
         height: calc(100vh - 105px) !important;
     }`;
 
     let artistBigImageOld = `
-    .main-entityHeader-container.main-entityHeader-withBackgroundImage,
-    .main-entityHeader-background,
-    .main-entityHeader-background.main-entityHeader-overlay:after {
+    /* Big Playlist */
+    .main-entityHeader-nonWrapped,
+    /* Big artist */
+    .main-entityHeader-background {
         height: calc(100vh - 90px) !important;
     }`;
 
-    let artistImageOverlay = `
+    let bannerOverlay = `
+    /* banner image overlay */
+    #main-banner:after,
     /* artist image overlay */
     .main-entityHeader-container.main-entityHeader-withBackgroundImage:after {
         position: fixed;
@@ -835,6 +851,42 @@ async function initNord() {
     .main-playbackBarRemainingTime-container {
         opacity: 0;
     }`;
+
+    let bannerCSS = `
+    #main-banner {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        will-change: transform;
+        z-index: -1;
+        transition: background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out;
+        display: none;
+    }
+    #pre-banner {
+        display: none;
+    }`;
+
+    let hideDefaultCoverArt = `
+    section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer,
+    section[data-testid="artist-page"] .main-entityHeader-imageContainer,
+    section[data-testid="album-page"] .main-entityHeader-imageContainer,
+    section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer {
+        display: none;
+    }`;
+
+    async function updateBannerBlur(filed, value) {
+        if (value == "") {
+            value = 0;
+        }
+
+        CONFIG[filed] = value;
+        await saveConfig(filed, CONFIG[filed]);
+    }
 
     function customFont(url, name) {
         let customFont = `
@@ -1850,6 +1902,34 @@ async function initNord() {
             field: "pointers",
         }),
         React.createElement(heading, {
+            name: "Banners",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Banner Overlay",
+            field: "bannerOverlay",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Change Page's CoverArt On Song Change",
+            field: "changeCoverArtOnSongChange",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Page's Default CoverArt",
+            field: "hideDefaultCoverArt",
+        }),
+        React.createElement(inputBoxItem, {
+            name: "Banner Blur Amout",
+            field: "bannerBlurValue",
+            onChangeFun: updateBannerBlur,
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Fit Banner Size",
+            field: "fitBannerSize",
+        }),
+        React.createElement(checkBoxItem, {
+            name: `Tip : Hold ~ key and scroll to reposition Banner. Position will Automatically be Remembered for Every Individual Banner`,
+            check: false,
+        }),
+        React.createElement(heading, {
             name: "Home",
         }),
         React.createElement(checkBoxItem, {
@@ -1982,14 +2062,6 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Norded Genre Cards",
             field: "betterGenre",
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Big Artist Image",
-            field: "artistBigImage",
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Artist Image Overlay",
-            field: "artistImageOverlay",
         }),
         React.createElement(checkBoxItem, {
             name: "Hide TopBar Play Button",
@@ -2413,9 +2485,69 @@ async function initNord() {
         );
     }
 
-    async function hideTopBarRules(data) {
-        let cond1 = (data.pathname.includes("/artist/") || data.pathname.includes("/playlist/")) && countNoOfSlashes(data.pathname) == 2;
-        let cond2 = data.pathname == "/new-releases" && isNewUI;
+    function nordLyricsFun() {
+        if (CONFIG.nordLyrics) {
+            setLocalStorageDataWithKey("lyrics-plus:visual:colorful", "false");
+            setLocalStorageDataWithKey("lyrics-plus:visual:noise", "false");
+        } else {
+            setLocalStorageDataWithKey("lyrics-plus:visual:colorful", "true");
+            setLocalStorageDataWithKey("lyrics-plus:visual:noise", "true");
+        }
+    }
+
+    async function updateURI(path, pageType, src, rawData = Spicetify.Player) {
+        if (!CONFIG.changeCoverArtOnSongChange && isBannerPage && src == "song") {
+            return;
+        }
+
+        if (src == "song" || !isBannerPage) {
+            if (islocal) {
+                uri = rawData.data.track.uri;
+            } else {
+                uri = rawData.data.track.metadata.album_uri;
+            }
+            uid = uri.split(":")[2];
+            image = rawData.data.track.metadata.image_xlarge_url;
+        } else if (isBannerPage) {
+            uri = pathToURI(path);
+            uid = pathToURI(path, "uid");
+            image = await fetchExternalImage(pageType, uid, rawData);
+        }
+    }
+
+    async function updateBannerImage(image) {
+        if (banner.style.backgroundImage == `url("${image}")`) {
+            return;
+        }
+
+        preBanner.style.backgroundImage = "url(" + image + ")";
+        banner.style.filter = "blur(100px)";
+
+        setTimeout(() => {
+            banner.style.backgroundImage = "url(" + image + ")";
+            let pos = CONFIG.bannerPosition[uri] ? parseInt(CONFIG.bannerPosition[uri]) : "50";
+            banner.style.backgroundPositionY = pos + "%";
+            banner.style.filter = filterCSS;
+        }, 500);
+    }
+
+    async function hideTopBarRules(pageType) {
+        let cond1 = false;
+
+        switch (pageType) {
+            case "playlists":
+            case "artists":
+            case "albums":
+            case "folder":
+            case "shows":
+            case "liked":
+            case "local":
+                cond1 = true;
+                break;
+        }
+
+        let cond2 = pageType == "new-releases" && isNewUI;
+
         if (cond1 || cond2) {
             injectCSS(hideTopBar, "nord--hideTopBar");
             if (cond1) {
@@ -2428,27 +2560,203 @@ async function initNord() {
         }
     }
 
-    function nordLyricsFun() {
-        if (CONFIG.nordLyrics) {
-            setLocalStorageDataWithKey("lyrics-plus:visual:colorful", "false");
-            setLocalStorageDataWithKey("lyrics-plus:visual:noise", "false");
+    async function hideOrShowBanner(pageType) {
+        let cond1 = false;
+
+        switch (pageType) {
+            case "playlists":
+            case "artists":
+            case "albums":
+            case "folder":
+            case "shows":
+            case "liked":
+            case "local":
+            case "genre":
+                cond1 = true;
+                break;
+        }
+
+        if (cond1) {
+            banner.style.display = "unset";
         } else {
-            setLocalStorageDataWithKey("lyrics-plus:visual:colorful", "true");
-            setLocalStorageDataWithKey("lyrics-plus:visual:noise", "true");
+            banner.style.display = "none";
+        }
+
+        let fixAlbumPage = `
+        section[data-testid="album-page"] > div:nth-child(4),
+        section[data-testid="album-page"] > div:nth-child(5) {
+            background-color: var(--spice-main);
+        }
+        .main-actionBar-ActionBar.contentSpacing {
+            background-color: var(--spice-main);
+        }
+        .contentSpacing {
+            padding: 32px !important;
+        }`;
+
+        let fixLikedSongsPage = `
+        .main-actionBar-ActionBar.contentSpacing {
+            background-color: var(--spice-main);
+        }
+        .playlist-playlist-playlist[data-testid="playlist-page"] > div:nth-child(4) {
+            background-color: var(--spice-main);
+        }`;
+
+        let fixFolderPage = `
+        .main-actionBar-ActionBar.contentSpacing {
+            background-color: var(--spice-main);
+        }
+        .YJMECPbMHWgMUs8RFdcV > div:nth-child(4) {
+            background-color: var(--spice-main);
+        }`;
+
+        let fixShowsPage = `
+        .main-actionBar-ActionBar.contentSpacing {
+            background-color: var(--spice-main);
+        }
+        .aQMtxnKeiJqZ9XCcDuZ7 > div:nth-child(4) {
+            background-color: var(--spice-main);
+        }`;
+
+        let fixLocalPage = `
+        .main-actionBar-ActionBar.contentSpacing {
+            background-color: var(--spice-main);
+        }
+        .uCHqQ74vvHOnctGg0X0B > div:nth-child(4) {
+            background-color: var(--spice-main);
+        }`;
+
+        if (pageType == "albums") {
+            cssSnippet(fixAlbumPage, "nord--fixAlbumPage", true);
+        } else {
+            cssSnippet(fixAlbumPage, "nord--fixAlbumPage", false);
+        }
+
+        if (pageType == "liked") {
+            cssSnippet(fixLikedSongsPage, "nord--fixLikedSongsPage", true);
+        } else {
+            cssSnippet(fixLikedSongsPage, "nord--fixLikedSongsPage", false);
+        }
+
+        if (pageType == "folder") {
+            cssSnippet(fixFolderPage, "nord--fixFolderPage", true);
+        } else {
+            cssSnippet(fixFolderPage, "nord--fixFolderPage", false);
+        }
+
+        if (pageType == "shows") {
+            cssSnippet(fixShowsPage, "nord--fixShowsPage", true);
+        } else {
+            cssSnippet(fixShowsPage, "nord--fixShowsPage", false);
+        }
+
+        if (pageType == "local") {
+            cssSnippet(fixLocalPage, "nord--fixLocalPage", true);
+        } else {
+            cssSnippet(fixLocalPage, "nord--fixLocalPage", false);
         }
     }
 
-    ////////////////////////////////////// Main ///////////////////////////////////////////
+    function pathToURI(path, uid = false) {
+        path = path.split("/");
+        if (uid) {
+            return path[2];
+        }
+        return `spotify:${path[1]}:${path[2]}`;
+    }
 
-    let data = Spicetify.Platform.History.location;
+    async function fetchExternalImage(pageType, uid, rawData = Spicetify.Player) {
+        switch (pageType) {
+            case "albums":
+            case "playlists":
+            case "artists":
+            case "shows":
+                rawData = await Spicetify.CosmosAsync.get(`https://api.spotify.com/v1/${pageType}/${uid}`);
+                return rawData.images[0]["url"];
+            case false:
+            case "local":
+            case "genre":
+            case "folder":
+            case "liked":
+                return rawData.data.track.metadata.image_xlarge_url;
+        }
+    }
 
-    hideTopBarRules(data);
+    function pathToType(path) {
+        let rootPath = path.split("/")[1];
 
-    Spicetify.Platform.History.listen(async (data) => {
-        hideTopBarRules(data);
-    });
+        switch (rootPath) {
+            case "playlist":
+                isBannerPage = true;
+                return "playlists";
+            case "album":
+                isBannerPage = true;
+                return "albums";
+            case "genre":
+                if (!path.split("/")[2].includes("section")) {
+                    isBannerPage = false;
+                    return "genre";
+                }
+                break;
+            case "artist":
+                if (path.split("/").length == 3) {
+                    isBannerPage = true;
+                    return "artists";
+                }
+
+                break;
+            case "show":
+                isBannerPage = true;
+                return "shows";
+            case "folder":
+                isBannerPage = false;
+                return "folder";
+            case "new-releases":
+                isBannerPage = false;
+                return "new-releases";
+        }
+
+        switch (path) {
+            case "/collection/tracks":
+                isBannerPage = false;
+                return "liked";
+            case "/collection/local-files":
+                isBannerPage = false;
+                return "local";
+        }
+
+        isBannerPage = false;
+        return false;
+    }
+
+    async function saveBannerPos() {
+        await saveConfig("bannerPosition", CONFIG.bannerPosition);
+    }
+
+    function updateConfigPos() {
+        if (parseInt(getComputedStyle(banner).backgroundPositionY) == 50) {
+            delete CONFIG.bannerPosition[uri];
+        } else {
+            CONFIG.bannerPosition[uri] = `${parseInt(getComputedStyle(banner).backgroundPositionY)}`;
+        }
+    }
+
+    async function injectBanner(src) {
+        if (src != "song") {
+            await hideOrShowBanner(pageType);
+            await hideTopBarRules(pageType);
+        }
+        await updateURI(path, pageType, src);
+        await updateBannerImage(image);
+    }
+
+    ////////////////////////////////////// Apply Snippets ///////////////////////////////////////////
+
+    injectCSS(bannerCSS, "nord--bannerCSS");
 
     nordLyricsFun();
+
+    cssSnippet(hideDefaultCoverArt, "nord-hideDefaultCoverArt", CONFIG.hideDefaultCoverArt);
 
     cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
 
@@ -2497,10 +2805,10 @@ async function initNord() {
 
     cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
 
-    cssSnippet(artistBigImage, "nord--artistBigImage", CONFIG.artistBigImage);
-    await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", CONFIG.artistBigImage);
+    injectCSS(artistBigImage, "nord--artistBigImage");
+    await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", true);
 
-    cssSnippet(artistImageOverlay, "nord--artistImageOverlay", CONFIG.artistImageOverlay);
+    cssSnippet(bannerOverlay, "nord--bannerOverlay", CONFIG.bannerOverlay);
 
     cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
 
@@ -2538,4 +2846,69 @@ async function initNord() {
     injectReload(CONFIG.rightClickToReload);
 
     settingsButton.addEventListener("click", waitForUserToTriggerClosePopup);
+
+    ////////////////////////////////////// Main ///////////////////////////////////////////
+
+    let path = Spicetify.Platform.History.location.pathname;
+    let isBannerPage;
+    let pageType = pathToType(path);
+    let uri, uid, image;
+    let islocal = Spicetify.Player.data.track.metadata.is_local == "true";
+    let filterCSS = CONFIG.bannerBlurValue == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
+
+    let mainView = document.querySelector(".Root__main-view");
+
+    let banner = document.createElement("div");
+    mainView.appendChild(banner);
+    banner.id = "main-banner";
+    CONFIG.fitBannerSize ? (banner.style.backgroundSize = "unset") : "100%";
+
+    let preBanner = document.createElement("div");
+    mainView.appendChild(preBanner);
+    preBanner.id = "pre-banner";
+
+    await injectBanner("start");
+
+    Spicetify.Platform.History.listen(async (data) => {
+        path = data.pathname;
+        pageType = pathToType(path);
+        await injectBanner("page");
+        await saveBannerPos();
+    });
+
+    Spicetify.Player.addEventListener("songchange", async (event) => {
+        islocal = event.data.track.metadata.is_local == "true";
+        await saveBannerPos();
+        await injectBanner("song");
+    });
+
+    banner.addEventListener("wheel", (event) => {
+        let delta = Math.sign(event.deltaY);
+        let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
+
+        if (delta == 1 && currentPos < 100) {
+            banner.style.backgroundPositionY = currentPos + 5 + "%";
+        }
+
+        if (delta == -1 && 5 <= currentPos) {
+            banner.style.backgroundPositionY = currentPos - 5 + "%";
+        }
+
+        updateConfigPos();
+    });
+
+    window.addEventListener("keydown", (event) => {
+        if (event.repeat) return;
+        if (event.key == "`") {
+            banner.style.transition = "background-image 0.5s, background-position-y 0s, filter 0.5s ease-in-out";
+            banner.style.zIndex = "1";
+        }
+    });
+
+    window.addEventListener("keyup", (event) => {
+        if (event.key == "`") {
+            banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
+            banner.style.zIndex = "-1";
+        }
+    });
 }
