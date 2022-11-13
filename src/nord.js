@@ -123,6 +123,7 @@ async function initNord() {
         changeCoverArtOnSongChange: true,
         bannerBlurValue: "0",
         fitBannerSize: false,
+        songBannersOnly: false,
         bannerPosition: {
             "spotify:album:3S4AQxtnqGJOtw1k6ZT111": "35",
         },
@@ -1909,6 +1910,10 @@ async function initNord() {
             field: "bannerOverlay",
         }),
         React.createElement(checkBoxItem, {
+            name: "Song Banners Only",
+            field: "songBannersOnly",
+        }),
+        React.createElement(checkBoxItem, {
             name: "Change Page's CoverArt On Song Change",
             field: "changeCoverArtOnSongChange",
         }),
@@ -1926,7 +1931,7 @@ async function initNord() {
             field: "fitBannerSize",
         }),
         React.createElement(checkBoxItem, {
-            name: `Tip : Hold ~ key and scroll to reposition Banner. Position will be Automatically Remembered for Every Individual Banner`,
+            name: `Tip : Scroll on Player Bar to reposition Banner, Right click on Player Bar to Reset Position. Position will be Remembered automatically for every Individual Banner`,
             check: false,
         }),
         React.createElement(heading, {
@@ -2500,7 +2505,19 @@ async function initNord() {
             return;
         }
 
-        if (src == "song" || !isBannerPage) {
+        if (pageType == "artists" || pageType == "playlists") {
+            try {
+                let bigCoverArt;
+                if (src == "song") {
+                    bigCoverArt = await waitForElement(".main-entityHeader-background", 500);
+                    bigCoverArt.style.display = "none";
+                } else {
+                    bigCoverArt.style.display = "unset";
+                }
+            } catch {}
+        }
+
+        if (src == "song" || !isBannerPage || CONFIG.songBannersOnly) {
             if (islocal) {
                 uri = rawData.data.track.uri;
             } else {
@@ -2877,40 +2894,61 @@ async function initNord() {
     });
 
     Spicetify.Player.addEventListener("songchange", async (event) => {
+        banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
+        banner.style.zIndex = "-1";
         islocal = event.data.track.metadata.is_local == "true";
         await saveBannerPos();
         await injectBanner("song");
     });
 
-    banner.addEventListener("wheel", (event) => {
-        let delta = Math.sign(event.deltaY);
-        let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
+    let player = await waitForElement(".Root__now-playing-bar", 1000);
+    let leftPlayerControls = await waitForElement(".main-nowPlayingBar-left", 1000);
+    let isPlayerHover = false;
+    let isLeftPlayerControls = false;
 
-        if (delta == 1 && currentPos < 100) {
-            currentPos = 95 < currentPos + 5 ? 100 : currentPos + 5;
-            banner.style.backgroundPositionY = currentPos + "%";
-            updateConfigPos();
-        }
+    leftPlayerControls.addEventListener("mouseover", () => {
+        isLeftPlayerControls = true;
+    });
+    leftPlayerControls.addEventListener("mouseout", () => {
+        isLeftPlayerControls = false;
+        banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
+        banner.style.zIndex = "-1";
+    });
 
-        if (delta == -1 && 0 < currentPos) {
-            currentPos = currentPos - 5 < 5 ? 0 : currentPos - 5;
-            banner.style.backgroundPositionY = currentPos + "%";
+    player.addEventListener("mouseover", () => {
+        isPlayerHover = true;
+    });
+    player.addEventListener("mouseout", () => {
+        isPlayerHover = false;
+        banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
+        banner.style.zIndex = "-1";
+    });
+
+    player.addEventListener("contextmenu", () => {
+        if (!isLeftPlayerControls) {
+            banner.style.backgroundPositionY = "50%";
             updateConfigPos();
         }
     });
 
-    window.addEventListener("keydown", (event) => {
-        if (event.repeat) return;
-        if (event.key == "`") {
+    player.addEventListener("wheel", (event) => {
+        if (isPlayerHover) {
             banner.style.transition = "background-image 0.5s, background-position-y 0s, filter 0.5s ease-in-out";
             banner.style.zIndex = "1";
-        }
-    });
+            let delta = Math.sign(event.deltaY);
+            let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
-    window.addEventListener("keyup", (event) => {
-        if (event.key == "`") {
-            banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
-            banner.style.zIndex = "-1";
+            if (delta == 1 && currentPos < 100) {
+                currentPos = 95 < currentPos + 5 ? 100 : currentPos + 5;
+                banner.style.backgroundPositionY = currentPos + "%";
+                updateConfigPos();
+            }
+
+            if (delta == -1 && 0 < currentPos) {
+                currentPos = currentPos - 5 < 5 ? 0 : currentPos - 5;
+                banner.style.backgroundPositionY = currentPos + "%";
+                updateConfigPos();
+            }
         }
     });
 }
