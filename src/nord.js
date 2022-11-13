@@ -1926,7 +1926,7 @@ async function initNord() {
             field: "fitBannerSize",
         }),
         React.createElement(checkBoxItem, {
-            name: `Tip : Hold ~ key and scroll to reposition Banner. Position will Automatically be Remembered for Every Individual Banner`,
+            name: `Tip : Hold ~ key and scroll to reposition Banner. Position will be Automatically Remembered for Every Individual Banner`,
             check: false,
         }),
         React.createElement(heading, {
