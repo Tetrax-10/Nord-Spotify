@@ -1934,7 +1934,7 @@ async function initNord() {
             field: "fitBannerSize",
         }),
         React.createElement(checkBoxItem, {
-            name: `Tip : Scroll on Player Bar to reposition Banner, Right click on Player Bar to Reset Position. Position will be Remembered automatically for every Individual Banner. Hold ~ Key to Zoom out Image`,
+            name: `Tip : Scroll on Player Bar to reposition Banner, Right click on Player Bar to Reset Position. Position will be Remembered automatically for every Individual Banner. Hold ~ Key to Zoom out Banner`,
             check: false,
         }),
         React.createElement(heading, {
