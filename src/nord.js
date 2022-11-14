@@ -2187,8 +2187,6 @@ async function initNord() {
 
     cssSnippet(hideDefaultCoverArt, "nord-hideDefaultCoverArt", CONFIG.hideDefaultCoverArt);
 
-    cssSnippet(hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
-
     cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
 
     cssSnippet(fontSize(CONFIG.fontSize, CONFIG.fontSize), "nord-fontSize", CONFIG.fontSizeBool);
@@ -2689,10 +2687,12 @@ async function initNord() {
         if (isValidPage) {
             injectCSS(artistBigImage, "nord--artistBigImage");
             await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", true);
+            cssSnippet(hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
             banner.style.display = "unset";
         } else {
             removeInjectedElement(artistBigImage, "nord--artistBigImage");
             await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", false);
+            cssSnippet(hidePageDetails, "nord-hidePageDetails", false);
             banner.style.display = "none";
         }
 
