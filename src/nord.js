@@ -1093,7 +1093,7 @@ async function initNord() {
         });
     }
 
-    function checkBoxItem({ name, field, bool = true, check = true, more = false, onClickCheckFun = () => {}, onClickMoreFun = () => {} }) {
+    function checkBoxItem({ name, field, bool = true, check = true, more = false, external = false, onClickCheckFun = () => {}, onClickMoreFun = () => {} }) {
         if (bool) {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
@@ -1113,6 +1113,18 @@ async function initNord() {
                                   },
                               },
                               React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.more, size: 16 })
+                          )
+                        : null,
+                    external
+                        ? React.createElement(
+                              "button",
+                              {
+                                  className: "checkbox",
+                                  onClick: async () => {
+                                      onClickMoreFun();
+                                  },
+                              },
+                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons["external-link"], size: 16 })
                           )
                         : null,
                     check
@@ -1922,6 +1934,14 @@ async function initNord() {
             name: "Banners",
         }),
         React.createElement(checkBoxItem, {
+            name: `How to Reposition Banners ?`,
+            check: false,
+            external: true,
+            onClickMoreFun: () => {
+                window.open("https://github.com/Tetrax-10/Nord-Spotify#how-to-reposition-banner-");
+            },
+        }),
+        React.createElement(checkBoxItem, {
             name: "Banner Overlay",
             field: "bannerOverlay",
         }),
@@ -1949,10 +1969,6 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Fit Banner Size",
             field: "fitBannerSize",
-        }),
-        React.createElement(checkBoxItem, {
-            name: `Tip : Scroll on Player Bar to reposition Banner, Right click on Player Bar to Reset Position. Position will be Remembered automatically for every Individual Banner. Hold ~ Key to Zoom out Banner`,
-            check: false,
         }),
         React.createElement(heading, {
             name: "Home",
