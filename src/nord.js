@@ -853,6 +853,9 @@ async function initNord() {
         opacity: 0;
     }`;
 
+    let disableTransition = "background-image 0.5s, background-size 0.5s, background-position-y 0s, filter 0.5s ease-in-out";
+    let enableTransition = "background-image 0.5s, background-size 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
+
     let bannerCSS = `
     #main-banner {
         position: absolute;
@@ -865,7 +868,7 @@ async function initNord() {
         background-position: center;
         will-change: transform;
         z-index: -1;
-        transition: background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out;
+        transition: ${enableTransition};
         display: none;
     }
     #pre-banner {
@@ -1931,7 +1934,7 @@ async function initNord() {
             field: "fitBannerSize",
         }),
         React.createElement(checkBoxItem, {
-            name: `Tip : Scroll on Player Bar to reposition Banner, Right click on Player Bar to Reset Position. Position will be Remembered automatically for every Individual Banner`,
+            name: `Tip : Scroll on Player Bar to reposition Banner, Right click on Player Bar to Reset Position. Position will be Remembered automatically for every Individual Banner. Hold ~ Key to Zoom out Image`,
             check: false,
         }),
         React.createElement(heading, {
@@ -2751,10 +2754,10 @@ async function initNord() {
     }
 
     function updateConfigPos() {
-        if (parseInt(getComputedStyle(banner).backgroundPositionY) == 50) {
+        if (currentPos == 50) {
             delete CONFIG.bannerPosition[uri];
         } else {
-            CONFIG.bannerPosition[uri] = `${parseInt(getComputedStyle(banner).backgroundPositionY)}`;
+            CONFIG.bannerPosition[uri] = `${currentPos}`;
         }
     }
 
@@ -2878,7 +2881,7 @@ async function initNord() {
     let banner = document.createElement("div");
     mainView.appendChild(banner);
     banner.id = "main-banner";
-    CONFIG.fitBannerSize ? (banner.style.backgroundSize = "unset") : "100%";
+    CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : "100%";
 
     let preBanner = document.createElement("div");
     mainView.appendChild(preBanner);
@@ -2894,8 +2897,7 @@ async function initNord() {
     });
 
     Spicetify.Player.addEventListener("songchange", async (event) => {
-        banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
-        banner.style.zIndex = "-1";
+        banner.style.transition = enableTransition;
         islocal = event.data.track.metadata.is_local == "true";
         await saveBannerPos();
         await injectBanner("song");
@@ -2905,14 +2907,14 @@ async function initNord() {
     let leftPlayerControls = await waitForElement(".main-nowPlayingBar-left", 1000);
     let isPlayerHover = false;
     let isLeftPlayerControls = false;
+    let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
     leftPlayerControls.addEventListener("mouseover", () => {
         isLeftPlayerControls = true;
     });
     leftPlayerControls.addEventListener("mouseout", () => {
         isLeftPlayerControls = false;
-        banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
-        banner.style.zIndex = "-1";
+        banner.style.transition = enableTransition;
     });
 
     player.addEventListener("mouseover", () => {
@@ -2920,8 +2922,7 @@ async function initNord() {
     });
     player.addEventListener("mouseout", () => {
         isPlayerHover = false;
-        banner.style.transition = "background-image 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
-        banner.style.zIndex = "-1";
+        banner.style.transition = enableTransition;
     });
 
     player.addEventListener("contextmenu", () => {
@@ -2933,10 +2934,10 @@ async function initNord() {
 
     player.addEventListener("wheel", (event) => {
         if (isPlayerHover) {
-            banner.style.transition = "background-image 0.5s, background-position-y 0s, filter 0.5s ease-in-out";
-            banner.style.zIndex = "1";
+            banner.style.transition = disableTransition;
             let delta = Math.sign(event.deltaY);
-            let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
+
+            currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
             if (delta == 1 && currentPos < 100) {
                 currentPos = 95 < currentPos + 5 ? 100 : currentPos + 5;
@@ -2949,6 +2950,26 @@ async function initNord() {
                 banner.style.backgroundPositionY = currentPos + "%";
                 updateConfigPos();
             }
+        }
+    });
+
+    window.addEventListener("keydown", (event) => {
+        if (event.repeat) return;
+        if (event.key == "`" && !CONFIG.fitBannerSize) {
+            banner.style.backgroundColor = "var(--spice-main)";
+            banner.style.zIndex = "1";
+            banner.style.backgroundSize = "50%";
+        }
+    });
+
+    window.addEventListener("keyup", (event) => {
+        if (event.repeat) return;
+        if (event.key == "`" && !CONFIG.fitBannerSize) {
+            banner.style.backgroundSize = "100%";
+            setTimeout(() => {
+                banner.style.zIndex = "-1";
+                banner.style.backgroundColor = "unset";
+            }, 500);
         }
     });
 }
