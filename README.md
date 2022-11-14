@@ -42,6 +42,8 @@ Nord Themed Spotify with no UI Ads
 
 3) Hold `~` to Zoom Out Banner to see full view
 
+https://user-images.githubusercontent.com/75513645/201745840-c4b5d9bb-ff7b-4a02-812b-bb411e76813d.mp4
+
 <br />
 
 ## Custom Fonts
