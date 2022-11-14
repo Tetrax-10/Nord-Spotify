@@ -120,6 +120,7 @@ async function initNord() {
         fontSizeBool: false,
         hoverTime: true,
         hideDefaultCoverArt: true,
+        hidePageDetails: false,
         changeCoverArtOnSongChange: true,
         bannerBlurValue: "0",
         fitBannerSize: false,
@@ -881,6 +882,18 @@ async function initNord() {
     section[data-testid="album-page"] .main-entityHeader-imageContainer,
     section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer {
         display: none;
+    }`;
+
+    let hidePageDetails = `
+    .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold,
+    .main-entityHeader-subtitle.main-entityHeader-gray,
+    .main-entityHeader-metaData,
+    .main-entityHeader-headerText > span,
+    .main-entityHeader-headerText > div {
+        display: none;
+    }
+    .main-entityHeader-title {
+        display: -webkit-box !important;
     }`;
 
     async function updateBannerBlur(filed, value) {
@@ -1924,6 +1937,10 @@ async function initNord() {
             name: "Hide Page's Default CoverArt",
             field: "hideDefaultCoverArt",
         }),
+        React.createElement(checkBoxItem, {
+            name: "Hide Page's Details",
+            field: "hidePageDetails",
+        }),
         React.createElement(inputBoxItem, {
             name: "Banner Blur Amout",
             field: "bannerBlurValue",
@@ -2153,6 +2170,8 @@ async function initNord() {
     nordLyricsFun();
 
     cssSnippet(hideDefaultCoverArt, "nord-hideDefaultCoverArt", CONFIG.hideDefaultCoverArt);
+
+    cssSnippet(hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
 
     cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
 
@@ -2832,12 +2851,21 @@ async function initNord() {
     let islocal = Spicetify.Player.data.track.metadata.is_local == "true";
     let filterCSS = CONFIG.bannerBlurValue == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
 
-    let mainView = document.querySelector(".Root__main-view");
+    let player = await waitForElement(".Root__now-playing-bar", 1000);
+    let leftPlayerControls = await waitForElement(".main-nowPlayingBar-left", 1000);
+    let isPlayerHover = false;
+    let isLeftPlayerControls = false;
+    let isTilde = false;
+
+    let mainView = await waitForElement(".Root__main-view");
+    let topBar = await waitForElement(".Root__top-bar");
 
     let banner = document.createElement("div");
     mainView.appendChild(banner);
     banner.id = "main-banner";
     CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : "100%";
+
+    let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
     let preBanner = document.createElement("div");
     mainView.appendChild(preBanner);
@@ -2858,12 +2886,6 @@ async function initNord() {
         await saveBannerPos();
         await injectBanner("song", event);
     });
-
-    let player = await waitForElement(".Root__now-playing-bar", 1000);
-    let leftPlayerControls = await waitForElement(".main-nowPlayingBar-left", 1000);
-    let isPlayerHover = false;
-    let isLeftPlayerControls = false;
-    let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
     leftPlayerControls.addEventListener("mouseover", () => {
         isLeftPlayerControls = true;
@@ -2912,19 +2934,25 @@ async function initNord() {
     window.addEventListener("keydown", (event) => {
         if (event.repeat) return;
         if (event.key == "`" && !CONFIG.fitBannerSize) {
+            isTilde = true;
             banner.style.backgroundColor = "var(--spice-main)";
             banner.style.zIndex = "1";
             banner.style.backgroundSize = "50%";
+            topBar.style.zIndex = 0;
         }
     });
 
     window.addEventListener("keyup", (event) => {
         if (event.repeat) return;
         if (event.key == "`" && !CONFIG.fitBannerSize) {
+            isTilde = false;
             banner.style.backgroundSize = "100%";
             setTimeout(() => {
-                banner.style.zIndex = "-1";
-                banner.style.backgroundColor = "unset";
+                if (!isTilde) {
+                    banner.style.zIndex = "-1";
+                    banner.style.backgroundColor = "unset";
+                    topBar.style.zIndex = 2;
+                }
             }, 500);
         }
     });
