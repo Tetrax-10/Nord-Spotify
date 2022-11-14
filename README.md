@@ -36,9 +36,9 @@ Nord Themed Spotify with no UI Ads
 
 ## How to Reposition Banner ?
 
-1) Scroll on Player Bar to Reposition banner
+1) Scroll on Player to Reposition banner
 
-2) Right click on Player Bar to Reset banner
+2) Right click on Player to Reset banner Position
 
 3) Hold `~` to Zoom Out Banner to see full view
 
