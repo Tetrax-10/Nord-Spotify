@@ -34,6 +34,16 @@ Nord Themed Spotify with no UI Ads
 
 <br />
 
+## How to Reposition Banner ?
+
+1) Scroll on Player Bar to Reposition banner
+
+2) Right click on Player Bar to Reset banner
+
+3) Hold `~` to Zoom Out Banner to see full view
+
+<br />
+
 ## Custom Fonts
 
 ![Custom Fonts Preview](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/custom-fonts.png)
