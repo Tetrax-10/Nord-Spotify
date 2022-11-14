@@ -2146,6 +2146,103 @@ async function initNord() {
 
     new Spicetify.Topbar.Button("Nord Spotify", svg, settingsPage);
 
+    ////////////////////////////////////// Apply Snippets ///////////////////////////////////////////
+
+    injectCSS(bannerCSS, "nord--bannerCSS");
+
+    nordLyricsFun();
+
+    cssSnippet(hideDefaultCoverArt, "nord-hideDefaultCoverArt", CONFIG.hideDefaultCoverArt);
+
+    cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
+
+    cssSnippet(fontSize(CONFIG.fontSize, CONFIG.fontSize), "nord-fontSize", CONFIG.fontSizeBool);
+
+    cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
+
+    cssSnippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
+
+    cssSnippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
+
+    cssSnippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
+
+    cssSnippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
+
+    cssSnippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
+
+    cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
+
+    await dynamicUI(rightSideCoverArtNew, "nord--rightSideCoverArt", rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
+    cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
+
+    await dynamicUI(hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
+
+    cssSnippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
+
+    cssSnippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
+
+    cssSnippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
+
+    cssSnippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
+
+    cssSnippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
+
+    cssSnippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
+
+    cssSnippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
+
+    cssSnippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
+
+    cssSnippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
+
+    cssSnippet(hideAds, "nord--hideAds", CONFIG.hideAds);
+
+    cssSnippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
+
+    cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
+
+    injectCSS(artistBigImage, "nord--artistBigImage");
+    await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", true);
+
+    cssSnippet(bannerOverlay, "nord--bannerOverlay", CONFIG.bannerOverlay);
+
+    cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
+
+    cssSnippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
+
+    cssSnippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
+
+    cssSnippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
+
+    cssSnippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
+
+    cssSnippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
+
+    cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
+
+    cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
+
+    cssSnippet(hoverTime, "nord--hoverTime", CONFIG.hoverTime);
+
+    injectJS(quickSearchKeyBind);
+
+    injectJS(searchKeyBind);
+
+    injectJS(redoKeyBind);
+
+    await dynamicUI(null, null, darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
+
+    if (isWindows) {
+        hideWindowsControls(); // injects div
+        cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
+    }
+
+    let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 5000);
+
+    injectReload(CONFIG.rightClickToReload);
+
+    settingsButton.addEventListener("click", waitForUserToTriggerClosePopup);
+
     ////////////////////////////////////// Functions ///////////////////////////////////////////
 
     function injectCSS(cssStyle, id) {
@@ -2206,16 +2303,6 @@ async function initNord() {
         userConfig.color_scheme = colorScheme;
 
         injectCSS(createColorScheme(colorSchemes[colorScheme]), `nord--${colorScheme}`);
-    }
-
-    function countNoOfSlashes(string) {
-        let count = 0;
-        string.split("").forEach((char) => {
-            if (char == "/") {
-                count++;
-            }
-        });
-        return count;
     }
 
     function changeKeyBind(oldKey, newKey, bool) {
@@ -2503,7 +2590,7 @@ async function initNord() {
         }
     }
 
-    async function updateURI(path, pageType, src, rawData = Spicetify.Player) {
+    async function updateURI(src, rawData) {
         if (!CONFIG.changeCoverArtOnSongChange && isBannerPage && src == "song") {
             return;
         }
@@ -2531,11 +2618,11 @@ async function initNord() {
         } else if (isBannerPage) {
             uri = pathToURI(path);
             uid = pathToURI(path, "uid");
-            image = await fetchExternalImage(pageType, uid, rawData);
+            image = await fetchImage(pageType, uid, rawData);
         }
     }
 
-    async function updateBannerImage(image) {
+    async function updateBannerImage() {
         if (banner.style.backgroundImage == `url("${image}")`) {
             return;
         }
@@ -2551,26 +2638,12 @@ async function initNord() {
         }, 500);
     }
 
-    async function hideTopBarRules(pageType) {
-        let cond1 = false;
-
-        switch (pageType) {
-            case "playlists":
-            case "artists":
-            case "albums":
-            case "folder":
-            case "shows":
-            case "liked":
-            case "local":
-                cond1 = true;
-                break;
-        }
-
+    async function hideTopBarRules() {
         let cond2 = pageType == "new-releases" && isNewUI;
 
-        if (cond1 || cond2) {
+        if (isValidPage || cond2) {
             injectCSS(hideTopBar, "nord--hideTopBar");
-            if (cond1) {
+            if (isValidPage) {
                 await dynamicUI(hideArtistTopBarNew, "nord--hideArtistTopBarNew", hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
             }
         } else {
@@ -2580,23 +2653,8 @@ async function initNord() {
         }
     }
 
-    async function hideOrShowBanner(pageType) {
-        let cond1 = false;
-
-        switch (pageType) {
-            case "playlists":
-            case "artists":
-            case "albums":
-            case "folder":
-            case "shows":
-            case "liked":
-            case "local":
-            case "genre":
-                cond1 = true;
-                break;
-        }
-
-        if (cond1) {
+    async function hideOrShowBanner() {
+        if (isValidPage) {
             banner.style.display = "unset";
         } else {
             banner.style.display = "none";
@@ -2685,66 +2743,61 @@ async function initNord() {
         return `spotify:${path[1]}:${path[2]}`;
     }
 
-    async function fetchExternalImage(pageType, uid, rawData = Spicetify.Player) {
-        switch (pageType) {
-            case "albums":
-            case "playlists":
-            case "artists":
-            case "shows":
-                rawData = await Spicetify.CosmosAsync.get(`https://api.spotify.com/v1/${pageType}/${uid}`);
-                return rawData.images[0]["url"];
-            case false:
-            case "local":
-            case "genre":
-            case "folder":
-            case "liked":
-                return rawData.data.track.metadata.image_xlarge_url;
+    async function fetchImage(pageType, uid, rawData = Spicetify.Player) {
+        if (isBannerPage) {
+            rawData = await Spicetify.CosmosAsync.get(`https://api.spotify.com/v1/${pageType}/${uid}`);
+            return rawData.images[0]["url"];
+        } else {
+            return rawData.data.track.metadata.image_xlarge_url;
         }
     }
 
-    function pathToType(path) {
+    function pathToType() {
         let rootPath = path.split("/")[1];
 
         switch (rootPath) {
             case "playlist":
-                isBannerPage = true;
-                return "playlists";
             case "album":
+            case "show":
                 isBannerPage = true;
-                return "albums";
-            case "genre":
-                if (!path.split("/")[2].includes("section")) {
-                    isBannerPage = false;
-                    return "genre";
-                }
-                break;
+                isValidPage = true;
+                return rootPath + "s";
             case "artist":
                 if (path.split("/").length == 3) {
                     isBannerPage = true;
+                    isValidPage = true;
                     return "artists";
                 }
-
                 break;
-            case "show":
-                isBannerPage = true;
-                return "shows";
+            case "genre":
+                if (!path.split("/")[2].includes("section")) {
+                    isBannerPage = false;
+                    isValidPage = true;
+                    return "genre";
+                }
+                break;
             case "folder":
                 isBannerPage = false;
-                return "folder";
+                isValidPage = true;
+                return rootPath;
             case "new-releases":
                 isBannerPage = false;
-                return "new-releases";
+                isValidPage = false;
+                return rootPath;
         }
 
         switch (path) {
             case "/collection/tracks":
                 isBannerPage = false;
+                isValidPage = true;
                 return "liked";
             case "/collection/local-files":
                 isBannerPage = false;
+                isValidPage = true;
                 return "local";
         }
 
+        isValidPage = false;
         isBannerPage = false;
         return false;
     }
@@ -2761,117 +2814,20 @@ async function initNord() {
         }
     }
 
-    async function injectBanner(src) {
+    async function injectBanner(src, rawData = Spicetify.Player) {
         if (src != "song") {
-            await hideOrShowBanner(pageType);
-            await hideTopBarRules(pageType);
+            await hideOrShowBanner();
+            await hideTopBarRules();
         }
-        await updateURI(path, pageType, src);
-        await updateBannerImage(image);
+        await updateURI(src, rawData);
+        await updateBannerImage();
     }
-
-    ////////////////////////////////////// Apply Snippets ///////////////////////////////////////////
-
-    injectCSS(bannerCSS, "nord--bannerCSS");
-
-    nordLyricsFun();
-
-    cssSnippet(hideDefaultCoverArt, "nord-hideDefaultCoverArt", CONFIG.hideDefaultCoverArt);
-
-    cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
-
-    cssSnippet(fontSize(CONFIG.fontSize, CONFIG.fontSize), "nord-fontSize", CONFIG.fontSizeBool);
-
-    cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
-
-    cssSnippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
-
-    cssSnippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
-
-    cssSnippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
-
-    cssSnippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
-
-    cssSnippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
-
-    cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
-
-    await dynamicUI(rightSideCoverArtNew, "nord--rightSideCoverArt", rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
-    cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
-
-    await dynamicUI(hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
-
-    cssSnippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
-
-    cssSnippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
-
-    cssSnippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
-
-    cssSnippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
-
-    cssSnippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
-
-    cssSnippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
-
-    cssSnippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
-
-    cssSnippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
-
-    cssSnippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
-
-    cssSnippet(hideAds, "nord--hideAds", CONFIG.hideAds);
-
-    cssSnippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
-
-    cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
-
-    injectCSS(artistBigImage, "nord--artistBigImage");
-    await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", true);
-
-    cssSnippet(bannerOverlay, "nord--bannerOverlay", CONFIG.bannerOverlay);
-
-    cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
-
-    cssSnippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
-
-    cssSnippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
-
-    cssSnippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
-
-    cssSnippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
-
-    cssSnippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
-
-    cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
-
-    cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
-
-    cssSnippet(hoverTime, "nord--hoverTime", CONFIG.hoverTime);
-
-    injectJS(quickSearchKeyBind);
-
-    injectJS(searchKeyBind);
-
-    injectJS(redoKeyBind);
-
-    await dynamicUI(null, null, darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
-
-    if (isWindows) {
-        hideWindowsControls(); // injects div
-        cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
-    }
-
-    let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 5000);
-
-    injectReload(CONFIG.rightClickToReload);
-
-    settingsButton.addEventListener("click", waitForUserToTriggerClosePopup);
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
 
     let path = Spicetify.Platform.History.location.pathname;
-    let isBannerPage;
-    let pageType = pathToType(path);
+    let isBannerPage, isValidPage;
+    let pageType = pathToType();
     let uri, uid, image;
     let islocal = Spicetify.Player.data.track.metadata.is_local == "true";
     let filterCSS = CONFIG.bannerBlurValue == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
@@ -2891,7 +2847,7 @@ async function initNord() {
 
     Spicetify.Platform.History.listen(async (data) => {
         path = data.pathname;
-        pageType = pathToType(path);
+        pageType = pathToType();
         await injectBanner("page");
         await saveBannerPos();
     });
@@ -2900,7 +2856,7 @@ async function initNord() {
         banner.style.transition = enableTransition;
         islocal = event.data.track.metadata.is_local == "true";
         await saveBannerPos();
-        await injectBanner("song");
+        await injectBanner("song", event);
     });
 
     let player = await waitForElement(".Root__now-playing-bar", 1000);
