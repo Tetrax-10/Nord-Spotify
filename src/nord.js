@@ -2236,9 +2236,6 @@ async function initNord() {
 
     cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
 
-    injectCSS(artistBigImage, "nord--artistBigImage");
-    await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", true);
-
     cssSnippet(bannerOverlay, "nord--bannerOverlay", CONFIG.bannerOverlay);
 
     cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
@@ -2690,8 +2687,12 @@ async function initNord() {
 
     async function hideOrShowBanner() {
         if (isValidPage) {
+            injectCSS(artistBigImage, "nord--artistBigImage");
+            await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", true);
             banner.style.display = "unset";
         } else {
+            removeInjectedElement(artistBigImage, "nord--artistBigImage");
+            await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", false);
             banner.style.display = "none";
         }
 
