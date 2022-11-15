@@ -1307,13 +1307,13 @@ async function initNord() {
                 Spicetify.PopupModal.hide();
                 setTimeout(() => {
                     editCustomColor();
-                }, 300);
+                }, 100);
             },
             onClickAddFun: () => {
                 Spicetify.PopupModal.hide();
                 setTimeout(() => {
                     addcustomColorInfo();
-                }, 300);
+                }, 100);
             },
             onChangeFun: () => {
                 removeInjectedElement(`nord--${userConfig.color_scheme}`);
@@ -1326,7 +1326,7 @@ async function initNord() {
             more: true,
             onClickMoreFun: async () => {
                 Spicetify.PopupModal.hide();
-                setTimeout(customFontInfo, 300);
+                setTimeout(customFontInfo, 100);
             },
         }),
         React.createElement(checkBoxItem, {
@@ -1335,7 +1335,7 @@ async function initNord() {
             more: true,
             onClickMoreFun: async () => {
                 Spicetify.PopupModal.hide();
-                setTimeout(customFontSize, 300);
+                setTimeout(customFontSize, 100);
             },
         }),
         React.createElement(checkBoxItem, {
@@ -1353,7 +1353,7 @@ async function initNord() {
             },
             onClickMoreFun: async () => {
                 Spicetify.PopupModal.hide();
-                setTimeout(editHideWindowsControls, 300);
+                setTimeout(editHideWindowsControls, 100);
             },
         }),
         React.createElement(checkBoxItem, {
@@ -2775,7 +2775,8 @@ async function initNord() {
             try {
                 let bigCoverArt;
                 if (src == "song") {
-                    bigCoverArt = await waitForElement(".main-entityHeader-background", 500);
+                    bigCoverArt = await waitForElement(".main-entityHeader-background", 10);
+                    console.log(bigCoverArt);
                     bigCoverArt.style.display = "none";
                 } else {
                     bigCoverArt.style.display = "unset";
@@ -2790,10 +2791,24 @@ async function initNord() {
                 uri = rawData.data.track.metadata.album_uri;
             }
             uid = uri.split(":")[2];
+
+            if (previousUri == uri) {
+                previousUri = uri;
+                return;
+            }
+            previousUri = uri;
+
             image = rawData.data.track.metadata.image_xlarge_url;
         } else if (isBannerPage) {
             uri = pathToURI(path);
             uid = pathToURI(path, "uid");
+
+            if (previousUri == uri) {
+                previousUri = uri;
+                return;
+            }
+            previousUri = uri;
+
             image = await fetchImage(pageType, uid, rawData);
         }
     }
@@ -3024,7 +3039,7 @@ async function initNord() {
     let path = Spicetify.Platform.History.location.pathname;
     let isBannerPage, isValidPage;
     let pageType = pathToType();
-    let uri, uid, image;
+    let uri, uid, image, previousUri;
     let islocal = Spicetify.Player.data.track.metadata.is_local == "true";
     let filterCSS = CONFIG.bannerBlurValue == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
 
@@ -3034,8 +3049,8 @@ async function initNord() {
     let isLeftPlayerControls = false;
     let isTilde = false;
 
-    let mainView = await waitForElement(".Root__main-view");
-    let topBar = await waitForElement(".Root__top-bar");
+    let mainView = await waitForElement(".Root__main-view", 1000);
+    let topBar = await waitForElement(".Root__top-bar", 1000);
 
     let banner = document.createElement("div");
     mainView.appendChild(banner);
