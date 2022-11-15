@@ -68,6 +68,7 @@ async function initNord() {
 
     const defaultSettings = {
         bannerOverlay: true,
+        bannerOverlayColor: "#00000080",
         customFont: true,
         betterGenre: true,
         betterLyricsPlus: true,
@@ -483,12 +484,9 @@ async function initNord() {
                                       await saveConfig();
                                       onClickCheckFun();
                                       if (!ComplexConditionedSnippetsAutoApply[field]) {
-                                          console.log("run");
                                           if (ComplexConditionedSnippets[field] === undefined) {
-                                              console.log(true);
                                               updateCssSnippet(field);
                                           } else {
-                                              console.log(false);
                                               refrestToApply = true;
                                           }
                                       }
@@ -1377,6 +1375,11 @@ async function initNord() {
             name: "Banner Overlay",
             field: "bannerOverlay",
         }),
+        React.createElement(inputBoxItem, {
+            name: "Banner Overlay Color",
+            field: "bannerOverlayColor",
+            onChangeFun: updateBannerOverlayColor,
+        }),
         React.createElement(checkBoxItem, {
             name: "Song Banners Only",
             field: "songBannersOnly",
@@ -1402,7 +1405,6 @@ async function initNord() {
             name: "Fit Banner Size",
             field: "fitBannerSize",
             onClickCheckFun: () => {
-                console.log("fitBannerSize");
                 CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "100%");
             },
         }),
@@ -1813,7 +1815,7 @@ async function initNord() {
         left: 0;
         display: block;
         content: "";
-        background: #00000080;
+        background: ${CONFIG.bannerOverlayColor};
         height: 100vh;
         width: 100%;
         z-index: -1;
@@ -2261,15 +2263,45 @@ async function initNord() {
         nordLyrics: false,
     };
 
-    async function updateBannerBlur(filed, value) {
+    async function updateBannerBlur(field, value) {
         if (value == "") {
             value = 0;
         }
 
-        CONFIG[filed] = value;
-        await saveConfig(filed, CONFIG[filed]);
+        CONFIG[field] = value;
+        await saveConfig(field, CONFIG[field]);
         filterCSS = value == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
         banner.style.filter = filterCSS;
+    }
+
+    async function updateBannerOverlayColor(field, value) {
+        if (!value) {
+            value = defaultSettings[field];
+        }
+
+        CONFIG[field] = value;
+        await saveConfig(field, CONFIG[field]);
+
+        let bannerOverlay = `
+        /* banner image overlay */
+        #main-banner:after,
+        /* artist image overlay */
+        .main-entityHeader-container.main-entityHeader-withBackgroundImage:after {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: block;
+            content: "";
+            background: ${value};
+            height: 100vh;
+            width: 100%;
+            z-index: -1;
+        }`;
+
+        if (CONFIG.bannerOverlay) {
+            removeInjectedElement("nord--bannerOverlay");
+            cssSnippet(bannerOverlay, "nord--bannerOverlay", true);
+        }
     }
 
     function customFont(url, name) {
