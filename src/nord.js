@@ -1809,7 +1809,7 @@ async function initNord() {
     /* banner image overlay */
     #main-banner:after,
     /* artist image overlay */
-    .main-entityHeader-container.main-entityHeader-withBackgroundImage:after {
+    .main-entityHeader-background:after {
         position: fixed;
         top: 0;
         left: 0;
@@ -2286,7 +2286,7 @@ async function initNord() {
         /* banner image overlay */
         #main-banner:after,
         /* artist image overlay */
-        .main-entityHeader-container.main-entityHeader-withBackgroundImage:after {
+        .main-entityHeader-background:after {
             position: fixed;
             top: 0;
             left: 0;
@@ -2776,7 +2776,6 @@ async function initNord() {
                 let bigCoverArt;
                 if (src == "song") {
                     bigCoverArt = await waitForElement(".main-entityHeader-background", 10);
-                    console.log(bigCoverArt);
                     bigCoverArt.style.display = "none";
                 } else {
                     bigCoverArt.style.display = "unset";
@@ -2955,12 +2954,14 @@ async function initNord() {
     }
 
     async function fetchImage(pageType, uid, rawData = Spicetify.Player) {
-        if (isBannerPage) {
-            rawData = await Spicetify.CosmosAsync.get(`https://api.spotify.com/v1/${pageType}/${uid}`);
-            return rawData.images[0]["url"];
-        } else {
-            return rawData.data.track.metadata.image_xlarge_url;
-        }
+        try {
+            if (isBannerPage) {
+                rawData = await Spicetify.CosmosAsync.get(`https://api.spotify.com/v1/${pageType}/${uid}`);
+                return rawData.images[0]["url"];
+            } else {
+                return rawData.data.track.metadata.image_xlarge_url;
+            }
+        } catch {}
     }
 
     function pathToType() {
