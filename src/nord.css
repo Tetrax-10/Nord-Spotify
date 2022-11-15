@@ -286,6 +286,11 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     padding-top: 15px;
 }
 
+/* home page bottom extra padding */
+.main-view-container__scroll-node-child {
+    padding-bottom: 0px;
+}
+
 /* home page top six playlist bg color */
 .view-homeShortcutsGrid-shortcut {
     background-color: var(--spice-custom-main-soft-secondary) !important;
