@@ -467,8 +467,10 @@ input[placeholder="Add a display name"] {
 
 /* //////////// Settings Page //////////// */
 
-/* settings page buttons, enhance button, find friends button */
+/* enhance button, settings page buttons, find friends button */
 .wKCsR,
+/* enhanced button */
+.fxCwDs,
 /* settings page connect to facebook */
 .xm2mOJwSu9_GfODYzx8M {
     border: none;
@@ -825,6 +827,11 @@ a {
     padding-right: 3px;
 }
 
+/* remove play button from topbar */
+:root .Root__top-bar header .main-playButton-PlayButton {
+    display: none !important;
+}
+
 /* //////////// Player //////////// */
 
 /* player cover image */
@@ -912,9 +919,10 @@ a {
     color: var(--spice-custom-subdued) !important;
 }
 
-/* player active button */
+/* player active button like shuffle, repeat, queue, lyrics */
 .main-nowPlayingBar-nowPlayingBar button.control-button--active,
 .main-nowPlayingBar-nowPlayingBar button[aria-checked="mixed"],
+.main-nowPlayingBar-nowPlayingBar button[data-active="true"],
 .main-nowPlayingBar-nowPlayingBar button[aria-expanded="true"],
 .main-nowPlayingBar-nowPlayingBar button[aria-checked="true"] {
     color: var(--spice-custom-link-hover) !important;

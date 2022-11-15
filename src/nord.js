@@ -91,7 +91,6 @@ async function initNord() {
         hideSimilarSongsRecommendation: false,
         hideSpotifyConnect: false,
         hideSpotifyFullScreen: false,
-        hideTopBarPlayButton: true,
         hideTopGradient: true,
         hideWindowsControls: true,
         hideWindowsControlsValues: {
@@ -111,7 +110,6 @@ async function initNord() {
         darkSideBar: false,
         localColor: false,
         rightClickToReload: false,
-        isReload: true,
         customFontURL: "https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap",
         customFontName: "Quicksand",
         colorScheme: "Nord",
@@ -295,675 +293,6 @@ async function initNord() {
     NordSpotify.Reload = forceReload;
     NordSpotify.ResetItem = ResetItem;
 
-    ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
-
-    let hideTopBar = `
-    .main-topBar-background {
-        background-color: unset !important;
-    }
-    .main-topBar-overlay {
-        background-color: unset !important;
-    }`;
-
-    let hideArtistTopBarNew = `
-    .main-entityHeader-topbarTitle {
-        background-color: var(--spice-main);
-        padding: 10px;
-        width: 100%;
-        padding-top: 15px;
-        padding-left: 32px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        position: absolute;
-        margin-top: -1px;
-        left: 0px;
-        transition: all 0s ease;
-    }`;
-
-    let hideArtistTopBarOld = `
-    .main-entityHeader-topbarTitle {
-        background-color: var(--spice-main);
-        padding: 10px;
-        width: 100%;
-        padding-top: 15px;
-        padding-left: 32px;
-        position: absolute;
-        left: 0px;
-        transition: all 0s ease;
-    }`;
-
-    let rightSideCoverArtNew = `
-    /* right side cover art */
-    .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
-    .main-trackInfo-container {
-        margin-left: 74px;
-    } /* static cover */
-    .main-coverSlotExpanded-container {
-        border-radius: 10px;
-        position: fixed;
-        top: calc(100% - 307px);
-        left: calc(100% - 208px);
-        width: 200px;
-        height: 200px;
-        visibility: hidden;
-        transform-origin: center;
-        animation: 1s coverExpandedIn;
-        animation-fill-mode: forwards;
-    } /* dynamic cover */
-    .main-coverSlotCollapsed-container[aria-hidden="true"] {
-        left: calc(100vw - 162px);
-        top: -231px;
-        width: 200px;
-        height: 200px;
-        visibility: hidden;
-        animation: 1s coverExpandedOut;
-    }
-    .main-coverSlotExpanded-exitActive {
-        display: none;
-    }
-    @keyframes coverExpandedIn {
-        99% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-    }
-    @keyframes coverExpandedOut {
-        99% {
-            visibility: visible;
-        }
-        100% {
-            visibility: hidden;
-        }
-    }
-    .main-coverSlotCollapsed-container {
-        position: fixed;
-        top: -6px;
-        left: 0px;
-        width: 56px;
-        height: 56px;
-        visibility: visible;
-        z-index: 1;
-    }
-    .cover-art .cover-art-image,
-    .main-coverSlotCollapsed-container {
-        transform-origin: center;
-        transition-timing-function: ease-in;
-        transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
-    }
-    .main-coverSlotCollapsed-container[aria-hidden="false"] {
-        transition-timing-function: ease-out !important;
-        transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
-    }
-    .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
-    .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
-        width: 200px;
-        height: 200px;
-    }
-    .main-nowPlayingBar-left {
-        z-index: 2;
-    }
-    .main-nowPlayingBar-center {
-        z-index: 1;
-    }
-    .cover-art {
-        background-color: transparent;
-    }`;
-
-    let rightSideCoverArtOld = `
-    /* right side cover art */
-    .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
-    .main-trackInfo-container {
-        margin-left: 74px;
-    }
-    /* static cover */
-    .main-coverSlotExpanded-container {
-        border-radius: 10px;
-        position: fixed;
-        top: calc(100% - 300px);
-        left: calc(100% - 210px);
-        width: 200px;
-        height: 200px;
-        visibility: hidden;
-        transform-origin: center;
-        animation: 1s coverExpandedIn;
-        animation-fill-mode: forwards;
-    }
-    /* dynamic cover */
-    .main-coverSlotCollapsed-container[aria-hidden="true"] {
-        left: calc(100vw - 154px);
-        top: -233px;
-        width: 200px;
-        height: 200px;
-        visibility: hidden;
-        animation: 1s coverExpandedOut;
-    }
-    .main-coverSlotExpanded-exitActive {
-        display: none;
-    }
-    @keyframes coverExpandedIn {
-        99% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-    }
-    @keyframes coverExpandedOut {
-        99% {
-            visibility: visible;
-        }
-        100% {
-            visibility: hidden;
-        }
-    }
-    .main-coverSlotCollapsed-container {
-        position: fixed;
-        top: -6px;
-        left: 0px;
-        width: 56px;
-        height: 56px;
-        visibility: visible;
-        z-index: 1;
-    }
-    .cover-art .cover-art-image,
-    .main-coverSlotCollapsed-container {
-        transform-origin: center;
-        transition-timing-function: ease-in;
-        transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
-    }
-    .main-coverSlotCollapsed-container[aria-hidden="false"] {
-        transition-timing-function: ease-out !important;
-        transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
-    }
-    .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
-    .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
-        width: 200px;
-        height: 200px;
-    }
-    .main-nowPlayingBar-left {
-        z-index: 2;
-    }
-    .main-nowPlayingBar-center {
-        z-index: 1;
-    }
-    .cover-art {
-        background-color: transparent;
-    }`;
-
-    let leftSideCoverArt = `
-    /* hide small cover art when expanded */
-    .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
-        visibility: hidden;
-    }`;
-
-    let hideHomePageRecommendation = `
-    /* disable homepage recommendation */
-    section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"]) {
-        display: none !important;
-    }`;
-
-    let hideLikedSongsCard = `
-    /* remove liked songs card in your library */
-    .collection-collectionEntityHeroCard-likedSongs {
-        display: none;
-    }`;
-
-    let hideLikedSongsCardTexts = `
-    /* blue like card useless text in your library */
-    .collection-collectionEntityHeroCard-tracksContainer {
-        display: none;
-    }`;
-
-    let hideSimilarSongsRecommendation = `
-    /* disable similar song suggestion in playlist */
-    .playlist-playlist-seeMore,
-    .playlist-playlist-playlistInlineCurationSection,
-    .playlist-playlist-searchResultListContainer,
-    .playlist-playlist-recommendedTrackList {
-        display: none !important;
-    }`;
-
-    let hidePlaylistImageEditButton = `
-    /* remove playlist edit image button */
-    .main-editImageButton-overlay {
-        display: none;
-    }`;
-
-    let hideRadioGradient = `
-    /* radio gradient hidden */
-    .KNUIWLKuuA1qIkTt4jus:after {
-        background: none !important;
-    }`;
-
-    let hideSideBarStatus = `
-    /* hide sidebar status */
-    .main-rootlist-statusIcons {
-        display: none;
-    }`;
-
-    let hideCardsDownloadStatus = `
-    /* hide cards download status */
-    .main-card-DownloadStatusIndicator {
-        display: none;
-    }`;
-
-    let nordLyrics = `
-    /* spotify lyrics background norded */
-    .lyrics-lyrics-container * {
-        --lyrics-color-active: var(--spice-text);
-        --lyrics-color-background: none;
-        --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
-        --lyrics-color-messaging: var(--spice-text);
-    }`;
-
-    let hideFriendActivity = `
-    /* hide friend activity */
-    .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
-        display: none;
-    }`;
-
-    let hideSpotifyConnect = `
-    /* hide spotify connect */
-    .PrhIVExjBkmjHt6Ea4XE {
-        display: none;
-    }`;
-
-    let hideAds = `
-    /* upgrade button top bar */
-    button[title="Upgrade to Premium"],
-    button[aria-label="Upgrade to Premium"],
-    .main-topBar-UpgradeButton,
-    /* top bar user context menu Upgrade to Premium */
-    .main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"],
-    /* top side ads */
-    .WiPggcPDzbwGxoxwLWFf,
-    /* bottom ads */
-    .main-leaderboardComponent-container,
-    /* popup video ad */
-    .Root__modal-slot .GenericModal__overlay.QMMTQfEw3AIHFf4dTRp3.nPKDEvIoCzySBR24pZiN {
-        display: none !important;
-    }
-
-    /* no idea what these are */
-    .Root__ads-container-desktop--is-hidden,
-    .sponsor-container,
-    .desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer {
-        display: none !important;
-    }`;
-
-    let hideSideBarScrollBar = `
-    /* hides sidebar scrollbar */
-    .os-scrollbar:nth-child(6) .os-scrollbar-handle {
-        visibility: hidden;
-    }`;
-
-    let highlightSideBarItem = `
-    /* sidebar selected item (main items) */
-    .personal-library .main-collectionLinkButton-collectionLinkButton.main-collectionLinkButton-selected.active,
-    .main-navBar-navBarItem .main-navBar-navBarLinkActive {
-        background-color: var(--spice-custom-main-soft-secondary);
-        border-radius: 10px;
-    }`;
-
-    let highlightSideBarSelectedItem = `
-    /* sidebar selected playlist */
-    .main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive:hover,
-    .main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive {
-        color: var(--spice-custom-link-hover) !important;
-    }`;
-
-    let boldedSideBarItems = `
-    /* sidebar playlist names */
-    .main-rootlist-rootlistItem span {
-        font-weight: bold;
-    }`;
-
-    let hideSideBarDivider = `
-    /* sidebar divider invisible */
-    .LayoutResizer__resize-bar {
-        background: none;
-    }`;
-
-    let hideTopGradient = `
-    /* Hide playlist gradient top */
-    .main-entityHeader-backgroundColor {
-        display: none !important;
-    }
-    /* Hide playlist gradient bottom */
-    .main-actionBarBackground-background {
-        display: none !important;
-    }
-    /* remove gradient color on home screen */
-    .main-home-homeHeader {
-        display: none !important;
-    }`;
-
-    let hideCurrentPlayingSongBG = `
-    /* current playing song background */
-    div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
-        border-radius: 10px;
-        background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.6);
-    }`;
-
-    let betterGenre = `
-    /* seearch page genre card background */
-    .x-categoryCard-CategoryCard {
-        background-color: var(--spice-custom-main-soft-secondary) !important;
-        padding-bottom: 30px;
-        transition: transform, 0s, ease, 0.25s;
-    }
-    .x-categoryCard-CategoryCard:hover {
-        background-color: var(--spice-custom-main-secondary) !important;
-        transition: transform, 0s, ease, 0.25s;
-    }
-    /* search page genre images */
-    .tV9cjMpTPaykKsn2OVsw {
-        border-radius: 10px;
-    }`;
-
-    let artistBigImage = `
-    /* Artist big image */
-    .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
-        position: fixed;
-        justify-content: center;
-        bottom: 3%;
-    }
-    .main-entityHeader-background.main-entityHeader-overlay {
-        display: none;
-    }
-    /* Big Playlists */
-    .main-entityHeader-nonWrapped {
-        max-height: unset !important;
-    }`;
-
-    let artistBigImageNew = `
-    /* Big Playlists */
-    .nav-alt .main-entityHeader-nonWrapped,
-    .main-entityHeader-background {
-        height: calc(100vh - 105px) !important;
-    }`;
-
-    let artistBigImageOld = `
-    /* Big Playlist */
-    .main-entityHeader-nonWrapped,
-    /* Big artist */
-    .main-entityHeader-background {
-        height: calc(100vh - 90px) !important;
-    }`;
-
-    let bannerOverlay = `
-    /* banner image overlay */
-    #main-banner:after,
-    /* artist image overlay */
-    .main-entityHeader-container.main-entityHeader-withBackgroundImage:after {
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: block;
-        content: "";
-        background: #00000080;
-        height: 100vh;
-        width: 100%;
-        z-index: -1;
-    }`;
-
-    let hideTopBarPlayButton = `
-    /* remove play button from topbar */
-    :root .Root__top-bar header .main-playButton-PlayButton {
-        display: none !important;
-    }`;
-
-    let hideDotsUnderPlayerButtons = `
-    /* hide dots under active button */
-    .main-shuffleButton-button.main-shuffleButton-active:after,
-    .main-repeatButton-button.main-repeatButton-active:after,
-    /* queue */
-    .control-button--active-dot:after {
-        display: none;
-    }`;
-
-    let pointers = `
-    button,
-    .show-followButton-button,
-    .main-dropDown-dropDown,
-    .x-toggle-wrapper,
-    .main-playlistEditDetailsModal-closeBtn,
-    .main-trackList-rowPlayPauseButton,
-    .main-rootlist-rootlistItemLink:link,
-    .main-rootlist-rootlistItemLink:visited,
-    .x-sortBox-sortDropdown,
-    .main-contextMenu-menuItemButton,
-    .main-trackList-column,
-    .main-moreButton-button,
-    .x-downloadButton-button,
-    .main-playButton-PlayButton,
-    .main-coverSlotExpandedCollapseButton-chevron,
-    .main-coverSlotCollapsed-chevron,
-    .control-button:focus,
-    .control-button:hover,
-    .main-repeatButton-button,
-    .main-skipForwardButton-button,
-    .main-playPauseButton-button,
-    .main-skipBackButton-button,
-    .main-shuffleButton-button,
-    .main-addButton-button,
-    .progress-bar__slider,
-    .playback-bar,
-    .main-editImageButton-image,
-    .X1lXSiVj0pzhQCUo_72A  /* collaborate button in playlist */ ,
-    #spicetify-playlist-list .main-rootlist-wrapper /* sidebar playlist hover */ {
-        cursor: pointer !important;
-    }`;
-
-    let betterSpotifyLyrics = `
-    /* better spotify lyrics style  */
-    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
-        filter: blur(1.5px);
-        padding: 15px;
-        font-size: 110%;
-    }
-    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
-        filter: none;
-        padding: 20px;
-        font-size: 140%;
-    }
-    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
-        filter: blur(1.5px);
-        padding: 15px;
-        font-size: 110%;
-    }
-    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
-        filter: none;
-        padding: 10px;
-        font-size: 100%;
-    }`;
-
-    let betterLyricsPlus = `
-    /* lyrics plus compact off style */
-    .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
-        padding: 15px;
-        filter: none;
-        font-size: 250%;
-    }
-    .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
-        padding: 15px;
-        filter: blur(1.5px);
-        font-size: 210%;
-    }`;
-
-    let bubbleUI = `
-    /* bubble UI */
-    :root {
-        --spice-sidebar: var(--spice-main) !important;
-    }
-    .main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
-        border-radius: 10px !important;
-    }`;
-
-    let hideSpotifyFullScreen = `
-    /* hide spotify premium full screen */
-    .control-button[aria-label="Full screen"] {
-        display: none;
-    }`;
-
-    let hideMarketplace = `
-    /* hide marketplace */
-    .main-navBar-navBarItem[data-id="/marketplace"] {
-        display: none;
-    }`;
-
-    let darkSideBar = `
-    /* Dark SideBar */
-    :root {
-        --spice-sidebar: var(--spice-main) !important;
-    }`;
-
-    let hideOverlayBig = `
-    /* Hide Overlay */
-    .GenericModal__overlay {
-        background-color: transparent;
-    }
-    .main-embedWidgetGenerator-container {
-        box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
-    }`;
-
-    let hideOverlaySmall = `
-    /* Hide Overlay */
-    .GenericModal__overlay {
-        background-color: transparent;
-    }
-    .main-trackCreditsModal-container {
-        box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
-        width: 100% !important;
-        max-width: 520px !important;
-    }`;
-
-    let injectPopupCSS = `
-    .GenericModal__overlay {
-        visibility: hidden;
-    }
-    .GenericModal {
-        visibility: visible;
-    }`;
-
-    let hoverTime = `
-    .playback-bar__progress-time-elapsed,
-    .main-playbackBarRemainingTime-container {
-        opacity: 0;
-    }`;
-
-    let disableTransition = "background-image 0.5s, background-size 0.5s, background-position-y 0s, filter 0.5s ease-in-out";
-    let enableTransition = "background-image 0.5s, background-size 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
-
-    let bannerCSS = `
-    #main-banner {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        will-change: transform;
-        z-index: -1;
-        transition: ${enableTransition};
-        display: none;
-    }
-    #pre-banner {
-        display: none;
-    }`;
-
-    let hideDefaultCoverArt = `
-    section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer,
-    section[data-testid="artist-page"] .main-entityHeader-imageContainer,
-    section[data-testid="album-page"] .main-entityHeader-imageContainer,
-    section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer {
-        display: none;
-    }`;
-
-    let hidePageDetails = `
-    .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold,
-    .main-entityHeader-subtitle.main-entityHeader-gray,
-    .main-entityHeader-metaData,
-    .main-entityHeader-headerText > span,
-    .main-entityHeader-headerText > div {
-        display: none;
-    }
-    .main-entityHeader-title {
-        display: -webkit-box !important;
-    }`;
-
-    async function updateBannerBlur(filed, value) {
-        if (value == "") {
-            value = 0;
-        }
-
-        CONFIG[filed] = value;
-        await saveConfig(filed, CONFIG[filed]);
-    }
-
-    function customFont(url, name) {
-        let customFont = `
-        /* Better Font (Quicksand) */
-        @import url("${url}");
-        * {
-            font-family: "${name}", sans-serif, serif !important;
-        }`;
-
-        return customFont;
-    }
-
-    function fontSize(size) {
-        let fontSize = `
-        :root {
-            font-size: ${size};
-        }`;
-
-        return fontSize;
-    }
-
-    function hideWindowsControlsCSS() {
-        let color = isNewUI ? "var(--spice-sidebar)" : "var(--spice-main)";
-
-        let hideWindowsControlsCSS = `
-        #nord--hideWindowsControls {
-            height: ${hideWindowsControlsValues.height}px;
-            width: ${hideWindowsControlsValues.width}px;
-            background-color: ${color};
-            position: absolute;
-            filter: brightness(${hideWindowsControlsValues.filter});
-            top: 0px;
-            right: 0px;
-        }`;
-
-        return hideWindowsControlsCSS;
-    }
-
-    ////////////////////////////////////// JS Snippets ///////////////////////////////////////////
-
-    function quickSearchKeyBind() {
-        changeKeyBind({ key: "k", ctrl: true }, { key: "space", ctrl: true }, CONFIG.quickSearch);
-    }
-
-    function searchKeyBind() {
-        changeKeyBind({ key: "l", ctrl: true }, { key: "/", ctrl: true }, CONFIG.search);
-    }
-
-    async function redoKeyBind() {
-        if (isWindows) {
-            if (CONFIG.redo) {
-                Spicetify.Mousetrap.bind("ctrl+shift+z", async () => {
-                    await Spicetify.CosmosAsync.post("sp://desktop/v1/redo");
-                });
-            } else {
-                Spicetify.Mousetrap.unbind("ctrl+shift+z");
-            }
-        }
-    }
-
     ////////////////////////////////////// UI ///////////////////////////////////////////
 
     let settingsMenuCSS = React.createElement(
@@ -1078,13 +407,28 @@ async function initNord() {
                 .popup-row .inputbox[type="color"]::-webkit-color-swatch {
                     border-radius: 5px !important;
                     border: none;
+                }
+                .popup-row.search-div .col {
+                    position: relative;
+                }
+                .search-container {
+                    width: 100%;
+                }
+                .search-icon {
+                    position: absolute;
+                    margin: 10px;
+                }
+                .search {
+                    padding: 10px 36px !important;
+                    width: 100%;
                 }`
     );
 
-    function DisplayIcon({ icon, size }) {
+    function DisplayIcon({ icon, size, className }) {
         return React.createElement("svg", {
             width: size,
             height: size,
+            className: className ? className : null,
             viewBox: "0 0 16 16",
             fill: "currentColor",
             dangerouslySetInnerHTML: {
@@ -1098,7 +442,7 @@ async function initNord() {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
                 "div",
-                { className: "popup-row" },
+                { className: "popup-row", id: "search-element" },
                 React.createElement("label", { className: "col description" }, name),
                 React.createElement(
                     "div",
@@ -1138,6 +482,16 @@ async function initNord() {
                                       setValue(state);
                                       await saveConfig();
                                       onClickCheckFun();
+                                      if (!ComplexConditionedSnippetsAutoApply[field]) {
+                                          console.log("run");
+                                          if (ComplexConditionedSnippets[field] === undefined) {
+                                              console.log(true);
+                                              updateCssSnippet(field);
+                                          } else {
+                                              console.log(false);
+                                              refrestToApply = true;
+                                          }
+                                      }
                                   },
                               },
                               React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.check, size: 16 })
@@ -1155,7 +509,7 @@ async function initNord() {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
                 "div",
-                { className: "popup-row" },
+                { className: "popup-row", id: "search-element" },
                 React.createElement("label", { className: "col description" }, name),
                 React.createElement(
                     "div",
@@ -1231,7 +585,7 @@ async function initNord() {
         if (bool) {
             return React.createElement(
                 "div",
-                { className: "popup-row" },
+                { className: "popup-row", id: "search-element" },
                 React.createElement("label", { className: "col description" }, name),
                 React.createElement(
                     "div",
@@ -1271,14 +625,14 @@ async function initNord() {
         }
     }
 
-    function heading({ name, bool = true }) {
+    function heading({ name, bool = true, start = false }) {
         if (bool) {
             return React.createElement(
                 "div",
-                null,
-                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
-                React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, name)),
-                React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null))
+                { className: "popup-row" },
+                start ? React.createElement("hr", { className: "space" }, null) : null,
+                React.createElement("h3", { className: "div-title" }, name),
+                React.createElement("hr", { className: "divider" }, null)
             );
         } else {
             return null;
@@ -1290,6 +644,7 @@ async function initNord() {
             "button",
             {
                 className: `login-button${color}`,
+                id: "search-ignore-element",
                 onClick: async () => {
                     onclickFun();
                 },
@@ -1298,6 +653,80 @@ async function initNord() {
                 },
             },
             name
+        );
+    }
+
+    function popupItem({ title, name1, color1 = "", onclickFun1, name2 = null, color2 = "", onclickFun2 = null }) {
+        Spicetify.PopupModal.hide();
+
+        let DOMcontent = React.createElement(
+            "div",
+            null,
+            settingsMenuCSS,
+            React.createElement(ButtonItem, {
+                name: name1,
+                color: color1,
+                onclickFun: onclickFun1,
+            }),
+            name2
+                ? React.createElement(ButtonItem, {
+                      name: name2,
+                      color: color2,
+                      onclickFun: onclickFun2,
+                  })
+                : null
+        );
+
+        setTimeout(() => {
+            Spicetify.PopupModal.display({
+                title: title,
+                content: DOMcontent,
+            });
+        }, 100);
+    }
+
+    function searchBarItem() {
+        return React.createElement(
+            "div",
+            { className: "popup-row search-div", id: "search-ignore-element" },
+            React.createElement(
+                "div",
+                { className: "col" },
+                React.createElement(
+                    "div",
+                    { className: "search-container" },
+                    React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.search, size: 16, className: "search-icon" }),
+                    React.createElement(
+                        "input",
+                        {
+                            type: "text",
+                            className: `search`,
+                            placeholder: "Search for a feature",
+                            onChange: async (e) => {
+                                let query = e.target.value.trim().toLowerCase();
+                                let rows = document.querySelectorAll(".popup-row");
+                                rows.forEach((row) => {
+                                    if (row.id == "search-ignore-element") return;
+                                    if (query == "") {
+                                        row.style.display = "unset";
+                                        return;
+                                    }
+                                    if (row.id == "search-element") {
+                                        if (row.textContent.trim().toLowerCase().includes(query)) {
+                                            row.style.display = "unset";
+                                        } else {
+                                            row.style.display = "none";
+                                        }
+                                    } else {
+                                        row.style.display = "none";
+                                    }
+                                });
+                            },
+                        },
+                        null
+                    )
+                )
+            )
         );
     }
 
@@ -1345,7 +774,7 @@ async function initNord() {
                             CONFIG.colorSchemes = colorSchemes;
                             CONFIG.colorScheme = nameObject;
                             await saveConfig();
-                            reload();
+                            refreshPopup();
                         }
                     },
                 },
@@ -1363,7 +792,7 @@ async function initNord() {
 
     async function editCustomColor() {
         injectPopup();
-        injectCSS(hideOverlaySmall, "nord--hideOverlaySmall");
+        injectCSS(ComplexConditionedSnippets.hideOverlaySmall, "nord--hideOverlaySmall");
 
         let name = colorSchemesOptions[userConfig.color_scheme];
 
@@ -1586,8 +1015,7 @@ async function initNord() {
                     onClick: async () => {
                         CONFIG.colorSchemes = colorSchemes;
                         await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Save`
@@ -1600,8 +1028,7 @@ async function initNord() {
                         let importData = await stringToJSON(await getFromClipboard());
                         CONFIG.colorSchemes[camalize(importData.Name)] = importData;
                         await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Import`
@@ -1628,8 +1055,7 @@ async function initNord() {
                             delete CONFIG.colorSchemes[currentColorScheme];
                             CONFIG.colorScheme = "Nord";
                             await saveConfig();
-                            Spicetify.PopupModal.hide();
-                            reload();
+                            refreshPopup();
                         } else {
                             notification("Stock Color Schemes can't be Deleted", true);
                         }
@@ -1648,8 +1074,7 @@ async function initNord() {
                             CONFIG.colorSchemes[userConfig.color_scheme] = defaultSettings.colorSchemes[userConfig.color_scheme];
                         }
                         await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Reset`
@@ -1670,7 +1095,7 @@ async function initNord() {
     }
 
     async function editHideWindowsControls() {
-        injectCSS(hideOverlayBig, "nord--hideOverlayBig");
+        injectCSS(ComplexConditionedSnippets.hideOverlayBig, "nord--hideOverlayBig");
 
         let editHideWindowsControlsContainer = React.createElement(
             "div",
@@ -1713,7 +1138,7 @@ async function initNord() {
                         CONFIG.hideWindowsControlsValues = hideWindowsControlsValues;
                         await saveConfig();
                         Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Save`
@@ -1726,7 +1151,7 @@ async function initNord() {
                         CONFIG.hideWindowsControlsValues = defaultSettings.hideWindowsControlsValues;
                         await saveConfig();
                         Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Reset`
@@ -1786,8 +1211,7 @@ async function initNord() {
                         CONFIG.customFontName = customFontName;
                         CONFIG.customFontURL = customFontURL;
                         await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Save`
@@ -1800,8 +1224,7 @@ async function initNord() {
                         CONFIG.customFontURL = defaultSettings.customFontURL;
                         CONFIG.customFontName = defaultSettings.customFontName;
                         await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Reset`
@@ -1839,8 +1262,7 @@ async function initNord() {
                         let customFontSize = values.value;
                         CONFIG.fontSize = customFontSize;
                         await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Save`
@@ -1852,8 +1274,7 @@ async function initNord() {
                     onClick: async () => {
                         CONFIG.fontSize = defaultSettings.fontSize;
                         await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        reload();
+                        refreshPopup();
                     },
                 },
                 `Reset`
@@ -1872,8 +1293,11 @@ async function initNord() {
         "div",
         null,
         settingsMenuCSS,
-        React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Settings")),
-        React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
+        React.createElement(searchBarItem),
+        React.createElement(heading, {
+            name: "Settings",
+            start: true,
+        }),
         React.createElement(dropDownItem, {
             name: "Spotify Color",
             field: "colorScheme",
@@ -1921,6 +1345,14 @@ async function initNord() {
             field: "hideWindowsControls",
             bool: isWindows,
             more: true,
+            onClickCheckFun: () => {
+                if (CONFIG.hideWindowsControls) {
+                    hideWindowsControls();
+                } else {
+                    removeInjectedElement("nord--hideWindowsControls");
+                }
+                cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls);
+            },
             onClickMoreFun: async () => {
                 Spicetify.PopupModal.hide();
                 setTimeout(editHideWindowsControls, 300);
@@ -1969,6 +1401,10 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Fit Banner Size",
             field: "fitBannerSize",
+            onClickCheckFun: () => {
+                console.log("fitBannerSize");
+                CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "100%");
+            },
         }),
         React.createElement(heading, {
             name: "Home",
@@ -1988,6 +1424,9 @@ async function initNord() {
             name: "Dark SideBar",
             field: "darkSideBar",
             bool: !isNewUI,
+            onClickCheckFun: async () => {
+                await dynamicUI(null, null, ComplexConditionedSnippets.darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
+            },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide SideBar ScrollBar",
@@ -2019,6 +1458,16 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Right Side Cover Art",
             field: "rightSideCoverArt",
+            onClickCheckFun: async () => {
+                await dynamicUI(
+                    ComplexConditionedSnippets.rightSideCoverArtNew,
+                    "nord--rightSideCoverArt",
+                    ComplexConditionedSnippets.rightSideCoverArtOld,
+                    "nord--rightSideCoverArt",
+                    CONFIG.rightSideCoverArt
+                );
+                cssSnippet(ComplexConditionedSnippets.leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
+            },
         }),
         React.createElement(checkBoxItem, {
             name: "Show Timestamp on Hover",
@@ -2028,6 +1477,9 @@ async function initNord() {
             name: "Hide Friend Activity",
             field: "hideFriendActivity",
             bool: isNewUI,
+            onClickCheckFun: async () => {
+                await dynamicUI(ComplexConditionedSnippets.hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
+            },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Spotify Connect",
@@ -2052,6 +1504,9 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide Current Playing Song BG",
             field: "hideCurrentPlayingSongBG",
+            onClickCheckFun: () => {
+                cssSnippet(ComplexConditionedSnippets.hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
+            },
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Playlist Image Edit Button",
@@ -2105,10 +1560,6 @@ async function initNord() {
             field: "betterGenre",
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide TopBar Play Button",
-            field: "hideTopBarPlayButton",
-        }),
-        React.createElement(checkBoxItem, {
             name: "Hide Cards Download Status",
             field: "hideCardsDownloadStatus",
         }),
@@ -2116,6 +1567,9 @@ async function initNord() {
             name: "Bubble UI",
             field: "bubbleUI",
             bool: isNewUI,
+            onClickCheckFun: () => {
+                cssSnippet(ComplexConditionedSnippets.bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
+            },
         }),
         React.createElement(heading, {
             name: "Keybinds",
@@ -2137,10 +1591,6 @@ async function initNord() {
             name: "Advanced Settings",
         }),
         React.createElement(checkBoxItem, {
-            name: "Apply Changes on Settings Close ( Recommended: On )",
-            field: "isReload",
-        }),
-        React.createElement(checkBoxItem, {
             name: "Right Click Nord Spotify Settings Icon to Refresh",
             field: "rightClickToReload",
         }),
@@ -2159,8 +1609,20 @@ async function initNord() {
             name: "Reset Settings",
             color: " red",
             onclickFun: async () => {
-                Spicetify.LocalStorage.remove("nord:settings");
-                forceReload();
+                popupItem({
+                    title: "Reset Nord Spotify ?",
+                    name1: "Cancel",
+                    color1: " green",
+                    onclickFun1: () => {
+                        Spicetify.PopupModal.hide();
+                    },
+                    name2: "Reset",
+                    color2: " red",
+                    onclickFun2: () => {
+                        Spicetify.LocalStorage.remove("nord:settings");
+                        forceReload();
+                    },
+                });
             },
         })
     );
@@ -2179,80 +1641,719 @@ async function initNord() {
 
     new Spicetify.Topbar.Button("Nord Spotify", svg, settingsPage);
 
-    ////////////////////////////////////// Apply Snippets ///////////////////////////////////////////
+    ////////////////////////////////////// CSS Snippets ///////////////////////////////////////////
 
-    injectCSS(bannerCSS, "nord--bannerCSS");
+    let enableTransition = "background-image 0.5s, background-size 0.5s, background-position-y 2s, filter 0.5s ease-in-out";
+    let disableTransition = "background-image 0.5s, background-size 0.5s, background-position-y 0s, filter 0.5s ease-in-out";
+
+    let refrestToApply = false;
+
+    let Snippets = {
+        hideHomePageRecommendation: `
+    /* disable homepage recommendation */
+    section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"]) {
+        display: none !important;
+    }`,
+
+        hideLikedSongsCard: `
+    /* remove liked songs card in your library */
+    .collection-collectionEntityHeroCard-likedSongs {
+        display: none;
+    }`,
+
+        hideLikedSongsCardTexts: `
+    /* blue like card useless text in your library */
+    .collection-collectionEntityHeroCard-tracksContainer {
+        display: none;
+    }`,
+
+        hideSimilarSongsRecommendation: `
+    /* disable similar song suggestion in playlist */
+    .playlist-playlist-seeMore,
+    .playlist-playlist-playlistInlineCurationSection,
+    .playlist-playlist-searchResultListContainer,
+    .playlist-playlist-recommendedTrackList {
+        display: none !important;
+    }`,
+
+        hidePlaylistImageEditButton: `
+    /* remove playlist edit image button */
+    .main-editImageButton-overlay {
+        display: none;
+    }`,
+
+        hideRadioGradient: `
+    /* radio gradient hidden */
+    .KNUIWLKuuA1qIkTt4jus:after {
+        background: none !important;
+    }`,
+
+        hideSideBarStatus: `
+    /* hide sidebar status */
+    .main-rootlist-statusIcons {
+        display: none;
+    }`,
+
+        hideCardsDownloadStatus: `
+    /* hide cards download status (home page) */
+    .main-card-DownloadStatusIndicator,
+    /* search result top result */
+    .hcxPtZcvjM07S6ydT685 {
+        display: none;
+    }`,
+
+        nordLyrics: `
+    /* spotify lyrics background norded */
+    .lyrics-lyrics-container * {
+        --lyrics-color-active: var(--spice-text);
+        --lyrics-color-background: none;
+        --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
+        --lyrics-color-messaging: var(--spice-text);
+    }`,
+
+        hideSpotifyConnect: `
+    /* hide spotify connect */
+    .PrhIVExjBkmjHt6Ea4XE {
+        display: none;
+    }`,
+
+        hideAds: `
+    /* upgrade button top bar */
+    button[title="Upgrade to Premium"],
+    button[aria-label="Upgrade to Premium"],
+    .main-topBar-UpgradeButton,
+    /* top bar user context menu Upgrade to Premium */
+    .main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"],
+    /* top side ads */
+    .WiPggcPDzbwGxoxwLWFf,
+    /* bottom ads */
+    .main-leaderboardComponent-container,
+    /* popup video ad */
+    .Root__modal-slot .GenericModal__overlay.QMMTQfEw3AIHFf4dTRp3.nPKDEvIoCzySBR24pZiN {
+        display: none !important;
+    }
+    
+    /* no idea what these are */
+    .Root__ads-container-desktop--is-hidden,
+    .sponsor-container,
+    .desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer {
+        display: none !important;
+    }`,
+
+        hideSideBarScrollBar: `
+    /* hides sidebar scrollbar */
+    .os-scrollbar:nth-child(6) .os-scrollbar-handle {
+        visibility: hidden;
+    }`,
+
+        highlightSideBarItem: `
+    /* sidebar selected item (main items) */
+    .personal-library .main-collectionLinkButton-collectionLinkButton.main-collectionLinkButton-selected.active,
+    .main-navBar-navBarItem .main-navBar-navBarLinkActive {
+        background-color: var(--spice-custom-main-soft-secondary);
+        border-radius: 10px;
+    }`,
+
+        highlightSideBarSelectedItem: `
+    /* sidebar selected playlist */
+    .main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive:hover,
+    .main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive {
+        color: var(--spice-custom-link-hover) !important;
+    }`,
+
+        boldedSideBarItems: `
+    /* sidebar playlist names */
+    .main-rootlist-rootlistItem span {
+        font-weight: bold;
+    }`,
+
+        hideSideBarDivider: `
+    /* sidebar divider invisible */
+    .LayoutResizer__resize-bar {
+        background: none;
+    }`,
+
+        hideTopGradient: `
+    /* Hide playlist gradient top */
+    .main-entityHeader-backgroundColor {
+        display: none !important;
+    }
+    /* Hide playlist gradient bottom */
+    .main-actionBarBackground-background {
+        display: none !important;
+    }
+    /* remove gradient color on home screen */
+    .main-home-homeHeader {
+        display: none !important;
+    }`,
+
+        betterGenre: `
+    /* seearch page genre card background */
+    .x-categoryCard-CategoryCard {
+        background-color: var(--spice-custom-main-soft-secondary) !important;
+        padding-bottom: 30px;
+        transition: transform, 0s, ease, 0.25s;
+    }
+    .x-categoryCard-CategoryCard:hover {
+        background-color: var(--spice-custom-main-secondary) !important;
+        transition: transform, 0s, ease, 0.25s;
+    }
+    /* search page genre images */
+    .tV9cjMpTPaykKsn2OVsw {
+        border-radius: 10px;
+    }`,
+
+        bannerOverlay: `
+    /* banner image overlay */
+    #main-banner:after,
+    /* artist image overlay */
+    .main-entityHeader-container.main-entityHeader-withBackgroundImage:after {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: block;
+        content: "";
+        background: #00000080;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+    }`,
+
+        hideDotsUnderPlayerButtons: `
+    /* hide dots under active button */
+    .main-shuffleButton-button.main-shuffleButton-active:after,
+    .main-repeatButton-button.main-repeatButton-active:after,
+    /* queue */
+    .KAZD28usA1vPz5GVpm63.RK45o6dbvO1mb0wQtSwq:after,
+    .control-button--active-dot:after {
+        display: none;
+    }`,
+
+        pointers: `
+    button,
+    .show-followButton-button,
+    .main-dropDown-dropDown,
+    .x-toggle-wrapper,
+    .main-playlistEditDetailsModal-closeBtn,
+    .main-trackList-rowPlayPauseButton,
+    .main-rootlist-rootlistItemLink:link,
+    .main-rootlist-rootlistItemLink:visited,
+    .x-sortBox-sortDropdown,
+    .main-contextMenu-menuItemButton,
+    .main-trackList-column,
+    .main-moreButton-button,
+    .x-downloadButton-button,
+    .main-playButton-PlayButton,
+    .main-coverSlotExpandedCollapseButton-chevron,
+    .main-coverSlotCollapsed-chevron,
+    .control-button:focus,
+    .control-button:hover,
+    .main-repeatButton-button,
+    .main-skipForwardButton-button,
+    .main-playPauseButton-button,
+    .main-skipBackButton-button,
+    .main-shuffleButton-button,
+    .main-addButton-button,
+    .progress-bar__slider,
+    .playback-bar,
+    .main-editImageButton-image,
+    .X1lXSiVj0pzhQCUo_72A  /* collaborate button in playlist */ ,
+    #spicetify-playlist-list .main-rootlist-wrapper /* sidebar playlist hover */ {
+        cursor: pointer !important;
+    }`,
+
+        betterSpotifyLyrics: `
+    /* better spotify lyrics style  */
+    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
+        filter: blur(1.5px);
+        padding: 15px;
+        font-size: 110%;
+    }
+    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
+        filter: none;
+        padding: 20px;
+        font-size: 140%;
+    }
+    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
+        filter: blur(1.5px);
+        padding: 15px;
+        font-size: 110%;
+    }
+    .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
+        filter: none;
+        padding: 10px;
+        font-size: 100%;
+    }`,
+
+        betterLyricsPlus: `
+    /* lyrics plus compact off style */
+    .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
+        padding: 15px;
+        filter: none;
+        font-size: 250%;
+    }
+    .lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
+        padding: 15px;
+        filter: blur(1.5px);
+        font-size: 210%;
+    }`,
+
+        hideSpotifyFullScreen: `
+    /* hide spotify premium full screen */
+    .control-button[aria-label="Full screen"] {
+        display: none;
+    }`,
+
+        hideMarketplace: `
+    /* hide marketplace */
+    .main-navBar-navBarItem[data-id="/marketplace"] {
+        display: none;
+    }`,
+
+        hoverTime: `
+    .playback-bar__progress-time-elapsed,
+    .main-playbackBarRemainingTime-container {
+        opacity: 0;
+    }`,
+
+        hideDefaultCoverArt: `
+    section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer,
+    section[data-testid="enhanced-page"] .playlist-playlist-playlistImageContainer,
+    section[data-testid="artist-page"] .main-entityHeader-imageContainer,
+    section[data-testid="album-page"] .main-entityHeader-imageContainer,
+    section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer {
+        display: none;
+    }`,
+
+        hidePageDetails: `
+    .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold,
+    .main-entityHeader-subtitle.main-entityHeader-gray,
+    .main-entityHeader-metaData,
+    .main-entityHeader-headerText > span,
+    .main-entityHeader-headerText > div {
+        display: none;
+    }
+    .main-entityHeader-title {
+        display: -webkit-box !important;
+    }`,
+
+        customFont: customFont(CONFIG.customFontURL, CONFIG.customFontName),
+        fontSizeBool: fontSize(CONFIG.fontSize),
+    };
+
+    let ComplexConditionedSnippets = {
+        quickSearch: false,
+        search: false,
+        redo: false,
+        nordLyrics: false,
+
+        hideCurrentPlayingSongBG: `
+        /* current playing song background */
+        div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
+            border-radius: 10px;
+            background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.6);
+        }`,
+        bubbleUI: `
+        /* bubble UI */
+        :root {
+            --spice-sidebar: var(--spice-main) !important;
+        }
+        .main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
+            border-radius: 10px !important;
+        }`,
+        rightSideCoverArtOld: `
+        /* right side cover art */
+        .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
+        .main-trackInfo-container {
+            margin-left: 74px;
+        }
+        /* static cover */
+        .main-coverSlotExpanded-container {
+            border-radius: 10px;
+            position: fixed;
+            top: calc(100% - 300px);
+            left: calc(100% - 210px);
+            width: 200px;
+            height: 200px;
+            visibility: hidden;
+            transform-origin: center;
+            animation: 1s coverExpandedIn;
+            animation-fill-mode: forwards;
+        }
+        /* dynamic cover */
+        .main-coverSlotCollapsed-container[aria-hidden="true"] {
+            left: calc(100vw - 154px);
+            top: -233px;
+            width: 200px;
+            height: 200px;
+            visibility: hidden;
+            animation: 1s coverExpandedOut;
+        }
+        .main-coverSlotExpanded-exitActive {
+            display: none;
+        }
+        @keyframes coverExpandedIn {
+            99% {
+                visibility: hidden;
+            }
+            100% {
+                visibility: visible;
+            }
+        }
+        @keyframes coverExpandedOut {
+            99% {
+                visibility: visible;
+            }
+            100% {
+                visibility: hidden;
+            }
+        }
+        .main-coverSlotCollapsed-container {
+            position: fixed;
+            top: -6px;
+            left: 0px;
+            width: 56px;
+            height: 56px;
+            visibility: visible;
+            z-index: 1;
+        }
+        .cover-art .cover-art-image,
+        .main-coverSlotCollapsed-container {
+            transform-origin: center;
+            transition-timing-function: ease-in;
+            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
+        }
+        .main-coverSlotCollapsed-container[aria-hidden="false"] {
+            transition-timing-function: ease-out !important;
+            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
+        }
+        .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
+        .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
+            width: 200px;
+            height: 200px;
+        }
+        .main-nowPlayingBar-left {
+            z-index: 2;
+        }
+        .main-nowPlayingBar-center {
+            z-index: 1;
+        }
+        .cover-art {
+            background-color: transparent;
+        }`,
+        rightSideCoverArtNew: `
+        /* right side cover art */
+        .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
+        .main-trackInfo-container {
+            margin-left: 74px;
+        } /* static cover */
+        .main-coverSlotExpanded-container {
+            border-radius: 10px;
+            position: fixed;
+            top: calc(100% - 307px);
+            left: calc(100% - 208px);
+            width: 200px;
+            height: 200px;
+            visibility: hidden;
+            transform-origin: center;
+            animation: 1s coverExpandedIn;
+            animation-fill-mode: forwards;
+        } /* dynamic cover */
+        .main-coverSlotCollapsed-container[aria-hidden="true"] {
+            left: calc(100vw - 162px);
+            top: -231px;
+            width: 200px;
+            height: 200px;
+            visibility: hidden;
+            animation: 1s coverExpandedOut;
+        }
+        .main-coverSlotExpanded-exitActive {
+            display: none;
+        }
+        @keyframes coverExpandedIn {
+            99% {
+                visibility: hidden;
+            }
+            100% {
+                visibility: visible;
+            }
+        }
+        @keyframes coverExpandedOut {
+            99% {
+                visibility: visible;
+            }
+            100% {
+                visibility: hidden;
+            }
+        }
+        .main-coverSlotCollapsed-container {
+            position: fixed;
+            top: -6px;
+            left: 0px;
+            width: 56px;
+            height: 56px;
+            visibility: visible;
+            z-index: 1;
+        }
+        .cover-art .cover-art-image,
+        .main-coverSlotCollapsed-container {
+            transform-origin: center;
+            transition-timing-function: ease-in;
+            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
+        }
+        .main-coverSlotCollapsed-container[aria-hidden="false"] {
+            transition-timing-function: ease-out !important;
+            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
+        }
+        .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
+        .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
+            width: 200px;
+            height: 200px;
+        }
+        .main-nowPlayingBar-left {
+            z-index: 2;
+        }
+        .main-nowPlayingBar-center {
+            z-index: 1;
+        }
+        .cover-art {
+            background-color: transparent;
+        }`,
+        leftSideCoverArt: `
+        /* hide small cover art when expanded */
+        .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
+            visibility: hidden;
+        }`,
+        hideFriendActivity: `
+        /* hide friend activity */
+        .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
+            display: none;
+        }`,
+        darkSideBar: `
+        /* Dark SideBar */
+        :root {
+            --spice-sidebar: var(--spice-main) !important;
+        }`,
+        hideTopBar: `
+        .main-topBar-background {
+            background-color: unset !important;
+        }
+        .main-topBar-overlay {
+            background-color: unset !important;
+        }`,
+
+        hideArtistTopBarNew: `
+        .main-entityHeader-topbarTitle {
+            background-color: var(--spice-main);
+            padding: 10px;
+            width: 100%;
+            padding-top: 15px;
+            padding-left: 32px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            position: absolute;
+            margin-top: -1px;
+            left: 0px;
+            transition: all 0s ease;
+        }`,
+
+        hideArtistTopBarOld: `
+        .main-entityHeader-topbarTitle {
+            background-color: var(--spice-main);
+            padding: 10px;
+            width: 100%;
+            padding-top: 15px;
+            padding-left: 32px;
+            position: absolute;
+            left: 0px;
+            transition: all 0s ease;
+        }`,
+
+        artistBigImage: `
+        /* Artist big image */
+        .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
+            position: fixed;
+            justify-content: center;
+            bottom: 3%;
+        }
+        .main-entityHeader-background.main-entityHeader-overlay {
+            display: none;
+        }
+        /* Big Playlists */
+        .main-entityHeader-nonWrapped {
+            max-height: unset !important;
+        }`,
+
+        artistBigImageNew: `
+        /* Big Playlists */
+        .nav-alt .main-entityHeader-nonWrapped,
+        .main-entityHeader-background {
+            height: calc(100vh - 105px) !important;
+        }`,
+
+        artistBigImageOld: `
+        /* Big Playlist */
+        .main-entityHeader-nonWrapped,
+        /* Big artist */
+        .main-entityHeader-background {
+            height: calc(100vh - 90px) !important;
+        }`,
+
+        hideOverlayBig: `
+        /* Hide Overlay */
+        .GenericModal__overlay {
+            background-color: transparent;
+        }
+        .main-embedWidgetGenerator-container {
+            box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+        }`,
+
+        hideOverlaySmall: `
+        /* Hide Overlay */
+        .GenericModal__overlay {
+            background-color: transparent;
+        }
+        .main-trackCreditsModal-container {
+            box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+            width: 100% !important;
+            max-width: 520px !important;
+        }`,
+
+        injectPopupCSS: `
+        .GenericModal__overlay {
+            visibility: hidden;
+        }
+        .GenericModal {
+            visibility: visible;
+        }`,
+
+        bannerCSS: `
+        #main-banner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            will-change: transform;
+            z-index: -1;
+            transition: ${enableTransition};
+            display: none;
+        }
+        #pre-banner {
+            display: none;
+        }`,
+    };
+
+    let ComplexConditionedSnippetsAutoApply = {
+        // complex no restart
+        hideCurrentPlayingSongBG: true,
+        bubbleUI: true,
+        rightSideCoverArt: true,
+        hideFriendActivity: true,
+        darkSideBar: true,
+        // complex but restart, also need to declare in ComplexConditionedSnippets
+        quickSearch: false,
+        search: false,
+        redo: false,
+        nordLyrics: false,
+    };
+
+    async function updateBannerBlur(filed, value) {
+        if (value == "") {
+            value = 0;
+        }
+
+        CONFIG[filed] = value;
+        await saveConfig(filed, CONFIG[filed]);
+        filterCSS = value == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
+        banner.style.filter = filterCSS;
+    }
+
+    function customFont(url, name) {
+        let customFont = `
+        /* Better Font (Quicksand) */
+        @import url("${url}");
+        * {
+            font-family: "${name}", sans-serif, serif !important;
+        }`;
+
+        return customFont;
+    }
+
+    function fontSize(size) {
+        let fontSize = `
+        :root {
+            font-size: ${size};
+        }`;
+
+        return fontSize;
+    }
+
+    function hideWindowsControlsCSS() {
+        let color = isNewUI ? "var(--spice-sidebar)" : "var(--spice-main)";
+
+        let hideWindowsControlsCSS = `
+        #nord--hideWindowsControls {
+            height: ${hideWindowsControlsValues.height}px;
+            width: ${hideWindowsControlsValues.width}px;
+            background-color: ${color};
+            position: absolute;
+            filter: brightness(${hideWindowsControlsValues.filter});
+            top: 0px;
+            right: 0px;
+        }`;
+
+        return hideWindowsControlsCSS;
+    }
+
+    ////////////////////////////////////// JS Snippets ///////////////////////////////////////////
+
+    function quickSearchKeyBind() {
+        changeKeyBind({ key: "k", ctrl: true }, { key: "space", ctrl: true }, CONFIG.quickSearch);
+    }
+
+    function searchKeyBind() {
+        changeKeyBind({ key: "l", ctrl: true }, { key: "/", ctrl: true }, CONFIG.search);
+    }
+
+    async function redoKeyBind() {
+        if (isWindows) {
+            if (CONFIG.redo) {
+                Spicetify.Mousetrap.bind("ctrl+shift+z", async () => {
+                    await Spicetify.CosmosAsync.post("sp://desktop/v1/redo");
+                });
+            } else {
+                Spicetify.Mousetrap.unbind("ctrl+shift+z");
+            }
+        }
+    }
+
+    ////////////////////////////////////// Apply CSS Snippets ///////////////////////////////////////////
 
     nordLyricsFun();
 
-    cssSnippet(hideDefaultCoverArt, "nord-hideDefaultCoverArt", CONFIG.hideDefaultCoverArt);
+    Object.keys(Snippets).forEach((id) => updateCssSnippet(id));
 
-    cssSnippet(customFont(CONFIG.customFontURL, CONFIG.customFontName), "nord-customFont", CONFIG.customFont);
+    cssSnippet(ComplexConditionedSnippets.hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
 
-    cssSnippet(fontSize(CONFIG.fontSize, CONFIG.fontSize), "nord-fontSize", CONFIG.fontSizeBool);
+    cssSnippet(ComplexConditionedSnippets.bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
 
-    cssSnippet(hideHomePageRecommendation, "nord--hideHomePageRecommendation", CONFIG.hideHomePageRecommendation);
+    await dynamicUI(ComplexConditionedSnippets.rightSideCoverArtNew, "nord--rightSideCoverArt", ComplexConditionedSnippets.rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
+    cssSnippet(ComplexConditionedSnippets.leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
 
-    cssSnippet(hideSideBarScrollBar, "nord--hideSideBarScrollBar", CONFIG.hideSideBarScrollBar);
+    await dynamicUI(ComplexConditionedSnippets.hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
 
-    cssSnippet(highlightSideBarItem, "nord--highlightSideBarItem", CONFIG.highlightSideBarItem);
+    await dynamicUI(null, null, ComplexConditionedSnippets.darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
 
-    cssSnippet(highlightSideBarSelectedItem, "nord--highlightSideBarSelectedItem", CONFIG.highlightSideBarSelectedItem);
+    if (isWindows) {
+        hideWindowsControls(); // injects div
+        cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
+    }
 
-    cssSnippet(boldedSideBarItems, "nord--boldedSideBarItems", CONFIG.boldedSideBarItems);
-
-    cssSnippet(hideSideBarDivider, "nord--hideSideBarDivider", CONFIG.hideSideBarDivider);
-
-    cssSnippet(hideSideBarStatus, "nord--hideSideBarStatus", CONFIG.hideSideBarStatus);
-
-    await dynamicUI(rightSideCoverArtNew, "nord--rightSideCoverArt", rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
-    cssSnippet(leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
-
-    await dynamicUI(hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
-
-    cssSnippet(hideSpotifyConnect, "nord--hideSpotifyConnect", CONFIG.hideSpotifyConnect);
-
-    cssSnippet(hideSpotifyFullScreen, "nord--hideSpotifyFullScreen", CONFIG.hideSpotifyFullScreen);
-
-    cssSnippet(hideDotsUnderPlayerButtons, "nord--hideDotsUnderPlayerButtons", CONFIG.hideDotsUnderPlayerButtons);
-
-    cssSnippet(hideSimilarSongsRecommendation, "nord--hideSimilarSongsRecommendation", CONFIG.hideSimilarSongsRecommendation);
-
-    cssSnippet(hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
-
-    cssSnippet(hidePlaylistImageEditButton, "nord--hidePlaylistImageEditButton", CONFIG.hidePlaylistImageEditButton);
-
-    cssSnippet(hideRadioGradient, "nord--hideRadioGradient", CONFIG.hideRadioGradient);
-
-    cssSnippet(hideLikedSongsCard, "nord--hideLikedSongsCard", CONFIG.hideLikedSongsCard);
-
-    cssSnippet(hideLikedSongsCardTexts, "nord--hideLikedSongsCardTexts", CONFIG.hideLikedSongsCardTexts);
-
-    cssSnippet(hideAds, "nord--hideAds", CONFIG.hideAds);
-
-    cssSnippet(hideTopGradient, "nord--hideTopGradient", CONFIG.hideTopGradient);
-
-    cssSnippet(betterGenre, "nord--betterGenre", CONFIG.betterGenre);
-
-    cssSnippet(bannerOverlay, "nord--bannerOverlay", CONFIG.bannerOverlay);
-
-    cssSnippet(pointers, "nord--pointers", CONFIG.pointers);
-
-    cssSnippet(nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
-
-    cssSnippet(betterSpotifyLyrics, "nord--betterSpotifyLyrics", CONFIG.betterSpotifyLyrics);
-
-    cssSnippet(betterLyricsPlus, "nord--betterLyricsPlus", CONFIG.betterLyricsPlus);
-
-    cssSnippet(hideTopBarPlayButton, "nord--hideTopBarPlayButton", CONFIG.hideTopBarPlayButton);
-
-    cssSnippet(hideCardsDownloadStatus, "nord--hideCardsDownloadStatus", CONFIG.hideCardsDownloadStatus);
-
-    cssSnippet(bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
-
-    cssSnippet(hideMarketplace, "nord--hideMarketplace", CONFIG.hideMarketplace);
-
-    cssSnippet(hoverTime, "nord--hoverTime", CONFIG.hoverTime);
+    ////////////////////////////////////// Apply JS Snippets ///////////////////////////////////////////
 
     injectJS(quickSearchKeyBind);
 
@@ -2260,20 +2361,13 @@ async function initNord() {
 
     injectJS(redoKeyBind);
 
-    await dynamicUI(null, null, darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
-
-    if (isWindows) {
-        hideWindowsControls(); // injects div
-        cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls); // injects css for the above div
-    }
-
     let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 5000);
 
     injectReload(CONFIG.rightClickToReload);
 
     settingsButton.addEventListener("click", waitForUserToTriggerClosePopup);
 
-    ////////////////////////////////////// Functions ///////////////////////////////////////////
+    ////////////////////////////////////// Core Functions ///////////////////////////////////////////
 
     function injectCSS(cssStyle, id) {
         if (!body.classList.contains(id)) {
@@ -2307,6 +2401,14 @@ async function initNord() {
 
     function injectJS(callback = () => {}) {
         callback();
+    }
+
+    function updateCssSnippet(id) {
+        if (CONFIG[id]) {
+            injectCSS(Snippets[id], `nord--${id}`);
+        } else {
+            removeInjectedElement(`nord--${id}`);
+        }
     }
 
     function cssSnippet(data, id, bool) {
@@ -2372,10 +2474,15 @@ async function initNord() {
         const closeButton = await waitForElement("body > generic-modal button.main-trackCreditsModal-closeBtn", 1000);
         const modalOverlay = await waitForElement("body > generic-modal > div", 1000);
         if (closeButton && modalOverlay) {
-            closeButton.onclick = () => reload();
+            closeButton.onclick = () => {
+                Spicetify.PopupModal.hide();
+                if (refrestToApply) {
+                    refreshPopup();
+                }
+            };
             modalOverlay.onclick = (e) => {
-                if (e.target === modalOverlay) {
-                    reload();
+                if (e.target === modalOverlay && refrestToApply) {
+                    refreshPopup();
                 }
             };
         }
@@ -2429,16 +2536,23 @@ async function initNord() {
         });
     }
 
-    function reload() {
-        Spicetify.PopupModal.hide();
-        if (CONFIG.isReload) {
-            location.reload();
-        }
-    }
-
     function forceReload() {
         Spicetify.PopupModal.hide();
         location.reload();
+    }
+
+    function refreshPopup() {
+        popupItem({
+            title: "Refresh To Apply Changes ?",
+            name1: "Later",
+            onclickFun1: () => {
+                Spicetify.PopupModal.hide();
+            },
+            name2: "Refresh",
+            onclickFun2: () => {
+                forceReload();
+            },
+        });
     }
 
     function notification(text, isError = false) {
@@ -2567,7 +2681,7 @@ async function initNord() {
     }
 
     async function injectPopup() {
-        injectCSS(injectPopupCSS, "nord--injectPopupCSS");
+        injectCSS(ComplexConditionedSnippets.injectPopupCSS, "nord--injectPopupCSS");
 
         let mousePosition;
         let offset = [0, 0];
@@ -2672,9 +2786,9 @@ async function initNord() {
         let cond2 = pageType == "new-releases" && isNewUI;
 
         if (isValidPage || cond2) {
-            injectCSS(hideTopBar, "nord--hideTopBar");
+            injectCSS(ComplexConditionedSnippets.hideTopBar, "nord--hideTopBar");
             if (isValidPage) {
-                await dynamicUI(hideArtistTopBarNew, "nord--hideArtistTopBarNew", hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
+                await dynamicUI(ComplexConditionedSnippets.hideArtistTopBarNew, "nord--hideArtistTopBarNew", ComplexConditionedSnippets.hideArtistTopBarOld, "nord--hideArtistTopBarOld", true);
             }
         } else {
             removeInjectedElement("nord--hideArtistTopBarNew");
@@ -2685,14 +2799,14 @@ async function initNord() {
 
     async function hideOrShowBanner() {
         if (isValidPage) {
-            injectCSS(artistBigImage, "nord--artistBigImage");
-            await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", true);
-            cssSnippet(hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
+            injectCSS(ComplexConditionedSnippets.artistBigImage, "nord--artistBigImage");
+            await dynamicUI(ComplexConditionedSnippets.artistBigImageNew, "nord--artistBigImageNew", ComplexConditionedSnippets.artistBigImageOld, "nord--artistBigImageOld", true);
+            cssSnippet(Snippets.hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
             banner.style.display = "unset";
         } else {
-            removeInjectedElement(artistBigImage, "nord--artistBigImage");
-            await dynamicUI(artistBigImageNew, "nord--artistBigImageNew", artistBigImageOld, "nord--artistBigImageOld", false);
-            cssSnippet(hidePageDetails, "nord-hidePageDetails", false);
+            removeInjectedElement("nord--artistBigImage");
+            await dynamicUI(ComplexConditionedSnippets.artistBigImageNew, "nord--artistBigImageNew", ComplexConditionedSnippets.artistBigImageOld, "nord--artistBigImageOld", false);
+            cssSnippet(Snippets.hidePageDetails, "nord-hidePageDetails", false);
             banner.style.display = "none";
         }
 
@@ -2740,10 +2854,24 @@ async function initNord() {
             background-color: var(--spice-main);
         }`;
 
+        let fixEnhancedPage = `
+        .main-actionBar-ActionBar.contentSpacing {
+            background-color: var(--spice-main);
+        }
+        section[data-testid="enhanced-page"] > div:nth-child(3) {
+            background-color: var(--spice-main);
+        }`;
+
         if (pageType == "albums") {
             cssSnippet(fixAlbumPage, "nord--fixAlbumPage", true);
         } else {
             cssSnippet(fixAlbumPage, "nord--fixAlbumPage", false);
+        }
+
+        if (pageType == "playlists") {
+            cssSnippet(fixEnhancedPage, "nord--fixEnhancedPage", true);
+        } else {
+            cssSnippet(fixEnhancedPage, "nord--fixEnhancedPage", false);
         }
 
         if (pageType == "liked") {
@@ -2880,7 +3008,10 @@ async function initNord() {
     let banner = document.createElement("div");
     mainView.appendChild(banner);
     banner.id = "main-banner";
-    CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : "100%";
+
+    injectCSS(ComplexConditionedSnippets.bannerCSS, "nord--bannerCSS");
+
+    CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "100%");
 
     let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
