@@ -412,14 +412,14 @@ async function initNord() {
                 .popup-row.search-div .col {
                     position: relative;
                 }
-                .search-container {
+                .popup-row .nord-search-container {
                     width: 100%;
                 }
-                .search-icon {
+                .popup-row .nord-search-icon {
                     position: absolute;
                     margin: 10px;
                 }
-                .search {
+                .popup-row .nord-search {
                     padding: 10px 36px !important;
                     width: 100%;
                 }`
@@ -692,13 +692,13 @@ async function initNord() {
                 { className: "col" },
                 React.createElement(
                     "div",
-                    { className: "search-container" },
-                    React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.search, size: 16, className: "search-icon" }),
+                    { className: "nord-search-container" },
+                    React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.search, size: 16, className: "nord-search-icon" }),
                     React.createElement(
                         "input",
                         {
                             type: "text",
-                            className: `search`,
+                            className: `nord-search`,
                             placeholder: "Search for a feature",
                             onChange: async (e) => {
                                 let query = e.target.value.trim().toLowerCase();
