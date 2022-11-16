@@ -844,6 +844,11 @@ a {
     border-radius: 10px;
 }
 
+/* player cover image bg */
+.cover-art {
+    border-radius: 10px;
+}
+
 /* show time lapse on hover */
 .playback-bar:hover > div {
     transition: all 0.3s ease;

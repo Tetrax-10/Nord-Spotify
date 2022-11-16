@@ -1109,7 +1109,7 @@ async function initNord() {
                 { className: "popup-row" },
                 React.createElement("p", { className: "popup-row" }, "Tutorial"),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-                React.createElement("p", { className: "popup-row" }, `1. First Edit Height and Width`),
+                React.createElement("p", { className: "popup-row" }, `1. First Edit Height and Width, values can also be in decimal`),
                 React.createElement("p", { className: "popup-row" }, `2. After the Height and Width are perfect, Now try adjusting Filter`),
                 React.createElement("div", { className: "popup-row little-space" }, null),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
@@ -3109,7 +3109,7 @@ async function initNord() {
                 }
                 break;
             case "genre":
-                if (!path.split("/")[2].includes("section")) {
+                if (!(path.split("/")[2].includes("section") || path.split("/")[2].includes("recently-played"))) {
                     isBannerPage = false;
                     isValidPage = true;
                     return "genre";
@@ -3176,6 +3176,7 @@ async function initNord() {
     let isPlayerHover = false;
     let isLeftPlayerControls = false;
     let isTilde = false;
+    let zoomOutKey = "*";
 
     let mainView = await waitForElement(".Root__main-view", 1000);
     let topBar = await waitForElement(".Root__top-bar", 1000);
@@ -3256,7 +3257,7 @@ async function initNord() {
 
     window.addEventListener("keydown", (event) => {
         if (event.repeat) return;
-        if (event.key == "`" && !CONFIG.fitBannerSize) {
+        if (event.key == zoomOutKey && !CONFIG.fitBannerSize) {
             isTilde = true;
             banner.style.backgroundColor = "var(--spice-main)";
             banner.style.zIndex = "1";
@@ -3267,7 +3268,7 @@ async function initNord() {
 
     window.addEventListener("keyup", (event) => {
         if (event.repeat) return;
-        if (event.key == "`" && !CONFIG.fitBannerSize) {
+        if (event.key == zoomOutKey && !CONFIG.fitBannerSize) {
             isTilde = false;
             banner.style.backgroundSize = "100%";
             setTimeout(() => {
