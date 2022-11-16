@@ -297,6 +297,7 @@ async function initNord() {
     NordSpotify.Save = saveConfig;
     NordSpotify.Reload = forceReload;
     NordSpotify.ResetItem = ResetItem;
+    NordSpotify.localStorageInfo = localStorageInfo;
 
     ////////////////////////////////////// UI ///////////////////////////////////////////
 
@@ -442,7 +443,7 @@ async function initNord() {
         });
     }
 
-    function checkBoxItem({ name, field, bool = true, check = true, more = false, external = false, onClickCheckFun = () => {}, onClickMoreFun = () => {} }) {
+    function checkBoxItem({ name, field, bool = true, title = null, check = true, more = false, external = false, onClickCheckFun = () => {}, onClickMoreFun = () => {} }) {
         if (bool) {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
@@ -481,6 +482,7 @@ async function initNord() {
                               "button",
                               {
                                   className: "checkbox" + (value ? "" : " disabled"),
+                                  title: title,
                                   onClick: async () => {
                                       let state = !value;
                                       CONFIG[field] = state;
@@ -572,7 +574,7 @@ async function initNord() {
         }
     }
 
-    function inputBoxItem({ name, field, chooseColor = false, subProperty = false, ChildSubProperty = false, bool = true, onChangeFun = () => {} }) {
+    function inputBoxItem({ name, field, title = null, chooseColor = false, subProperty = false, ChildSubProperty = false, bool = true, onChangeFun = () => {} }) {
         let tempConfig;
         if (ChildSubProperty) {
             tempConfig = structuredClone(CONFIG[subProperty][ChildSubProperty]);
@@ -614,7 +616,7 @@ async function initNord() {
                     React.createElement("input", {
                         className: "small-input",
                         placeholder: value,
-                        required: true,
+                        title: title,
                         onChange: async (e) => {
                             setValue(e.target.value);
                             onChangeFun(field, e.target.value);
@@ -748,7 +750,6 @@ async function initNord() {
                     { className: "col action" },
                     React.createElement("input", {
                         className: "inputbox",
-                        required: true,
                     })
                 )
             ),
@@ -1013,39 +1014,18 @@ async function initNord() {
             React.createElement(
                 "button",
                 {
-                    className: "small-button green",
+                    className: "small-button red",
                     onClick: async () => {
-                        CONFIG.colorSchemes = colorSchemes;
+                        if (defaultSettings.colorSchemes[userConfig.color_scheme] == undefined) {
+                            CONFIG.colorSchemes[userConfig.color_scheme] = defaultSettings.colorSchemes["Spotify"];
+                        } else {
+                            CONFIG.colorSchemes[userConfig.color_scheme] = defaultSettings.colorSchemes[userConfig.color_scheme];
+                        }
                         await saveConfig();
                         refreshPopup();
                     },
                 },
-                `Save`
-            ),
-            React.createElement(
-                "button",
-                {
-                    className: "small-button",
-                    onClick: async () => {
-                        let importData = await stringToJSON(await getFromClipboard());
-                        CONFIG.colorSchemes[camalize(importData.Name)] = importData;
-                        await saveConfig();
-                        refreshPopup();
-                    },
-                },
-                `Import`
-            ),
-            React.createElement(
-                "button",
-                {
-                    className: "small-button",
-                    onClick: async () => {
-                        sendToClipboard(await JSONToString(CONFIG.colorSchemes[userConfig.color_scheme]));
-                        Spicetify.PopupModal.hide();
-                        notification("Exported Successfully");
-                    },
-                },
-                `Export`
+                `Reset`
             ),
             React.createElement(
                 "button",
@@ -1068,18 +1048,39 @@ async function initNord() {
             React.createElement(
                 "button",
                 {
-                    className: "small-button red",
+                    className: "small-button",
                     onClick: async () => {
-                        if (defaultSettings.colorSchemes[userConfig.color_scheme] == undefined) {
-                            CONFIG.colorSchemes[userConfig.color_scheme] = defaultSettings.colorSchemes["Spotify"];
-                        } else {
-                            CONFIG.colorSchemes[userConfig.color_scheme] = defaultSettings.colorSchemes[userConfig.color_scheme];
-                        }
+                        let importData = await stringToJSON(await getFromClipboard());
+                        CONFIG.colorSchemes[camalize(importData.Name)] = importData;
                         await saveConfig();
                         refreshPopup();
                     },
                 },
-                `Reset`
+                `Import`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button",
+                    onClick: async () => {
+                        sendToClipboard(await JSONToString(CONFIG.colorSchemes[userConfig.color_scheme]));
+                        Spicetify.PopupModal.hide();
+                        notification("Export Data Copied to Clipboard");
+                    },
+                },
+                `Export`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button green",
+                    onClick: async () => {
+                        CONFIG.colorSchemes = colorSchemes;
+                        await saveConfig();
+                        refreshPopup();
+                    },
+                },
+                `Save`
             )
         );
 
@@ -1135,19 +1136,6 @@ async function initNord() {
             React.createElement(
                 "button",
                 {
-                    className: "small-button green",
-                    onClick: async () => {
-                        CONFIG.hideWindowsControlsValues = hideWindowsControlsValues;
-                        await saveConfig();
-                        Spicetify.PopupModal.hide();
-                        refreshPopup();
-                    },
-                },
-                `Save`
-            ),
-            React.createElement(
-                "button",
-                {
                     className: "small-button red",
                     onClick: async () => {
                         CONFIG.hideWindowsControlsValues = defaultSettings.hideWindowsControlsValues;
@@ -1157,6 +1145,19 @@ async function initNord() {
                     },
                 },
                 `Reset`
+            ),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button green",
+                    onClick: async () => {
+                        CONFIG.hideWindowsControlsValues = hideWindowsControlsValues;
+                        await saveConfig();
+                        Spicetify.PopupModal.hide();
+                        refreshPopup();
+                    },
+                },
+                `Save`
             )
         );
 
@@ -1204,6 +1205,19 @@ async function initNord() {
             React.createElement(
                 "button",
                 {
+                    className: "small-button red",
+                    onClick: async () => {
+                        CONFIG.customFontURL = defaultSettings.customFontURL;
+                        CONFIG.customFontName = defaultSettings.customFontName;
+                        await saveConfig();
+                        refreshPopup();
+                    },
+                },
+                `Reset`
+            ),
+            React.createElement(
+                "button",
+                {
                     className: "small-button green",
                     onClick: async () => {
                         let inputField = document.querySelectorAll(".popup-row .small-input");
@@ -1217,19 +1231,6 @@ async function initNord() {
                     },
                 },
                 `Save`
-            ),
-            React.createElement(
-                "button",
-                {
-                    className: "small-button red",
-                    onClick: async () => {
-                        CONFIG.customFontURL = defaultSettings.customFontURL;
-                        CONFIG.customFontName = defaultSettings.customFontName;
-                        await saveConfig();
-                        refreshPopup();
-                    },
-                },
-                `Reset`
             )
         );
 
@@ -1258,6 +1259,18 @@ async function initNord() {
             React.createElement(
                 "button",
                 {
+                    className: "small-button red",
+                    onClick: async () => {
+                        CONFIG.fontSize = defaultSettings.fontSize;
+                        await saveConfig();
+                        refreshPopup();
+                    },
+                },
+                `Reset`
+            ),
+            React.createElement(
+                "button",
+                {
                     className: "small-button",
                     onClick: async () => {
                         let values = document.querySelector(".popup-row .small-input");
@@ -1268,18 +1281,6 @@ async function initNord() {
                     },
                 },
                 `Save`
-            ),
-            React.createElement(
-                "button",
-                {
-                    className: "small-button red",
-                    onClick: async () => {
-                        CONFIG.fontSize = defaultSettings.fontSize;
-                        await saveConfig();
-                        refreshPopup();
-                    },
-                },
-                `Reset`
             )
         );
 
@@ -1363,6 +1364,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Pointers",
             field: "pointers",
+            title: "Change Mouse Cursor for Clickable Clements",
         }),
         React.createElement(heading, {
             name: "Banners",
@@ -1378,10 +1380,12 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Banner Overlay",
             field: "bannerOverlay",
+            title: "Dark Tint on Banners",
         }),
         React.createElement(inputBoxItem, {
             name: "Banner Overlay Color",
             field: "bannerOverlayColor",
+            title: "8 digit Hex code / rgba code",
             onChangeFun: updateBannerOverlayColor,
         }),
         React.createElement(checkBoxItem, {
@@ -1403,6 +1407,7 @@ async function initNord() {
         React.createElement(inputBoxItem, {
             name: "Banner Blur Amout",
             field: "bannerBlurValue",
+            title: "0 to 100",
             onChangeFun: updateBannerBlur,
         }),
         React.createElement(checkBoxItem, {
@@ -1425,6 +1430,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide Marketplace",
             field: "hideMarketplace",
+            title: "Hide Marketplace in Sidebar",
         }),
         React.createElement(checkBoxItem, {
             name: "Dark SideBar",
@@ -1457,6 +1463,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide SideBar Status",
             field: "hideSideBarStatus",
+            title: "Hide playing/download status in sidebar",
         }),
         React.createElement(heading, {
             name: "Player",
@@ -1603,6 +1610,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Use Local Colors ( color.ini )",
             field: "localColor",
+            title: "Use Spicetify/Themes/Nord-Spotify/color.ini",
             bool: !isMarketplace,
         }),
         React.createElement(ButtonItem, {
@@ -1627,6 +1635,38 @@ async function initNord() {
                     onclickFun2: () => {
                         Spicetify.LocalStorage.remove("nord:settings");
                         forceReload();
+                    },
+                });
+            },
+        }),
+        React.createElement(ButtonItem, {
+            name: "Backup",
+            onclickFun: () => {
+                popupItem({
+                    title: "Backup Option",
+                    name1: "Banner Positions",
+                    onclickFun1: () => {
+                        exportSettings("banners");
+                    },
+                    name2: "All Settings",
+                    onclickFun2: () => {
+                        exportSettings("all");
+                    },
+                });
+            },
+        }),
+        React.createElement(ButtonItem, {
+            name: "Restore",
+            onclickFun: () => {
+                popupItem({
+                    title: "Restore Option",
+                    name1: "Banner Positions",
+                    onclickFun1: () => {
+                        importSettings("banners");
+                    },
+                    name2: "All Settings",
+                    onclickFun2: () => {
+                        importSettings("all");
                     },
                 });
             },
@@ -2582,6 +2622,7 @@ async function initNord() {
             title: "Refresh To Apply Changes ?",
             name1: "Later",
             onclickFun1: () => {
+                refrestToApply = false;
                 Spicetify.PopupModal.hide();
             },
             name2: "Refresh",
@@ -2658,9 +2699,91 @@ async function initNord() {
         return await Spicetify.Platform.ClipboardAPI.paste();
     }
 
+    async function importSettings(mode) {
+        let importData;
+        try {
+            switch (mode) {
+                case "all":
+                    importData = await stringToJSON(await filePicker());
+                    if (importData.pointers !== undefined) {
+                        CONFIG = importData;
+                    } else {
+                        Spicetify.PopupModal.hide();
+                        notification("Falied to Restore, File seems to be Corrupted!");
+                        return;
+                    }
+                    await saveConfig();
+                    refreshPopup();
+                    break;
+                case "banners":
+                    importData = await stringToJSON(await filePicker());
+                    if (importData.bannerPosition !== undefined) {
+                        CONFIG.bannerPosition = importData.bannerPosition;
+                    } else if (Object.keys(importData)[0]) {
+                        CONFIG.bannerPosition = importData;
+                    } else {
+                        Spicetify.PopupModal.hide();
+                        notification("Falied to Restore, File seems to be Corrupted!");
+                        return;
+                    }
+                    await saveConfig();
+                    refreshPopup();
+                    break;
+            }
+        } catch {
+            Spicetify.PopupModal.hide();
+            notification("Falied to Restore, File seems to be Corrupted!");
+        }
+    }
+
+    async function exportSettings(mode) {
+        switch (mode) {
+            case "all":
+                sendToClipboard(await JSONToString(CONFIG));
+                break;
+            case "banners":
+                sendToClipboard(await JSONToString(CONFIG.bannerPosition));
+                break;
+        }
+        Spicetify.PopupModal.hide();
+        notification("Export Data Copied to Clipboard");
+    }
+
+    async function filePicker() {
+        let fileHandle = await window.showOpenFilePicker();
+        let file = await fileHandle[0].getFile();
+        let text = await file.text();
+
+        return text;
+    }
+
     async function ResetItem(item) {
         CONFIG[item] = defaultSettings[item];
         await saveConfig();
+    }
+
+    function localStorageInfo() {
+        let localStorageAllStringsLength = 0;
+        let itemLength, item, nordSpotifySize, totalSizeOccupied;
+        console.log("");
+
+        for (item in localStorage) {
+            if (!localStorage.hasOwnProperty(item)) {
+                continue;
+            }
+
+            itemLength = (localStorage[item].length + item.length) * 2;
+            localStorageAllStringsLength += itemLength;
+
+            if (item == "nord:settings") {
+                nordSpotifySize = itemLength / 1024;
+                console.log("Nord Spotify = " + nordSpotifySize.toFixed(2) + " KB");
+            }
+        }
+
+        totalSizeOccupied = localStorageAllStringsLength / 1024;
+        console.log("Others       = " + (totalSizeOccupied - nordSpotifySize).toFixed(2) + " KB");
+        console.log("Total        = " + totalSizeOccupied.toFixed(2) + " KB / 5 MB");
     }
 
     function createColorScheme(colors) {
