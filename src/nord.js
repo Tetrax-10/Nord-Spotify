@@ -14,7 +14,7 @@ window.NordSpotify = {
 };
 
 (async function nord() {
-    if (!Spicetify.Platform) {
+    if (!(Spicetify.Platform && Spicetify.Player)) {
         setTimeout(nord, 300);
         return;
     }
@@ -22,6 +22,10 @@ window.NordSpotify = {
 })();
 
 async function initNord() {
+    if (!Spicetify.Player.data) {
+        await Spicetify.Player.playUri("spotify:track:08PjS6opdc0vLlaf0Z7YIl");
+    }
+
     const { React } = Spicetify;
     const { useState } = React;
 
@@ -125,7 +129,7 @@ async function initNord() {
         fitBannerSize: false,
         songBannersOnly: false,
         bannerPosition: {
-            "spotify:album:3S4AQxtnqGJOtw1k6ZT111": "35",
+            "spotify:album:5YDSZWizEYBsXgk6kwxvMn": "30",
         },
         colorSchemes: {
             Nord: {
