@@ -40,7 +40,7 @@ Nord Themed Spotify with no UI Ads
 
 2) Right click on Player to Reset banner Position
 
-3) Hold `*` to Zoom Out Banner to see full view
+3) Hold `~` to Zoom Out Banner to see full view
 
 https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-9a44-17a04968aa4d.mp4
 
