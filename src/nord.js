@@ -22,10 +22,6 @@ window.NordSpotify = {
 })();
 
 async function initNord() {
-    if (!Spicetify.Player.data) {
-        await Spicetify.Player.playUri("spotify:track:08PjS6opdc0vLlaf0Z7YIl");
-    }
-
     const { React } = Spicetify;
     const { useState } = React;
 
@@ -3164,120 +3160,133 @@ async function initNord() {
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
 
-    let path = Spicetify.Platform.History.location.pathname;
-    let isBannerPage, isValidPage;
-    let pageType = pathToType();
-    let uri, uid, image, previousUri;
-    let islocal = Spicetify.Player.data.track.metadata.is_local == "true";
-    let filterCSS = CONFIG.bannerBlurValue == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
+    let path, isBannerPage, isValidPage, pageType, uri, uid, image, previousUri, islocal, filterCSS, banner, preBanner;
 
-    let player = await waitForElement(".Root__now-playing-bar", 1000);
-    let leftPlayerControls = await waitForElement(".main-nowPlayingBar-left", 1000);
-    let isPlayerHover = false;
-    let isLeftPlayerControls = false;
-    let isTilde = false;
-    let zoomOutKey = "*";
+    (async function initMain() {
+        if (!Spicetify.Player.data) {
+            setTimeout(initMain, 1000);
+            return;
+        }
+        await main();
+    })();
 
-    let mainView = await waitForElement(".Root__main-view", 1000);
-    let topBar = await waitForElement(".Root__top-bar", 1000);
-
-    let banner = document.createElement("div");
-    mainView.appendChild(banner);
-    banner.id = "main-banner";
-
-    injectCSS(ComplexConditionedSnippets.bannerCSS, "nord--bannerCSS");
-
-    CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "100%");
-
-    let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
-
-    let preBanner = document.createElement("div");
-    mainView.appendChild(preBanner);
-    preBanner.id = "pre-banner";
-
-    await injectBanner("start");
-
-    Spicetify.Platform.History.listen(async (data) => {
-        path = data.pathname;
+    async function main() {
+        path = Spicetify.Platform.History.location.pathname;
+        isBannerPage, isValidPage;
         pageType = pathToType();
-        await injectBanner("page");
-        await saveBannerPos();
-    });
+        uri, uid, image, previousUri;
+        islocal = Spicetify.Player.data.track.metadata.is_local == "true";
+        filterCSS = CONFIG.bannerBlurValue == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
 
-    Spicetify.Player.addEventListener("songchange", async (event) => {
-        banner.style.transition = enableTransition;
-        islocal = event.data.track.metadata.is_local == "true";
-        await saveBannerPos();
-        await injectBanner("song", event);
-    });
+        let player = await waitForElement(".Root__now-playing-bar", 1000);
+        let leftPlayerControls = await waitForElement(".main-nowPlayingBar-left", 1000);
+        let isPlayerHover = false;
+        let isLeftPlayerControls = false;
+        let isTilde = false;
+        let zoomOutKey = "*";
 
-    leftPlayerControls.addEventListener("mouseover", () => {
-        isLeftPlayerControls = true;
-    });
-    leftPlayerControls.addEventListener("mouseout", () => {
-        isLeftPlayerControls = false;
-        banner.style.transition = enableTransition;
-    });
+        let mainView = await waitForElement(".Root__main-view", 1000);
+        let topBar = await waitForElement(".Root__top-bar", 1000);
 
-    player.addEventListener("mouseover", () => {
-        isPlayerHover = true;
-    });
-    player.addEventListener("mouseout", () => {
-        isPlayerHover = false;
-        banner.style.transition = enableTransition;
-    });
+        banner = document.createElement("div");
+        mainView.appendChild(banner);
+        banner.id = "main-banner";
 
-    player.addEventListener("contextmenu", () => {
-        if (!isLeftPlayerControls) {
-            banner.style.backgroundPositionY = "50%";
-            updateConfigPos();
-        }
-    });
+        injectCSS(ComplexConditionedSnippets.bannerCSS, "nord--bannerCSS");
 
-    player.addEventListener("wheel", (event) => {
-        if (isPlayerHover) {
-            banner.style.transition = disableTransition;
-            let delta = Math.sign(event.deltaY);
+        CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "100%");
 
-            currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
+        let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
-            if (delta == 1 && currentPos < 100) {
-                currentPos = 95 < currentPos + 5 ? 100 : currentPos + 5;
-                banner.style.backgroundPositionY = currentPos + "%";
+        preBanner = document.createElement("div");
+        mainView.appendChild(preBanner);
+        preBanner.id = "pre-banner";
+
+        await injectBanner("start");
+
+        Spicetify.Platform.History.listen(async (data) => {
+            path = data.pathname;
+            pageType = pathToType();
+            await injectBanner("page");
+            await saveBannerPos();
+        });
+
+        Spicetify.Player.addEventListener("songchange", async (event) => {
+            banner.style.transition = enableTransition;
+            islocal = event.data.track.metadata.is_local == "true";
+            await saveBannerPos();
+            await injectBanner("song", event);
+        });
+
+        leftPlayerControls.addEventListener("mouseover", () => {
+            isLeftPlayerControls = true;
+        });
+        leftPlayerControls.addEventListener("mouseout", () => {
+            isLeftPlayerControls = false;
+            banner.style.transition = enableTransition;
+        });
+
+        player.addEventListener("mouseover", () => {
+            isPlayerHover = true;
+        });
+        player.addEventListener("mouseout", () => {
+            isPlayerHover = false;
+            banner.style.transition = enableTransition;
+        });
+
+        player.addEventListener("contextmenu", () => {
+            if (!isLeftPlayerControls) {
+                banner.style.transition = enableTransition;
+                banner.style.backgroundPositionY = "50%";
                 updateConfigPos();
             }
+        });
 
-            if (delta == -1 && 0 < currentPos) {
-                currentPos = currentPos - 5 < 5 ? 0 : currentPos - 5;
-                banner.style.backgroundPositionY = currentPos + "%";
-                updateConfigPos();
-            }
-        }
-    });
+        player.addEventListener("wheel", (event) => {
+            if (isPlayerHover) {
+                banner.style.transition = disableTransition;
+                let delta = Math.sign(event.deltaY);
 
-    window.addEventListener("keydown", (event) => {
-        if (event.repeat) return;
-        if (event.key == zoomOutKey && !CONFIG.fitBannerSize) {
-            isTilde = true;
-            banner.style.backgroundColor = "var(--spice-main)";
-            banner.style.zIndex = "1";
-            banner.style.backgroundSize = "50%";
-            topBar.style.zIndex = 0;
-        }
-    });
+                currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
-    window.addEventListener("keyup", (event) => {
-        if (event.repeat) return;
-        if (event.key == zoomOutKey && !CONFIG.fitBannerSize) {
-            isTilde = false;
-            banner.style.backgroundSize = "100%";
-            setTimeout(() => {
-                if (!isTilde) {
-                    banner.style.zIndex = "-1";
-                    banner.style.backgroundColor = "unset";
-                    topBar.style.zIndex = 2;
+                if (delta == 1 && currentPos < 100) {
+                    currentPos = 95 < currentPos + 5 ? 100 : currentPos + 5;
+                    banner.style.backgroundPositionY = currentPos + "%";
+                    updateConfigPos();
                 }
-            }, 500);
-        }
-    });
+
+                if (delta == -1 && 0 < currentPos) {
+                    currentPos = currentPos - 5 < 5 ? 0 : currentPos - 5;
+                    banner.style.backgroundPositionY = currentPos + "%";
+                    updateConfigPos();
+                }
+            }
+        });
+
+        window.addEventListener("keydown", (event) => {
+            if (event.repeat) return;
+            if (event.key == zoomOutKey && !CONFIG.fitBannerSize) {
+                isTilde = true;
+                banner.style.backgroundColor = "var(--spice-main)";
+                banner.style.zIndex = "1";
+                banner.style.backgroundSize = "50%";
+                topBar.style.zIndex = 0;
+            }
+        });
+
+        window.addEventListener("keyup", (event) => {
+            if (event.repeat) return;
+            if (event.key == zoomOutKey && !CONFIG.fitBannerSize) {
+                isTilde = false;
+                banner.style.backgroundSize = "100%";
+                setTimeout(() => {
+                    if (!isTilde) {
+                        banner.style.zIndex = "-1";
+                        banner.style.backgroundColor = "unset";
+                        topBar.style.zIndex = 2;
+                    }
+                }, 500);
+            }
+        });
+    }
 }
