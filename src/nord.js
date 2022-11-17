@@ -3184,7 +3184,7 @@ async function initNord() {
         let isPlayerHover = false;
         let isLeftPlayerControls = false;
         let isTilde = false;
-        let zoomOutKey = "*";
+        let zoomOutKey = "`";
 
         let mainView = await waitForElement(".Root__main-view", 1000);
         let topBar = await waitForElement(".Root__top-bar", 1000);
