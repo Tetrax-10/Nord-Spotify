@@ -2912,6 +2912,7 @@ async function initNord() {
             } else {
                 uri = rawData.data.track.metadata.album_uri;
             }
+
             uid = uri.split(":")[2];
 
             if (previousUri == uri) {
@@ -3160,7 +3161,7 @@ async function initNord() {
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
 
-    let path, isBannerPage, isValidPage, pageType, uri, uid, image, previousUri, islocal, filterCSS, banner, preBanner;
+    let path, isBannerPage, isValidPage, pageType, uri, uid, image, previousUri, islocal, filterCSS, banner, preBanner, currentPos;
 
     (async function initMain() {
         if (!Spicetify.Player.data) {
@@ -3196,7 +3197,7 @@ async function initNord() {
 
         CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "100%");
 
-        let currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
+        currentPos = parseInt(getComputedStyle(banner).backgroundPositionY);
 
         preBanner = document.createElement("div");
         mainView.appendChild(preBanner);
@@ -3238,6 +3239,7 @@ async function initNord() {
             if (!isLeftPlayerControls) {
                 banner.style.transition = enableTransition;
                 banner.style.backgroundPositionY = "50%";
+                currentPos = 50;
                 updateConfigPos();
             }
         });
