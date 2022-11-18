@@ -485,12 +485,18 @@ async function initNord() {
                                       setValue(state);
                                       await saveConfig();
                                       onClickCheckFun();
-                                      if (!ComplexConditionedSnippetsAutoApply[field]) {
-                                          if (ComplexConditionedSnippets[field] === undefined) {
+
+                                      switch (ComplexConditionedSnippets[field]) {
+                                          case undefined:
                                               updateCssSnippet(field);
-                                          } else {
+                                              break;
+                                          case "restart":
                                               refrestToApply = true;
-                                          }
+                                              break;
+                                      }
+
+                                      if (ComplexConditionedSnippetsCond[field] === "restart") {
+                                          refrestToApply = true;
                                       }
                                   },
                               },
@@ -1744,15 +1750,6 @@ async function initNord() {
         display: none;
     }`,
 
-        nordLyrics: `
-    /* spotify lyrics background norded */
-    .lyrics-lyrics-container * {
-        --lyrics-color-active: var(--spice-text);
-        --lyrics-color-background: none;
-        --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
-        --lyrics-color-messaging: var(--spice-text);
-    }`,
-
         hideSpotifyConnect: `
     /* hide spotify connect */
     .PrhIVExjBkmjHt6Ea4XE {
@@ -1967,6 +1964,24 @@ async function initNord() {
         display: none;
     }`,
 
+        customFont: customFont(CONFIG.customFontURL, CONFIG.customFontName),
+        fontSizeBool: fontSize(CONFIG.fontSize),
+    };
+
+    let ComplexConditionedSnippets = {
+        quickSearch: "restart",
+        search: "restart",
+        redo: "restart",
+
+        nordLyrics: `
+    /* spotify lyrics background norded */
+    .lyrics-lyrics-container * {
+        --lyrics-color-active: var(--spice-text);
+        --lyrics-color-background: none;
+        --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
+        --lyrics-color-messaging: var(--spice-text);
+    }`,
+
         hidePageDetails: `
     .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold,
     .main-entityHeader-subtitle.main-entityHeader-gray,
@@ -1979,22 +1994,13 @@ async function initNord() {
         display: -webkit-box !important;
     }`,
 
-        customFont: customFont(CONFIG.customFontURL, CONFIG.customFontName),
-        fontSizeBool: fontSize(CONFIG.fontSize),
-    };
-
-    let ComplexConditionedSnippets = {
-        quickSearch: false,
-        search: false,
-        redo: false,
-        nordLyrics: false,
-
         hideCurrentPlayingSongBG: `
         /* current playing song background */
         div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
             border-radius: 10px;
             background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.6);
         }`,
+
         bubbleUI: `
         /* bubble UI */
         :root {
@@ -2003,6 +2009,7 @@ async function initNord() {
         .main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
             border-radius: 10px !important;
         }`,
+
         rightSideCoverArtOld: `
         /* right side cover art */
         .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
@@ -2083,6 +2090,7 @@ async function initNord() {
         .cover-art {
             background-color: transparent;
         }`,
+
         rightSideCoverArtNew: `
         /* right side cover art */
         .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
@@ -2161,21 +2169,25 @@ async function initNord() {
         .cover-art {
             background-color: transparent;
         }`,
+
         leftSideCoverArt: `
         /* hide small cover art when expanded */
         .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
             visibility: hidden;
         }`,
+
         hideFriendActivity: `
         /* hide friend activity */
         .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
             display: none;
         }`,
+
         darkSideBar: `
         /* Dark SideBar */
         :root {
             --spice-sidebar: var(--spice-main) !important;
         }`,
+
         hideTopBar: `
         .main-topBar-background {
             background-color: unset !important;
@@ -2289,18 +2301,8 @@ async function initNord() {
         }`,
     };
 
-    let ComplexConditionedSnippetsAutoApply = {
-        // complex no restart
-        hideCurrentPlayingSongBG: true,
-        bubbleUI: true,
-        rightSideCoverArt: true,
-        hideFriendActivity: true,
-        darkSideBar: true,
-        // complex but restart, also need to declare in ComplexConditionedSnippets
-        quickSearch: false,
-        search: false,
-        redo: false,
-        nordLyrics: false,
+    let ComplexConditionedSnippetsCond = {
+        nordLyrics: "restart",
     };
 
     async function updateBannerBlur(field, value) {
@@ -2408,6 +2410,8 @@ async function initNord() {
     nordLyricsFun();
 
     Object.keys(Snippets).forEach((id) => updateCssSnippet(id));
+
+    cssSnippet(ComplexConditionedSnippets.nordLyrics, "nord--nordLyrics", CONFIG.nordLyrics);
 
     cssSnippet(ComplexConditionedSnippets.hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
 
@@ -2971,12 +2975,12 @@ async function initNord() {
         if (isValidPage) {
             injectCSS(ComplexConditionedSnippets.artistBigImage, "nord--artistBigImage");
             await dynamicUI(ComplexConditionedSnippets.artistBigImageNew, "nord--artistBigImageNew", ComplexConditionedSnippets.artistBigImageOld, "nord--artistBigImageOld", true);
-            cssSnippet(Snippets.hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
+            cssSnippet(ComplexConditionedSnippets.hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
             banner.style.display = "unset";
         } else {
             removeInjectedElement("nord--artistBigImage");
             await dynamicUI(ComplexConditionedSnippets.artistBigImageNew, "nord--artistBigImageNew", ComplexConditionedSnippets.artistBigImageOld, "nord--artistBigImageOld", false);
-            cssSnippet(Snippets.hidePageDetails, "nord-hidePageDetails", false);
+            cssSnippet(ComplexConditionedSnippets.hidePageDetails, "nord-hidePageDetails", false);
             banner.style.display = "none";
         }
 
