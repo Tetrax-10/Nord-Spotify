@@ -189,3 +189,53 @@
     height: 40px;
     padding: 10px;
 }
+
+/* //////////// Hide Items Helpers //////////// */
+
+#sidebar-div {
+    position: absolute;
+    width: 40px;
+    height: 100%;
+}
+
+#player-div {
+    position: absolute;
+    height: 8px;
+    width: 100%;
+    bottom: 0;
+}
+
+/* //////////// New Side Bar //////////// */
+
+/* sidebar your lib */
+.cfEgZf65Pb9Y3oXTCa5t {
+    background-color: rgba(var(--spice-rgb-custom-main-secondary), 0.8);
+    color: var(--spice-custom-subdued);
+    border-radius: 10px;
+}
+
+/* sidebar playlists img shadow */
+.iJp40IxKg6emF6KYJ414 {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/* sidebar playlists img */
+.vreceNX3ABcxyddeS83B img {
+    border-radius: 5px;
+}
+
+/* sidebar folder bg color */
+.vreceNX3ABcxyddeS83B div {
+    color: var(--spice-custom-subdued);
+    background-color: rgba(var(--spice-rgb-custom-main-secondary), 0.8);
+    border-radius: 5px;
+}
+
+/* expanded sidebar clear choise */
+.ChipClear__ChipClearComponent-zv5btm-0.berCZn {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    height: 40px;
+    padding: var(--spacer--2, 12px);
+}
