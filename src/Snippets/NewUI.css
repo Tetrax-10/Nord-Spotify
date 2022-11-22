@@ -190,21 +190,6 @@
     padding: 10px;
 }
 
-/* //////////// Hide Items Helpers //////////// */
-
-#sidebar-div {
-    position: absolute;
-    width: 40px;
-    height: 100%;
-}
-
-#player-div {
-    position: absolute;
-    height: 8px;
-    width: 100%;
-    bottom: 0;
-}
-
 /* //////////// New Side Bar //////////// */
 
 /* sidebar your lib */
