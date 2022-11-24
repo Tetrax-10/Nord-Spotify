@@ -2936,7 +2936,7 @@ async function initNord() {
             }
             previousUri = uri;
 
-            image = await fetchImage(pageType, uid, rawData);
+            image = await fetchImage(rawData);
         }
     }
 
@@ -3081,8 +3081,12 @@ async function initNord() {
         return `spotify:${path[1]}:${path[2]}`;
     }
 
-    async function fetchImage(pageType, uid, rawData = Spicetify.Player) {
+    async function fetchImage(rawData = Spicetify.Player) {
         try {
+            if (pageType == "playlists") {
+                rawData = (await Spicetify.Platform.PlaylistAPI.getMetadata(`spotify:playlist:${uid}`)).images;
+                if (rawData.length > 1) return rawData.pop()["url"];
+            }
             if (isBannerPage) {
                 rawData = await Spicetify.CosmosAsync.get(`https://api.spotify.com/v1/${pageType}/${uid}`);
                 return rawData.images[0]["url"];
