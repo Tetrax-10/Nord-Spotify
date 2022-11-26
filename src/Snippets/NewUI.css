@@ -97,8 +97,13 @@
 .Root__now-playing-bar {
     z-index: 1;
     border-radius: 10px;
-    padding: 10px;
     background-color: var(--spice-main);
+}
+
+/* player height */
+.nav-alt .main-nowPlayingBar-nowPlayingBar {
+    height: 72px;
+    margin-bottom: 6px;
 }
 
 /* New UI better progress bar */
@@ -136,7 +141,6 @@
     position: absolute;
     left: calc(100% + 10px);
     font-weight: bold;
-    color: var(--spotify-main-color);
     color: rgba(var(--spice-rgb-custom-subdued), 0.8);
     content: "/";
     transform: translateX(-50%);
