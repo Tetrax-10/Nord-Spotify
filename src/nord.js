@@ -2002,10 +2002,11 @@ async function initNord() {
         nordLyrics: `
     /* spotify lyrics background norded */
     .lyrics-lyrics-container * {
-        --lyrics-color-active: var(--spice-text);
         --lyrics-color-background: none;
-        --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
+        --lyrics-color-active: var(--spice-text);
         --lyrics-color-messaging: var(--spice-text);
+        --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.7);
+        --lyrics-color-passed: rgba(var(--spice-rgb-text), 0.7);
     }`,
 
         hidePageDetails: `
