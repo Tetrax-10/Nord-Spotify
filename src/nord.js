@@ -103,7 +103,6 @@ async function initNord() {
         highlightSideBarSelectedItem: true,
         nordLyrics: true,
         pointers: true,
-        rightSideCoverArt: true,
         hideMarketplace: false,
         quickSearch: false,
         search: false,
@@ -1497,20 +1496,6 @@ async function initNord() {
             name: "Player",
         }),
         React.createElement(checkBoxItem, {
-            name: "Right Side Cover Art",
-            field: "rightSideCoverArt",
-            onClickCheckFun: async () => {
-                await dynamicUI(
-                    ComplexConditionedSnippets.rightSideCoverArtNew,
-                    "nord--rightSideCoverArt",
-                    ComplexConditionedSnippets.rightSideCoverArtOld,
-                    "nord--rightSideCoverArt",
-                    CONFIG.rightSideCoverArt
-                );
-                cssSnippet(ComplexConditionedSnippets.leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
-            },
-        }),
-        React.createElement(checkBoxItem, {
             name: "Show Timestamp on Hover",
             field: "hoverTime",
         }),
@@ -2037,172 +2022,6 @@ async function initNord() {
             border-radius: 10px !important;
         }`,
 
-        rightSideCoverArtOld: `
-        /* right side cover art */
-        .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
-        .main-trackInfo-container {
-            margin-left: 74px;
-        }
-        /* static cover */
-        .main-coverSlotExpanded-container {
-            border-radius: 10px;
-            position: fixed;
-            top: calc(100% - 300px);
-            left: calc(100% - 210px);
-            width: 200px;
-            height: 200px;
-            visibility: hidden;
-            transform-origin: center;
-            animation: 1s coverExpandedIn;
-            animation-fill-mode: forwards;
-        }
-        /* dynamic cover */
-        .main-coverSlotCollapsed-container[aria-hidden="true"] {
-            left: calc(100vw - 154px);
-            top: -233px;
-            width: 200px;
-            height: 200px;
-            visibility: hidden;
-            animation: 1s coverExpandedOut;
-        }
-        .main-coverSlotExpanded-exitActive {
-            display: none;
-        }
-        @keyframes coverExpandedIn {
-            99% {
-                visibility: hidden;
-            }
-            100% {
-                visibility: visible;
-            }
-        }
-        @keyframes coverExpandedOut {
-            99% {
-                visibility: visible;
-            }
-            100% {
-                visibility: hidden;
-            }
-        }
-        .main-coverSlotCollapsed-container {
-            position: fixed;
-            top: -6px;
-            left: 0px;
-            width: 56px;
-            height: 56px;
-            visibility: visible;
-            z-index: 1;
-        }
-        .cover-art .cover-art-image,
-        .main-coverSlotCollapsed-container {
-            transform-origin: center;
-            transition-timing-function: ease-in;
-            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
-        }
-        .main-coverSlotCollapsed-container[aria-hidden="false"] {
-            transition-timing-function: ease-out !important;
-            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
-        }
-        .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
-        .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
-            width: 200px;
-            height: 200px;
-        }
-        .main-nowPlayingBar-left {
-            z-index: 2;
-        }
-        .main-nowPlayingBar-center {
-            z-index: 1;
-        }
-        .cover-art {
-            background-color: transparent;
-        }`,
-
-        rightSideCoverArtNew: `
-        /* right side cover art */
-        .main-nowPlayingWidget-nowPlaying > .ellipsis-one-line,
-        .main-trackInfo-container {
-            margin-left: 74px;
-        } /* static cover */
-        .main-coverSlotExpanded-container {
-            border-radius: 10px;
-            position: fixed;
-            top: calc(100% - 307px);
-            left: calc(100% - 208px);
-            width: 200px;
-            height: 200px;
-            visibility: hidden;
-            transform-origin: center;
-            animation: 1s coverExpandedIn;
-            animation-fill-mode: forwards;
-        } /* dynamic cover */
-        .main-coverSlotCollapsed-container[aria-hidden="true"] {
-            left: calc(100vw - 162px);
-            top: -231px;
-            width: 200px;
-            height: 200px;
-            visibility: hidden;
-            animation: 1s coverExpandedOut;
-        }
-        .main-coverSlotExpanded-exitActive {
-            display: none;
-        }
-        @keyframes coverExpandedIn {
-            99% {
-                visibility: hidden;
-            }
-            100% {
-                visibility: visible;
-            }
-        }
-        @keyframes coverExpandedOut {
-            99% {
-                visibility: visible;
-            }
-            100% {
-                visibility: hidden;
-            }
-        }
-        .main-coverSlotCollapsed-container {
-            position: fixed;
-            top: -6px;
-            left: 0px;
-            width: 56px;
-            height: 56px;
-            visibility: visible;
-            z-index: 1;
-        }
-        .cover-art .cover-art-image,
-        .main-coverSlotCollapsed-container {
-            transform-origin: center;
-            transition-timing-function: ease-in;
-            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.3s, left 0.5s;
-        }
-        .main-coverSlotCollapsed-container[aria-hidden="false"] {
-            transition-timing-function: ease-out !important;
-            transition: width 0.5s 0.2s, height 0.5s 0.2s, top 0.5s 0.1s, left 0.3s !important;
-        }
-        .main-coverSlotCollapsed-container[aria-hidden="true"] .cover-art .cover-art-image,
-        .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container .cover-art .cover-art-image {
-            width: 200px;
-            height: 200px;
-        }
-        .main-nowPlayingBar-left {
-            z-index: 2;
-        }
-        .main-nowPlayingBar-center {
-            z-index: 1;
-        }
-        .cover-art {
-            background-color: transparent;
-        }`,
-
-        leftSideCoverArt: `
-        /* hide small cover art when expanded */
-        .main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
-            visibility: hidden;
-        }`,
-
         hideFriendActivity: `
         /* hide friend activity */
         .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
@@ -2269,7 +2088,7 @@ async function initNord() {
         /* Big Playlists */
         .nav-alt .main-entityHeader-nonWrapped,
         .main-entityHeader-background {
-            height: calc(100vh - 105px) !important;
+            height: calc(100vh - 88px) !important;
         }`,
 
         artistBigImageOld: `
@@ -2277,7 +2096,7 @@ async function initNord() {
         .main-entityHeader-nonWrapped,
         /* Big artist */
         .main-entityHeader-background {
-            height: calc(100vh - 90px) !important;
+            height: calc(100vh - 78px) !important;
         }`,
 
         hideOverlayBig: `
@@ -2443,9 +2262,6 @@ async function initNord() {
     cssSnippet(ComplexConditionedSnippets.hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
 
     cssSnippet(ComplexConditionedSnippets.bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
-
-    await dynamicUI(ComplexConditionedSnippets.rightSideCoverArtNew, "nord--rightSideCoverArt", ComplexConditionedSnippets.rightSideCoverArtOld, "nord--rightSideCoverArt", CONFIG.rightSideCoverArt);
-    cssSnippet(ComplexConditionedSnippets.leftSideCoverArt, "nord--leftSideCoverArt", !CONFIG.rightSideCoverArt);
 
     await dynamicUI(ComplexConditionedSnippets.hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
 
