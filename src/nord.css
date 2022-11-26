@@ -518,16 +518,20 @@ input[placeholder="Add a display name"] {
     filter: sepia() saturate(90%) hue-rotate(170deg);
 }
 
-/* settings page toggles */
-.x-toggle-indicatorWrapper {
-    background-color: var(--spice-custom-main-secondary);
+/* settings page toggles bg */
+input:checked ~ .x-toggle-indicatorWrapper,
+input ~ .x-toggle-indicatorWrapper {
+    background-color: var(--spice-custom-main-secondary) !important;
 }
+/* settings page toggles bg on hover */
+input:checked:hover ~ .x-toggle-indicatorWrapper,
+input:hover ~ .x-toggle-indicatorWrapper {
+    background-color: var(--spice-custom-selected-button) !important;
+}
+/* settings page toggles round */
 input:checked ~ .x-toggle-indicatorWrapper .x-toggle-indicator,
-.x-toggle-indicator {
-    background: var(--spice-text);
-}
-input:checked ~ .x-toggle-indicatorWrapper {
-    background-color: rgba(var(--spice-rgb-button), 0.4);
+input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
+    background-color: var(--spice-text);
 }
 
 /* //////////// Artist Page //////////// */
