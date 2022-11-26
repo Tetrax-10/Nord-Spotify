@@ -142,6 +142,11 @@
     transform: translateX(-50%);
 }
 
+/* dot under player active button */
+.main-genericButton-button.main-genericButton-buttonActive:after {
+    display: none;
+}
+
 /* ///////////////// Check ///////////////// */
 /* top bar artist name */
 .artist-artistDiscography-topBar a {
