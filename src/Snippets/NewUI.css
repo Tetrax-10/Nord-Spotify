@@ -216,14 +216,19 @@
 
 /* sidebar playlists img */
 .vreceNX3ABcxyddeS83B img {
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+/* sidebar playlists selected bg */
+.xFfODpPkWh3RFEif2u_b {
+    border-radius: 15px !important;
 }
 
 /* sidebar folder bg color */
 .vreceNX3ABcxyddeS83B div {
     color: var(--spice-custom-subdued);
     background-color: rgba(var(--spice-rgb-custom-main-secondary), 0.8);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* expanded sidebar clear choise */
