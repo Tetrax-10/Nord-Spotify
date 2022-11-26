@@ -858,6 +858,16 @@ a {
     box-shadow: none !important;
 }
 
+/* hide small cover art when expanded */
+.main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
+    visibility: hidden;
+}
+
+/* player center buttons allign center */
+.player-controls__buttons--new-icons {
+    margin-top: 8px;
+}
+
 /* show time lapse on hover */
 .playback-bar:hover > div {
     transition: all 0.3s ease;
