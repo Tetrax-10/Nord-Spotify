@@ -2851,7 +2851,7 @@ async function initNord() {
         .main-actionBar-ActionBar.contentSpacing {
             background-color: var(--spice-main);
         }
-        .YJMECPbMHWgMUs8RFdcV > div:nth-child(4) {
+        .folder-folderPage-sectionWrapper > div:nth-child(4) {
             background-color: var(--spice-main);
         }`;
 
@@ -2859,7 +2859,7 @@ async function initNord() {
         .main-actionBar-ActionBar.contentSpacing {
             background-color: var(--spice-main);
         }
-        .aQMtxnKeiJqZ9XCcDuZ7 > div:nth-child(4) {
+        .show-showPage-sectionWrapper > div:nth-child(4) {
             background-color: var(--spice-main);
         }`;
 

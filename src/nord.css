@@ -51,6 +51,15 @@
     opacity: 1;
 }
 
+/* sidebar icons */
+.main-navBar-navBarLink[href="/new-releases"] svg,
+.main-navBar-navBarLink[href="/lyrics-plus"] svg,
+.main-yourLibraryX-collectionLinkButton[href="/new-releases"] svg,
+.main-yourLibraryX-collectionLinkButton[href="/lyrics-plus"] svg {
+    stroke-width: 11px;
+    stroke: currentcolor;
+}
+
 /* //////////// playlist //////////// */
 
 /* small cover image in playlist row */
@@ -274,6 +283,20 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     color: var(--spice-custom-subdued);
 }
 
+/* enhanced star icon inside the button */
+.eeRweB svg {
+    display: none;
+}
+
+/* collaborated playlist author names */
+.main-entityHeader-creatorButton {
+    font-weight: bold;
+    color: var(--spice-text);
+}
+.main-entityHeader-creatorButton:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
 /* //////////// Home Page //////////// */
 
 /* home page top extra padding above greeting */
@@ -468,11 +491,10 @@ input[placeholder="Add a display name"] {
 /* //////////// Settings Page //////////// */
 
 /* enhance button, settings page buttons, find friends button */
-.wKCsR,
-/* settings page connect to facebook */
-.fxCwDs,
+.lprIeE,
+.eeRweB,
 /* settings page language change restart button */
-.hRANHg {
+.x-settings-restartAppButton {
     border: none;
     border-radius: 7px;
     background-color: var(--spice-custom-main-soft-secondary);
@@ -951,6 +973,11 @@ a {
 .main-nowPlayingBar-nowPlayingBar button[aria-expanded="true"],
 .main-nowPlayingBar-nowPlayingBar button[aria-checked="true"] {
     color: var(--spice-custom-link-hover) !important;
+}
+
+/* dot under player active button */
+.main-genericButton-button.main-genericButton-buttonActive:after {
+    display: none;
 }
 
 /* //////////// Cards //////////// */
