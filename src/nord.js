@@ -302,6 +302,8 @@ async function initNord() {
         colorSchemesOptions[key] = colorSchemes[key]["Name"];
     });
 
+    isMarketplace ? (colorSchemesOptions.Dynamic = "Dynamic") : null;
+
     injectColor(`${CONFIG.colorScheme}`);
 
     if (!window.NordSpotifyRemote) {
@@ -1331,17 +1333,19 @@ async function initNord() {
         React.createElement(dropDownItem, {
             name: "Spotify Color",
             field: "colorScheme",
-            add: true,
-            edit: true,
+            add: CONFIG.colorScheme == "Dynamic" ? false : true,
+            edit: CONFIG.colorScheme == "Dynamic" ? false : true,
             bool: !CONFIG.localColor,
             options: colorSchemesOptions,
             onClickEditFun: () => {
+                if (CONFIG.colorScheme == "Dynamic") return;
                 Spicetify.PopupModal.hide();
                 setTimeout(() => {
                     editCustomColor();
                 }, 100);
             },
             onClickAddFun: () => {
+                if (CONFIG.colorScheme == "Dynamic") return;
                 Spicetify.PopupModal.hide();
                 setTimeout(() => {
                     addcustomColorInfo();
@@ -2347,8 +2351,13 @@ async function initNord() {
     }
 
     async function injectColor(colorScheme) {
-        if (CONFIG.localColor && !isMarketplace) {
+        if (CONFIG.localColor || (colorScheme == "Dynamic" && isMarketplace)) {
             return;
+        }
+
+        if (colorScheme == "Dynamic" && !isMarketplace) {
+            CONFIG.colorScheme = "Nord";
+            colorScheme = "Nord";
         }
 
         userConfig.color_scheme = colorScheme;
