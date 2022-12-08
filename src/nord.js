@@ -1335,7 +1335,7 @@ async function initNord() {
             field: "colorScheme",
             add: CONFIG.colorScheme == "Dynamic" ? false : true,
             edit: CONFIG.colorScheme == "Dynamic" ? false : true,
-            bool: !CONFIG.localColor,
+            bool: !CONFIG.localColor && !isMarketplace,
             options: colorSchemesOptions,
             onClickEditFun: () => {
                 if (CONFIG.colorScheme == "Dynamic") return;
@@ -2351,7 +2351,7 @@ async function initNord() {
     }
 
     async function injectColor(colorScheme) {
-        if (CONFIG.localColor || (colorScheme == "Dynamic" && isMarketplace)) {
+        if ((CONFIG.localColor && !isMarketplace) || (colorScheme == "Dynamic" && isMarketplace)) {
             return;
         }
 
