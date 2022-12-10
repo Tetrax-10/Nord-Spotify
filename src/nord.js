@@ -45,23 +45,23 @@ async function initNord() {
 
     ////////////////////////////////////// CONFIG ///////////////////////////////////////////
 
-    async function getLocalStorageDataFromKey(key) {
+    function getLocalStorageDataFromKey(key) {
         return Spicetify.LocalStorage.get(key);
     }
 
-    async function setLocalStorageDataWithKey(key, value) {
+    function setLocalStorageDataWithKey(key, value) {
         Spicetify.LocalStorage.set(key, value);
     }
 
     async function getConfig() {
         try {
-            let parsed = JSON.parse(await getLocalStorageDataFromKey("nord:settings"));
+            let parsed = JSON.parse(getLocalStorageDataFromKey("nord:settings"));
             if (parsed && typeof parsed === "object") {
                 return parsed;
             }
             throw "Config Error Nord";
         } catch {
-            await setLocalStorageDataWithKey("nord:settings", `{}`);
+            setLocalStorageDataWithKey("nord:settings", `{}`);
             return {};
         }
     }
@@ -267,10 +267,10 @@ async function initNord() {
         if (item) {
             let tempConfig = await getConfig("nord:settings");
             tempConfig[item] = value;
-            await setLocalStorageDataWithKey("nord:settings", JSON.stringify(tempConfig));
+            setLocalStorageDataWithKey("nord:settings", JSON.stringify(tempConfig));
             return;
         }
-        await setLocalStorageDataWithKey("nord:settings", JSON.stringify(CONFIG));
+        setLocalStorageDataWithKey("nord:settings", JSON.stringify(CONFIG));
     }
 
     function initConfigItems(item, value) {
@@ -2378,7 +2378,7 @@ async function initNord() {
     }
 
     function MarketplaceDynamicState(bool) {
-        if (getLocalStorageDataFromKey("marketplace:albumArtBasedColors") == (!bool).toString()) {
+        if (getLocalStorageDataFromKey("marketplace:albumArtBasedColors") != bool.toString()) {
             setLocalStorageDataWithKey("marketplace:albumArtBasedColors", bool.toString());
             forceReload();
         }
