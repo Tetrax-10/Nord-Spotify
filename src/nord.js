@@ -2377,15 +2377,25 @@ async function initNord() {
         }
     }
 
+    function MarketplaceDynamicState(bool) {
+        if (getLocalStorageDataFromKey("marketplace:albumArtBasedColors") == (!bool).toString()) {
+            setLocalStorageDataWithKey("marketplace:albumArtBasedColors", bool.toString());
+            forceReload();
+        }
+    }
+
     async function injectColor(colorScheme, src = "") {
         if ((CONFIG.localColor && !isMarketplace) || colorScheme == "Dynamic" || colorScheme == "marketplaceDynamic") {
             if (colorScheme == "Dynamic") {
+                MarketplaceDynamicState(false);
                 userConfig.color_scheme = "Dynamic";
                 src == "start" ? null : await createDynamicColors();
             } else if (colorScheme == "marketplaceDynamic") {
                 if (isMarketplace) {
+                    MarketplaceDynamicState(true);
                     userConfig.color_scheme = "marketplaceDynamic";
                 } else {
+                    MarketplaceDynamicState(false);
                     CONFIG.colorScheme = "Dynamic";
                     injectColor("Dynamic", "start");
                 }
