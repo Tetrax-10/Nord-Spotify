@@ -55,7 +55,7 @@ async function initNord() {
 
     async function getConfig() {
         try {
-            const parsed = JSON.parse(await getLocalStorageDataFromKey("nord:settings"));
+            let parsed = JSON.parse(await getLocalStorageDataFromKey("nord:settings"));
             if (parsed && typeof parsed === "object") {
                 return parsed;
             }
@@ -113,7 +113,7 @@ async function initNord() {
         customFontURL: "https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap",
         customFontName: "Quicksand",
         colorScheme: "Nord",
-        colorSchemeBasedOn: "Nord",
+        colorSchemeBasedOn: "Dynamic",
         fontSize: "100%",
         fontSizeBool: false,
         hoverTime: true,
@@ -123,6 +123,7 @@ async function initNord() {
         bannerBlurValue: "0",
         fitBannerSize: false,
         songBannersOnly: false,
+        dynamicColorMode: "atmos",
         bannerPosition: {
             "spotify:album:5YDSZWizEYBsXgk6kwxvMn": "30",
         },
@@ -143,7 +144,7 @@ async function initNord() {
                 shadow: "#1D2128",
                 tabActive: "#363D4C",
                 playbackBar: "#DEDEDE",
-                misc: "#DEDEDE",
+                misc: "#434C5E",
                 selectedRow: "#DEDEDE",
                 customMainSecondary: "#3B4354",
                 customMainSoftSecondary: "#363D4C",
@@ -169,7 +170,7 @@ async function initNord() {
                 shadow: "#1D2128",
                 tabActive: "#242D35",
                 playbackBar: "#DEDEDE",
-                misc: "#DEDEDE",
+                misc: "#33424A",
                 selectedRow: "#DEDEDE",
                 customMainSecondary: "#2B363E",
                 customMainSoftSecondary: "#242D35",
@@ -195,7 +196,7 @@ async function initNord() {
                 shadow: "#000519",
                 tabActive: "#23283D",
                 playbackBar: "#DEDEDE",
-                misc: "#DEDEDE",
+                misc: "#333952",
                 selectedRow: "#DEDEDE",
                 customMainSecondary: "#2A2F47",
                 customMainSoftSecondary: "#23283D",
@@ -221,7 +222,7 @@ async function initNord() {
                 shadow: "#1D2128",
                 tabActive: "#40444B",
                 playbackBar: "#DEDEDE",
-                misc: "#DEDEDE",
+                misc: "#565D67",
                 selectedRow: "#DEDEDE",
                 customMainSecondary: "#474B52",
                 customMainSoftSecondary: "#40444B",
@@ -247,7 +248,7 @@ async function initNord() {
                 shadow: "#000000",
                 tabActive: "#333333",
                 playbackBar: "#DEDEDE",
-                misc: "#DEDEDE",
+                misc: "#535353",
                 selectedRow: "#DEDEDE",
                 customMainSecondary: "#2A2A2A",
                 customMainSoftSecondary: "#202020",
@@ -302,9 +303,10 @@ async function initNord() {
         colorSchemesOptions[key] = colorSchemes[key]["Name"];
     });
 
-    isMarketplace ? (colorSchemesOptions.Dynamic = "Dynamic") : null;
+    colorSchemesOptions.Dynamic = "Nord Spotify's Dynamic";
+    isMarketplace ? (colorSchemesOptions.marketplaceDynamic = "Marketplace's Dynamic") : null;
 
-    injectColor(`${CONFIG.colorScheme}`);
+    injectColor(`${CONFIG.colorScheme}`, "start");
 
     if (!window.NordSpotifyRemote) {
         server = "Nord-Spotify";
@@ -315,6 +317,8 @@ async function initNord() {
     } else {
         injectStyleSheet(`${server}/src/Snippets/OldUI.css`, "nord--OldUI");
     }
+
+    injectRemoteJS("https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js", "chroma-js");
 
     NordSpotify.Config = CONFIG;
     NordSpotify.Save = saveConfig;
@@ -450,6 +454,9 @@ async function initNord() {
                 .popup-row .nord-search {
                     padding: 10px 36px !important;
                     width: 100%;
+                }
+                .popup-row .display-none {
+                    display: none !important;
                 }`
     );
 
@@ -537,7 +544,7 @@ async function initNord() {
         }
     }
 
-    function dropDownItem({ name, field, options, add = false, edit = false, bool = true, onChangeFun = () => {}, onClickAddFun = () => {}, onClickEditFun = () => {} }) {
+    function dropDownItem({ name, field, options, add = false, edit = false, addVisibility = () => false, editVisibility = () => false, bool = true, onChangeFun = () => {}, onClickAddFun = () => {}, onClickEditFun = () => {} }) {
         if (bool) {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
@@ -551,7 +558,7 @@ async function initNord() {
                         ? React.createElement(
                               "button",
                               {
-                                  className: "checkbox" + (value ? "" : " disabled"),
+                                  className: `checkbox${value ? "" : " disabled"}${editVisibility() ? "" : " display-none"}`,
                                   onClick: async () => {
                                       onClickEditFun();
                                   },
@@ -563,7 +570,7 @@ async function initNord() {
                         ? React.createElement(
                               "button",
                               {
-                                  className: "checkbox" + (value ? "" : " disabled"),
+                                  className: `checkbox${value ? "" : " disabled"}${addVisibility() ? "" : " display-none"}`,
                                   onClick: async () => {
                                       onClickAddFun();
                                   },
@@ -660,13 +667,7 @@ async function initNord() {
 
     function heading({ name, bool = true, start = false }) {
         if (bool) {
-            return React.createElement(
-                "div",
-                { className: "popup-row" },
-                start ? React.createElement("hr", { className: "space" }, null) : null,
-                React.createElement("h3", { className: "div-title" }, name),
-                React.createElement("hr", { className: "divider" }, null)
-            );
+            return React.createElement("div", { className: "popup-row" }, start ? React.createElement("hr", { className: "space" }, null) : null, React.createElement("h3", { className: "div-title" }, name), React.createElement("hr", { className: "divider" }, null));
         } else {
             return null;
         }
@@ -763,7 +764,7 @@ async function initNord() {
         );
     }
 
-    async function addcustomColorInfo() {
+    async function addCustomColorInfo() {
         let addcustomColorInfoContainer = React.createElement(
             "div",
             null,
@@ -785,7 +786,12 @@ async function initNord() {
             React.createElement(dropDownItem, {
                 name: "Based on",
                 field: "colorSchemeBasedOn",
-                options: colorSchemesOptions,
+                options: (() => {
+                    let tempColorSchemesOptions = structuredClone(colorSchemesOptions);
+                    if (userConfig.color_scheme != "Dynamic") delete tempColorSchemesOptions.Dynamic;
+                    delete tempColorSchemesOptions.marketplaceDynamic;
+                    return tempColorSchemesOptions;
+                })(),
             }),
             React.createElement(
                 "button",
@@ -801,7 +807,11 @@ async function initNord() {
                         } else if (!nameObject) {
                             notification("Give your Color Scheme a Name", true);
                         } else {
-                            colorSchemes[nameObject] = structuredClone(CONFIG.colorSchemes[basedOn]);
+                            if (userConfig.color_scheme == "Dynamic") {
+                                colorSchemes[nameObject] = structuredClone(palette);
+                            } else {
+                                colorSchemes[nameObject] = structuredClone(CONFIG.colorSchemes[basedOn]);
+                            }
                             colorSchemes[nameObject]["Name"] = name;
                             CONFIG.colorSchemes = colorSchemes;
                             CONFIG.colorScheme = nameObject;
@@ -837,20 +847,8 @@ async function initNord() {
                 { className: "popup-row" },
                 React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Tutorial")),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-                React.createElement(
-                    "p",
-                    { className: "popup-row" },
-                    React.createElement("span", null, "1. Hex values only. ["),
-                    React.createElement("span", { style: { color: "#bf616a" } }, "#BF616A"),
-                    React.createElement("span", null, " (3/6 digits)]")
-                ),
-                React.createElement(
-                    "div",
-                    { className: "popup-row" },
-                    React.createElement("span", null, "2. Install "),
-                    React.createElement("span", { style: { color: "#bf616a" } }, "Spotify Backup"),
-                    React.createElement("span", null, " extension to Backup your Custom Color Scheme")
-                ),
+                React.createElement("p", { className: "popup-row" }, React.createElement("span", null, "1. Hex values only. ["), React.createElement("span", { style: { color: "#bf616a" } }, "#BF616A"), React.createElement("span", null, " (3/6 digits)]")),
+                React.createElement("div", { className: "popup-row" }, React.createElement("span", null, "2. Install "), React.createElement("span", { style: { color: "#bf616a" } }, "Spotify Backup"), React.createElement("span", null, " extension to Backup your Custom Color Scheme")),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
                 React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, `${name} Values`)),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
@@ -1333,27 +1331,46 @@ async function initNord() {
         React.createElement(dropDownItem, {
             name: "Spotify Color",
             field: "colorScheme",
-            add: CONFIG.colorScheme == "Dynamic" ? false : true,
-            edit: CONFIG.colorScheme == "Dynamic" ? false : true,
-            bool: !CONFIG.localColor || isMarketplace,
+            add: true,
+            addVisibility: () => {
+                return CONFIG.colorScheme != "marketplaceDynamic";
+            },
+            edit: true,
+            editVisibility: () => {
+                return CONFIG.colorScheme != "marketplaceDynamic" && CONFIG.colorScheme != "Dynamic";
+            },
+            bool: !CONFIG.localColor && !isMarketplace,
             options: colorSchemesOptions,
             onClickEditFun: () => {
-                if (CONFIG.colorScheme == "Dynamic") return;
                 Spicetify.PopupModal.hide();
                 setTimeout(() => {
                     editCustomColor();
                 }, 100);
             },
             onClickAddFun: () => {
-                if (CONFIG.colorScheme == "Dynamic") return;
                 Spicetify.PopupModal.hide();
                 setTimeout(() => {
-                    addcustomColorInfo();
+                    addCustomColorInfo();
                 }, 100);
             },
             onChangeFun: () => {
                 removeInjectedElement(`nord--${userConfig.color_scheme}`);
                 injectColor(`${CONFIG.colorScheme}`);
+            },
+        }),
+        React.createElement(dropDownItem, {
+            name: "Nord Spotify's Dynamic Color Mode",
+            field: "dynamicColorMode",
+            options: {
+                atmos: "Atmosphere (Best)",
+                average: "Average of Colors",
+                DARK_VIBRANT: "Dark Vibrant",
+                LIGHT_VIBRANT: "Light Vibrant",
+            },
+            onChangeFun: async () => {
+                if (userConfig.color_scheme == "Dynamic") {
+                    await createDynamicColors();
+                }
             },
         }),
         React.createElement(checkBoxItem, {
@@ -2011,144 +2028,144 @@ async function initNord() {
     }`,
 
         hideCurrentPlayingSongBG: `
-        /* current playing song background */
-        div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
-            border-radius: 10px;
-            background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.6);
-        }`,
+    /* current playing song background */
+    div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
+        border-radius: 10px;
+        background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.6);
+    }`,
 
         bubbleUI: `
-        /* bubble UI */
-        :root {
-            --spice-sidebar: var(--spice-main) !important;
-        }
-        .main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
-            border-radius: 10px !important;
-        }`,
+    /* bubble UI */
+    :root {
+        --spice-sidebar: var(--spice-main) !important;
+    }
+    .main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
+        border-radius: 10px !important;
+    }`,
 
         hideFriendActivity: `
-        /* hide friend activity */
-        .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
-            display: none;
-        }`,
+    /* hide friend activity */
+    .main-nowPlayingBar-right button[aria-label="Friend Activity"] {
+        display: none;
+    }`,
 
         darkSideBar: `
-        /* Dark SideBar */
-        :root {
-            --spice-sidebar: var(--spice-main) !important;
-        }`,
+    /* Dark SideBar */
+    :root {
+        --spice-sidebar: var(--spice-main) !important;
+    }`,
 
         hideTopBar: `
-        .main-topBar-background {
-            background-color: unset !important;
-        }
-        .main-topBar-overlay {
-            background-color: unset !important;
-        }`,
+    .main-topBar-background {
+        background-color: unset !important;
+    }
+    .main-topBar-overlay {
+        background-color: unset !important;
+    }`,
 
         hideArtistTopBarNew: `
-        .main-entityHeader-topbarTitle {
-            background-color: var(--spice-main);
-            padding: 10px;
-            width: 100%;
-            padding-top: 15px;
-            padding-left: 32px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            position: absolute;
-            margin-top: -1px;
-            left: 0px;
-            transition: all 0s ease;
-        }`,
+    .main-entityHeader-topbarTitle {
+        background-color: var(--spice-main);
+        padding: 10px;
+        width: 100%;
+        padding-top: 15px;
+        padding-left: 32px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        position: absolute;
+        margin-top: -1px;
+        left: 0px;
+        transition: all 0s ease;
+    }`,
 
         hideArtistTopBarOld: `
-        .main-entityHeader-topbarTitle {
-            background-color: var(--spice-main);
-            padding: 10px;
-            width: 100%;
-            padding-top: 15px;
-            padding-left: 32px;
-            position: absolute;
-            left: 0px;
-            transition: all 0s ease;
-        }`,
+    .main-entityHeader-topbarTitle {
+        background-color: var(--spice-main);
+        padding: 10px;
+        width: 100%;
+        padding-top: 15px;
+        padding-left: 32px;
+        position: absolute;
+        left: 0px;
+        transition: all 0s ease;
+    }`,
 
         artistBigImage: `
-        /* Artist big image */
-        .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
-            position: fixed;
-            justify-content: center;
-            bottom: 3%;
-        }
-        .main-entityHeader-background.main-entityHeader-overlay {
-            display: none;
-        }
-        /* Big Playlists */
-        .main-entityHeader-nonWrapped {
-            max-height: unset !important;
-        }`,
+    /* Artist big image */
+    .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
+        position: fixed;
+        justify-content: center;
+        bottom: 3%;
+    }
+    .main-entityHeader-background.main-entityHeader-overlay {
+        display: none;
+    }
+    /* Big Playlists */
+    .main-entityHeader-nonWrapped {
+        max-height: unset !important;
+    }`,
 
         artistBigImageNew: `
-        /* Big Playlists */
-        .nav-alt .main-entityHeader-nonWrapped,
-        .main-entityHeader-background {
-            height: calc(100vh - 88px) !important;
-        }`,
+    /* Big Playlists */
+    .nav-alt .main-entityHeader-nonWrapped,
+    .main-entityHeader-background {
+        height: calc(100vh - 88px) !important;
+    }`,
 
         artistBigImageOld: `
-        /* Big Playlist */
-        .main-entityHeader-nonWrapped,
-        /* Big artist */
-        .main-entityHeader-background {
-            height: calc(100vh - 78px) !important;
-        }`,
+    /* Big Playlist */
+    .main-entityHeader-nonWrapped,
+    /* Big artist */
+    .main-entityHeader-background {
+        height: calc(100vh - 78px) !important;
+    }`,
 
         hideOverlayBig: `
-        /* Hide Overlay */
-        .GenericModal__overlay {
-            background-color: transparent;
-        }
-        .main-embedWidgetGenerator-container {
-            box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
-        }`,
+    /* Hide Overlay */
+    .GenericModal__overlay {
+        background-color: transparent;
+    }
+    .main-embedWidgetGenerator-container {
+        box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+    }`,
 
         hideOverlaySmall: `
-        /* Hide Overlay */
-        .GenericModal__overlay {
-            background-color: transparent;
-        }
-        .main-trackCreditsModal-container {
-            box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
-            width: 100% !important;
-            max-width: 520px !important;
-        }`,
+    /* Hide Overlay */
+    .GenericModal__overlay {
+        background-color: transparent;
+    }
+    .main-trackCreditsModal-container {
+        box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+        width: 100% !important;
+        max-width: 520px !important;
+    }`,
 
         injectPopupCSS: `
-        .GenericModal__overlay {
-            visibility: hidden;
-        }
-        .GenericModal {
-            visibility: visible;
-        }`,
+    .GenericModal__overlay {
+        visibility: hidden;
+    }
+    .GenericModal {
+        visibility: visible;
+    }`,
 
         bannerCSS: `
-        #main-banner {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            will-change: transform;
-            z-index: -1;
-            transition: ${enableTransition};
-            display: none;
-        }
-        #pre-banner {
-            display: none;
-        }`,
+    #main-banner {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        will-change: transform;
+        z-index: -1;
+        transition: ${enableTransition};
+        display: none;
+    }
+    #pre-banner {
+        display: none;
+    }`,
     };
 
     let ComplexConditionedSnippetsCond = {
@@ -2326,6 +2343,16 @@ async function initNord() {
         callback();
     }
 
+    function injectRemoteJS(src, id) {
+        if (!body.classList.contains(id)) {
+            let script = document.createElement("script");
+            script.id = id;
+            script.src = src;
+            body.appendChild(script);
+            body.classList.add(id);
+        }
+    }
+
     function updateCssSnippet(id) {
         if (CONFIG[id]) {
             injectCSS(Snippets[id], `nord--${id}`);
@@ -2350,18 +2377,23 @@ async function initNord() {
         }
     }
 
-    async function injectColor(colorScheme) {
-        if ((CONFIG.localColor && !isMarketplace) || (colorScheme == "Dynamic" && isMarketplace)) {
+    async function injectColor(colorScheme, src = "") {
+        if ((CONFIG.localColor && !isMarketplace) || colorScheme == "Dynamic" || colorScheme == "marketplaceDynamic") {
+            if (colorScheme == "Dynamic") {
+                userConfig.color_scheme = "Dynamic";
+                src == "start" ? null : await createDynamicColors();
+            } else if (colorScheme == "marketplaceDynamic") {
+                if (isMarketplace) {
+                    userConfig.color_scheme = "marketplaceDynamic";
+                } else {
+                    CONFIG.colorScheme = "Dynamic";
+                    injectColor("Dynamic", "start");
+                }
+            }
             return;
         }
 
-        if (colorScheme == "Dynamic" && !isMarketplace) {
-            CONFIG.colorScheme = "Nord";
-            colorScheme = "Nord";
-        }
-
         userConfig.color_scheme = colorScheme;
-
         injectCSS(createColorScheme(colorSchemes[colorScheme]), `nord--${colorScheme}`);
     }
 
@@ -2399,8 +2431,8 @@ async function initNord() {
     }
 
     async function waitForUserToTriggerClosePopup() {
-        const closeButton = await waitForElement("body > generic-modal button.main-trackCreditsModal-closeBtn", 1000);
-        const modalOverlay = await waitForElement("body > generic-modal > div", 1000);
+        let closeButton = await waitForElement("body > generic-modal button.main-trackCreditsModal-closeBtn", 1000);
+        let modalOverlay = await waitForElement("body > generic-modal > div", 1000);
         if (closeButton && modalOverlay) {
             closeButton.onclick = () => {
                 Spicetify.PopupModal.hide();
@@ -2422,7 +2454,7 @@ async function initNord() {
                 return resolve(document.querySelector(selector));
             }
 
-            const observer = new MutationObserver(async () => {
+            let observer = new MutationObserver(async () => {
                 if (document.querySelector(selector)) {
                     resolve(document.querySelector(selector));
                     observer.disconnect();
@@ -2450,7 +2482,7 @@ async function initNord() {
 
     async function waitForElementDeath(selector, location = document.body) {
         return new Promise((resolve) => {
-            const observer = new MutationObserver(async () => {
+            let observer = new MutationObserver(async () => {
                 if (!document.querySelector(selector)) {
                     resolve(true);
                     observer.disconnect();
@@ -2502,12 +2534,17 @@ async function initNord() {
     }
 
     function updateColors(field, value) {
-        if (!isHex(value)) {
-            value = CONFIG.colorSchemes[userConfig.color_scheme][field];
+        if (typeof field == "string") {
+            if (!isHex(value)) {
+                value = CONFIG.colorSchemes[userConfig.color_scheme][field];
+            }
+            colorSchemes[userConfig.color_scheme][field] = value.toUpperCase();
+            removeInjectedElement(`nord--${userConfig.color_scheme}`);
+            injectCSS(createColorScheme(colorSchemes[userConfig.color_scheme]), `nord--${userConfig.color_scheme}`);
+        } else {
+            removeInjectedElement(`nord--${userConfig.color_scheme}`);
+            injectCSS(createColorScheme(field), `nord--Dynamic`);
         }
-        colorSchemes[userConfig.color_scheme][field] = value.toUpperCase();
-        removeInjectedElement(`nord--${userConfig.color_scheme}`);
-        injectCSS(createColorScheme(colorSchemes[userConfig.color_scheme]), `nord--${userConfig.color_scheme}`);
     }
 
     function hexToRgb(hex) {
@@ -2773,9 +2810,11 @@ async function initNord() {
 
             if (previousUri == uri) {
                 previousUri = uri;
+                shouldChangeProp = false;
                 return;
             }
             previousUri = uri;
+            shouldChangeProp = true;
 
             image = rawData.data.track.metadata.image_xlarge_url;
         } else if (isBannerPage) {
@@ -2784,9 +2823,11 @@ async function initNord() {
 
             if (previousUri == uri) {
                 previousUri = uri;
+                shouldChangeProp = false;
                 return;
             }
             previousUri = uri;
+            shouldChangeProp = true;
 
             image = await fetchImage(rawData);
         }
@@ -3010,6 +3051,124 @@ async function initNord() {
         }
     }
 
+    async function fetchDynamicColor(dynamicImageUri) {
+        try {
+            let rawData = await Spicetify.CosmosAsync.get(
+                `https://api-partner.spotify.com/pathfinder/v1/query?operationName=fetchExtractedColors&variables={"uris":["${dynamicImageUri}"]}&extensions={"persistedQuery":{"version":1,"sha256Hash":"d7696dd106f3c84a1f3ca37225a1de292e66a2d5aced37a66632585eeb3bbbfa"}}`
+            );
+
+            let extractedColors = rawData.data.extractedColors[0];
+            return { dark: extractedColors.colorDark.hex, light: extractedColors.colorLight.hex, raw: extractedColors.colorRaw.hex };
+        } catch {}
+    }
+
+    function singleHexToPalette(mainColor) {
+        let mixingColor = "#2A2A2A";
+
+        palette = {
+            Name: "Dynamic",
+            notificationError: "#A9555E",
+            shadow: "#1D2128",
+            playbackBar: "#DEDEDE",
+            selectedRow: "#DEDEDE",
+            customSuccess: "#76BA99",
+        };
+
+        palette.main = palette.player = palette.card = chroma.mix(mainColor, mixingColor, 0.57, "rgb").hex();
+        palette.customMainSoftSecondary = palette.notification = palette.tabActive = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(0.23).hex();
+        palette.customMainSecondary = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(0.38).hex();
+        palette.sidebar = chroma.mix(mainColor, "#1F1F1F", 0.6, "rgb").hex();
+        palette.button = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1.5).hex();
+        palette.buttonActive = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1.8).hex();
+        palette.buttonDisabled = palette.misc = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(0.6).hex();
+        palette.text = palette.subtext = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(2.3).hex();
+        palette.customSubdued = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1.6).hex();
+        palette.customLinkHover = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(3).hex();
+        palette.customSelectedButton = palette.customHighlight = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1).hex();
+    }
+
+    async function createDynamicColors() {
+        try {
+            let mainColors;
+            let rawImage = image.split("/");
+            if (1 < rawImage.length) {
+                formatedImage = `spotify:image:${rawImage.pop()}`;
+            } else {
+                formatedImage = rawImage.pop();
+            }
+
+            switch (CONFIG.dynamicColorMode) {
+                case "atmos":
+                    mainColors = await fetchDynamicColor(formatedImage);
+                    singleHexToPalette(mainColors.dark);
+                    updateColors(palette);
+                    break;
+                case "average":
+                    let tempImageElement = document.createElement("img");
+                    tempImageElement.src = formatedImage;
+                    tempImageElement.onload = () => {
+                        let { R, G, B } = getAverageColor(tempImageElement, 4);
+                        singleHexToPalette(`rgb(${R},${G},${B})`);
+                        updateColors(palette);
+                    };
+                    break;
+                default:
+                    mainColors = await Spicetify.colorExtractor(uri);
+                    singleHexToPalette(mainColors[CONFIG.dynamicColorMode]);
+                    updateColors(palette);
+                    break;
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    function getAverageColor(imageElement, ratio) {
+        let canvas = document.createElement("canvas");
+
+        let height = (canvas.height = imageElement.naturalHeight);
+        let width = (canvas.width = imageElement.naturalHeight);
+
+        let context = canvas.getContext("2d");
+        context.drawImage(imageElement, 0, 0, width, height);
+
+        let data, length;
+        let i = -4;
+        let count = 0;
+
+        try {
+            data = context.getImageData(0, 0, width, height);
+            length = data.data.length;
+        } catch (err) {
+            console.error(err);
+            return {
+                R: 0,
+                G: 0,
+                B: 0,
+            };
+        }
+        let R, G, B;
+        R = G = B = 0;
+
+        while ((i += ratio * 4) < length) {
+            ++count;
+
+            R += data.data[i];
+            G += data.data[i + 1];
+            B += data.data[i + 2];
+        }
+
+        R = ~~(R / count);
+        G = ~~(G / count);
+        B = ~~(B / count);
+
+        return {
+            R,
+            G,
+            B,
+        };
+    }
+
     async function injectBanner(src, rawData = Spicetify.Player) {
         if (src != "song") {
             await hideOrShowBanner();
@@ -3017,14 +3176,18 @@ async function initNord() {
         }
         await updateURI(src, rawData);
         await updateBannerImage();
+        if (userConfig.color_scheme == "Dynamic" && shouldChangeProp) {
+            await createDynamicColors();
+        }
     }
 
     ////////////////////////////////////// Main ///////////////////////////////////////////
 
-    let path, isBannerPage, isValidPage, pageType, uri, uid, image, previousUri, islocal, filterCSS, banner, preBanner, currentPos;
+    let path, isBannerPage, isValidPage, pageType, uri, uid, image, previousUri, islocal, filterCSS, banner, preBanner, currentPos, shouldChangeProp;
+    let palette = {};
 
     (async function initMain() {
-        if (!Spicetify.Player.data) {
+        if (!(Spicetify.Player.data && window.chroma)) {
             setTimeout(initMain, 1000);
             return;
         }
@@ -3033,9 +3196,7 @@ async function initNord() {
 
     async function main() {
         path = Spicetify.Platform.History.location.pathname;
-        isBannerPage, isValidPage;
         pageType = pathToType();
-        uri, uid, image, previousUri;
         islocal = Spicetify.Player.data.track.metadata.is_local == "true";
         filterCSS = CONFIG.bannerBlurValue == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
 

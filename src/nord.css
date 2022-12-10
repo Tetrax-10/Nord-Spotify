@@ -492,6 +492,7 @@ input[placeholder="Add a display name"] {
 
 /* enhance button, settings page buttons, find friends button */
 .lprIeE,
+/* enhanced button, settings page connect to facebook */
 .eeRweB,
 /* settings page language change restart button */
 .x-settings-restartAppButton {
@@ -623,6 +624,12 @@ div[data-testid="saved-tracks-avatar"] > div {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
+}
+
+/* artist page artist pick highlighted line ( 1st line with diff bg color ) */
+.ydlidzq2hSQrvGXn7yni {
+    border-radius: 7px;
+    max-width: 270px;
 }
 
 /* //////////// Episodes Page //////////// */
@@ -1007,8 +1014,8 @@ a {
 
 /* cards play buttons fix */
 .main-card-card .main-card-PlayButtonContainer {
-    right: 8px !important;
-    bottom: 8px !important;
+    right: 16px !important;
+    bottom: 16px !important;
 }
 
 /* no artist image in cards */
