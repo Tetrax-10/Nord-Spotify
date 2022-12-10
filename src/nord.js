@@ -1339,7 +1339,7 @@ async function initNord() {
             editVisibility: () => {
                 return CONFIG.colorScheme != "marketplaceDynamic" && CONFIG.colorScheme != "Dynamic";
             },
-            bool: !CONFIG.localColor && !isMarketplace,
+            bool: (!CONFIG.localColor && !isMarketplace) || isMarketplace,
             options: colorSchemesOptions,
             onClickEditFun: () => {
                 Spicetify.PopupModal.hide();
