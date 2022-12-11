@@ -1483,7 +1483,8 @@ async function initNord() {
             field: "darkSideBar",
             bool: !isNewUI,
             onClickCheckFun: async () => {
-                await dynamicUI(null, null, ComplexConditionedSnippets.darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
+                removeInjectedElement(`nord--${userConfig.color_scheme}`);
+                injectColor(`${CONFIG.colorScheme}`);
             },
         }),
         React.createElement(checkBoxItem, {
@@ -2047,12 +2048,6 @@ async function initNord() {
         display: none;
     }`,
 
-        darkSideBar: `
-    /* Dark SideBar */
-    :root {
-        --spice-sidebar: var(--spice-main) !important;
-    }`,
-
         hideTopBar: `
     .main-topBar-background {
         background-color: unset !important;
@@ -2283,8 +2278,6 @@ async function initNord() {
     cssSnippet(ComplexConditionedSnippets.bubbleUI, "nord--bubbleUI", !CONFIG.bubbleUI);
 
     await dynamicUI(ComplexConditionedSnippets.hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
-
-    await dynamicUI(null, null, ComplexConditionedSnippets.darkSideBar, "nord--darkSideBar", !CONFIG.darkSideBar);
 
     if (isWindows) {
         hideWindowsControls(); // injects div
@@ -2692,7 +2685,7 @@ async function initNord() {
             --spice-text: ${colors["text"]}${priority};
             --spice-subtext: ${colors["subtext"]}${priority};
             --spice-main: ${colors["main"]}${priority};
-            --spice-sidebar: ${colors["sidebar"]}${priority};
+            --spice-sidebar: ${CONFIG.darkSideBar || isNewUI ? colors["sidebar"] : colors["main"]}${priority};
             --spice-player: ${colors["player"]}${priority};
             --spice-card: ${colors["card"]}${priority};
             --spice-button: ${colors["button"]}${priority};
