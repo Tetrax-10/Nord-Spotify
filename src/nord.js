@@ -2403,6 +2403,7 @@ async function initNord() {
             return;
         }
 
+        MarketplaceDynamicState(false);
         userConfig.color_scheme = colorScheme;
         injectCSS(createColorScheme(colorSchemes[colorScheme]), `nord--${colorScheme}`);
     }
