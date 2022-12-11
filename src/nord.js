@@ -295,6 +295,8 @@ async function initNord() {
 
     ////////////////////////////////////// Preprocessor ///////////////////////////////////////////
 
+    marketplaceDynamicState(false);
+
     let hideWindowsControlsValues = structuredClone(CONFIG.hideWindowsControlsValues);
     let colorSchemes = structuredClone(CONFIG.colorSchemes);
 
@@ -302,9 +304,7 @@ async function initNord() {
     Object.keys(CONFIG.colorSchemes).forEach((key) => {
         colorSchemesOptions[key] = colorSchemes[key]["Name"];
     });
-
     colorSchemesOptions.Dynamic = "Nord Spotify's Dynamic";
-    isMarketplace ? (colorSchemesOptions.marketplaceDynamic = "Marketplace's Dynamic") : null;
 
     injectColor(`${CONFIG.colorScheme}`, "start");
 
@@ -787,7 +787,6 @@ async function initNord() {
                 options: (() => {
                     let tempColorSchemesOptions = structuredClone(colorSchemesOptions);
                     if (userConfig.color_scheme != "Dynamic") delete tempColorSchemesOptions.Dynamic;
-                    delete tempColorSchemesOptions.marketplaceDynamic;
                     return tempColorSchemesOptions;
                 })(),
             }),
@@ -1330,12 +1329,10 @@ async function initNord() {
             name: "Spotify Color",
             field: "colorScheme",
             add: true,
-            addVisibility: () => {
-                return CONFIG.colorScheme != "marketplaceDynamic";
-            },
+            addVisibility: () => true,
             edit: true,
             editVisibility: () => {
-                return CONFIG.colorScheme != "marketplaceDynamic" && CONFIG.colorScheme != "Dynamic";
+                return CONFIG.colorScheme != "Dynamic";
             },
             bool: (!CONFIG.localColor && !isMarketplace) || isMarketplace,
             options: colorSchemesOptions,
@@ -2368,35 +2365,23 @@ async function initNord() {
         }
     }
 
-    function MarketplaceDynamicState(bool) {
-        if (getLocalStorageDataFromKey("marketplace:albumArtBasedColors") != bool.toString()) {
+    function marketplaceDynamicState(bool) {
+        if (getLocalStorageDataFromKey("marketplace:albumArtBasedColors") != bool.toString() && isMarketplace) {
             setLocalStorageDataWithKey("marketplace:albumArtBasedColors", bool.toString());
             forceReload();
         }
     }
 
     async function injectColor(colorScheme, src = "") {
-        if ((CONFIG.localColor && !isMarketplace) || colorScheme == "Dynamic" || colorScheme == "marketplaceDynamic") {
+        if ((CONFIG.localColor && !isMarketplace) || colorScheme == "Dynamic") {
             if (colorScheme == "Dynamic") {
-                MarketplaceDynamicState(false);
                 injectRemoteJS("https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js", "chroma-js");
                 userConfig.color_scheme = "Dynamic";
                 src == "start" ? null : await createDynamicColors();
-            } else if (colorScheme == "marketplaceDynamic") {
-                if (isMarketplace) {
-                    MarketplaceDynamicState(true);
-                    userConfig.color_scheme = "marketplaceDynamic";
-                } else {
-                    MarketplaceDynamicState(false);
-                    CONFIG.colorScheme = "Dynamic";
-                    await saveConfig();
-                    injectColor("Dynamic", "start");
-                }
             }
             return;
         }
 
-        MarketplaceDynamicState(false);
         userConfig.color_scheme = colorScheme;
         injectCSS(createColorScheme(colorSchemes[colorScheme]), `nord--${colorScheme}`);
     }
