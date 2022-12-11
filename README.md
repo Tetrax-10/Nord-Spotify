@@ -52,6 +52,15 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 <br />
 
+| Nord Spotify's Dynamic Color (Better) | Marketplace's Dynamic Color |
+|:-------------------------:|:-------------------------:|
+| ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png)
+| ![2](https://user-images.githubusercontent.com/75513645/206895281-5d1cc28a-e1f4-4c82-ad36-723f724ee253.png) | ![2](https://user-images.githubusercontent.com/75513645/206895237-16106d65-7001-42b8-9809-a73a63503e25.png)
+| ![3](https://user-images.githubusercontent.com/75513645/206895286-41d91142-3656-453b-95b8-bd60d8ae66f8.png) | ![3](https://user-images.githubusercontent.com/75513645/206895241-7dc9b950-4994-4650-8352-319003a02fa5.png)
+| ![4](https://user-images.githubusercontent.com/75513645/206895763-25ddc849-ed80-4dfa-a094-edab82a1fa37.png) | ![4](https://user-images.githubusercontent.com/75513645/206895765-f63b816f-7dd4-4498-a4ec-5bc75d5528c7.png)
+| ![5](https://user-images.githubusercontent.com/75513645/206895821-418d426d-c463-4de8-bec3-642d9588e7bf.png) | ![5](https://user-images.githubusercontent.com/75513645/206895818-261bddca-832e-4821-bece-4bdd4d406736.png)
+| ![6](https://user-images.githubusercontent.com/75513645/206895964-67a462e1-e3bb-48c8-adf0-53b51fb38504.png) | ![6](https://user-images.githubusercontent.com/75513645/206895240-12141aba-ce60-426d-b5c7-0527cfa927d6.png)
+
 ## How to Reposition Banner ?
 
 1) Scroll on Player to Reposition banner
