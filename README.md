@@ -61,7 +61,7 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 | ![3](https://user-images.githubusercontent.com/75513645/206895286-41d91142-3656-453b-95b8-bd60d8ae66f8.png) | ![3](https://user-images.githubusercontent.com/75513645/206895241-7dc9b950-4994-4650-8352-319003a02fa5.png)
 | ![4](https://user-images.githubusercontent.com/75513645/206895763-25ddc849-ed80-4dfa-a094-edab82a1fa37.png) | ![4](https://user-images.githubusercontent.com/75513645/206895765-f63b816f-7dd4-4498-a4ec-5bc75d5528c7.png)
 | ![5](https://user-images.githubusercontent.com/75513645/206895821-418d426d-c463-4de8-bec3-642d9588e7bf.png) | ![5](https://user-images.githubusercontent.com/75513645/206895818-261bddca-832e-4821-bece-4bdd4d406736.png)
-| ![6](https://user-images.githubusercontent.com/75513645/206895964-67a462e1-e3bb-48c8-adf0-53b51fb38504.png) | ![6](https://user-images.githubusercontent.com/75513645/206895240-12141aba-ce60-426d-b5c7-0527cfa927d6.png)
+| ![6](https://user-images.githubusercontent.com/75513645/206899667-213bf891-cace-4fb0-9b4c-ba303ac83f43.png) | ![6](https://user-images.githubusercontent.com/75513645/206899665-5a5a3bd1-19a3-49ee-aa5e-a34547830524.png)
 
 ## How to Reposition Banner ?
 
