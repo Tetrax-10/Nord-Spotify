@@ -30,20 +30,6 @@ Nord Themed Spotify with no UI Ads
 
 https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-a4a9-f2df1fd374be.mp4
 
-![create custom colors](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/create-custom-colors.png)
-
-<br />
-
-## Dynamic Color Modes
-
-![dynamic color modes](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/dynamic-color-modes.png)
-
-<br />
-
-## Colors Shipped with Nord Spotify
-
-![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/shipped-color-schemes.png)
-
 <br />
 
 ## Snippets Support - Deeply Customizable
@@ -54,7 +40,7 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 ## Nord Spotify vs Marketplace's Dynamic Colors 
 
-| Nord Spotify's Dynamic Color (Better) | Marketplace's Dynamic Color |
+| Nord Spotify's Dynamic Color (Better) | Marketplace's Dynamic Color (Deprecated) |
 |:-------------------------:|:-------------------------:|
 | ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png)
 | ![2](https://user-images.githubusercontent.com/75513645/206895281-5d1cc28a-e1f4-4c82-ad36-723f724ee253.png) | ![2](https://user-images.githubusercontent.com/75513645/206895237-16106d65-7001-42b8-9809-a73a63503e25.png)
