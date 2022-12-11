@@ -52,6 +52,8 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 <br />
 
+## Nord Spotify vs Marketplace's Dynamic Colors 
+
 | Nord Spotify's Dynamic Color (Better) | Marketplace's Dynamic Color |
 |:-------------------------:|:-------------------------:|
 | ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png)
