@@ -1,36 +1,54 @@
-# Nord-Spotify
+# Nord-Spotify (Supports Dynamic Theme)
 
 Nord Themed Spotify with no UI Ads
 
 <br />
 
-![home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/home.png)
-
 ![artist 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist-2.png)
 
-## Snippets Support - Deeply Customize
-
-![snippets](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/snippets.png)
-
 ![artist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist.png)
+
+<br />
+
+## Nord Spotify's Own Dynamic Theme
+
+![home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/home.png)
+
+![genre](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/genre.png)
+
+![playlist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/playlist.png)
 
 ![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search-2.png)
 
 ![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search.png)
 
-![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/genre.png)
+![lyrics plus](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/lyrics-plus.png)
 
-![playlist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/playlist.png)
+<br />
 
-## Customized Spotify and 3rd parties Integration
+## Save Any Dynamic Theme to your Theme Library
 
-![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/spotify-lyrics.png)
+https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-a4a9-f2df1fd374be.mp4
 
-![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/lyrics-plus.png)
+![create custom colors](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/create-custom-colors.png)
 
-## Nightly
+<br />
 
-![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/nightly.png)
+## Dynamic Color Modes
+
+![dynamic color modes](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/dynamic-color-modes.png)
+
+<br />
+
+## Colors Shipped with Nord Spotify
+
+![Screenshot 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/shipped-color-schemes.png)
+
+<br />
+
+## Snippets Support - Deeply Customize
+
+![snippets](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/snippets.png)
 
 <br />
 
@@ -150,6 +168,10 @@ spicetify apply
 ```
 
 <br />
+
+## Credits
+
+Dynamic Theming made Possible with [chroma.js](https://github.com/gka/chroma.js)
 
 ## Support
 
