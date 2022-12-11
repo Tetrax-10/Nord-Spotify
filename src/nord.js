@@ -2397,6 +2397,7 @@ async function initNord() {
                 } else {
                     MarketplaceDynamicState(false);
                     CONFIG.colorScheme = "Dynamic";
+                    await saveConfig();
                     injectColor("Dynamic", "start");
                 }
             }
