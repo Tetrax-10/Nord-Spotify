@@ -318,8 +318,6 @@ async function initNord() {
         injectStyleSheet(`${server}/src/Snippets/OldUI.css`, "nord--OldUI");
     }
 
-    injectRemoteJS("https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js", "chroma-js");
-
     NordSpotify.Config = CONFIG;
     NordSpotify.Save = saveConfig;
     NordSpotify.Reload = forceReload;
@@ -2388,6 +2386,7 @@ async function initNord() {
         if ((CONFIG.localColor && !isMarketplace) || colorScheme == "Dynamic" || colorScheme == "marketplaceDynamic") {
             if (colorScheme == "Dynamic") {
                 MarketplaceDynamicState(false);
+                injectRemoteJS("https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js", "chroma-js");
                 userConfig.color_scheme = "Dynamic";
                 src == "start" ? null : await createDynamicColors();
             } else if (colorScheme == "marketplaceDynamic") {
@@ -3076,6 +3075,7 @@ async function initNord() {
 
     function singleHexToPalette(mainColor) {
         let mixingColor = "#2A2A2A";
+        let mixedMainColor = chroma.mix(mainColor, mixingColor, 0.57, "rgb");
 
         palette = {
             Name: "Dynamic",
@@ -3086,17 +3086,17 @@ async function initNord() {
             customSuccess: "#76BA99",
         };
 
-        palette.main = palette.player = palette.card = chroma.mix(mainColor, mixingColor, 0.57, "rgb").hex();
-        palette.customMainSoftSecondary = palette.notification = palette.tabActive = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(0.23).hex();
-        palette.customMainSecondary = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(0.38).hex();
+        palette.main = palette.player = palette.card = mixedMainColor.hex();
+        palette.customMainSoftSecondary = palette.notification = palette.tabActive = mixedMainColor.brighten(0.23).hex();
+        palette.customMainSecondary = mixedMainColor.brighten(0.38).hex();
         palette.sidebar = chroma.mix(mainColor, "#1F1F1F", 0.6, "rgb").hex();
-        palette.button = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1.5).hex();
-        palette.buttonActive = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1.8).hex();
-        palette.buttonDisabled = palette.misc = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(0.6).hex();
-        palette.text = palette.subtext = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(2.3).hex();
-        palette.customSubdued = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1.6).hex();
-        palette.customLinkHover = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(3).hex();
-        palette.customSelectedButton = palette.customHighlight = chroma.mix(mainColor, mixingColor, 0.57, "rgb").brighten(1).hex();
+        palette.button = mixedMainColor.brighten(1.5).hex();
+        palette.buttonActive = mixedMainColor.brighten(1.8).hex();
+        palette.buttonDisabled = palette.misc = mixedMainColor.brighten(0.6).hex();
+        palette.text = palette.subtext = mixedMainColor.brighten(2.3).hex();
+        palette.customSubdued = mixedMainColor.brighten(1.6).hex();
+        palette.customLinkHover = mixedMainColor.brighten(3).hex();
+        palette.customSelectedButton = palette.customHighlight = mixedMainColor.brighten(1).hex();
     }
 
     async function createDynamicColors() {
@@ -3199,7 +3199,7 @@ async function initNord() {
     let palette = {};
 
     (async function initMain() {
-        if (!(Spicetify.Player.data && window.chroma)) {
+        if (!(Spicetify.Player.data && (userConfig.color_scheme == "Dynamic") == (window.chroma ? true : false))) {
             setTimeout(initMain, 1000);
             return;
         }
