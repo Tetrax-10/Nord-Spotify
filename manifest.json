@@ -1,7 +1,7 @@
 [
     {
         "name": "Nord Spotify",
-        "description": "Norded Spotify with no UI Ads",
+        "description": "Norded Spotify, with Dynamic Color support",
         "preview": "assets/preview.png",
         "readme": "README.md",
         "usercss": "Nord-Spotify/user.css",
