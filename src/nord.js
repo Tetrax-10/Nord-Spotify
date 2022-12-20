@@ -3256,7 +3256,7 @@ async function initNord() {
         });
 
         player.addEventListener("wheel", (event) => {
-            if (isPlayerHover) {
+            if (isPlayerHover && isValidPage) {
                 banner.style.transition = disableTransition;
                 let delta = Math.sign(event.deltaY);
 
