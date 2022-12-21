@@ -252,7 +252,7 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 }
 
 /* search bar in playlist page (at end recommended songs) */
-.YAYCVnYpPvmYV4JyTmn5 > input {
+.playlist-inlineSearchBox-filterInputContainer > input {
     display: flex;
     background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.7) !important;
     flex-direction: column;
@@ -261,11 +261,11 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     color: var(--spice-text) !important;
     height: 40px !important;
 }
-.YAYCVnYpPvmYV4JyTmn5 > input::placeholder {
+.playlist-inlineSearchBox-filterInputContainer > input::placeholder {
     color: var(--spice-custom-subdued) !important;
 }
 /* search bar - search icon in left */
-.sgZ_MgcS1NlccH19fYsa {
+.playlist-inlineSearchBox-searchIcon {
     color: var(--spice-custom-subdued) !important;
 }
 
@@ -477,8 +477,8 @@ input[placeholder="Add a display name"] {
 }
 
 /* 1 more release */
-.fLS8v3_EfBadEerbGVoR:hover,
-.fLS8v3_EfBadEerbGVoR {
+.x-album-releasesDropdown:hover,
+.x-album-releasesDropdown {
     background-color: var(--spice-custom-main-soft-secondary) !important;
     border-radius: 10px;
 }
@@ -522,7 +522,7 @@ input[placeholder="Add a display name"] {
 }
 
 /* equalizer reset button */
-.PiFWoUIRceOm8SHTCakS > button {
+.x-settings-equalizerResetButton > button {
     background-color: var(--spice-custom-main-secondary);
 }
 
@@ -532,7 +532,7 @@ input[placeholder="Add a display name"] {
 }
 
 /* equalizer sliders color */
-.gv7Rcc2ouDRSd0pto7Df {
+.x-settings-equalizerCanvasArea {
     filter: sepia() saturate(90%) hue-rotate(170deg);
 }
 
@@ -1242,7 +1242,7 @@ a {
 }
 .main-trackCreditsModal-mainSection::-webkit-scrollbar {
     width: 8px;
-    background-color: var(--spice-main);
+    background-color: transparent;
 }
 
 /* experimental feature seach bar */
@@ -1266,29 +1266,29 @@ input.search[placeholder="Search for a feature"]::placeholder {
 /* //////////// quick search //////////// */
 
 /* quick search - text color */
-.v2oO4ItuH_0zk3OFj5dh {
+.search-modal-input {
     color: var(--spice-text) !important;
 }
 
 /* quick search - placeholder in search box */
-.v2oO4ItuH_0zk3OFj5dh::placeholder {
+.search-modal-input::placeholder {
     color: var(--spice-custom-subdued);
 }
 
 /* quick search - input box */
-.kQ22nY00NOOrZjfmRP5J {
+.search-modal-inputContainer {
     background: var(--spice-custom-main-soft-secondary);
     border-radius: 10px;
 }
 
 /* quick search - search icon */
-.HN_3fmk5t15DGlzDbx1_ {
+.search-modal-searchIcon {
     color: var(--spice-text);
 }
 
 /* quick search rounded rows */
 #search-modal-listbox > a:hover,
-#search-modal-listbox .kUkjSLUuPyag37OAbVPH.sKrYQkHlFOyAc0bM142q {
+#search-modal-listbox .search-modal-resultItem.search-modal-isSelected {
     border-radius: 10px !important;
     background-color: var(--spice-custom-main-soft-secondary) !important;
 }
@@ -1305,7 +1305,7 @@ input.search[placeholder="Search for a feature"]::placeholder {
 }
 
 /* quick search popup rounded corner */
-._p8ywioveAdTZ8yZmPfr {
+.search-modal-modalWrapper {
     border-radius: 10px;
 }
 
