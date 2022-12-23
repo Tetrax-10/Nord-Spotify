@@ -559,12 +559,12 @@ input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
     fill: var(--spice-custom-subdued);
 }
 /* artist verified tick */
-.bn2UNQDs5GLY5rjp5Ljh {
+.artist-artistVerifiedBadge-fillColor {
     background-color: var(--spice-main);
 }
 
 /* change appearance of follow button */
-.idI9vydtCzXVhU1BaKLw {
+.artist-followButton-button {
     border: none;
     border-radius: 7px;
     background-color: var(--spice-custom-main-soft-secondary);
@@ -1382,33 +1382,28 @@ input.search[placeholder="Search for a feature"]::placeholder {
 /* add song again and delete popup */
 /* AdF5F5BxQXGeWkfceg9A - add song again */
 /* J0xJcBaKhwl9EIuzvhLg - delete songs popup */
-/* RVgHI2ejYct8LjT1AO7m - delete playlist popup */
+/* RVgHI2ejYct8LjT1AO7m - delete playlist, folder popup */
 /* t1hN4Ju87afc5N5fDTnm - remove all downloads settings page */
-/* j1BMy6Uh7sBoeNA18Rrh - delete folder popup */
 .RVgHI2ejYct8LjT1AO7m,
 .t1hN4Ju87afc5N5fDTnm,
 .AdF5F5BxQXGeWkfceg9A,
-.J0xJcBaKhwl9EIuzvhLg,
-.j1BMy6Uh7sBoeNA18Rrh {
+.J0xJcBaKhwl9EIuzvhLg {
     background-color: var(--spice-main);
 }
 .AdF5F5BxQXGeWkfceg9A > h2,
 .J0xJcBaKhwl9EIuzvhLg > h2,
 .RVgHI2ejYct8LjT1AO7m > h2,
 .t1hN4Ju87afc5N5fDTnm > h2,
-.j1BMy6Uh7sBoeNA18Rrh > h2,
 .AdF5F5BxQXGeWkfceg9A > p,
 .J0xJcBaKhwl9EIuzvhLg > p,
 .RVgHI2ejYct8LjT1AO7m > p,
-.t1hN4Ju87afc5N5fDTnm > p,
-.j1BMy6Uh7sBoeNA18Rrh > p {
+.t1hN4Ju87afc5N5fDTnm > p {
     color: var(--spice-text);
 }
 .AdF5F5BxQXGeWkfceg9A div button:focus,
 .J0xJcBaKhwl9EIuzvhLg div button:focus,
 .RVgHI2ejYct8LjT1AO7m div button:focus,
-.t1hN4Ju87afc5N5fDTnm div button:focus,
-.j1BMy6Uh7sBoeNA18Rrh div button:focus {
+.t1hN4Ju87afc5N5fDTnm div button:focus {
     outline: none;
     outline-offset: 0px;
 }
