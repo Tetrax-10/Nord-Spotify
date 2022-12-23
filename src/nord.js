@@ -2882,7 +2882,8 @@ async function initNord() {
         .main-actionBar-ActionBar.contentSpacing {
             background-color: var(--spice-main);
         }
-        .playlist-playlist-playlist[data-testid="playlist-page"] > div:nth-child(4) {
+        .playlist-playlist-playlist[data-testid="playlist-page"] > div:nth-child(4),
+        section[data-testid="enhanced-page"] > div:nth-child(3) {
             background-color: var(--spice-main);
         }`;
 
