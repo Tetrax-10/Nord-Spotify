@@ -915,6 +915,9 @@ a {
 }
 
 /* hides info about other devices on player */
+/* triangle */
+.main-connectPicker-button > div,
+/* bar */
 .main-connectBar-connectBar {
     display: none !important;
 }
