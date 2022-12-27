@@ -172,6 +172,12 @@ Dynamic Theming made Possible with [chroma.js](https://github.com/gka/chroma.js)
 
 ## Support
 
+### People who Liked this Theme
+
+Want your name here? Just like this Repo 🤩
+
+[![Nord Spotify Stargazers](https://reporoster.com/stars/Tetrax-10/Nord-Spotify)](https://github.com/Tetrax-10/Nord-Spotify/stargazers)
+
 Like This Theme? Gimme Some ❤️ by Liking this Repository
 
 [![Github Stars badge](https://img.shields.io/github/stars/Tetrax-10/Spicetify-Themes?logo=github&style=social)](https://github.com/Tetrax-10/Spicetify-Themes)
