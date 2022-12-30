@@ -1,4 +1,4 @@
-# Nord-Spotify (Supports Dynamic Theme)
+# Nord Spotify (Supports Dynamic Theme)
 
 Nord Themed Spotify with no UI Ads
 
