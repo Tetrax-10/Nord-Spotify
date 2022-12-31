@@ -1,4 +1,4 @@
-# Nord-Spotify (Supports Dynamic Theme)
+# Nord Spotify (Supports Dynamic Theme)
 
 Nord Themed Spotify with no UI Ads
 
@@ -171,6 +171,12 @@ spicetify apply
 Dynamic Theming made Possible with [chroma.js](https://github.com/gka/chroma.js)
 
 ## Support
+
+### People who Liked this Theme
+
+Want your name here? Just like this Repo 🤩
+
+[![Nord Spotify Stargazers](https://reporoster.com/stars/Tetrax-10/Nord-Spotify)](https://github.com/Tetrax-10/Nord-Spotify/stargazers)
 
 Like This Theme? Gimme Some ❤️ by Liking this Repository
 
