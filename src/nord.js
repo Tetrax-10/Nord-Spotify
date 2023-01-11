@@ -92,7 +92,6 @@ async function initNord() {
         hideSimilarSongsRecommendation: false,
         hideSpotifyConnect: false,
         hideSpotifyFullScreen: false,
-        hideTopGradient: true,
         hideWindowsControls: true,
         hideWindowsControlsValues: {
             height: "31",
@@ -476,6 +475,7 @@ async function initNord() {
                     padding: 5px !important;
                     border-radius: 6px !important;
                     right: 0px !important;
+                    margin: 5px;
                 }
                 .small-button {
                     margin-right: 20px;
@@ -523,7 +523,7 @@ async function initNord() {
         });
     }
 
-    function checkBoxItem({ name, field, bool = true, title = null, check = true, more = false, external = false, onClickCheckFun = () => {}, onClickMoreFun = () => {} }) {
+    function checkBoxItem({ name, field, bool = true, label = null, check = true, edit = false, external = false, onClickCheckFun = () => {}, onClickEditFun = () => {} }) {
         if (bool) {
             let [value, setValue] = useState(CONFIG[field]);
             return React.createElement(
@@ -533,58 +533,79 @@ async function initNord() {
                 React.createElement(
                     "div",
                     { className: "col action" },
-                    more
+                    edit
                         ? React.createElement(
-                              "button",
+                              Spicetify.ReactComponent.TooltipWrapper,
                               {
-                                  className: "checkbox" + (value ? "" : " disabled"),
-                                  onClick: async () => {
-                                      onClickMoreFun();
-                                  },
+                                  label: "Edit menu",
+                                  showDelay: 200,
                               },
-                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.more, size: 16 })
+                              React.createElement(
+                                  "button",
+                                  {
+                                      className: "checkbox",
+                                      onClick: async () => {
+                                          onClickEditFun();
+                                      },
+                                  },
+                                  React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.edit, size: 16 })
+                              )
                           )
                         : null,
                     external
                         ? React.createElement(
-                              "button",
+                              Spicetify.ReactComponent.TooltipWrapper,
                               {
-                                  className: "checkbox",
-                                  onClick: async () => {
-                                      onClickMoreFun();
-                                  },
+                                  label: "Open Guide",
+                                  showDelay: 200,
                               },
-                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons["external-link"], size: 16 })
+                              React.createElement(
+                                  "button",
+                                  {
+                                      className: "checkbox",
+                                      onClick: async () => {
+                                          onClickEditFun();
+                                      },
+                                  },
+                                  React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons["external-link"], size: 16 })
+                              )
                           )
                         : null,
                     check
                         ? React.createElement(
-                              "button",
+                              label ? Spicetify.ReactComponent.TooltipWrapper : "div",
                               {
-                                  className: "checkbox" + (value ? "" : " disabled"),
-                                  title: title,
-                                  onClick: async () => {
-                                      let state = !value;
-                                      CONFIG[field] = state;
-                                      setValue(state);
-                                      await saveConfig();
-                                      onClickCheckFun();
-
-                                      switch (ComplexConditionedSnippets[field]) {
-                                          case undefined:
-                                              updateCssSnippet(field);
-                                              break;
-                                          case "restart":
-                                              refrestToApply = true;
-                                              break;
-                                      }
-
-                                      if (ComplexConditionedSnippetsCond[field] === "restart") {
-                                          refrestToApply = true;
-                                      }
-                                  },
+                                  label: label,
+                                  showDelay: 200,
+                                  className: label ? "" : "no-tool-tip-wrapper",
                               },
-                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.check, size: 16 })
+                              React.createElement(
+                                  "button",
+                                  {
+                                      className: "checkbox" + (value ? "" : " disabled"),
+                                      onClick: async () => {
+                                          let state = !value;
+                                          CONFIG[field] = state;
+                                          setValue(state);
+                                          await saveConfig();
+                                          onClickCheckFun();
+
+                                          switch (ComplexConditionedSnippets[field]) {
+                                              case undefined:
+                                                  updateCssSnippet(field);
+                                                  break;
+                                              case "restart":
+                                                  refrestToApply = true;
+                                                  break;
+                                          }
+
+                                          if (ComplexConditionedSnippetsCond[field] === "restart") {
+                                              refrestToApply = true;
+                                          }
+                                      },
+                                  },
+                                  React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.check, size: 16 })
+                              )
                           )
                         : null
                 )
@@ -606,26 +627,40 @@ async function initNord() {
                     { className: "col action" },
                     edit
                         ? React.createElement(
-                              "button",
+                              Spicetify.ReactComponent.TooltipWrapper,
                               {
-                                  className: `checkbox${value ? "" : " disabled"}${editVisibility() ? "" : " display-none"}`,
-                                  onClick: async () => {
-                                      onClickEditFun();
-                                  },
+                                  label: "Edit current color scheme",
+                                  showDelay: 200,
                               },
-                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.edit, size: 16 })
+                              React.createElement(
+                                  "button",
+                                  {
+                                      className: `checkbox${value ? "" : " disabled"}${editVisibility() ? "" : " display-none"}`,
+                                      onClick: async () => {
+                                          onClickEditFun();
+                                      },
+                                  },
+                                  React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.edit, size: 16 })
+                              )
                           )
                         : null,
                     add
                         ? React.createElement(
-                              "button",
+                              Spicetify.ReactComponent.TooltipWrapper,
                               {
-                                  className: `checkbox${value ? "" : " disabled"}${addVisibility() ? "" : " display-none"}`,
-                                  onClick: async () => {
-                                      onClickAddFun();
-                                  },
+                                  label: "Create a color scheme",
+                                  showDelay: 200,
                               },
-                              React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.plus2px, size: 16 })
+                              React.createElement(
+                                  "button",
+                                  {
+                                      className: `checkbox${value ? "" : " disabled"}${addVisibility() ? "" : " display-none"}`,
+                                      onClick: async () => {
+                                          onClickAddFun();
+                                      },
+                                  },
+                                  React.createElement(DisplayIcon, { icon: Spicetify.SVGIcons.plus2px, size: 16 })
+                              )
                           )
                         : null
                 ),
@@ -660,7 +695,7 @@ async function initNord() {
         }
     }
 
-    function inputBoxItem({ name, field, title = null, chooseColor = false, subProperty = false, ChildSubProperty = false, bool = true, onChangeFun = () => {} }) {
+    function inputBoxItem({ name, field, label = null, chooseColor = false, subProperty = false, ChildSubProperty = false, bool = true, onChangeFun = () => {} }) {
         let tempConfig;
         if (ChildSubProperty) {
             tempConfig = structuredClone(CONFIG[subProperty][ChildSubProperty]);
@@ -699,15 +734,22 @@ async function initNord() {
                               )
                           )
                         : null,
-                    React.createElement("input", {
-                        className: "small-input",
-                        placeholder: value,
-                        title: title,
-                        onChange: async (e) => {
-                            setValue(e.target.value);
-                            onChangeFun(field, e.target.value);
+                    React.createElement(
+                        label ? Spicetify.ReactComponent.TooltipWrapper : "div",
+                        {
+                            label: label,
+                            showDelay: 200,
+                            className: label ? "" : "no-tool-tip-wrapper",
                         },
-                    })
+                        React.createElement("input", {
+                            className: "small-input",
+                            placeholder: value,
+                            onChange: async (e) => {
+                                setValue(e.target.value);
+                                onChangeFun(field, e.target.value);
+                            },
+                        })
+                    )
                 )
             );
         } else {
@@ -1423,8 +1465,8 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Custom Font",
             field: "customFont",
-            more: true,
-            onClickMoreFun: async () => {
+            edit: true,
+            onClickEditFun: async () => {
                 Spicetify.PopupModal.hide();
                 setTimeout(customFontInfo, 100);
             },
@@ -1432,8 +1474,8 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Font Size",
             field: "fontSizeBool",
-            more: true,
-            onClickMoreFun: async () => {
+            edit: true,
+            onClickEditFun: async () => {
                 Spicetify.PopupModal.hide();
                 setTimeout(customFontSize, 100);
             },
@@ -1442,7 +1484,7 @@ async function initNord() {
             name: "Hide Windows Control",
             field: "hideWindowsControls",
             bool: isWindows,
-            more: true,
+            edit: true,
             onClickCheckFun: () => {
                 if (CONFIG.hideWindowsControls) {
                     hideWindowsControls();
@@ -1451,7 +1493,7 @@ async function initNord() {
                 }
                 cssSnippet(hideWindowsControlsCSS(), "nord--hideWindowsControlsCSS", CONFIG.hideWindowsControls);
             },
-            onClickMoreFun: async () => {
+            onClickEditFun: async () => {
                 Spicetify.PopupModal.hide();
                 setTimeout(editHideWindowsControls, 100);
             },
@@ -1459,7 +1501,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Pointers",
             field: "pointers",
-            title: "Change Mouse Cursor for Clickable Clements",
+            label: "Change Mouse Cursor for Clickable Clements",
         }),
         React.createElement(heading, {
             name: "Banners",
@@ -1468,23 +1510,23 @@ async function initNord() {
             name: `How to Reposition Banners ?`,
             check: false,
             external: true,
-            onClickMoreFun: () => {
+            onClickEditFun: () => {
                 window.open("https://github.com/Tetrax-10/Nord-Spotify#how-to-reposition-banner-");
             },
         }),
         React.createElement(checkBoxItem, {
             name: "Banner Overlay",
             field: "bannerOverlay",
-            title: "Dark Tint on Banners",
+            label: "Dark Tint on Banners",
         }),
         React.createElement(inputBoxItem, {
             name: "Banner Overlay Color",
             field: "bannerOverlayColor",
-            title: "8 digit Hex code / rgba code",
+            label: "8 digit Hex code / rgba code",
             onChangeFun: updateBannerOverlayColor,
         }),
         React.createElement(checkBoxItem, {
-            name: "Song Banners Only",
+            name: "Show Only Song's Banners",
             field: "songBannersOnly",
         }),
         React.createElement(checkBoxItem, {
@@ -1502,12 +1544,13 @@ async function initNord() {
         React.createElement(inputBoxItem, {
             name: "Banner Blur Amout",
             field: "bannerBlurValue",
-            title: "0 to 100",
+            label: "0 to 100",
             onChangeFun: updateBannerBlur,
         }),
         React.createElement(checkBoxItem, {
-            name: "Fit Banner Size",
+            name: "Fit Banner Image to Screen Size",
             field: "fitBannerSize",
+            label: "",
             onClickCheckFun: () => {
                 CONFIG.fitBannerSize ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "100%");
             },
@@ -1525,7 +1568,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide Marketplace",
             field: "hideMarketplace",
-            title: "Hide Marketplace in Sidebar",
+            label: "Hide Marketplace from Sidebar",
         }),
         React.createElement(checkBoxItem, {
             name: "Dark SideBar",
@@ -1549,7 +1592,7 @@ async function initNord() {
             field: "highlightSideBarSelectedItem",
         }),
         React.createElement(checkBoxItem, {
-            name: "SideBar Playlist Names bold",
+            name: "Bolded SideBar Playlist Names",
             field: "boldedSideBarItems",
         }),
         React.createElement(checkBoxItem, {
@@ -1559,19 +1602,20 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide SideBar Status",
             field: "hideSideBarStatus",
-            title: "Hide playing/download status in sidebar",
+            label: "Hide playing/download status in sidebar",
         }),
         React.createElement(heading, {
             name: "Player",
         }),
         React.createElement(checkBoxItem, {
-            name: "Show Timestamp on Hover",
+            name: "Show Timestamp on Hovering the Progress Bar",
             field: "hoverTime",
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Friend Activity",
             field: "hideFriendActivity",
             bool: isNewUI,
+            label: "Hide friend activity icon from player bar",
             onClickCheckFun: async () => {
                 await dynamicUI(ComplexConditionedSnippets.hideFriendActivity, "nord--hideFriendActivity", null, null, CONFIG.hideFriendActivity);
             },
@@ -1579,11 +1623,13 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide Spotify Connect",
             field: "hideSpotifyConnect",
+            label: "Hide spotify connect icon from player bar",
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Spotify Full Screen",
+            name: "Hide Spotify's Full Screen",
             field: "hideSpotifyFullScreen",
             bool: isPremium,
+            label: "Hide spotify's full screen icon from player bar",
         }),
         React.createElement(checkBoxItem, {
             name: "Hide Dots Under Player Controls",
@@ -1593,11 +1639,11 @@ async function initNord() {
             name: "Playlist",
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Playlist Similar Songs Recommendation",
+            name: "Hide Similar Songs Recommendation on Playlist Page",
             field: "hideSimilarSongsRecommendation",
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Current Playing Song BG",
+            name: "Disable Highlighting of Current Playing Song",
             field: "hideCurrentPlayingSongBG",
             onClickCheckFun: () => {
                 cssSnippet(ComplexConditionedSnippets.hideCurrentPlayingSongBG, "nord--hideCurrentPlayingSongBG", !CONFIG.hideCurrentPlayingSongBG);
@@ -1608,18 +1654,18 @@ async function initNord() {
             field: "hidePlaylistImageEditButton",
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Radio Gradient",
+            name: "Hide Radio Page's Gradient Effect",
             field: "hideRadioGradient",
         }),
         React.createElement(heading, {
             name: "Your Library",
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Your Library Liked Song's Card",
+            name: "Hide Liked Song's Card",
             field: "hideLikedSongsCard",
         }),
         React.createElement(checkBoxItem, {
-            name: "Hide Your Library Liked Song's Card Text",
+            name: "Hide Liked Song's Card Text",
             field: "hideLikedSongsCardTexts",
         }),
         React.createElement(heading, {
@@ -1645,10 +1691,7 @@ async function initNord() {
             name: "Hide Ads",
             field: "hideAds",
             bool: !isPremium,
-        }),
-        React.createElement(checkBoxItem, {
-            name: "Hide Top Gradient",
-            field: "hideTopGradient",
+            label: "Hides all UI Ads",
         }),
         React.createElement(checkBoxItem, {
             name: "Norded Genre Cards",
@@ -1692,7 +1735,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Use Local Colors ( color.ini )",
             field: "localColor",
-            title: "Use Spicetify/Themes/Nord-Spotify/color.ini",
+            label: "Use Spicetify/Themes/Nord-Spotify/color.ini",
             bool: !isMarketplace,
         }),
         React.createElement(ButtonItem, {
@@ -1890,20 +1933,6 @@ async function initNord() {
     /* sidebar divider invisible */
     .LayoutResizer__resize-bar {
         background: none;
-    }`,
-
-        hideTopGradient: `
-    /* Hide playlist gradient top */
-    .main-entityHeader-backgroundColor {
-        display: none !important;
-    }
-    /* Hide playlist gradient bottom */
-    .main-actionBarBackground-background {
-        display: none !important;
-    }
-    /* remove gradient color on home screen */
-    .main-home-homeHeader {
-        display: none !important;
     }`,
 
         betterGenre: `

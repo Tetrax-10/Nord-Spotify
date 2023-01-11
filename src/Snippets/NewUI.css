@@ -32,14 +32,14 @@
 /* //////////// Top bar //////////// */
 
 /* home button */
-.zuf9gCpkf86KkzzCtkJN {
+.main-topBar-navLink {
     border-radius: 10px;
     height: 40px;
     padding: 7px 16px;
     background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
     color: var(--spice-text);
 }
-.zuf9gCpkf86KkzzCtkJN:hover {
+.main-topBar-navLink:hover {
     background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
 }
 
@@ -192,44 +192,4 @@
     color: var(--spice-text);
     height: 40px;
     padding: 10px;
-}
-
-/* //////////// New Side Bar //////////// */
-
-/* sidebar your lib */
-.cfEgZf65Pb9Y3oXTCa5t {
-    background-color: rgba(var(--spice-rgb-custom-main-secondary), 0.8);
-    color: var(--spice-custom-subdued);
-    border-radius: 10px;
-}
-
-/* sidebar playlists img shadow */
-.iJp40IxKg6emF6KYJ414 {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-/* sidebar playlists img */
-.vreceNX3ABcxyddeS83B img {
-    border-radius: 10px;
-}
-
-/* sidebar playlists selected bg */
-.xFfODpPkWh3RFEif2u_b {
-    border-radius: 15px !important;
-}
-
-/* sidebar folder bg color */
-.vreceNX3ABcxyddeS83B div {
-    color: var(--spice-custom-subdued);
-    background-color: rgba(var(--spice-rgb-custom-main-secondary), 0.8);
-    border-radius: 10px;
-}
-
-/* expanded sidebar clear choise */
-.ChipClear__ChipClearComponent-zv5btm-0.berCZn {
-    border-radius: 10px;
-    background-color: var(--spice-custom-main-soft-secondary);
-    height: 40px;
-    padding: var(--spacer--2, 12px);
 }

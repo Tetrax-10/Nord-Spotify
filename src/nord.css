@@ -62,6 +62,19 @@
 
 /* //////////// playlist //////////// */
 
+/* Hide playlist gradient top */
+.main-entityHeader-backgroundColor {
+    display: none !important;
+}
+/* Hide playlist gradient bottom */
+.main-actionBarBackground-background {
+    display: none !important;
+}
+/* remove gradient color on home screen */
+.main-home-homeHeader {
+    display: none !important;
+}
+
 /* small cover image in playlist row */
 .main-trackList-rowImage {
     border-radius: 5px !important;
