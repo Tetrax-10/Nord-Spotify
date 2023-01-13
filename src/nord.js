@@ -861,6 +861,15 @@ async function initNord() {
             "div",
             null,
             settingsMenuCSS,
+            React.createElement(checkBoxItem, {
+                name: `How to save a Dynamic Theme ?`,
+                check: false,
+                external: true,
+                bool: userConfig.color_scheme === "Dynamic",
+                onClickEditFun: () => {
+                    window.open("https://github.com/Tetrax-10/Nord-Spotify#save-any-dynamic-theme-to-your-theme-library");
+                },
+            }),
             React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Color Scheme Details")),
             React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
             React.createElement(
@@ -884,6 +893,19 @@ async function initNord() {
                     return tempColorSchemesOptions;
                 })(),
             }),
+            React.createElement(
+                "button",
+                {
+                    className: "small-button",
+                    onClick: async () => {
+                        let importData = await stringToJSON(await getFromClipboard());
+                        CONFIG.colorSchemes[camalize(importData.Name)] = importData;
+                        await saveConfig();
+                        refreshPopup();
+                    },
+                },
+                `Import from clipboard`
+            ),
             React.createElement(
                 "button",
                 {
@@ -1161,20 +1183,7 @@ async function initNord() {
                         }
                     },
                 },
-                `Delete`
-            ),
-            React.createElement(
-                "button",
-                {
-                    className: "small-button",
-                    onClick: async () => {
-                        let importData = await stringToJSON(await getFromClipboard());
-                        CONFIG.colorSchemes[camalize(importData.Name)] = importData;
-                        await saveConfig();
-                        refreshPopup();
-                    },
-                },
-                `Import`
+                "Delete"
             ),
             React.createElement(
                 "button",
@@ -1186,7 +1195,7 @@ async function initNord() {
                         notification("Export Data Copied to Clipboard");
                     },
                 },
-                `Export`
+                "Export to Clipboard"
             ),
             React.createElement(
                 "button",
@@ -1198,7 +1207,7 @@ async function initNord() {
                         refreshPopup();
                     },
                 },
-                `Save`
+                "Save"
             )
         );
 
@@ -1262,7 +1271,7 @@ async function initNord() {
                         refreshPopup();
                     },
                 },
-                `Reset`
+                "Reset"
             ),
             React.createElement(
                 "button",
@@ -1275,7 +1284,7 @@ async function initNord() {
                         refreshPopup();
                     },
                 },
-                `Save`
+                "Save"
             )
         );
 
@@ -1331,7 +1340,7 @@ async function initNord() {
                         refreshPopup();
                     },
                 },
-                `Reset`
+                "Reset"
             ),
             React.createElement(
                 "button",
@@ -1348,7 +1357,7 @@ async function initNord() {
                         refreshPopup();
                     },
                 },
-                `Save`
+                "Save"
             )
         );
 
@@ -1384,7 +1393,7 @@ async function initNord() {
                         refreshPopup();
                     },
                 },
-                `Reset`
+                "Reset"
             ),
             React.createElement(
                 "button",
@@ -1398,7 +1407,7 @@ async function initNord() {
                         refreshPopup();
                     },
                 },
-                `Save`
+                "Save"
             )
         );
 
@@ -1540,6 +1549,7 @@ async function initNord() {
         React.createElement(checkBoxItem, {
             name: "Hide Page's Details",
             field: "hidePageDetails",
+            label: "Hide user name and description of a page",
         }),
         React.createElement(inputBoxItem, {
             name: "Banner Blur Amout",
