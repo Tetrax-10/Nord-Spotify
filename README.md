@@ -10,7 +10,7 @@ Nord Themed Spotify with no UI Ads
 
 <br />
 
-## Nord Spotify's Own Dynamic Theme
+## Nord Spotify's Own Dynamic Theme Engine
 
 ![home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/home.png)
 
