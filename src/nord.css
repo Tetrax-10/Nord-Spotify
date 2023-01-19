@@ -565,6 +565,11 @@ input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
     background-color: var(--spice-text);
 }
 
+/* settings page custom settings heading color */
+.main-shelf-title.main-type-cello {
+    color: var(--spice-text);
+}
+
 /* //////////// Artist Page //////////// */
 
 /* artist verified badge */
@@ -692,12 +697,16 @@ div[data-testid="saved-tracks-avatar"] > div {
 }
 
 /* podcast left side tag button below about section */
-.nLNTsyonBwoRIzAv1AME > a {
+.nLNTsyonBwoRIzAv1AME span {
     border: none;
     border-radius: 10px;
     background-color: var(--spice-custom-main-soft-secondary);
     height: 40px;
     padding: 12px;
+}
+
+.nLNTsyonBwoRIzAv1AME span:hover {
+    background-color: var(--spice-custom-main-secondary) !important;
 }
 
 /* hover buttons always visible in episodes container */
