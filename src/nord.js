@@ -123,6 +123,7 @@ async function initNord() {
         fitBannerSize: false,
         songBannersOnly: false,
         dynamicColorMode: "atmos",
+        nordedDynamicColor: true,
         bannerPosition: {
             "spotify:album:5YDSZWizEYBsXgk6kwxvMn": "30",
         },
@@ -1466,6 +1467,15 @@ async function initNord() {
                 LIGHT_VIBRANT: "Light Vibrant",
             },
             onChangeFun: async () => {
+                if (userConfig.color_scheme == "Dynamic") {
+                    await createDynamicColors();
+                }
+            },
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Make Dynamic Colors Norded",
+            field: "nordedDynamicColor",
+            onClickCheckFun: async () => {
                 if (userConfig.color_scheme == "Dynamic") {
                     await createDynamicColors();
                 }
@@ -3145,7 +3155,7 @@ async function initNord() {
 
     function singleHexToPalette(mainColor) {
         let mixingColor = "#2A2A2A";
-        let mixedMainColor = chroma.mix(mainColor, mixingColor, 0.57, "rgb");
+        let mixedMainColor = CONFIG.nordedDynamicColor ? chroma.mix(mainColor, mixingColor, 0.57, "rgb") : chroma(mainColor);
 
         palette = {
             Name: "Dynamic",
