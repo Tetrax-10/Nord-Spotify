@@ -2,7 +2,11 @@
 
 Nord Themed Spotify with no UI Ads
 
-<br />
+Wanna discuss or having issues ping `@Tetrax-10` in Discord
+
+<a href="https://discord.gg/VnevqPp2Rr"><img src="https://img.shields.io/discord/842219447716151306?label=chat&logo=discord&logoColor=discord"></a>
+
+## Nord Spotify Screenshots
 
 ![artist 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist-2.png)
 
