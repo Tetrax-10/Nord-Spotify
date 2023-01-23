@@ -3181,7 +3181,7 @@ async function initNord() {
 
     async function createDynamicColors() {
         try {
-            let mainColors;
+            let mainColors, colorMode;
             let rawImage = image.split("/");
             if (1 < rawImage.length) {
                 formatedImage = `spotify:image:${rawImage.pop()}`;
@@ -3189,7 +3189,13 @@ async function initNord() {
                 formatedImage = rawImage.pop();
             }
 
-            switch (CONFIG.dynamicColorMode) {
+            if (islocal) {
+                colorMode = "average";
+            } else {
+                colorMode = CONFIG.dynamicColorMode;
+            }
+
+            switch (colorMode) {
                 case "atmos":
                     mainColors = await fetchDynamicColor(formatedImage);
                     singleHexToPalette(mainColors.dark);
@@ -3204,7 +3210,8 @@ async function initNord() {
                         updateColors(palette);
                     };
                     break;
-                default:
+                case "DARK_VIBRANT":
+                case "LIGHT_VIBRANT":
                     mainColors = await Spicetify.colorExtractor(uri);
                     singleHexToPalette(mainColors[CONFIG.dynamicColorMode]);
                     updateColors(palette);
