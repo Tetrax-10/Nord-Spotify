@@ -2088,6 +2088,8 @@ async function initNord() {
     section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer,
     section[data-testid="enhanced-page"] .playlist-playlist-playlistImageContainer,
     section[data-testid="artist-page"] .main-entityHeader-imageContainer,
+    /* artist page without artist banner */
+    section .main-entityHeader-imageContainer,
     section[data-testid="album-page"] .main-entityHeader-imageContainer,
     section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer {
         display: none;
