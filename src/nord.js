@@ -2899,7 +2899,11 @@ async function initNord() {
                 uri = rawData.data.track.metadata.album_uri;
             }
 
-            uid = uri.split(":")[2];
+            try {
+                uid = uri.split(":")[2];
+            } catch {
+                console.error("URI is not splittable");
+            }
 
             if (previousUri == uri) {
                 previousUri = uri;
