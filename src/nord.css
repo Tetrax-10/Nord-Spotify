@@ -1579,4 +1579,24 @@ button.checkbox.disabled {
     display: none !important;
 }
 
+/* //////////////////////////////////// Footer //////////////////////////////////// */
+
+/* footer container */
+.main-view-container__mh-footer-container {
+    display: none;
+}
+
+/* footer container color */
+/* .main-view-container__mh-footer-container .eCtSle {
+    background-color: var(--spice-main);
+} */
+
+/* footer container hr color */
+/* .main-view-container__mh-footer-container .dQUHAb {
+    box-sizing: border-box;
+    border-block-start: unset;
+    margin-block-end: unset;
+    margin-block-start: unset;
+} */
+
 /* /////////////////////////////////////////////////////////////////////////////////////////////////// */
