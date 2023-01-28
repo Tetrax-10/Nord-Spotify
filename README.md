@@ -184,4 +184,4 @@ Want your name here? Just like this Repo 🤩
 
 Like This Theme? Gimme Some ❤️ by Liking this Repository
 
-[![Github Stars badge](https://img.shields.io/github/stars/Tetrax-10/Spicetify-Themes?logo=github&style=social)](https://github.com/Tetrax-10/Spicetify-Themes)
+[![Github Stars badge](https://img.shields.io/github/stars/Tetrax-10/Nord-Spotify?logo=github&style=social)](https://github.com/Tetrax-10/Nord-Spotify)
