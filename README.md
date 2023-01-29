@@ -117,13 +117,13 @@ Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
 
 ### Windows Powershell
 
-```ps
+```sh
 iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.ps1 | iex
 ```
 
 ### Mac/Linux
 
-```ps
+```sh
 curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.sh | sh
 ```
 
@@ -133,13 +133,13 @@ curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/insta
 
 ### Windows Powershell
 
-```ps
+```sh
 iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/uninstall.ps1 | iex
 ```
 
 ### Mac/Linux
 
-```ps
+```sh
 curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/uninstall.sh | sh
 ```
 
@@ -153,7 +153,7 @@ Copy [injectNord.js](https://github.com/Tetrax-10/Nord-Spotify/blob/master/src/i
 
 Then run the following command to apply the theme:
 
-```
+```sh
 spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
 spicetify apply
 ```
@@ -162,7 +162,7 @@ spicetify apply
 
 ## Uninstall Manually
 
-```
+```sh
 spicetify config extensions nord.js-
 spicetify config current_theme " " color_scheme " " extensions injectNord.js-
 spicetify apply
