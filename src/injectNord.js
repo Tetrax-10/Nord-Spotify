@@ -32,6 +32,7 @@
         if (!body.classList.contains(id)) {
             let script = document.createElement("script");
             script.id = id;
+            script.type = "text/javascript";
             script.src = src;
             body.appendChild(script);
             body.classList.add(id);
