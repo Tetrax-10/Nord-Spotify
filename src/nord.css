@@ -180,6 +180,11 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     border-radius: 50% !important;
 }
 
+/* playlist collaborators popup author names hover color */
+.V1By35exkhnkgbEeAQXN > a > span:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
 /* search bar in playlist page */
 .x-filterBox-filterInput {
     background-color: var(--spice-custom-main-soft-secondary);
