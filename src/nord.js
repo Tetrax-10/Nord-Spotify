@@ -29,7 +29,7 @@ async function initNord() {
 
     let userConfig = Spicetify.Config;
 
-    let body = await waitForElement("body", 5000);
+    let body = document.body;
 
     let isNewUI = await isNewUIFunc();
 
@@ -2392,7 +2392,7 @@ async function initNord() {
 
     injectJS(redoKeyBind);
 
-    let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 5000);
+    let settingsButton = await waitForElement(`.main-topBar-button[title="Nord Spotify"]`, 1000);
 
     injectReload(CONFIG.rightClickToReload);
 
@@ -2503,7 +2503,7 @@ async function initNord() {
     }
 
     async function isNewUIFunc() {
-        return (await waitForElement(".nav-alt", 500)) ? true : false;
+        return (await waitForElement(".nav-alt", 1000)) ? true : false;
     }
 
     async function isPremiumFunc() {
@@ -2882,7 +2882,7 @@ async function initNord() {
             try {
                 let bigCoverArt;
                 if (src == "song") {
-                    bigCoverArt = await waitForElement(".main-entityHeader-background", 10);
+                    bigCoverArt = await waitForElement(".main-entityHeader-background", 1000);
                     bigCoverArt.style.display = "none";
                 } else {
                     bigCoverArt.style.display = "unset";
