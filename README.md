@@ -32,6 +32,8 @@ Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 ## Save Any Dynamic Theme to your Theme Library
 
+### [Click to Watch Demo Video](https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-a4a9-f2df1fd374be.mp4)
+
 https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-a4a9-f2df1fd374be.mp4
 
 <br />
@@ -60,6 +62,8 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 2) Right click on Player to Reset banner Position
 
 3) Hold `~` to Zoom Out Banner to see full view
+
+### [Click to Watch Demo Video](https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-9a44-17a04968aa4d.mp4)
 
 https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-9a44-17a04968aa4d.mp4
 
