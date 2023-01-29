@@ -2454,10 +2454,8 @@ async function initNord() {
     }
 
     function cssSnippet(data, id, bool) {
-        if (bool) {
-            injectCSS(data, id);
-        } else {
-            removeInjectedElement(id);
+        if (data && id) {
+            bool ? injectCSS(data, id) : removeInjectedElement(id);
         }
     }
 
