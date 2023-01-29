@@ -55,7 +55,7 @@
 /* moves progress bar to top */
 .playback-bar {
     border-radius: 0px !important;
-    bottom: 69px;
+    bottom: 68px;
     width: 100%;
     position: absolute;
 }
