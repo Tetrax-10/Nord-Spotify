@@ -124,6 +124,8 @@ async function initNord() {
         songBannersOnly: false,
         dynamicColorMode: "atmos",
         nordedDynamicColor: true,
+        bannersInLyricsPage: false,
+        centeredLyrics: false,
         bannerPosition: {
             "spotify:album:5YDSZWizEYBsXgk6kwxvMn": "30",
         },
@@ -1545,6 +1547,17 @@ async function initNord() {
             onChangeFun: updateBannerOverlayColor,
         }),
         React.createElement(checkBoxItem, {
+            name: "Show Banners in Lyrics Page",
+            field: "bannersInLyricsPage",
+            onClickCheckFun: () => {
+                if (pageType == "lyrics-plus" || pageType == "lyrics") {
+                    Spicetify.Platform.History.goBack();
+                    Spicetify.Platform.History.goForward();
+                }
+                hideOrShowLyricsPageBanners();
+            },
+        }),
+        React.createElement(checkBoxItem, {
             name: "Show Only Song's Banners",
             field: "songBannersOnly",
         }),
@@ -1565,7 +1578,9 @@ async function initNord() {
             name: "Banner Blur Amout",
             field: "bannerBlurValue",
             label: "0 to 100",
-            onChangeFun: updateBannerBlur,
+            onChangeFun: (field, value) => {
+                updateBannerBlur(field, value, "contextMenu");
+            },
         }),
         React.createElement(checkBoxItem, {
             name: "Fit Banner Image to Screen Size",
@@ -1690,6 +1705,10 @@ async function initNord() {
         }),
         React.createElement(heading, {
             name: "Lyrics",
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Make Lyrics alignment Center",
+            field: "centeredLyrics",
         }),
         React.createElement(checkBoxItem, {
             name: "Beautify Spotify Lyrics",
@@ -2095,6 +2114,18 @@ async function initNord() {
         display: none;
     }`,
 
+        centeredLyrics: `
+    .lyrics-lyrics-contentContainer {
+        justify-content: center !important;
+    }
+    .lyrics-lyricsContent-lyric {
+        display: flex;
+        justify-content: center !important;
+    }
+    .lyrics-lyrics-contentContainer .lyrics-lyrics-contentWrapper {
+        margin: unset !important;
+    }`,
+
         customFont: customFont(CONFIG.customFontURL, CONFIG.customFontName),
         fontSizeBool: fontSize(CONFIG.fontSize),
     };
@@ -2213,6 +2244,11 @@ async function initNord() {
         height: calc(100vh - 78px) !important;
     }`,
 
+        lyricsPlusNoBg: `
+    .lyrics-lyricsContainer-LyricsBackground {
+        background-color: unset !important;
+    }`,
+
         hideOverlayBig: `
     /* Hide Overlay */
     .GenericModal__overlay {
@@ -2265,14 +2301,17 @@ async function initNord() {
         nordLyrics: "restart",
     };
 
-    async function updateBannerBlur(field, value) {
+    async function updateBannerBlur(field, value, src) {
         if (value == "") {
             value = 0;
         }
 
-        CONFIG[field] = value;
-        await saveConfig(field, CONFIG[field]);
-        filterCSS = value == 0 ? "unset" : `blur(${CONFIG.bannerBlurValue}px)`;
+        if (src == "contextMenu") {
+            CONFIG[field] = value;
+            await saveConfig(field, CONFIG[field]);
+        }
+
+        filterCSS = value == 0 ? "unset" : `blur(${value}px)`;
         banner.style.filter = filterCSS;
     }
 
@@ -2959,8 +2998,19 @@ async function initNord() {
         }
     }
 
+    function hideOrShowLyricsPageBanners() {
+        if ((pageType == "lyrics-plus" || pageType == "lyrics") && CONFIG.bannersInLyricsPage) {
+            pageType == "lyrics-plus" ? injectCSS(ComplexConditionedSnippets.lyricsPlusNoBg, "nord--lyricsPlusNoBg") : null;
+            updateBannerBlur("bannerBlurValue", 20);
+        } else {
+            updateBannerBlur("bannerBlurValue", CONFIG.bannerBlurValue);
+            removeInjectedElement("nord--lyricsPlusNoBg");
+        }
+    }
+
     async function hideOrShowBanner() {
         if (isValidPage) {
+            hideOrShowLyricsPageBanners();
             injectCSS(ComplexConditionedSnippets.artistBigImage, "nord--artistBigImage");
             await dynamicUI(ComplexConditionedSnippets.artistBigImageNew, "nord--artistBigImageNew", ComplexConditionedSnippets.artistBigImageOld, "nord--artistBigImageOld", true);
             cssSnippet(ComplexConditionedSnippets.hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
@@ -3116,6 +3166,14 @@ async function initNord() {
             case "new-releases":
                 isBannerPage = false;
                 isValidPage = false;
+                return rootPath;
+            case "lyrics-plus":
+                isBannerPage = false;
+                isValidPage = true && CONFIG.bannersInLyricsPage;
+                return rootPath;
+            case "lyrics":
+                isBannerPage = false;
+                isValidPage = true && CONFIG.bannersInLyricsPage;
                 return rootPath;
         }
 

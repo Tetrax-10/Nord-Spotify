@@ -636,7 +636,7 @@ input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
 }
 
 /* artist page liked songs container artist image like symbol */
-div[data-testid="saved-tracks-avatar"] > div {
+.Kujbn0F68QOf_o44cNxw {
     display: none !important;
 }
 
@@ -647,12 +647,6 @@ div[data-testid="saved-tracks-avatar"] > div {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
-}
-
-/* artist page artist pick highlighted line ( 1st line with diff bg color ) */
-.ydlidzq2hSQrvGXn7yni {
-    border-radius: 7px;
-    max-width: 270px;
 }
 
 /* //////////// Episodes Page //////////// */
@@ -720,9 +714,15 @@ div[data-testid="saved-tracks-avatar"] > div {
 }
 
 /* episodes play button */
-.Button-qlcn5g-0.jGQZTS > span:hover,
-.Button-qlcn5g-0.jGQZTS > span {
+.ButtonInner-sc-14ud5tc-0.hWpfOj.encore-bright-accent-set:hover,
+.ButtonInner-sc-14ud5tc-0.hWpfOj.encore-bright-accent-set,
+.ButtonInner-sc-14ud5tc-0.fLIdhT.encore-inverted-light-set:hover,
+.ButtonInner-sc-14ud5tc-0.fLIdhT.encore-inverted-light-set {
+    border-radius: 10px !important;
     background-color: var(--spice-button) !important;
+}
+.main-playButton-PlayButton:hover {
+    background-color: unset !important;
 }
 
 /* green episodes icon rounded corner */
@@ -788,9 +788,9 @@ a {
     text-decoration: none !important;
 }
 /* liked songs of a artist in artist page (you have liked n songs) */
-.Type__TypeElement-goli3j-0.iLCTEQ> a:hover,
+.Type__TypeElement-sc-goli3j-0.kUtbWF > a:hover,
 /* charts topic name in home page */
-.Type__TypeElement-goli3j-0.eJZNLq > a:hover,
+.Type__TypeElement-sc-goli3j-0.fEBgUb > a:hover,
 /* player song name */
 .main-trackInfo-name :hover > a {
     color: var(--spice-custom-link-hover) !important;
