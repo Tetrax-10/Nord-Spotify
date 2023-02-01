@@ -2972,11 +2972,11 @@ async function initNord() {
             return;
         }
 
-        preBanner.style.backgroundImage = "url(" + image + ")";
+        preBanner.style.backgroundImage = `url("${image}")`;
         banner.style.filter = "blur(100px)";
 
         setTimeout(() => {
-            banner.style.backgroundImage = "url(" + image + ")";
+            banner.style.backgroundImage = `url("${image}")`;
             let pos = CONFIG.bannerPosition[uri] ? parseInt(CONFIG.bannerPosition[uri]) : "50";
             banner.style.backgroundPositionY = pos + "%";
             banner.style.filter = filterCSS;
