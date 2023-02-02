@@ -1584,6 +1584,18 @@ button.checkbox.disabled {
     display: none !important;
 }
 
+/* //////////// Spotify Generes - Extension //////////// */
+
+.main-trackInfo-genres > span,
+.main-trackInfo-genres > a {
+    font-size: 13px !important;
+    color: var(--spice-custom-subdued) !important;
+}
+
+.main-trackInfo-genres > a:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
 /* //////////////////////////////////// Footer //////////////////////////////////// */
 
 /* footer container */
