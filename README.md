@@ -26,6 +26,8 @@ Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 ![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search.png)
 
+![spotify lyrics](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/spotify-lyrics.png)
+
 ![lyrics plus](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/lyrics-plus.png)
 
 <br />
@@ -44,24 +46,24 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 <br />
 
-## Nord Spotify vs Marketplace's Dynamic Colors 
+## Nord Spotify vs Marketplace's Dynamic Colors
 
-| Nord Spotify's Dynamic Color (Better) | Marketplace's Dynamic Color (Deprecated) |
-|:-------------------------:|:-------------------------:|
-| ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png)
-| ![2](https://user-images.githubusercontent.com/75513645/206895281-5d1cc28a-e1f4-4c82-ad36-723f724ee253.png) | ![2](https://user-images.githubusercontent.com/75513645/206895237-16106d65-7001-42b8-9809-a73a63503e25.png)
-| ![3](https://user-images.githubusercontent.com/75513645/206895286-41d91142-3656-453b-95b8-bd60d8ae66f8.png) | ![3](https://user-images.githubusercontent.com/75513645/206895241-7dc9b950-4994-4650-8352-319003a02fa5.png)
-| ![4](https://user-images.githubusercontent.com/75513645/206895763-25ddc849-ed80-4dfa-a094-edab82a1fa37.png) | ![4](https://user-images.githubusercontent.com/75513645/206895765-f63b816f-7dd4-4498-a4ec-5bc75d5528c7.png)
-| ![5](https://user-images.githubusercontent.com/75513645/206895821-418d426d-c463-4de8-bec3-642d9588e7bf.png) | ![5](https://user-images.githubusercontent.com/75513645/206895818-261bddca-832e-4821-bece-4bdd4d406736.png)
-| ![6](https://user-images.githubusercontent.com/75513645/206899667-213bf891-cace-4fb0-9b4c-ba303ac83f43.png) | ![6](https://user-images.githubusercontent.com/75513645/206899665-5a5a3bd1-19a3-49ee-aa5e-a34547830524.png)
+|                                    Nord Spotify's Dynamic Color (Better)                                    |                                  Marketplace's Dynamic Color (Deprecated)                                   |
+| :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
+| ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png) |
+| ![2](https://user-images.githubusercontent.com/75513645/206895281-5d1cc28a-e1f4-4c82-ad36-723f724ee253.png) | ![2](https://user-images.githubusercontent.com/75513645/206895237-16106d65-7001-42b8-9809-a73a63503e25.png) |
+| ![3](https://user-images.githubusercontent.com/75513645/206895286-41d91142-3656-453b-95b8-bd60d8ae66f8.png) | ![3](https://user-images.githubusercontent.com/75513645/206895241-7dc9b950-4994-4650-8352-319003a02fa5.png) |
+| ![4](https://user-images.githubusercontent.com/75513645/206895763-25ddc849-ed80-4dfa-a094-edab82a1fa37.png) | ![4](https://user-images.githubusercontent.com/75513645/206895765-f63b816f-7dd4-4498-a4ec-5bc75d5528c7.png) |
+| ![5](https://user-images.githubusercontent.com/75513645/206895821-418d426d-c463-4de8-bec3-642d9588e7bf.png) | ![5](https://user-images.githubusercontent.com/75513645/206895818-261bddca-832e-4821-bece-4bdd4d406736.png) |
+| ![6](https://user-images.githubusercontent.com/75513645/206899667-213bf891-cace-4fb0-9b4c-ba303ac83f43.png) | ![6](https://user-images.githubusercontent.com/75513645/206899665-5a5a3bd1-19a3-49ee-aa5e-a34547830524.png) |
 
 ## How to Reposition Banner ?
 
-1) Scroll on Player to Reposition banner
+1. Scroll on Player to Reposition banner
 
-2) Right click on Player to Reset banner Position
+2. Right click on Player to Reset banner Position
 
-3) Hold `~` to Zoom Out Banner to see full view
+3. Hold `~` to Zoom Out Banner to see full view
 
 ### [Click to Watch Demo Video](https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-9a44-17a04968aa4d.mp4)
 
