@@ -3243,6 +3243,11 @@ async function initNord() {
     }
 
     async function createDynamicColors() {
+        if (typeof chroma == "undefined") {
+            setTimeout(createDynamicColors, 300);
+            return;
+        }
+
         try {
             let mainColors, colorMode;
             let rawImage = image.split("/");
