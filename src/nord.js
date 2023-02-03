@@ -3208,7 +3208,7 @@ async function initNord() {
     async function fetchDynamicColor(dynamicImageUri) {
         try {
             let rawData = await Spicetify.CosmosAsync.get(
-                `https://api-partner.spotify.com/pathfinder/v1/query?operationName=fetchExtractedColors&variables={"uris":["${dynamicImageUri}"]}&extensions={"persistedQuery":{"version":1,"sha256Hash":"d7696dd106f3c84a1f3ca37225a1de292e66a2d5aced37a66632585eeb3bbbfa"}}`
+                encodeURI(`https://api-partner.spotify.com/pathfinder/v1/query?operationName=fetchExtractedColors&variables={"uris":["${dynamicImageUri}"]}&extensions={"persistedQuery":{"version":1,"sha256Hash":"d7696dd106f3c84a1f3ca37225a1de292e66a2d5aced37a66632585eeb3bbbfa"}}`)
             );
 
             let extractedColors = rawData.data.extractedColors[0];
