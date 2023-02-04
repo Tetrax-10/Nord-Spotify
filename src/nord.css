@@ -1592,7 +1592,8 @@ button.checkbox.disabled {
     color: var(--spice-custom-subdued) !important;
 }
 
-.main-trackInfo-genres > a:hover {
+.main-trackInfo-genres > a:hover,
+.main-entityHeader-genreLink:hover {
     color: var(--spice-custom-link-hover) !important;
 }
 
