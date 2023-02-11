@@ -269,6 +269,16 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     margin: 0 !important;
 }
 
+/* playlist page description */
+.playlist-playlist-playlistDescription {
+    color: var(--spice-text);
+}
+
+/* playlist page profile pic */
+.main-entityHeader-metaData .main-avatar-image {
+    border-radius: 7px !important;
+}
+
 /* search bar in playlist page (at end recommended songs) */
 .playlist-inlineSearchBox-filterInputContainer > input {
     display: flex;
@@ -844,6 +854,11 @@ a {
 }
 
 /* //////////// Top bar //////////// */
+
+/* profile pic dropdown arrow */
+.main-userWidget-box .main-userWidget-chevron {
+    display: none;
+}
 
 /* top bar color */
 .main-topBar-background {
