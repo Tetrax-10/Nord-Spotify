@@ -40,7 +40,7 @@
 
 /* player height */
 .main-nowPlayingBar-nowPlayingBar {
-    height: 70px;
+    height: 71px;
 }
 
 /* progress bar ball (visible when hovered) */
@@ -55,7 +55,7 @@
 /* moves progress bar to top */
 .playback-bar {
     border-radius: 0px !important;
-    bottom: 68px;
+    bottom: 69px;
     width: 100%;
     position: absolute;
 }
