@@ -6,11 +6,23 @@ Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 <a href="https://discord.gg/VnevqPp2Rr"><img src="https://img.shields.io/discord/842219447716151306?label=chat&logo=discord&logoColor=discord"></a>
 
-## Nord Spotify Screenshots
+<br />
+
+# Nord Spotify Screenshots
+
+## New UI (Supported till spotify v1.2.2)
 
 ![artist 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist-2.png)
 
 ![artist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist.png)
+
+<br />
+
+## Old UI (Supported above 1.1.93)
+
+![old ui home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/old-ui-home.png)
+
+![old ui](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/old-ui.png)
 
 <br />
 
