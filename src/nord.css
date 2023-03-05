@@ -1612,6 +1612,45 @@ button.checkbox.disabled {
     color: var(--spice-custom-link-hover) !important;
 }
 
+/* //////////// Sleep Timer - Extension //////////// */
+
+#sleep-timer-menu {
+    width: 360px !important;
+}
+
+#sleep-timer-start {
+    border: none !important;
+    color: var(--spice-text) !important;
+}
+
+#sleep-timer-start.btn-success {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+#sleep-timer-start.btn-primary {
+    background-color: var(--spice-notification-error) !important;
+}
+
+.input-group.input-spinner-input-spinner > button {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border: none !important;
+}
+
+.input-group.input-spinner-input-spinner > input {
+    background-color: var(--spice-misc) !important;
+    color: var(--spice-text) !important;
+    border: none !important;
+}
+
+#sleep-timer-menu .form-check-input:checked {
+    border: none !important;
+    background-color: var(--spice-custom-selected-button) !important;
+}
+
+#sleep-timer-menu .form-check-input:focus {
+    box-shadow: none !important;
+    border: none !important;
+}
+
 /* //////////////////////////////////// Footer //////////////////////////////////// */
 
 /* footer container */
@@ -1631,5 +1670,13 @@ button.checkbox.disabled {
     margin-block-end: unset;
     margin-block-start: unset;
 } */
+
+/* //////////////////////////////////// Temp Fixes //////////////////////////////////// */
+
+/* home page top extra padding above greeting */
+/* .main-home-content, */
+.main-home-home {
+    padding-top: 0;
+}
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////// */
