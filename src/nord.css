@@ -170,19 +170,27 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     color: var(--spice-text);
 }
 
-/* playlist collaborators profile pic */
-.main-entityHeader-creatorWrapper .main-image-image {
-    border-radius: 50% !important;
-}
-
 /* playlist collaborators popup profile pic */
 .os-viewport-native-scrollbars-invisible .main-avatar-image {
-    border-radius: 50% !important;
+    border-radius: 8px !important;
 }
 
 /* playlist collaborators popup author names hover color */
 .V1By35exkhnkgbEeAQXN > a > span:hover {
     color: var(--spice-custom-link-hover) !important;
+}
+
+/* playlist collaborators popup Collaborator drop down */
+.QIWSUTRvc_sCKCXhR1v4 {
+    color: var(--spice-text) !important;
+}
+
+/* playlist collaborators popup */
+/* private/public playlist lock icon */
+.TcErZJbTZpN8HIgWMd5n > div,
+/* close button */
+.TcErZJbTZpN8HIgWMd5n > button {
+    color: var(--spice-text) !important;
 }
 
 /* search bar in playlist page */
@@ -196,9 +204,9 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     color: var(--spice-text);
 }
 
-/* playlist row (contributed) */
+/* playlist page (collaborated) added by profile pic */
 .main-trackList-trackListRow.main-trackList-trackListRowGrid .main-avatar-image {
-    border-radius: 50% !important;
+    border-radius: 8px !important;
 }
 
 /* playlist page header icons (search and sort buttons) */
@@ -297,9 +305,20 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     color: var(--spice-custom-subdued) !important;
 }
 
+/* playlist page duration (clock icon) */
+.main-trackList-column.main-trackList-durationHeader {
+    color: var(--spice-custom-subdued) !important;
+}
+
 /* playlist page hours */
 .main-entityHeader-metaDataText > span {
     color: var(--spice-text);
+}
+
+/* playlist page album name (local files) */
+.main-trackList-rowSectionVariable .standalone-ellipsis-one-line {
+    color: var(--spice-custom-subdued) !important;
+    cursor: pointer;
 }
 
 /* album name hover color */
@@ -323,6 +342,11 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 }
 .main-entityHeader-creatorButton:hover {
     color: var(--spice-custom-link-hover) !important;
+}
+
+/* playlist page (collaborated) added by profile pic */
+.main-trackList-addedBy .main-avatar-image {
+    border-radius: 8px !;
 }
 
 /* //////////// Home Page //////////// */
@@ -1426,43 +1450,21 @@ input.search[placeholder="Search for a feature"]::placeholder {
 }
 
 /* add song again and delete popup */
-/* AdF5F5BxQXGeWkfceg9A - add song again */
-/* J0xJcBaKhwl9EIuzvhLg - delete songs popup */
-/* RVgHI2ejYct8LjT1AO7m - delete playlist, folder popup */
-/* t1hN4Ju87afc5N5fDTnm - remove all downloads settings page */
-.RVgHI2ejYct8LjT1AO7m,
-.t1hN4Ju87afc5N5fDTnm,
-.AdF5F5BxQXGeWkfceg9A,
-.J0xJcBaKhwl9EIuzvhLg {
+.ReactModalPortal .GenericModal > div {
     background-color: var(--spice-main);
 }
-.AdF5F5BxQXGeWkfceg9A > h2,
-.J0xJcBaKhwl9EIuzvhLg > h2,
-.RVgHI2ejYct8LjT1AO7m > h2,
-.t1hN4Ju87afc5N5fDTnm > h2,
-.AdF5F5BxQXGeWkfceg9A > p,
-.J0xJcBaKhwl9EIuzvhLg > p,
-.RVgHI2ejYct8LjT1AO7m > p,
-.t1hN4Ju87afc5N5fDTnm > p {
-    color: var(--spice-text);
-}
-.AdF5F5BxQXGeWkfceg9A div button:focus,
-.J0xJcBaKhwl9EIuzvhLg div button:focus,
-.RVgHI2ejYct8LjT1AO7m div button:focus,
-.t1hN4Ju87afc5N5fDTnm div button:focus {
+.ReactModalPortal .GenericModal > div div button:focus {
     outline: none;
     outline-offset: 0px;
 }
-/* add anyway, cancel */
-.Button-sc-1dqy6lx-0.dZYxEP:hover {
-    color: var(--spice-text) !important;
-}
-/* delete playlist and folders cancel */
-.Button-sc-1dqy6lx-0.ifQjGL {
+.ReactModalPortal .GenericModal > div > div > button,
+.ReactModalPortal .GenericModal > div > h2,
+.ReactModalPortal .GenericModal > div > p {
     color: var(--spice-text);
 }
 
-/* sort by playcount - Extension */
+/* //////////// sort by playcount - Extension //////////// */
+
 .main-trackCreditsModal-originalCredits .login-button.green {
     background-color: rgba(107, 203, 119, 0.5) !important;
 }
@@ -1525,7 +1527,6 @@ button.checkbox.disabled {
 }
 
 /* artist discography view type near all drop down */
-
 .artist-artistDiscography-topBar > div:nth-child(2) > button:hover,
 .artist-artistDiscography-topBar > div:nth-child(2) > button[aria-checked="true"] {
     color: var(--spice-text);

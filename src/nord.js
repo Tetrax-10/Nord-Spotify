@@ -2212,6 +2212,7 @@ async function initNord() {
         position: absolute;
         left: 0px;
         transition: all 0s ease;
+        -webkit-app-region: drag !important;
     }`,
 
         artistBigImage: `
