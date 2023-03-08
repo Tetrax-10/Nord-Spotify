@@ -746,7 +746,7 @@ async function initNord() {
                         },
                         React.createElement("input", {
                             className: "small-input",
-                            placeholder: value,
+                            value: value,
                             onChange: async (e) => {
                                 setValue(e.target.value);
                                 onChangeFun(field, e.target.value);
@@ -963,8 +963,7 @@ async function initNord() {
                 { className: "popup-row" },
                 React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, "Tutorial")),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
-                React.createElement("p", { className: "popup-row" }, React.createElement("span", null, "1. Hex values only. ["), React.createElement("span", { style: { color: "#bf616a" } }, "#BF616A"), React.createElement("span", null, " (3/6 digits)]")),
-                React.createElement("div", { className: "popup-row" }, React.createElement("span", null, "2. Install "), React.createElement("span", { style: { color: "#bf616a" } }, "Spotify Backup"), React.createElement("span", null, " extension to Backup your Custom Color Scheme")),
+                React.createElement("p", { className: "popup-row" }, React.createElement("span", null, "Hex values only. Eg: "), React.createElement("span", { style: { color: "#bf616a" } }, "#BF616A"), React.createElement("span", null, " (3/6 digits)")),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "space" }, null)),
                 React.createElement("div", { className: "popup-row" }, React.createElement("h3", { className: "div-title" }, `${name} Values`)),
                 React.createElement("div", { className: "popup-row" }, React.createElement("hr", { className: "divider" }, null)),
