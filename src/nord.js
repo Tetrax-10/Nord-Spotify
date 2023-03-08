@@ -2200,6 +2200,7 @@ async function initNord() {
         margin-top: -1px;
         left: 0px;
         transition: all 0s ease;
+        -webkit-app-region: drag !important;
     }`,
 
         hideArtistTopBarOld: `
