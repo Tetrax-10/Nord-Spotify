@@ -1,4 +1,4 @@
-# Nord Spotify (Supports Dynamic Theme)
+# Nord Spotify (with Dynamic Theming)
 
 Nord Themed Spotify with no UI Ads
 
@@ -18,7 +18,7 @@ Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 <br />
 
-## Old UI (Supported above 1.1.93)
+## Old UI (Supports above 1.1.92)
 
 ![old ui home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/old-ui-home.png)
 
