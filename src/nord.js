@@ -126,6 +126,8 @@ async function initNord() {
         nordedDynamicColor: true,
         bannersInLyricsPage: false,
         centeredLyrics: false,
+        fullPageBanner: true,
+        showBanner: false,
         bannerPosition: {
             "spotify:album:5YDSZWizEYBsXgk6kwxvMn": "30",
         },
@@ -1535,6 +1537,24 @@ async function initNord() {
             },
         }),
         React.createElement(checkBoxItem, {
+            name: "Show Banner",
+            field: "showBanner",
+            label: "Makes Cover Art as Banner",
+            onClickCheckFun: hideOrShowBanner,
+        }),
+        React.createElement(checkBoxItem, {
+            name: "Full Page Banner",
+            field: "fullPageBanner",
+            label: "Makes Cover Art Bigger",
+            onClickCheckFun: async () => {
+                if (CONFIG.fullPageBanner && CONFIG.showBanner) {
+                    await dynamicUI(ComplexConditionedSnippets.bigBannerNew, "nord--bigBannerNew", ComplexConditionedSnippets.bigBannerOld, "nord--bigBannerOld", true);
+                } else {
+                    await dynamicUI(ComplexConditionedSnippets.bigBannerNew, "nord--bigBannerNew", ComplexConditionedSnippets.bigBannerOld, "nord--bigBannerOld", false);
+                }
+            },
+        }),
+        React.createElement(checkBoxItem, {
             name: "Banner Overlay",
             field: "bannerOverlay",
             label: "Dark Tint on Banners",
@@ -2215,29 +2235,14 @@ async function initNord() {
         -webkit-app-region: drag !important;
     }`,
 
-        artistBigImage: `
-    /* Artist big image */
-    .main-entityHeader-withBackgroundImage .main-entityHeader-headerText {
-        position: fixed;
-        justify-content: center;
-        bottom: 3%;
-    }
-    .main-entityHeader-background.main-entityHeader-overlay {
-        display: none;
-    }
-    /* Big Playlists */
-    .main-entityHeader-nonWrapped {
-        max-height: unset !important;
-    }`,
-
-        artistBigImageNew: `
+        bigBannerNew: `
     /* Big Playlists */
     .nav-alt .main-entityHeader-nonWrapped,
     .main-entityHeader-background {
         height: calc(100vh - 88px) !important;
     }`,
 
-        artistBigImageOld: `
+        bigBannerOld: `
     /* Big Playlist */
     .main-entityHeader-nonWrapped,
     /* Big artist */
@@ -3010,15 +3015,15 @@ async function initNord() {
     }
 
     async function hideOrShowBanner() {
-        if (isValidPage) {
+        if (isValidPage && CONFIG.showBanner) {
             hideOrShowLyricsPageBanners();
-            injectCSS(ComplexConditionedSnippets.artistBigImage, "nord--artistBigImage");
-            await dynamicUI(ComplexConditionedSnippets.artistBigImageNew, "nord--artistBigImageNew", ComplexConditionedSnippets.artistBigImageOld, "nord--artistBigImageOld", true);
+            if (CONFIG.fullPageBanner) {
+                await dynamicUI(ComplexConditionedSnippets.bigBannerNew, "nord--bigBannerNew", ComplexConditionedSnippets.bigBannerOld, "nord--bigBannerOld", true);
+            }
             cssSnippet(ComplexConditionedSnippets.hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
             banner.style.display = "unset";
         } else {
-            removeInjectedElement("nord--artistBigImage");
-            await dynamicUI(ComplexConditionedSnippets.artistBigImageNew, "nord--artistBigImageNew", ComplexConditionedSnippets.artistBigImageOld, "nord--artistBigImageOld", false);
+            await dynamicUI(ComplexConditionedSnippets.bigBannerNew, "nord--bigBannerNew", ComplexConditionedSnippets.bigBannerOld, "nord--bigBannerOld", false);
             cssSnippet(ComplexConditionedSnippets.hidePageDetails, "nord-hidePageDetails", false);
             banner.style.display = "none";
         }

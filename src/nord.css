@@ -349,6 +349,19 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
     border-radius: 8px !;
 }
 
+/* Big Playlists helper */
+.main-entityHeader-nonWrapped {
+    max-height: unset !important;
+}
+
+/* playlist very few songs extra space below the songs */
+.main-actionBarBackground-background {
+    height: -webkit-fill-available !important;
+    display: unset !important;
+    background-color: var(--spice-main) !important;
+    background-image: unset !important;
+}
+
 /* //////////// Home Page //////////// */
 
 /* home page top extra padding above greeting */
@@ -681,6 +694,11 @@ input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
+}
+
+/* gradient finish on artist image done by spotify */
+.main-entityHeader-background.main-entityHeader-overlay {
+    display: none;
 }
 
 /* //////////// Episodes Page //////////// */
@@ -1611,6 +1629,12 @@ button.checkbox.disabled {
 .main-trackInfo-genres > a:hover,
 .main-entityHeader-genreLink:hover {
     color: var(--spice-custom-link-hover) !important;
+}
+
+/* //////////// Queue Time - Extension //////////// */
+
+.DG9CsoFIptJhAneKoo_F::after {
+    color: var(--text-subdued, #6a6a6a) !important;
 }
 
 /* //////////// Sleep Timer - Extension //////////// */
