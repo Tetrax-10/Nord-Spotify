@@ -1061,6 +1061,11 @@ a {
     color: var(--spice-custom-subdued) !important;
 }
 
+/* match cover art left padding with bottom padding  */
+.main-nowPlayingBar-nowPlayingBar {
+    padding-left: 8px;
+}
+
 /* player active button like shuffle, repeat, queue, lyrics */
 .main-nowPlayingBar-nowPlayingBar button.control-button--active,
 .main-nowPlayingBar-nowPlayingBar button[aria-checked="mixed"],
