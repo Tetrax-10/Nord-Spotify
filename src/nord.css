@@ -704,6 +704,16 @@ input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
     display: none;
 }
 
+/* Artist Pick Big Cover Image introduced in V1.2.7 */
+.artist-artistOverview-sideBlock .mYvNDps8FDVgHSCzpeqC {
+    border-radius: 5%;
+}
+
+/* Artist Pick and Liked Songs in Artist page right side to the top 5 songs  */
+.artist-artistOverview-sideBlock .fEBgUb {
+    margin-bottom: 10px;
+}
+
 /* //////////// Episodes Page //////////// */
 
 /* .hTRqaN61SDG95erQGMmx = podcast page */
