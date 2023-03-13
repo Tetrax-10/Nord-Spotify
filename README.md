@@ -18,7 +18,7 @@ Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 <br />
 
-## Old UI (Supports above 1.1.92)
+## Old UI (Supports from 1.1.93 to latest Spotify)
 
 ![old ui home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/old-ui-home.png)
 
