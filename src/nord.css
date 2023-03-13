@@ -128,6 +128,9 @@
 }
 
 /* change appearance of public/private playlist tag on top of playlist */
+/* after spotify v1.2.7 */
+.main-entityHeader-headerText > .Type__TypeElement-sc-goli3j-0.jdSGNV, 
+/* legacy - before spotify v1.2.7 */
 .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold {
     border: 2px var(--spice-text) solid;
     border-radius: 7px;
