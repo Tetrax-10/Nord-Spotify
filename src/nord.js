@@ -1592,6 +1592,9 @@ async function initNord() {
             name: "Hide Page's Details",
             field: "hidePageDetails",
             label: "Hide user name and description of a page",
+            onClickCheckFun: () => {
+                cssSnippet(ComplexConditionedSnippets.hidePageDetails, "nord-hidePageDetails", CONFIG.hidePageDetails);
+            },
         }),
         React.createElement(inputBoxItem, {
             name: "Banner Blur Amout",
