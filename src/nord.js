@@ -127,7 +127,7 @@ async function initNord() {
         bannersInLyricsPage: false,
         centeredLyrics: false,
         fullPageBanner: true,
-        showBanner: false,
+        showBanner: true,
         bannerPosition: {
             "spotify:album:5YDSZWizEYBsXgk6kwxvMn": "30",
         },
