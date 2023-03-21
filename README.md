@@ -142,7 +142,7 @@ iwr -useb https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/instal
 ### Mac/Linux
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.sh | sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/install-scripts/install.sh)"
 ```
 
 <br />
