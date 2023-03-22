@@ -1947,6 +1947,7 @@ async function initNord() {
     .main-topBar-UpgradeButton,
     /* top bar user context menu Upgrade to Premium */
     .main-contextMenu-menuItem a[href="https://www.spotify.com/premium/"],
+    .main-contextMenu-menuItem a[href="https://www.spotify.com/premium/?ref=desktop_loggedin_upgrade_menu"],
     /* top side ads */
     .WiPggcPDzbwGxoxwLWFf,
     /* bottom ads */
