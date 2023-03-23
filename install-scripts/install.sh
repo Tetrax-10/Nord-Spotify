@@ -28,7 +28,7 @@ CHOICE="0"
 while [ $CHOICE != "1" ] && [ $CHOICE != "2" ]
 do
     printf "Please choose a version: "
-    read -r CHOICE
+    read -r CHOICE </dev/tty
 done
 
 # For visual indentation
