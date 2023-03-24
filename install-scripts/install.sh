@@ -18,7 +18,7 @@ mkdir -p "${ext_dir}"
 
 cat <<EOF
 
-Nord Spotify can be installed with auto updates included (online version) or with auto updates excluded (offline version):
+Nord Spotify comes with two modes:
 1: Auto Update - Theme requires internet access. Updates the Theme automatically when there is a new update available
 2: Offline     - Works without internet and thus gives better performance. Re-running this shell script installs the latest update
 
@@ -45,8 +45,8 @@ then
     curl --silent --output "${ext_dir}/injectNord.js" "${theme_url}/src/injectNord.js"
 
     echo "Changing configuration"
-    spicetify config extensions nord.js-
-    spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
+    spicetify config extensions nord.js- -q
+    spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
 else
     echo "Installing Nord Spotify (Offline Version)"
     mkdir -p "${snippet_dir}"
@@ -60,8 +60,8 @@ else
     curl --silent --output "${ext_dir}/nord.js" "${theme_url}/src/nord.js"
 
     echo "Changing configuration"
-    spicetify config extensions injectNord.js-
-    spicetify config current_theme Nord-Spotify color_scheme Spotify extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1
+    spicetify config extensions injectNord.js- -q
+    spicetify config current_theme Nord-Spotify color_scheme Spotify extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
 fi
 
 # Bacup spotify if no backup version found

@@ -42,8 +42,8 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     # Nord Spotify Snippets path
     $snippetsPath = "$themePath\Nord-Spotify\assets\Nord-Spotify\src\Snippets"
 
-    $title    = 'Nord Spotify Mode:'
-    $question = "Auto Update - Theme will not work without internet. But Updates the Theme Automatically if there is a new Update`nOffline - Works without internet also gives Better Performance. Re-running this powershell command installs the Latest Update"
+    $title    = 'Nord Spotify comes with two modes:'
+    $question = "Theme requires internet access. Updates the Theme automatically when there is a new update available`nOffline - Works without internet and thus gives better performance. Re-running this powershell script installs the latest update"
     $choices  = '&Auto Update', '&Offline'
 
     # remove old folders
@@ -94,10 +94,10 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     $backupVer = $configFile -match "^version"
     if ($backupVer.Length -gt 0) {
         Write-Host "Applying Theme" -ForegroundColor DarkCyan
-        spicetify apply -q
+        spicetify apply
     } else {
         Write-Host "Making Backup and Applying Theme" -ForegroundColor DarkCyan
-        spicetify backup apply -q
+        spicetify backup apply
     }
 
     Write-Host 'Theme Applied Successfully. Run "spicetify apply" if theme not applied' -ForegroundColor Green
