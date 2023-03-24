@@ -1956,7 +1956,11 @@ async function initNord() {
     .Root__modal-slot .GenericModal__overlay.QMMTQfEw3AIHFf4dTRp3.nPKDEvIoCzySBR24pZiN {
         display: none !important;
     }
-    
+    /* Context menu download button */
+    .main-contextMenu-disabled:not([as="a"]) {
+        display: none !important;
+    }
+
     /* no idea what these are */
     .Root__ads-container-desktop--is-hidden,
     .sponsor-container,
