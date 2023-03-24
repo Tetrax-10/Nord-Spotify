@@ -1,12 +1,4 @@
-param (
-  [string] $version
-)
-
 $PSMinVersion = 3
-
-if ($v) {
-    $version = $v
-}
 
 function Write-Emphasized ([string] $Text) {
     Write-Host $Text -ForegroundColor "Cyan"
@@ -44,7 +36,7 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
 
     $title    = 'Nord Spotify comes with two modes:'
     $question = "Theme requires internet access. Updates the Theme automatically when there is a new update available`nOffline - Works without internet and thus gives better performance. Re-running this powershell script installs the latest update"
-    $choices  = '&Auto Update', '&Offline'
+    $choices  = '&1. Auto Update', '&2. Offline'
 
     # remove old folders
     Write-Host "Removing old version if any" -ForegroundColor DarkCyan
@@ -56,7 +48,7 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     $decision = $Host.UI.PromptForChoice($title, $question, $choices, 0)
     if ($decision -eq 0) {
         # create folders
-        Write-Host "Installing Nord Spotify (Auto Update Version)" -ForegroundColor DarkCyan
+        Write-Host "Installing Nord Spotify (Auto Update mode)" -ForegroundColor DarkCyan
         New-Item -Path "$themePath\Nord-Spotify" -ItemType Directory | Out-Null
         
         # Clone to themes folder
@@ -71,7 +63,7 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
         spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q  
     } else {
         # create folders
-        Write-Host "Installing Nord Spotify (Offline Version)" -ForegroundColor DarkCyan
+        Write-Host "Installing Nord Spotify (Offline mode)" -ForegroundColor DarkCyan
         New-Item -Path $snippetsPath -ItemType Directory | Out-Null
 
         Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
@@ -90,17 +82,13 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     }
 
     # applying
-    $configFile = Get-Content "$spicePath\config-xpui.ini"
-    $backupVer = $configFile -match "^version"
-    if ($backupVer.Length -gt 0) {
-        Write-Host "Applying Theme" -ForegroundColor DarkCyan
-        spicetify apply
-    } else {
-        Write-Host "Making Backup and Applying Theme" -ForegroundColor DarkCyan
-        spicetify backup apply
-    }
+    Write-Host "Backing up Spotify" -ForegroundColor DarkCyan
+    spicetify backup -q
 
-    Write-Host 'Theme Applied Successfully. Run "spicetify apply" if theme not applied' -ForegroundColor Green
+    Write-Host "Applying Theme" -ForegroundColor DarkCyan
+    spicetify apply -q
+
+    Write-Host 'Nord Spotify installed successfully' -ForegroundColor Green
 }
 else {
     Write-Host "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";

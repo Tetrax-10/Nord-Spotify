@@ -37,7 +37,7 @@ echo ""
 # Install online or offline version depending on users choice
 if [ "$CHOICE" = "1" ]
 then
-    echo "Installing Nord Spotify (Auto Update Version)"
+    echo "Installing Nord Spotify (Auto Update mode)"
 
     echo "Fetching Theme from GitHub\n"
     curl --silent --output "${nord_dir}/color.ini" "${theme_url}/Nord-Spotify/color.ini"
@@ -48,7 +48,7 @@ then
     spicetify config extensions nord.js- -q
     spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
 else
-    echo "Installing Nord Spotify (Offline Version)"
+    echo "Installing Nord Spotify (Offline mode)"
     mkdir -p "${snippet_dir}"
 
     echo "Fetching Theme from GitHub\n"
@@ -64,15 +64,10 @@ else
     spicetify config current_theme Nord-Spotify color_scheme Spotify extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
 fi
 
-# Bacup spotify if no backup version found
-backup_version=$(grep version  "${spice_dir}/config-xpui.ini" 2>/dev/null | sed 's/version = //g')
-if [ "$backup_version" = "" ]
-then
-    echo "Making backup and applying Theme"
-    spicetify backup apply
-else
-    echo "Applying Theme"
-    spicetify apply
-fi
+echo "Backing up Spotify"
+spicetify backup -q
+
+echo "Applying Theme"
+spicetify apply -q
 
 echo "\nNord Spotify installed successfully"
