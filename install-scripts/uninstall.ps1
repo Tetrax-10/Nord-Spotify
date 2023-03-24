@@ -1,12 +1,4 @@
-param (
-  [string] $version
-)
-
 $PSMinVersion = 3
-
-if ($v) {
-  $version = $v
-}
 
 if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
   $ErrorActionPreference = "Stop"
@@ -33,14 +25,10 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     spicetify config extensions nord.js- -q
     spicetify config current_theme " " color_scheme " " extensions injectNord.js- -q
 
-    # spicetify apply
-    $configFile = Get-Content "$spicePath\config-xpui.ini"
-    $backupVer = $configFile -match "^version"
-    if ($backupVer.Length -gt 0) {
-        spicetify apply -q
-    } else {
-        spicetify backup apply -q
-    }
+    Write-Host "Backing up Spotify" -ForegroundColor DarkCyan
+    spicetify backup -q
+
+    spicetify apply -q
 
     Write-Host "Nord Spotify Uninstalled Successfully" -ForegroundColor Green
 }
