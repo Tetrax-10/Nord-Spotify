@@ -421,7 +421,9 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.stan
 }
 
 /* search bar - search icon in left */
-.x-searchInput-searchInputSearchIcon svg {
+.x-searchInput-searchInputSearchIcon svg,
+/* search bar - clear icon in right */
+.x-searchInput-searchInputClearButton svg {
     color: var(--spice-custom-subdued) !important;
 }
 
