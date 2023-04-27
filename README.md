@@ -1,12 +1,12 @@
 # Nord (with Dynamic Theming)
 
+<h3 align="center"><a href="#new-ui-supported-till-spotify-v122"><img src="https://cdn.pixabay.com/photo/2016/12/18/13/44/download-1915749_640.png" width="600px"></a></h3>
+
 Nord Themed Spotify
 
 Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 <a href="https://discord.gg/VnevqPp2Rr"><img src="https://img.shields.io/discord/842219447716151306?label=chat&logo=discord&logoColor=discord"></a>
-
-<br />
 
 # Nord Screenshots
 
@@ -42,7 +42,7 @@ Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 <br />
 
-## Nord's Own Dynamic Theme Engine
+# Nord's Own Dynamic Theme Engine
 
 ![home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/home.png)
 
@@ -68,15 +68,15 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 <br />
 
-## Snippets Support - Deeply Customizable
+# Snippets Support - Deeply Customizable
 
 ![snippets](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/snippets.png)
 
 <br />
 
-## Nord vs Marketplace's Dynamic Colors
+# Nord vs Marketplace's Dynamic Themes
 
-|                                        Nord's Dynamic Color (Better)                                        |                                  Marketplace's Dynamic Color (Deprecated)                                   |
+|                                        Nord's Dynamic Theme (Better)                                        |                                  Marketplace's Dynamic Theme                                   |
 | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
 | ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png) |
 | ![2](https://user-images.githubusercontent.com/75513645/206895281-5d1cc28a-e1f4-4c82-ad36-723f724ee253.png) | ![2](https://user-images.githubusercontent.com/75513645/206895237-16106d65-7001-42b8-9809-a73a63503e25.png) |
@@ -85,7 +85,9 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 | ![5](https://user-images.githubusercontent.com/75513645/206895821-418d426d-c463-4de8-bec3-642d9588e7bf.png) | ![5](https://user-images.githubusercontent.com/75513645/206895818-261bddca-832e-4821-bece-4bdd4d406736.png) |
 | ![6](https://user-images.githubusercontent.com/75513645/206899667-213bf891-cace-4fb0-9b4c-ba303ac83f43.png) | ![6](https://user-images.githubusercontent.com/75513645/206899665-5a5a3bd1-19a3-49ee-aa5e-a34547830524.png) |
 
-## How to Reposition Banner ?
+<br />
+
+# How to Reposition Banner ?
 
 1. Scroll on Player to Reposition banner
 
@@ -99,13 +101,13 @@ https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-
 
 <br />
 
-## Custom Fonts
+# Custom Fonts
 
 ![Custom Fonts Preview](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/custom-fonts.png)
 
 <br />
 
-### Custom Fonts (Local Install Method)
+## Custom Fonts (Local Install Method)
 
 Step 1 : Just install the Font you like in your PC
 
@@ -113,7 +115,7 @@ Step 2 : Then Type the Font name in `Font Name` box in Nord and click save. (No 
 
 <br />
 
-### Custom Fonts (Remote Method)
+## Custom Fonts (Remote Method)
 
 You can use custom fonts in Nord remotely. [Google Fonts](https://fonts.google.com/) are Recommended
 
@@ -135,7 +137,7 @@ Step 4 : Then Copy that Font Name and paste that in `Font Name` box in Nord and 
 
 <br />
 
-## Install Theme via Marketplace
+# Install Theme
 
 ## Get it on Spicetify Marketplace
 
@@ -143,7 +145,7 @@ Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-m
 
 Step 2 : Open Spotify App -> Marketplace -> Themes
 
-Step 3 : Search `Nord` Click Install Buttton. Done!
+Step 3 : Search `Nord` and click install buttton. Done!
 
 <br />
 
@@ -201,13 +203,13 @@ spicetify apply
 
 <br />
 
-## Credits
+# Credits
 
 Dynamic Theming made Possible with [chroma.js](https://github.com/gka/chroma.js)
 
 <br />
 
-## Support
+# Support
 
 ### People who Liked this Theme
 
