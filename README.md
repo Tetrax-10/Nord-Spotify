@@ -2,7 +2,7 @@
 
 Nord Themed Spotify
 
-Wanna discuss or having issues ping `@Tetrax-10` in Discord
+Wanna discuss or having issues? ping `@Tetrax-10` in Discord
 
 <a href="https://discord.gg/VnevqPp2Rr"><img src="https://img.shields.io/discord/842219447716151306?label=chat&logo=discord&logoColor=discord"></a>
 
@@ -80,7 +80,7 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 # Nord vs Marketplace's Dynamic Themes
 
-|                                        Nord's Dynamic Theme (Better)                                        |                                  Marketplace's Dynamic Theme                                   |
+|                                        Nord's Dynamic Theme (Better)                                        |                                         Marketplace's Dynamic Theme                                         |
 | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
 | ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png) |
 | ![2](https://user-images.githubusercontent.com/75513645/206895281-5d1cc28a-e1f4-4c82-ad36-723f724ee253.png) | ![2](https://user-images.githubusercontent.com/75513645/206895237-16106d65-7001-42b8-9809-a73a63503e25.png) |
