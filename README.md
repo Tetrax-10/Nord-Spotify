@@ -1,12 +1,16 @@
 # Nord (with Dynamic Theming)
 
-<p align="center"><a href="#install-theme"><img src="https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/download-button.png" width="50px"></a></p>
-
 Nord Themed Spotify
 
 Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 <a href="https://discord.gg/VnevqPp2Rr"><img src="https://img.shields.io/discord/842219447716151306?label=chat&logo=discord&logoColor=discord"></a>
+
+### Download Theme
+
+<p align="left"><a href="#install-theme"><img src="https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/download-button.png" width="150px"></a></p>
+
+---
 
 # Nord Screenshots
 
