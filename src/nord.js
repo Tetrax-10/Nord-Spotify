@@ -38,8 +38,10 @@ export default async function nord() {
     await ColorScheme.inject()
     await DynamicColors.inject()
 
-    await UiMode.createOptions()
-    UiMode.repairConfig()
+    if (Spicetify.RemoteConfigResolver !== undefined) {
+        await UiMode.createOptions()
+        UiMode.repairConfig()
+    }
 
     const settingsButton = new Spicetify.Topbar.Button("Nord Settings", Icons.settings, () => {
         Popup.createModal({

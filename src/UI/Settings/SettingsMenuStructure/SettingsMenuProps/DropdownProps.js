@@ -8,12 +8,6 @@ import UiMode from "../../../../features/uiMode/uiMode"
 
 export default function getSettingsDropdownProps() {
     return {
-        uiMode: {
-            name: "Nord UI mode",
-            field: "uiMode",
-            options: Shared.uiModeOptions,
-            onChangeHandler: UiMode.event.change,
-        },
         selectColorScheme: {
             name: "Color Scheme",
             field: "colorScheme",
@@ -45,6 +39,13 @@ export default function getSettingsDropdownProps() {
             onChangeHandler: async () => {
                 if (Shared.SpicetifyConfig.color_scheme === "Dynamic") await DynamicColors.inject()
             },
+        },
+        uiMode: {
+            name: "Nord UI mode",
+            field: "uiMode",
+            options: Shared.uiModeOptions,
+            visibility: Spicetify.RemoteConfigResolver ? true : false,
+            onChangeHandler: UiMode.event.change,
         },
     }
 }
