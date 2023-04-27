@@ -1,6 +1,6 @@
 # Nord (with Dynamic Theming)
 
-<h3 align="center"><a href="#new-ui-supported-till-spotify-v122"><img src="https://cdn.pixabay.com/photo/2016/12/18/13/44/download-1915749_640.png" width="600px"></a></h3>
+<p align="center"><a href="#install-theme"><img src="https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/download-button.png" width="50px"></a></p>
 
 Nord Themed Spotify
 
