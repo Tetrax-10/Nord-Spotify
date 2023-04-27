@@ -1,9 +1,10 @@
+import Api from "../../services/api"
 import Utils from "../../utils/utils"
 import conditionalSnippets from "../snippets/externalCssSnippets/conditionalSnippets"
 import Snippet from "../snippets/snippets"
 
 export default async function autoExpandLibX() {
-    if (!window.Nord.shared.isLibX) return
+    if (!window.Nord.shared.isLibX || !(await Api.app.laterThan("1.2.9"))) return
 
     const observer = new MutationObserver((mutationsList) => {
         for (const mutation of mutationsList) {

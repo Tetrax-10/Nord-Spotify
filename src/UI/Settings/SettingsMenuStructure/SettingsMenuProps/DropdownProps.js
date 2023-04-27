@@ -4,9 +4,16 @@ import Shared from "../../../../shared/shared"
 import LocalStorage from "../../../../localStorage/localStorage"
 import addColorSchemePopup from "./SettingsMenuEvents/PopupModals/AddColorScheme"
 import editColorSchemePopup from "./SettingsMenuEvents/PopupModals/EditColorScheme"
+import UiMode from "../../../../features/uiMode/uiMode"
 
 export default function getSettingsDropdownProps() {
     return {
+        uiMode: {
+            name: "Nord UI mode",
+            field: "uiMode",
+            options: Shared.uiModeOptions,
+            onChangeHandler: UiMode.event.change,
+        },
         selectColorScheme: {
             name: "Color Scheme",
             field: "colorScheme",

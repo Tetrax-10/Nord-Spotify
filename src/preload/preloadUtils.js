@@ -1,7 +1,7 @@
 const PreloadUtils = (() => {
-    let expFeatures
+    let expFeaturesData
     try {
-        expFeatures = JSON.parse(localStorage.getItem("spicetify-exp-features"))
+        expFeaturesData = JSON.parse(localStorage.getItem("spicetify-exp-features"))
     } catch (err) {
         console.error(`Nord:handled: can't parse exp features; error: ${err}`)
     }
@@ -11,7 +11,7 @@ const PreloadUtils = (() => {
             return (await waitForElement(".nav-alt", 1000)) ? true : false
         }
 
-        const newUiState = expFeatures.enableNavAltExperiment2.value
+        const newUiState = expFeaturesData.enableNavAltExperiment2.value
 
         return newUiState !== "DISABLED" ? true : false
     }
@@ -21,7 +21,7 @@ const PreloadUtils = (() => {
             return (await waitForElement("body.ylx", 1000)) ? true : false
         }
 
-        const libXState = expFeatures.enableYLXSidebar.value
+        const libXState = expFeaturesData.enableYLXSidebar.value
 
         return libXState === true ? true : false
     }

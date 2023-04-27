@@ -27,10 +27,28 @@ const Api = (() => {
         Spicetify.showNotification(text, isError, ms)
     }
 
+    async function isAppLaterThan(specifiedVersion) {
+        let appInfo = await Spicetify.CosmosAsync.get("sp://desktop/v1/version")
+        let result = appInfo.version.localeCompare(specifiedVersion, undefined, { numeric: true, sensitivity: "base" })
+
+        return result === 1
+    }
+
+    async function isAppEarlierThan(specifiedVersion) {
+        let appInfo = await Spicetify.CosmosAsync.get("sp://desktop/v1/version")
+        let result = appInfo.version.localeCompare(specifiedVersion, undefined, { numeric: true, sensitivity: "base" })
+
+        return result !== 1
+    }
+
     return {
         get: {
             os: getOS,
             premiumStatus: isPremium,
+        },
+        app: {
+            laterThan: isAppLaterThan,
+            earlierThan: isAppEarlierThan,
         },
         send: {
             notification: notification,
