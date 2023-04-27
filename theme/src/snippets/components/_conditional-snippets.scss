@@ -1,0 +1,178 @@
+body {
+    &.nord- {
+        // hide playlist, artist page's extra details
+        &hidePageDetails {
+            .main-entityHeader-subtitle.main-entityHeader-small.main-entityHeader-uppercase.main-entityHeader-bold,
+            .main-entityHeader-subtitle.main-entityHeader-gray,
+            .main-entityHeader-metaData,
+            .main-entityHeader-headerText > span,
+            .main-entityHeader-headerText > div {
+                display: none;
+            }
+            .main-entityHeader-title {
+                display: -webkit-box !important;
+            }
+        }
+
+        &hideTopBar {
+            .main-topBar-background {
+                opacity: 0 !important;
+            }
+        }
+
+        &showTopBar {
+            .main-topBar-background {
+                // margin-right: -8px;
+                opacity: 1 !important;
+            }
+        }
+
+        &hideMainItemSideBar {
+            .Root__nav-bar > div:nth-child(1) {
+                display: none;
+            }
+        }
+
+        &showMainItemSideBar {
+            .Root__nav-bar > div:nth-child(1) {
+                display: block;
+            }
+        }
+
+        &turnOnImmersiveView {
+            .Root__nav-bar,
+            .Root__now-playing-bar,
+            .Root__right-sidebar {
+                display: none;
+            }
+            .nav-alt .Root__top-container {
+                padding: 0 8px 0 0 !important;
+                padding-top: 8px !important;
+            }
+            .nav-ylx .Root__top-container {
+                padding: 0 8px 0 0 !important;
+                padding-top: 32px !important;
+            }
+            .nav-ylx .Root__top-container:has(.Root__right-sidebar[style*="opacity: 1;"]) {
+                padding-right: 0 !important;
+            }
+        }
+
+        // Big Playlists
+        &bigBannerNew {
+            // Big Playlist
+            .main-entityHeader-nonWrapped,
+            // Big artist 
+            .main-entityHeader-background {
+                height: calc(100vh - 88px) !important;
+            }
+        }
+
+        &bigBannerOld {
+            // Big Playlist
+            .main-entityHeader-nonWrapped,
+            // Big artist 
+            .main-entityHeader-background {
+                height: calc(100vh - 78px) !important;
+            }
+        }
+
+        &bigBannerLibX {
+            // Big Playlist
+            .main-entityHeader-nonWrapped,
+            // Big artist 
+            .main-entityHeader-background {
+                height: calc(100vh - 128px) !important;
+            }
+        }
+
+        &bigBannerOldImmersiveView {
+            // Big Playlist
+            .main-entityHeader-nonWrapped,
+            // Big artist 
+            .main-entityHeader-background {
+                height: calc(100vh - 1.2px) !important;
+            }
+        }
+
+        &bigBannerLibXImmersiveView {
+            // Big Playlist
+            .main-entityHeader-nonWrapped,
+            // Big artist 
+            .main-entityHeader-background {
+                height: calc(100vh - 48.2px) !important;
+            }
+        }
+
+        &lyricsPlusNoBg {
+            .lyrics-lyricsContainer-LyricsBackground {
+                background-color: unset !important;
+            }
+        }
+
+        // Hide Overlay
+        &hideOverlayBig {
+            .GenericModal__overlay {
+                background-color: transparent;
+            }
+            .main-embedWidgetGenerator-container {
+                box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+            }
+        }
+
+        // Hide Overlay
+        &hideModalOverlay {
+            .GenericModal__overlay {
+                background-color: transparent;
+            }
+            .main-trackCreditsModal-container {
+                box-shadow: 0 0 50px rgba(var(--spice-rgb-shadow), 1) !important;
+                width: 100% !important;
+                max-width: 520px !important;
+            }
+        }
+
+        // inject popup css
+        &injectPopupCSS {
+            .GenericModal__overlay {
+                visibility: hidden;
+            }
+            .GenericModal {
+                visibility: visible;
+            }
+        }
+
+        &bannerCSS {
+            // banner css
+            #main-banner {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                will-change: transform;
+                transition: background-image 0.5s, background-size 0.5s, background-position-y 2s, filter 0.5s ease-in-out;
+                display: none;
+            }
+            #preload-banner {
+                display: none;
+            }
+            // banner image overlay
+            #main-banner:after,
+            // artist image overlay
+            .main-entityHeader-background:after {
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: block;
+                content: "";
+                background: rgba(var(--spice-rgb-shadow), 0.7);
+                height: 100vh;
+                width: 100%;
+            }
+        }
+    }
+}

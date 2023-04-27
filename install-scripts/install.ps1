@@ -22,17 +22,9 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     }
 
     # get Spicetify path
-    $spicePath = spicetify -c | Split-Path
-    # get spotify path
-    $spotifyPath = spicetify config spotify_path
-    # get xpui path
-    $xpuiPath = -join("$spotifyPath", "Apps\xpui")
+    $spicePath = spicetify path userdata
     # Spicetify Themes path
     $themePath = "$spicePath\Themes"
-    # Spicetify Extensions path
-    $extensionsPath = "$spicePath\Extensions"
-    # Nord Spotify Snippets path
-    $snippetsPath = "$themePath\Nord-Spotify\assets\Nord-Spotify\src\Snippets"
 
     $title    = 'Nord Spotify comes with two modes:'
     $question = "Theme requires internet access. Updates the Theme automatically when there is a new update available`nOffline - Works without internet and thus gives better performance. Re-running this powershell script installs the latest update"
@@ -40,48 +32,37 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
 
     # remove old folders
     Write-Host "Removing old version if any" -ForegroundColor DarkCyan
-    Remove-Item -Recurse -Force "$themePath\Nord-Spotify" -ErrorAction Ignore
-    Remove-Item -Recurse -Force "$xpuiPath\Nord-Spotify" -ErrorAction Ignore
-    Remove-Item -Force "$extensionsPath\injectNord.js" -ErrorAction Ignore
-    Remove-Item -Force "$extensionsPath\nord.js" -ErrorAction Ignore
+    Remove-Item -Recurse -Force "$themePath\Nord" -ErrorAction Ignore
 
     $decision = $Host.UI.PromptForChoice($title, $question, $choices, 0)
     if ($decision -eq 0) {
+        # Auto Update mode
         # create folders
-        Write-Host "Installing Nord Spotify (Auto Update mode)" -ForegroundColor DarkCyan
-        New-Item -Path "$themePath\Nord-Spotify" -ItemType Directory | Out-Null
+        Write-Host "Installing Nord (Auto Update mode)" -ForegroundColor DarkCyan
+        New-Item -Path "$themePath\Nord" -ItemType Directory | Out-Null
         
         # Clone to themes folder
         Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/color.ini" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\color.ini"
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/user.css" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\user.css"
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/injectNord.js" -UseBasicParsing -OutFile "$extensionsPath\injectNord.js"
-
-        # Installing
-        Write-Host "Changing Config" -ForegroundColor DarkCyan
-        spicetify config extensions nord.js- -q
-        spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q  
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/theme/color.ini" -UseBasicParsing -OutFile "$themePath\Nord\color.ini"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord/user.css" -UseBasicParsing -OutFile "$themePath\Nord\user.css"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord/theme.js" -UseBasicParsing -OutFile "$themePath\Nord\theme.js"
     } else {
+        # Offline mode
         # create folders
-        Write-Host "Installing Nord Spotify (Offline mode)" -ForegroundColor DarkCyan
-        New-Item -Path $snippetsPath -ItemType Directory | Out-Null
-
-        Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
-        # Clone to assets folder
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Snippets/NewUI.css" -UseBasicParsing -OutFile "$snippetsPath\NewUI.css"
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/Snippets/OldUI.css" -UseBasicParsing -OutFile "$snippetsPath\OldUI.css"
+        Write-Host "Installing Nord (Offline mode)" -ForegroundColor DarkCyan
+        New-Item -Path "$themePath\Nord" -ItemType Directory | Out-Null
+        
         # Clone to themes folder
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord-Spotify/color.ini" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\color.ini"
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/nord.css" -UseBasicParsing -OutFile "$themePath\Nord-Spotify\user.css"
-        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/src/nord.js" -UseBasicParsing -OutFile "$extensionsPath\nord.js"
-
-        # Installing
-        Write-Host "Changing Config" -ForegroundColor DarkCyan
-        spicetify config extensions injectNord.js- -q
-        spicetify config current_theme Nord-Spotify color_scheme Spotify extensions nord.js inject_css 1 replace_colors 1 overwrite_assets 1 -q
+        Write-Host "Fetching Theme from GitHub" -ForegroundColor DarkCyan
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/dist/Nord/color.ini" -UseBasicParsing -OutFile "$themePath\Nord\color.ini"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/dist/Nord/user.css" -UseBasicParsing -OutFile "$themePath\Nord\user.css"
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/dist/Nord/theme.js" -UseBasicParsing -OutFile "$themePath\Nord\theme.js"
     }
 
-    # applying
+    # Installing
+    Write-Host "Changing Config" -ForegroundColor DarkCyan
+    spicetify config current_theme Nord color_scheme Spotify -q
+    
     Write-Host "Backing up Spotify" -ForegroundColor DarkCyan
     spicetify backup -q
 

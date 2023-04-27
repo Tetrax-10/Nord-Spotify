@@ -1,0 +1,35 @@
+//////////////////////////////////////// Main ////////////////////////////////////////
+
+// rounded context menu
+.main-contextMenu-menu {
+    border-radius: 15px; // extra border radius so always rounded
+}
+
+// rounded context menu items
+.main-contextMenu-menuItemButton[aria-expanded="true"],
+.main-contextMenu-menuItemButton:hover {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+.main-contextMenu-menuItemButton {
+    border-radius: 10px;
+}
+.main-contextMenu-menuItemButton::before,
+.main-contextMenu-menuItemButton::after {
+    display: none;
+}
+
+//////////////////////////////////////// Scrollbar ////////////////////////////////////////
+
+// context menu hide scrollbar
+.main-contextMenu-menu::-webkit-scrollbar {
+    display: none;
+}
+
+//////////////////////////////////////// Disabled ////////////////////////////////////////
+
+// disabled context menu
+.main-contextMenu-menuItemButton.main-contextMenu-disabled,
+.main-contextMenu-menuItemButton.main-contextMenu-disabled:hover {
+    color: rgba(var(--spice-rgb-text), 0.2) !important;
+    cursor: unset !important;
+}

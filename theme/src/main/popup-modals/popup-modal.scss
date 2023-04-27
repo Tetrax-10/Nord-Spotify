@@ -1,0 +1,36 @@
+//////////////////////////////////////// Main ////////////////////////////////////////
+
+// Notes:
+// main-embedWidgetGenerator-container - big popup modal
+// main-trackCreditsModal-container - small popup modal
+
+// big popup modal height
+.main-embedWidgetGenerator-container {
+    max-height: 90vh !important;
+}
+
+// big popup modal rounded corner
+.main-trackCreditsModal-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.main-trackCreditsModal-mainSection {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+// entire popup Modal
+.GenericModal > div {
+    border-radius: 10px;
+}
+
+// popup modal scrollbar
+.marketplace-code-editor-wrapper.marketplace-code-editor::-webkit-scrollbar-thumb,
+.main-trackCreditsModal-mainSection::-webkit-scrollbar-thumb {
+    width: 8px;
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-secondary);
+}
+
+@import "content-styling";
+@import "targeted-modals/targeted-modals";

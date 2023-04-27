@@ -1,0 +1,52 @@
+{
+    "name": "nord",
+    "description": "Nord Themed Spotify",
+    "author": "Tetrax-10",
+    "license": "MIT",
+    "homepage": "https://tetrax-10.github.io/Nord-Spotify/",
+    "main": "./src/app.tsx",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Tetrax-10/Nord-Spotify.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Tetrax-10/Nord-Spotify/issues"
+    },
+    "scripts": {
+        "format": "prettier --write .",
+        "lint": "eslint src",
+        "start": "npm run enable-devtools && npm run watch",
+        "watch": "concurrently \"npm run spicetify-watch\" \"npm run watch-ext\" \"npm run watch-theme\" \"npm run watch-colors\"",
+        "build": "npm run build-ext && npm run build-theme && npm run build-colors",
+        "build-local": "npm run build-ext:local && npm run build-theme:local && npm run build-colors:local",
+        "watch-ext": "for /f usebackq %i in (`spicetify path -s folder`) do spicetify-creator --watch --out=%i",
+        "build-ext": "for /f usebackq %i in (`spicetify path -s folder`) do spicetify-creator --out=%i",
+        "build-ext:local": "spicetify-creator --out=dist/Nord --minify",
+        "watch-theme": "for /f usebackq %i in (`spicetify path -s css`) do sass --watch theme/app.scss %i --no-source-map",
+        "build-theme": "for /f usebackq %i in (`spicetify path -s css`) do sass theme/app.scss %i --no-source-map --no-error-css",
+        "build-theme:local": "sass theme/app.scss dist/Nord/user.css --no-source-map --no-error-css --style=compressed",
+        "watch-colors": "onchange theme/color.ini -- npm run build-colors",
+        "build-colors": "for /f usebackq %i in (`spicetify path -s folder`) do copyfiles --flat theme/color.ini %i",
+        "build-colors:local": "copyfiles --flat theme/color.ini dist/Nord",
+        "enable-devtools": "spicetify enable-devtools",
+        "spicetify-watch": "spicetify -s watch -q",
+        "update-types": "curl -s -o ./src/types/globals.d.ts https://raw.githubusercontent.com/spicetify/spicetify-cli/master/globals.d.ts"
+    },
+    "dependencies": {
+        "chroma-js": "^2.4.2"
+    },
+    "devDependencies": {
+        "@types/chroma-js": "^2.4.0",
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "concurrently": "^8.0.1",
+        "copyfiles": "^2.4.1",
+        "eslint": "^8.38.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-react": "^7.32.2",
+        "onchange": "^7.1.0",
+        "prettier": "^2.8.6",
+        "sass": "^1.59.3",
+        "spicetify-creator": "^1.0.12"
+    }
+}

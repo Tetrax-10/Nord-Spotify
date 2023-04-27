@@ -1,0 +1,9 @@
+// sidebar liked songs icon color
+.main-likedSongsButton-likedSongsIcon {
+    color: var(--spice-sidebar);
+}
+
+// sidebar your episodes icon color inside
+.main-yourEpisodesButton-yourEpisodesIcon path {
+    fill: var(--spice-sidebar);
+}

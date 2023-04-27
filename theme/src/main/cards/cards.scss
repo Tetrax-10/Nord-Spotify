@@ -1,0 +1,93 @@
+@use "pages/pages";
+
+//////////////////////////////////////// Main ////////////////////////////////////////
+
+// all cards styling
+.main-card-card {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+.main-card-card:hover,
+.main-card-card[data-context-menu-open="true"] {
+    background-color: var(--spice-custom-main-secondary);
+}
+.main-card-card .main-card-imageContainer {
+    margin-bottom: -4px;
+}
+.main-card-card .main-card-imageContainer .main-cardImage-circular,
+.main-card-card .main-card-imageContainer img {
+    border-radius: 0;
+}
+.main-card-card .main-card-cardMetadata {
+    padding: 16px;
+}
+
+// remove card shadow below the image
+.main-cardImage-imageWrapper {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+//////////////////////////////////////// Placeholder ////////////////////////////////////////
+
+// if artist image doesnt exist in card
+.main-card-card .main-entityHeader-imagePlaceholder {
+    background-color: var(--spice-custom-main-soft-secondary);
+    transition: background-color 0.3s ease;
+}
+.main-card-card:hover .main-entityHeader-imagePlaceholder {
+    background-color: var(--spice-custom-main-secondary) !important;
+    transition: background-color 0.3s ease;
+}
+
+// card image placeholder background eg: png snippet
+.main-card-card .main-cardImage-imageWrapper {
+    transition: background-color 0.3s ease;
+}
+.main-card-card:hover .main-cardImage-imageWrapper {
+    background-color: var(--spice-custom-main-secondary) !important;
+    transition: background-color 0.3s ease;
+}
+
+// if no profile pic in cards then icon
+.main-entityHeader-imagePlaceholder svg {
+    color: var(--spice-custom-subdued);
+}
+
+//////////////////////////////////////// Fix ////////////////////////////////////////
+
+// cards play buttons right and bottom side space
+.main-card-card .main-card-PlayButtonContainer {
+    right: 16px !important;
+    bottom: 16px !important;
+}
+
+// fix artist name in cards
+.main-cardSubHeader-root > a {
+    color: var(--spice-custom-subdued) !important;
+}
+.main-cardSubHeader-root :hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+//////////////////////////////////////// Search Page ////////////////////////////////////////
+
+// search page card X button
+.x-searchHistoryEntries-searchHistoryEntry .x-searchHistoryEntries-clearSingleSearchHistoryButton {
+    border-radius: 10px;
+}
+
+//////////////////////////////////////// Your Library ////////////////////////////////////////
+
+// episodes card in your library icon color
+.main-yourEpisodes-yourEpisodesCard .main-entityHeader-imagePlaceholder svg {
+    color: var(--spice-button-active);
+}
+
+// your library your episodes border radius
+.main-card-imageContainer .main-yourEpisodes-coverContainer {
+    border-radius: 0;
+}

@@ -1,0 +1,71 @@
+body {
+    &.nord- {
+        // hide homepage recommendation
+        &hideHomePageRecommendation {
+            section[data-testid="home-page"] .main-shelf-shelf:not([aria-label="Recently played"]) {
+                display: none !important;
+            }
+        }
+
+        // remove liked songs card in your library
+        &hideLikedSongsCard {
+            .collection-collectionEntityHeroCard-likedSongs {
+                display: none;
+            }
+        }
+
+        // hide similar song recommendation in playlist
+        &hideSimilarSongsRecommendation {
+            .playlist-playlist-seeMore,
+            .playlist-playlist-playlistInlineCurationSection,
+            .playlist-playlist-searchResultListContainer,
+            .playlist-playlist-recommendedTrackList {
+                display: none !important;
+            }
+        }
+
+        // remove playlist edit image button
+        &hidePlaylistImageEditButton {
+            .main-editImageButton-overlay {
+                display: none;
+            }
+        }
+
+        // hover timestamp
+        &hoverTime {
+            .playback-bar__progress-time-elapsed,
+            .main-playbackBarRemainingTime-container {
+                opacity: 0;
+            }
+        }
+
+        // hide default cover art
+        &hideDefaultCoverArt {
+            section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer,
+            section[data-testid="enhanced-page"] .playlist-playlist-playlistImageContainer,
+            section[data-testid="artist-page"] .main-entityHeader-imageContainer,
+            // artist page without artist banner 
+            section .main-entityHeader-imageContainer,
+            section[data-testid="album-page"] .main-entityHeader-imageContainer,
+            section[data-testid="playlist-page"] .playlist-playlist-playlistImageContainer {
+                display: none;
+            }
+        }
+
+        // center lyrics
+        &centeredLyrics {
+            .lyrics-lyrics-container {
+                .lyrics-lyrics-contentContainer {
+                    justify-content: center !important;
+                }
+                .lyrics-lyricsContent-lyric {
+                    display: flex;
+                    justify-content: center !important;
+                }
+                .lyrics-lyrics-contentContainer .lyrics-lyrics-contentWrapper {
+                    margin: unset !important;
+                }
+            }
+        }
+    }
+}

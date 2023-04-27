@@ -1,0 +1,194 @@
+.ReactModalPortal.tetrax-mini-popup {
+    .GenericModal__overlay {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        align-items: center;
+        background-color: rgba(var(--spice-rgb-shadow), 0.7);
+        bottom: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .mini-popup- {
+        &wrapper {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            background-color: var(--spice-main);
+            border-radius: 8px;
+            color: var(--spice-main);
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            padding: 16px;
+            text-align: start;
+        }
+
+        &heading {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin-block: 0px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-family: var(
+                --font-family,
+                CircularSp,
+                CircularSp-Arab,
+                CircularSp-Hebr,
+                CircularSp-Cyrl,
+                CircularSp-Grek,
+                CircularSp-Deva,
+                var(--fallback-fonts, sans-serif)
+            );
+            color: var(--spice-text);
+        }
+
+        &body {
+            color: var(--spice-text);
+            font-size: 0.875rem;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin-block: 0px;
+            font-weight: 400;
+            font-family: var(
+                --font-family,
+                CircularSp,
+                CircularSp-Arab,
+                CircularSp-Hebr,
+                CircularSp-Cyrl,
+                CircularSp-Grek,
+                CircularSp-Deva,
+                var(--fallback-fonts, sans-serif)
+            );
+            padding-block-end: 24px;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            max-height: 130px;
+            max-width: 450px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+        }
+
+        &button-wrapper {
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &secondary-button {
+            overflow-wrap: anywhere;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: var(
+                --font-family,
+                CircularSp,
+                CircularSp-Arab,
+                CircularSp-Hebr,
+                CircularSp-Cyrl,
+                CircularSp-Grek,
+                CircularSp-Deva,
+                var(--fallback-fonts, sans-serif)
+            );
+            background-color: transparent;
+            border: 0px;
+            border-radius: 500px;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            text-transform: none;
+            touch-action: manipulation;
+            transition-duration: 33ms;
+            transition-property: background-color, border-color, color, box-shadow, filter, transform;
+            user-select: none;
+            vertical-align: middle;
+            transform: translate3d(0px, 0px, 0px);
+            color: var(--spice-subtext);
+            min-inline-size: 0px;
+            padding-block: 8px;
+            min-block-size: 48px;
+            padding-inline: 32px;
+            display: inline-flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+        }
+
+        &default-button {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: var(
+                --font-family,
+                CircularSp,
+                CircularSp-Arab,
+                CircularSp-Hebr,
+                CircularSp-Cyrl,
+                CircularSp-Grek,
+                CircularSp-Deva,
+                var(--fallback-fonts, sans-serif)
+            );
+            background-color: transparent;
+            border: 0px;
+            border-radius: 500px;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            text-transform: none;
+            touch-action: manipulation;
+            transition-duration: 33ms;
+            transition-property: background-color, border-color, color, box-shadow, filter, transform;
+            user-select: none;
+            vertical-align: middle;
+            transform: translate3d(0px, 0px, 0px);
+            padding: 0px;
+            min-inline-size: 0px;
+            align-self: center;
+        }
+
+        &default-button-text {
+            overflow-wrap: anywhere;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            background-color: var(--spice-button-active);
+            color: var(--spice-main);
+            display: flex;
+            border-radius: 500px;
+            font-size: inherit;
+            min-block-size: 48px;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding-block: 8px;
+            padding-inline: 32px;
+        }
+    }
+}

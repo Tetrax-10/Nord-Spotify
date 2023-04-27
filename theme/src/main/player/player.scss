@@ -1,0 +1,149 @@
+//////////////////////////////////////// Center Player ////////////////////////////////////////
+
+// player center buttons allign center
+.player-controls__buttons--new-icons {
+    margin-top: 8px;
+}
+
+// change appearance of play button in player
+.main-playPauseButton-button {
+    color: inherit;
+    background-color: transparent;
+}
+.main-playPauseButton-button svg {
+    height: 19px;
+    width: 19px;
+    transform: scale(1.5);
+}
+
+// if no player, pause button disabled background color made transparent
+.main-playPauseButton-button[disabled] {
+    background-color: var(--spice-main);
+}
+
+//////////////////////////////////////// Progress Bar ////////////////////////////////////////
+
+// progress bar (how much filled)
+.x-progressBar-fillColor {
+    border-radius: 50px;
+    height: 6px;
+    background-color: var(--spice-custom-selected-button) !important;
+    transition: transform, 0s, ease, 0.25s;
+}
+
+// progress bar (how much remaining)
+.x-progressBar-sliderArea {
+    border-radius: 0px;
+    height: 6px;
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+
+//////////////////////////////////////// Left Player ////////////////////////////////////////
+
+// artist name in player
+.main-trackInfo-artists > span > a {
+    font-size: 0.875rem;
+    color: var(--spice-custom-subdued) !important;
+}
+.main-trackInfo-artists > span :hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+//////////////////////////////////////// Player Buttons ////////////////////////////////////////
+
+// now playing bar buttons color
+.main-nowPlayingBar-center button,
+.main-nowPlayingBar-right button {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// player active button like shuffle, repeat, queue, lyrics
+.main-nowPlayingBar-nowPlayingBar button.control-button--active,
+.main-nowPlayingBar-nowPlayingBar button[aria-checked="mixed"],
+.main-nowPlayingBar-nowPlayingBar button[data-active="true"],
+.main-nowPlayingBar-nowPlayingBar button[aria-expanded="true"],
+.main-nowPlayingBar-nowPlayingBar button[aria-checked="true"] {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+// dot under player active button
+.main-genericButton-button.main-genericButton-buttonActive:after {
+    display: none;
+}
+
+// hide dots under active button
+.main-shuffleButton-button.main-shuffleButton-active:after,
+.main-repeatButton-button.main-repeatButton-active:after,
+// queue 
+.KAZD28usA1vPz5GVpm63.RK45o6dbvO1mb0wQtSwq:after,
+.control-button--active-dot:after {
+    display: none;
+}
+
+//////////////////////////////////////// Cover art ////////////////////////////////////////
+
+// player cover image border radius
+.cover-art-image {
+    border-radius: 10px !important;
+}
+
+// player cover image
+.cover-art {
+    border-radius: 10px;
+}
+.cover-art.shadow {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+// hide small cover art when expanded
+.main-nowPlayingWidget-coverExpanded .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
+    visibility: hidden;
+}
+
+// cover art expand button
+.main-coverSlotCollapsed-expandButton:hover,
+.main-coverSlotCollapsed-expandButton {
+    border-radius: 5px;
+    background-color: rgba(var(--spice-rgb-shadow), 0.3);
+    color: var(--spice-text);
+    height: 22px;
+    width: 22px;
+}
+
+// cover art collapse button
+.main-coverSlotExpandedCollapseButton-collapseButton:hover,
+.main-coverSlotExpandedCollapseButton-collapseButton {
+    border-radius: 10px;
+    background-color: rgba(var(--spice-rgb-shadow), 0.3);
+    color: var(--spice-text);
+    height: 28px;
+    width: 28px;
+}
+
+//////////////////////////////////////// Popup ////////////////////////////////////////
+
+// connect to a device popup
+.main-connectPicker-button > div[data-tippy-root] {
+    transform: translate3d(-157px, -73px, 0px) !important;
+}
+// hides info about other devices on player
+// triangle
+.WFRr38dFOxh75JyzSTj5.IbmaxRtjqCjqTBpFwCgw,
+// long bar 
+.main-connectBar-connectBar {
+    display: none !important;
+}
+
+//////////////////////////////////////// Snippet helper ////////////////////////////////////////
+
+// show time lapse on hover
+.playback-bar:hover > div {
+    transition: all 0.3s ease;
+    opacity: 1 !important;
+}
+
+// player song name
+.main-trackInfo-name :hover > a {
+    color: var(--spice-custom-link-hover) !important;
+}

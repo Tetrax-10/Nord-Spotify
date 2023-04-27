@@ -1,0 +1,45 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": ["react", "import"],
+    "settings": {
+        "react": {
+            "version": "17.0.2"
+        }
+    },
+    "globals": {
+        "Spicetify": "readonly"
+    },
+    "rules": {
+        "quotes": ["warn", "double"],
+        "no-console": ["warn", { "allow": ["error"] }],
+        "no-unused-vars": "warn",
+        "no-alert": "error",
+        "no-undef": "error",
+        "object-shorthand": ["warn", "never"],
+        "no-underscore-dangle": "error",
+        "camelcase": ["error", { "allow": ["color_scheme"] }],
+        "no-eval": "error",
+        "import/no-useless-path-segments": ["error", { "noUselessIndex": true }],
+        "no-case-declarations": "off",
+        "react/prop-types": 0,
+        "react/no-unescaped-entities": 0,
+        "react/jsx-key": "off",
+        "no-prototype-builtins": "off",
+        "no-inner-declarations": "off",
+        "react/jsx-no-undef": [
+            "error",
+            {
+                "allowGlobals": true
+            }
+        ]
+    }
+}

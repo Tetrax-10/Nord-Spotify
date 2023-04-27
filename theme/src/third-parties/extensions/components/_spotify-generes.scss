@@ -1,0 +1,12 @@
+// //////////// Spotify Generes - Extension ////////////
+
+.main-trackInfo-genres > span,
+.main-trackInfo-genres > a {
+    font-size: 13px !important;
+    color: var(--spice-custom-subdued) !important;
+}
+
+.main-trackInfo-genres > a:hover,
+.main-entityHeader-genreLink:hover {
+    color: var(--spice-custom-link-hover) !important;
+}

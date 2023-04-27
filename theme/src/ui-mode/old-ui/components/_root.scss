@@ -1,0 +1,12 @@
+// username on top right corner customization
+.main-userWidget-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+
+// small profile photo on top right corner
+.main-userWidget-box .main-avatar-image {
+    border-radius: 8px;
+}

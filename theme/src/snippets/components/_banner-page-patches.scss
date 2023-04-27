@@ -1,0 +1,62 @@
+body {
+    &.nord- {
+        &fixAlbumPage {
+            section[data-testid="album-page"] > div:nth-child(4),
+            section[data-testid="album-page"] > div:nth-child(5) {
+                background-color: var(--spice-main);
+            }
+            .main-actionBar-ActionBar.contentSpacing {
+                background-color: var(--spice-main);
+            }
+            .contentSpacing {
+                padding: 32px !important;
+            }
+        }
+
+        &fixLikedSongsPage {
+            .main-actionBar-ActionBar.contentSpacing {
+                background-color: var(--spice-main);
+            }
+            .playlist-playlist-playlist[data-testid="playlist-page"] > div:nth-child(4),
+            section[data-testid="enhanced-page"] > div:nth-child(3) {
+                background-color: var(--spice-main);
+            }
+        }
+
+        &fixFolderPage {
+            .main-actionBar-ActionBar.contentSpacing {
+                background-color: var(--spice-main);
+            }
+            .folder-folderPage-sectionWrapper > div:nth-child(4) {
+                background-color: var(--spice-main);
+            }
+        }
+
+        &fixShowsPage {
+            .main-actionBar-ActionBar.contentSpacing {
+                background-color: var(--spice-main);
+            }
+            .show-showPage-sectionWrapper > div:nth-child(4) {
+                background-color: var(--spice-main);
+            }
+        }
+
+        &fixLocalPage {
+            .main-actionBar-ActionBar.contentSpacing {
+                background-color: var(--spice-main);
+            }
+            .uCHqQ74vvHOnctGg0X0B > div:nth-child(4) {
+                background-color: var(--spice-main);
+            }
+        }
+
+        &fixEnhancedPage {
+            .main-actionBar-ActionBar.contentSpacing {
+                background-color: var(--spice-main);
+            }
+            section[data-testid="enhanced-page"] > div:nth-child(3) {
+                background-color: var(--spice-main);
+            }
+        }
+    }
+}

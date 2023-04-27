@@ -1,0 +1,68 @@
+// Player - ported from NewUI CSS
+
+//////////////////////////////////////// better progress bar ////////////////////////////////////////
+
+.Root__now-playing-bar {
+    // match cover art left padding with bottom padding
+    .main-nowPlayingBar-nowPlayingBar {
+        padding-left: 18px;
+    }
+
+    // progress bar ball (visible when hovered)
+    .progress-bar__slider {
+        width: 12px !important;
+        height: 12px !important;
+        top: 3.5px;
+        border-radius: 50%;
+        transition: left, 0s, ease, 0.25s;
+    }
+
+    // player height
+    .main-nowPlayingBar-nowPlayingBar {
+        height: 72px;
+        margin-bottom: 6px;
+    }
+
+    // moves progress bar to bottom
+    .playback-bar {
+        border-radius: 0px !important;
+        bottom: 6px;
+        width: 98.8vw;
+        position: absolute;
+    }
+    // moves progress bar to left
+    .playback-bar {
+        left: 0.6vw !important;
+        position: fixed !important;
+    }
+    .x-progressBar-progressBarBg {
+        background-color: unset;
+    }
+    .main-nowPlayingBar-center .x-progressBar-progressBarBg .x-progressBar-sliderArea {
+        border-radius: 0px !important;
+        border-bottom-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+    }
+    // progress bar time style
+    .playback-bar__progress-time-elapsed,
+    .main-playbackBarRemainingTime-container {
+        position: absolute;
+        bottom: 14px;
+        right: 0px;
+    }
+    .playback-bar__progress-time-elapsed {
+        transform: translateX(calc(-100% - 20px));
+    }
+    .playback-bar__progress-time-elapsed::after {
+        position: absolute;
+        left: calc(100% + 10px);
+        font-weight: bold;
+        color: rgba(var(--spice-rgb-custom-subdued), 0.8);
+        content: "/";
+        transform: translateX(-50%);
+    }
+
+    // rounded player
+    border-radius: 10px;
+    background-color: var(--spice-main);
+}

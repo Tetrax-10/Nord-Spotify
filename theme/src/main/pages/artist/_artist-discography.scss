@@ -1,0 +1,32 @@
+// //////////// Artist Discography ////////////
+
+// artist discography album img comtainer
+.main-entityHeader-image.artist-artistDiscography-headerImage {
+    padding: 30px;
+    padding-bottom: 150px;
+    padding-right: 150px;
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8) !important;
+}
+.main-entityHeader-image.artist-artistDiscography-headerImage > img {
+    height: 120px;
+    width: 120px;
+}
+
+// artist discography album info
+.artist-artistDiscography-headerMetadata {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
+}
+
+// artist discography view type near all drop down
+.artist-artistDiscography-topBar > div:nth-child(2) > button:hover,
+.artist-artistDiscography-topBar > div:nth-child(2) > button[aria-checked="true"] {
+    color: var(--spice-text);
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+.artist-artistDiscography-topBar > div:nth-child(2) > button[aria-checked="false"] {
+    color: var(--spice-text);
+}

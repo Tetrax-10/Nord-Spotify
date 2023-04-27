@@ -1,0 +1,7 @@
+body {
+    &.nord- {
+        &newUI {
+            @import "components/components";
+        }
+    }
+}

@@ -1,0 +1,26 @@
+// If no profile pic the element will not be circle (not working)
+.main-entityHeader-circle {
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+// Profile photo hover edit button
+.main-editImage-buttonContainer button {
+    border-radius: 10px;
+}
+
+// edit spotify username
+input[placeholder="Add a display name"]::placeholder {
+    color: var(--spice-text);
+}
+input[placeholder="Add a display name"] {
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// username in playlist page, profile page followers and following
+.main-entityHeader-metaData a:hover {
+    color: var(--spice-custom-link-hover) !important;
+}

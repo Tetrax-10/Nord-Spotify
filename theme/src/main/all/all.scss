@@ -1,0 +1,12 @@
+.encore-dark-theme {
+    --text-subdued: var(--spice-custom-subdued) !important;
+}
+
+:root {
+    --spice-highlight: var(--spice-custom-main-soft-secondary) !important;
+}
+
+// fix hover links
+a {
+    text-decoration: none !important;
+}

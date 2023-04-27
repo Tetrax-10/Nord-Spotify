@@ -1,6 +1,6 @@
-# Nord Spotify (with Dynamic Theming)
+# Nord (with Dynamic Theming)
 
-Nord Themed Spotify with no UI Ads
+Nord Themed Spotify
 
 Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
@@ -8,39 +8,55 @@ Wanna discuss or having issues ping `@Tetrax-10` in Discord
 
 <br />
 
-# Nord Spotify Screenshots
+# Nord Screenshots
 
-## New UI (Supported till spotify v1.2.2)
+## Library X UI (Supports from 1.2.9 to latest Spotify)
 
-![artist 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist-2.png)
+![lib x home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/libx.png)
 
-![artist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/artist.png)
+### Auto Expand Library X
+
+![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/auto-expand-libx.png)
+
+### Immersive View
+
+![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/immersive-view.png)
+
+![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/immersive-view-2.png)
+
+<br />
+
+## New UI (Supported till spotify [v1.2.2](https://upgrade.scdn.co/upgrade/client/win32-x86/spotify_installer-1.2.2.582.gfae9c59b-54.exe))
+
+![artist 2](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/artist-2.png)
+
+![artist](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/artist.png)
 
 <br />
 
 ## Old UI (Supports from 1.1.93 to latest Spotify)
 
-![old ui home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/old-ui-home.png)
+![old ui home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/old-ui-home.png)
 
-![old ui](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/old-ui.png)
+![old ui](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/old-ui.png)
 
 <br />
 
-## Nord Spotify's Own Dynamic Theme Engine
+## Nord's Own Dynamic Theme Engine
 
-![home](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/home.png)
+![home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/home.png)
 
-![genre](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/genre.png)
+![genre](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/genre.png)
 
-![playlist](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/playlist.png)
+![playlist](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/playlist.png)
 
-![search 2](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search-2.png)
+![search 2](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/search-2.png)
 
-![search](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/search.png)
+![search](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/search.png)
 
-![spotify lyrics](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/spotify-lyrics.png)
+![spotify lyrics](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/spotify-lyrics.png)
 
-![lyrics plus](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/lyrics-plus.png)
+![lyrics plus](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/lyrics-plus.png)
 
 <br />
 
@@ -54,13 +70,13 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 ## Snippets Support - Deeply Customizable
 
-![snippets](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/snippets.png)
+![snippets](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/snippets.png)
 
 <br />
 
-## Nord Spotify vs Marketplace's Dynamic Colors
+## Nord vs Marketplace's Dynamic Colors
 
-|                                    Nord Spotify's Dynamic Color (Better)                                    |                                  Marketplace's Dynamic Color (Deprecated)                                   |
+|                                        Nord's Dynamic Color (Better)                                        |                                  Marketplace's Dynamic Color (Deprecated)                                   |
 | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
 | ![1](https://user-images.githubusercontent.com/75513645/206895282-30120968-276a-4210-84e0-bdf5a787c2eb.png) | ![1](https://user-images.githubusercontent.com/75513645/206895238-86de9946-5035-4423-93d8-d407ac43703a.png) |
 | ![2](https://user-images.githubusercontent.com/75513645/206895281-5d1cc28a-e1f4-4c82-ad36-723f724ee253.png) | ![2](https://user-images.githubusercontent.com/75513645/206895237-16106d65-7001-42b8-9809-a73a63503e25.png) |
@@ -85,7 +101,7 @@ https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-
 
 ## Custom Fonts
 
-![Custom Fonts Preview](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/custom-fonts.png)
+![Custom Fonts Preview](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/custom-fonts.png)
 
 <br />
 
@@ -93,29 +109,29 @@ https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-
 
 Step 1 : Just install the Font you like in your PC
 
-Step 2 : Then Type the Font name in `Font Name` box in Nord Spotify and click save. (No need to fill `Font URL` leave it empty)
+Step 2 : Then Type the Font name in `Font Name` box in Nord and click save. (No need to fill `Font URL` leave it empty)
 
 <br />
 
 ### Custom Fonts (Remote Method)
 
-You can use custom fonts in Nord Spotify remotely. [Google Fonts](https://fonts.google.com/) are Recommended
+You can use custom fonts in Nord remotely. [Google Fonts](https://fonts.google.com/) are Recommended
 
 Step 1 : Choose a font and click the plus button at styles section at the end
 
-![plus button](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/plus-button.png)
+![plus button](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/plus-button.png)
 
 Step 2 : Go to `selected families` and select `@import` Check Box
 
-![selected family](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/selected-family.png)
+![selected family](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/selected-family.png)
 
-Step 3 : Then Copy that URL and paste that in `Font URL` box in Nord Spotify
+Step 3 : Then Copy that URL and paste that in `Font URL` box in Nord
 
-![font url](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/font-url.png)
+![font url](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font-url.png)
 
-Step 4 : Then Copy that Font Name and paste that in `Font Name` box in Nord Spotify and click save
+Step 4 : Then Copy that Font Name and paste that in `Font Name` box in Nord and click save
 
-![font name](https://raw.githubusercontent.com/Tetrax-10/Spicetify-Themes/master/assets/font-name.png)
+![font name](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font-name.png)
 
 <br />
 
@@ -127,7 +143,7 @@ Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-m
 
 Step 2 : Open Spotify App -> Marketplace -> Themes
 
-Step 3 : Search `Nord Spotify` Click Install Buttton. Done!
+Step 3 : Search `Nord` Click Install Buttton. Done!
 
 <br />
 
@@ -165,14 +181,12 @@ curl -fsSL https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/insta
 
 ## Install Manually
 
-Copy [Nord-Spotify](https://github.com/Tetrax-10/Nord-Spotify/tree/master/Nord-Spotify) Folder to your Themes folder
-
-Copy [injectNord.js](https://github.com/Tetrax-10/Nord-Spotify/blob/master/src/injectNord.js) to your Extentions Folder
+Copy [Nord](https://github.com/Tetrax-10/Nord-Spotify/tree/dist/Nord) Folder to your Themes folder
 
 Then run the following command to apply the theme:
 
 ```sh
-spicetify config current_theme Nord-Spotify color_scheme Spotify extensions injectNord.js inject_css 1 replace_colors 1 overwrite_assets 1
+spicetify config current_theme Nord color_scheme Spotify
 spicetify apply
 ```
 
@@ -181,8 +195,7 @@ spicetify apply
 ## Uninstall Manually
 
 ```sh
-spicetify config extensions nord.js-
-spicetify config current_theme " " color_scheme " " extensions injectNord.js-
+spicetify config current_theme " " color_scheme " "
 spicetify apply
 ```
 
@@ -200,7 +213,7 @@ Dynamic Theming made Possible with [chroma.js](https://github.com/gka/chroma.js)
 
 Want your name here? Just like this Repo 🤩
 
-[![Nord Spotify Stargazers](https://reporoster.com/stars/Tetrax-10/Nord-Spotify)](https://github.com/Tetrax-10/Nord-Spotify/stargazers)
+[![Nord Stargazers](https://reporoster.com/stars/Tetrax-10/Nord-Spotify)](https://github.com/Tetrax-10/Nord-Spotify/stargazers)
 
 Like This Theme? Gimme Some ❤️ by Liking this Repository
 

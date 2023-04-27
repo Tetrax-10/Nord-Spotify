@@ -1,0 +1,13 @@
+// search bar in search page
+.x-searchInput-searchInputInput {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8) !important;
+    height: 40px !important;
+}
+
+// search bar border in search page
+.x-searchInput-searchInputInput,
+.x-searchInput-searchInputInput:hover,
+.x-searchInput-searchInputInput:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

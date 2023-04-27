@@ -1,0 +1,12 @@
+// keyboard shortcuts
+.GenericModal[aria-label="Keyboard Shortcuts"] > div {
+    background-color: var(--spice-main);
+    border-radius: 10px;
+}
+.main-keyboardShortcutsHelpModal-sections::-webkit-scrollbar {
+    width: 8px;
+}
+.main-keyboardShortcutsHelpModal-sections::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-secondary);
+}

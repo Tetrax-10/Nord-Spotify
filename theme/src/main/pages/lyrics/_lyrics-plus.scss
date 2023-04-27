@@ -1,0 +1,11 @@
+// lyrics plus compact off better lyrics-plus style
+.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
+    padding: 15px;
+    filter: none;
+    font-size: 250%;
+}
+.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
+    padding: 15px;
+    filter: blur(1.5px);
+    font-size: 210%;
+}

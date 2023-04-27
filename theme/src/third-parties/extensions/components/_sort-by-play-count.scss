@@ -1,0 +1,40 @@
+// //////////// sort by playcount - Extension ////////////
+
+.main-trackCreditsModal-originalCredits .login-button.green {
+    background-color: rgba(107, 203, 119, 0.5) !important;
+}
+.main-trackCreditsModal-originalCredits .login-button.red {
+    background-color: rgba(191, 97, 106, 0.7) !important;
+}
+
+// sort by play count input
+.popup-row .inputbox::placeholder,
+// lastfm stats input 
+#login-global-div > input::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+#login-global-div > input,
+// sort by playcount input 
+.popup-row .inputbox {
+    box-shadow: none !important;
+}
+
+// popup buttons
+.main-trackCreditsModal-originalCredits button {
+    border: none !important;
+    border-radius: 7px !important;
+    background-color: var(--spice-custom-main-secondary) !important;
+    height: 40px !important;
+    padding: 10px !important;
+    color: var(--spice-text);
+}
+
+// popup checkbox
+button.checkbox.disabled {
+    color: rgba(var(--spice-rgb-text), 0.3) !important;
+}
+
+// all popup input placeholder
+.GenericModal input::placeholder {
+    color: rgba(var(--spice-rgb-custom-subdued), 0.6) !important;
+}

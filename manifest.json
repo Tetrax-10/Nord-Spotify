@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Nord",
+        "description": "Nord Themed Spotify, with Dynamic Colors",
+        "preview": "assets/preview.png",
+        "readme": "README.md",
+        "usercss": "Nord/user.css",
+        "schemes": "theme/color.ini",
+        "include": ["https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/Nord/theme.js"],
+        "tags": ["Nord", "dynamic-color", "flat"]
+    }
+]

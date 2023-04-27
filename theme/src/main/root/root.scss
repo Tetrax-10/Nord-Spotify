@@ -1,0 +1,105 @@
+//////////////////////////////////////// Scrollbar ////////////////////////////////////////
+
+// change scrollbar appearance
+.os-theme-spotify.os-host-transition > .os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle {
+    border-radius: 4px;
+    width: 8px;
+    background-color: var(--spice-custom-main-secondary);
+}
+.os-theme-spotify.os-host-transition > .os-scrollbar-vertical > .os-scrollbar-track {
+    width: 6px;
+}
+
+//////////////////////////////////////// All images ////////////////////////////////////////
+
+// all images
+.main-image-image {
+    border-radius: 5%;
+}
+
+//////////////////////////////////////// Button ////////////////////////////////////////
+
+// fixed button hover color
+.encore-dark-theme .encore-bright-accent-set {
+    --background-base: var(--spice-button);
+    --background-press: var(--spice-button);
+    --background-highlight: var(--spice-button);
+}
+
+// like button color
+.main-addButton-button.main-addButton-active svg,
+.main-addButton-button svg {
+    color: var(--spice-custom-subdued);
+}
+
+// fix like button color on click (animation color)
+#_R_G *:not([fill="none"]) {
+    fill: var(--spice-custom-subdued) !important;
+}
+#_R_G *:not([stroke="none"]) {
+    stroke: var(--spice-custom-subdued);
+}
+
+// Big play buttons
+button > span.encore-bright-accent-set,
+// new release card play button 
+.main-playButton-PlayButton button > span {
+    border-radius: 16px !important;
+}
+
+// Show all button
+.main-shelf-seeAll {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 10px;
+    padding-top: 3px;
+    height: 34px;
+}
+
+//////////////////////////////////////// Pointers ////////////////////////////////////////
+
+button,
+.show-followButton-button,
+.main-dropDown-dropDown,
+.x-toggle-wrapper,
+.main-playlistEditDetailsModal-closeBtn,
+.main-trackList-rowPlayPauseButton,
+.main-rootlist-rootlistItemLink:link,
+.main-rootlist-rootlistItemLink:visited,
+.x-sortBox-sortDropdown,
+.main-contextMenu-menuItemButton,
+.main-trackList-column,
+.main-moreButton-button,
+.x-downloadButton-button,
+.main-playButton-PlayButton,
+.main-coverSlotExpandedCollapseButton-chevron,
+.main-coverSlotCollapsed-chevron,
+.control-button:focus,
+.control-button:hover,
+.main-repeatButton-button,
+.main-skipForwardButton-button,
+.main-playPauseButton-button,
+.main-skipBackButton-button,
+.main-shuffleButton-button,
+.main-addButton-button,
+.progress-bar__slider,
+.playback-bar,
+.main-editImageButton-image,
+.X1lXSiVj0pzhQCUo_72A,  // collaborate button in playlist  
+#spicetify-playlist-list .main-rootlist-wrapper {
+    // sidebar playlist hover
+    cursor: pointer !important;
+}
+
+//////////////////////////////////////// Others ////////////////////////////////////////
+
+// tippy border radius
+.main-contextMenu-tippy {
+    border-radius: 6px;
+}
+
+// update notification dot
+.main-userWidget-notificationDot {
+    color: var(--spice-button);
+}

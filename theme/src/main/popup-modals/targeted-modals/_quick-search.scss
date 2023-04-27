@@ -1,0 +1,45 @@
+// //////////// quick search ////////////
+
+// quick search - text color
+.search-modal-input {
+    color: var(--spice-text) !important;
+}
+
+// quick search - placeholder in search box
+.search-modal-input::placeholder {
+    color: var(--spice-custom-subdued);
+}
+
+// quick search - input box
+.search-modal-inputContainer {
+    background: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+
+// quick search - search icon
+.search-modal-searchIcon {
+    color: var(--spice-text);
+}
+
+// quick search rounded rows
+#search-modal-listbox > a:hover,
+#search-modal-listbox .search-modal-resultItem.search-modal-isSelected {
+    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+
+// quick search scrollbar
+#search-modal-listbox::-webkit-scrollbar {
+    display: none;
+}
+
+// quick search item-type button
+.OQZtYvcaWiQEaOOMZ54v {
+    background-color: var(--spice-button-disabled);
+    border-radius: 10px;
+}
+
+// quick search popup rounded corner
+.search-modal-modalWrapper {
+    border-radius: 10px;
+}

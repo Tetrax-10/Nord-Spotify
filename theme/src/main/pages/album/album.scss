@@ -1,0 +1,16 @@
+// album page playcount color
+.main-trackList-rowSectionVariable .main-trackList-rowPlayCount {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// 1 more release
+.x-album-releasesDropdown:hover,
+.x-album-releasesDropdown {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border-radius: 10px;
+}
+
+// album page total duration color
+.main-entityHeader-divider span {
+    color: var(--spice-text);
+}

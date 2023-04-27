@@ -1,0 +1,74 @@
+@use "genre";
+
+// search bar in search page
+.x-searchInput-searchInputInput {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px !important;
+    border: 0 !important;
+    color: var(--spice-text) !important;
+}
+
+// search bar placeholder
+.x-searchInput-searchInputInput::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// search bar - search icon in left
+.x-searchInput-searchInputSearchIcon svg,
+// search bar - clear icon in right 
+.x-searchInput-searchInputClearButton svg {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// search page tab options
+.search-searchCategory-catergoryGrid button > span {
+    height: 32px;
+    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+.search-searchCategory-catergoryGrid button[aria-checked="false"]:hover,
+.search-searchCategory-catergoryGrid button[aria-checked="false"] {
+    height: 32px;
+    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+.search-searchCategory-catergoryGrid button[aria-checked="true"] > span {
+    color: var(--spice-text);
+    background-color: var(--spice-custom-selected-button) !important;
+}
+.search-searchCategory-catergoryGrid button[aria-checked="false"] > span:hover {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+
+// top result head
+.search-searchResult-topResult.main-shelf-shelf .main-shelf-header {
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-left: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
+}
+// top result body
+.search-searchResult-topResultCard .main-heroCard-card {
+    border-radius: 15px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
+}
+
+// type of top result in search page
+.main-cardSubHeader-text {
+    background-color: var(--spice-custom-main-secondary);
+    border-radius: 7px;
+    height: 28px;
+}
+
+// top songs container in search page heading
+.search-searchResult-tracklistContainer.search-searchResult-tracklistShort {
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-left: 15px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
+}

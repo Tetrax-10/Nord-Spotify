@@ -1,0 +1,13 @@
+// search page search bar
+.nav-ylx .x-searchInput-searchInputInput {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    height: 40px !important;
+}
+
+// search page search bar border
+.nav-ylx .x-searchInput-searchInputInput,
+.nav-ylx .x-searchInput-searchInputInput:hover,
+.nav-ylx .x-searchInput-searchInputInput:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

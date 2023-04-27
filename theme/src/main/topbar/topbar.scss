@@ -1,0 +1,64 @@
+// username on top right corner customization
+.main-userWidget-box:hover,
+.main-userWidget-box {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border-radius: 10px;
+}
+
+// profile pic dropdown arrow
+.main-userWidget-box .main-userWidget-chevron {
+    display: none;
+}
+
+// profile pic/username top right notification indicator
+.main-userWidget-notificationIndicator {
+    display: none !important;
+}
+
+// top bar color
+.main-topBar-background {
+    background-color: var(--spice-main) !important;
+}
+.main-topBar-overlay {
+    background-color: var(--spice-main) !important;
+}
+
+// top bar buttons
+.main-topBar-historyButtons {
+    gap: 15px;
+}
+.main-topBar-button,
+.main-topBar-button:hover,
+.main-topBar-historyButtons .main-topBar-button {
+    height: 40px;
+    width: 40px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+
+// top bar tabs
+// queue page
+.queue-tabBar-headerItemLink.queue-tabBar-active,
+// lyrics plus 
+.lyrics-tabBar-headerItemLink.lyrics-tabBar-active,
+// marketplace 
+.marketplace-tabBar-headerItemLink.marketplace-tabBar-active {
+    border-radius: 10px;
+}
+
+// private session
+.main-noConnection button {
+    height: 45px;
+}
+.main-noConnection-button {
+    border-radius: 10px;
+    padding: 10px;
+}
+.main-noConnection-button svg {
+    padding-right: 3px;
+}
+
+// remove play button from topbar
+:root .Root__top-bar header .main-playButton-PlayButton {
+    display: none !important;
+}

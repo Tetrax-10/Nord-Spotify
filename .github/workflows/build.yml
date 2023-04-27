@@ -1,0 +1,49 @@
+name: Build and Publish Theme
+
+on:
+    push:
+        paths:
+            - assets/preview.png
+            - README.md
+            - LICENSE
+            - src/**
+    pull_request:
+        paths:
+            - assets/preview.png
+            - README.md
+            - LICENSE
+            - src/**
+
+jobs:
+    build_and_publish:
+        name: Setup Linux environment
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Install Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16.x
+
+            - name: Install theme dependencies
+              run: npm ci
+
+            - name: Create publish folder
+              run: mkdir publish
+
+            - name: Build theme
+              run: npm run build-local
+
+            - name: Copy required files
+              run: mv -f dist/Nord assets/preview.png README.md LICENSE publish/
+
+            - name: Publish theme
+              uses: s0/git-publish-subdir-action@develop
+              env:
+                  REPO: self
+                  BRANCH: dist
+                  FOLDER: "publish"
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

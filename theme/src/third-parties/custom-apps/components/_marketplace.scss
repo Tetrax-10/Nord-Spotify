@@ -1,0 +1,139 @@
+// fix marketplace buttons
+#playlist-phrase-submit,
+#marketplace-reload-okay,
+#marketplace-reload-cancel {
+    background-color: var(--spice-main);
+    padding: 10px;
+    border: none;
+    border-radius: 10%;
+}
+.marketplace-card-desc,
+.searchbar--bar__wrapper > input::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// marketplace search bar
+.searchbar-bar {
+    display: flex;
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 10px !important;
+    border: none;
+}
+
+// marketplace themes dev tools and settings bg color
+.marketplace-header-icon-button {
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// marketplace download button fix
+.button-module__button___hf2qg_marketplace {
+    border-radius: 16px;
+    background-color: var(--spice-button);
+}
+
+// marketplace buttons color on click
+.button-module__button___hf2qg_marketplace {
+    border-radius: 13px;
+    background-color: var(--spice-button) !important;
+}
+
+// marketplace installed border
+.marketplace-card--installed {
+    border: 3px solid var(--spice-button-active);
+}
+
+// marketplace item name hover
+.marketplace-grid .main-cardHeader-link:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+// marketplace star count hover
+.marketplace-cardSubHeader > span:hover {
+    color: var(--spice-text) !important;
+}
+
+// marketplace color scheme scrollbar
+.Dropdown-menu::-webkit-scrollbar {
+    display: none;
+}
+
+// marketplace color scheme options
+.Dropdown-option {
+    border-radius: 10px;
+}
+
+// marketplace color scheme drop down
+.Dropdown-control {
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+.Dropdown-placeholder.is-selected {
+    height: 30px;
+    padding: 3px;
+    width: 100px;
+}
+
+// marketplace toogles
+.toggle-module__toggle-indicator-wrapper___6Lcp0_marketplace {
+    background-color: var(--spice-custom-main-secondary);
+}
+.toggle-module__toggle-indicator___nCxwE_marketplace {
+    background: var(--spice-text) !important;
+}
+.toggle-module__toggle-input___ceLM4_marketplace:checked ~ .toggle-module__toggle-indicator-wrapper___6Lcp0_marketplace {
+    background-color: rgba(var(--spice-rgb-button), 0.4);
+}
+
+// marketplace dev tools
+.devtools-column {
+    background-color: var(--spice-main);
+}
+
+// marketplace dev tools code editor
+.marketplace-code-editor {
+    border: 3px solid var(--spice-button);
+    border-radius: 10px;
+}
+
+// marketplace dev tools code editor heading
+.devtools-heading,
+.invalid-css-heading {
+    text-decoration: none;
+}
+
+// marketplace add snippet input box
+.marketplace-customCSS-input-container input {
+    display: flex;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.7) !important;
+    flex-direction: column;
+    border-radius: 10px !important;
+    border: 0 !important;
+    color: var(--spice-text) !important;
+    height: 40px !important;
+}
+.marketplace-customCSS-input-container input::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// marketplace add snippet text area placeholder
+.marketplace-customCSS-input-container textarea::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// marketplace external js
+.marketplace-grid .main-card-draggable .main-card-cardMetadata li.marketplace-card__tag[data-tag="external JS"] {
+    background-color: var(--spice-notification-error) !important;
+    color: var(--spice-text);
+}
+
+// marketplace installed
+.marketplace-card__bottom-meta.main-type-mestoBold {
+    color: var(--spice-custom-success);
+}
+
+// marketplace tags
+.marketplace-card__tag {
+    background-color: var(--spice-custom-highlight) !important;
+    color: var(--spice-custom-subdued);
+}

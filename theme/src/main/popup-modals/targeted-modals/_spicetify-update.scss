@@ -1,0 +1,18 @@
+#spicetify-update pre {
+    padding: 0.5rem 15px !important;
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border-radius: 10px !important;
+}
+
+#spicetify-update summary:hover {
+    color: var(--spice-custom-link-hover);
+}
+
+#spicetify-update a {
+    text-decoration: underline !important;
+    color: var(--spice-custom-link-hover);
+}
+
+#spicetify-update hr {
+    border-color: var(--spice-custom-subdued) !important;
+}

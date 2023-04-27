@@ -1,0 +1,93 @@
+@use "artist-discography";
+
+// artist verified badge
+.artist-artistVerifiedBadge-badge {
+    fill: var(--spice-custom-subdued);
+}
+// artist verified tick
+.artist-artistVerifiedBadge-fillColor {
+    background-color: var(--spice-main);
+}
+
+// change appearance of follow button
+.artist-followButton-button {
+    border: none;
+    border-radius: 7px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    height: 40px;
+    padding: 10px;
+}
+
+// artist big image disabled gradient overlay
+.main-entityHeader-background.main-entityHeader-overlay {
+    --bgColor: transparent !important;
+}
+
+// artist page discography tab options
+
+.artist-artistOverview-artistShelfSpacer .main-shelf-subHeader button > span {
+    height: 32px;
+    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+.artist-artistOverview-artistShelfSpacer .main-shelf-subHeader button[aria-checked="false"]:hover,
+.artist-artistOverview-artistShelfSpacer .main-shelf-subHeader button[aria-checked="false"] {
+    height: 32px;
+    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+.artist-artistOverview-artistShelfSpacer .main-shelf-subHeader button[aria-checked="true"] > span {
+    color: var(--spice-text);
+    background-color: var(--spice-custom-selected-button) !important;
+}
+.artist-artistOverview-artistShelfSpacer .main-shelf-subHeader button[aria-checked="false"] > span:hover {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+
+// artist page liked songs container
+.artist-artistOverview-sideBlock {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+// artist page liked songs container artist image
+.artist-artistOverview-sideBlock .main-image-image.main-avatar-image {
+    border-radius: 10px !important;
+}
+
+// artist page liked songs container artist image like symbol
+.Kujbn0F68QOf_o44cNxw {
+    display: none !important;
+}
+
+// artist page songs container
+.artist-artistOverview-popularTracks {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.8);
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+// gradient finish on artist image done by spotify
+.main-entityHeader-background.main-entityHeader-overlay {
+    display: none;
+}
+
+// Artist Pick Big Cover Image introduced in V1.2.7
+.artist-artistOverview-sideBlock .mYvNDps8FDVgHSCzpeqC {
+    border-radius: 5%;
+}
+
+// Artist Pick and Liked Songs in Artist page right side to the top 5 songs
+.artist-artistOverview-sideBlock .fEBgUb {
+    margin-bottom: 10px;
+}
+
+// liked songs of a artist in artist page (you have liked n songs)
+.TypeElement-balladBold-type > a:hover {
+    color: var(--spice-custom-link-hover) !important;
+}

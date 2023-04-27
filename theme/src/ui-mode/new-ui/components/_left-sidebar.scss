@@ -1,0 +1,16 @@
+// //////////// SideBar ////////////
+
+// rounded sidebar
+.Root__nav-bar {
+    border-radius: 10px !important;
+}
+
+// sidebar liked songs icon color
+.main-likedSongsButton-likedSongsIcon {
+    color: var(--spice-main);
+}
+
+// sidebar your episodes icon color inside
+.main-yourEpisodesButton-yourEpisodesIcon path {
+    fill: var(--spice-main);
+}

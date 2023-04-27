@@ -1,0 +1,10 @@
+// //////////// New Releases - Custom App ////////////
+
+// change appearance of new releases refresh button
+.new-releases-controls-container > button {
+    border: none;
+    border-radius: 7px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    height: 40px;
+    padding: 10px;
+}

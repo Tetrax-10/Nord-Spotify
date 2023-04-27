@@ -1,0 +1,102 @@
+// libx sidebar your lib icon (minimized and expanded)
+button[class*="Button-md-24-buttonTertiary-iconOnly-condensed"],
+button[class*="Button-md-24-buttonTertiary-iconLeading-condensed"] {
+    color: var(--spice-subtext) !important;
+}
+
+// libx create playlist and expand button
+.main-yourLibraryX-headerContent > span > button,
+.main-yourLibraryX-headerContent > button {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+
+// libx when in folder back button
+.main-yourLibraryX-collapseButton > button[aria-label="Go back"] {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// libx clear X button
+button[class*="ChipClearComponent-chipClear"] {
+    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+
+// libx active playlist container
+div[class*="BoxComponent-group-tinted-isInteractive"],
+div[class*="Box-group-tinted-isInteractive-hasLeadingOrMedia"] {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+
+// libx disable scrolled shadow
+.main-yourLibraryX-isScrolled {
+    -webkit-box-shadow: unset !important;
+    box-shadow: unset !important;
+}
+
+// lib x active playlist hover expanded medium
+div[class*="BoxComponent-group-tinted-isInteractive-hasFocus-hasLeadingOrMedia"]:hover::after,
+div[class*="BoxComponent-group-tinted-isInteractive-hasLeadingOrMedia"]:hover::after {
+    background: var(--spice-custom-main-soft-secondary) !important;
+}
+
+// lib x active playlist hover
+div[class*="Box-group-isInteractive-hasFocus-hasLeadingOrMedia"]:active::after,
+div[class*="Box-group-isInteractive-hasLeadingOrMedia"]:active::after {
+    background: var(--spice-custom-main-secondary) !important;
+}
+
+// lib x minimized playlists <li>
+.qEiVyQ28VnOKb0LeijqL {
+    border-radius: 10px !important;
+}
+
+// lib x cover art rounded
+.qEiVyQ28VnOKb0LeijqL {
+    // local songs
+    div:has( > svg),
+    // all cover art except local songs
+    .g3kBhX1E4EYEC2NFhhxG {
+        border-radius: 10px !important;
+    }
+
+    // libx folder bg
+    .g3kBhX1E4EYEC2NFhhxG .Ozitxbqs1vcOukDz3GDw {
+        background-color: var(--spice-custom-main-soft-secondary);
+    }
+
+    // libx folder bg hover bg
+    &:hover .g3kBhX1E4EYEC2NFhhxG .Ozitxbqs1vcOukDz3GDw {
+        background-color: var(--spice-custom-main-secondary);
+    }
+}
+
+// lib x carousel button
+.search-searchCategory-carouselButton {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border-radius: 10px;
+}
+.search-searchCategory-carouselButton:focus {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+
+// libx playlist no shadow
+.vreceNX3ABcxyddeS83B {
+    -webkit-box-shadow: unset !important;
+    box-shadow: unset !important;
+}
+
+// libx selected mode secondary
+span[class*="ChipInnerComponent-selected-secondary"],
+span[class*="ChipInnerComponent-selected-isUsingKeyboard-secondary"] {
+    background-color: var(--spice-button-disabled) !important;
+}
+
+// libx full expanded
+.R7bnv14gXI2ndBOqFvCf > .main-playButton-PlayButton {
+    right: 5px !important;
+    bottom: 3px !important;
+}
+
+////////////////////////////////////////////////////////////////////////////

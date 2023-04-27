@@ -1,0 +1,90 @@
+@use "buddy-feed";
+
+// remove gradient shadow in sidebar above playlist
+.main-rootlist-rootlistDividerGradient {
+    display: none !important;
+}
+
+// sidebar change divider color
+.main-rootlist-rootlistDivider {
+    background-color: var(--spice-custom-selected-button);
+}
+
+// sidebar icons color
+.collection-active-icon,
+.collection-icon,
+.home-active-icon,
+.home-icon,
+.premiumSpotifyIcon,
+.search-active-icon,
+.search-icon {
+    color: var(--spice-text);
+}
+
+// sidebar liked songs icon color
+.main-likedSongsButton-likedSongsIcon {
+    background: var(--spice-text);
+    border-radius: 5px;
+}
+
+.main-createPlaylistButton-createPlaylistIcon,
+.main-yourEpisodesButton-yourEpisodesIcon {
+    border-radius: 5px;
+}
+
+// sidebar your episodes icon color
+.main-yourEpisodesButton-yourEpisodesIcon {
+    background: var(--spice-text);
+}
+
+// liked songs your episodes and create playlist in sidebar color
+.main-collectionLinkButton-collectionLinkButton .main-collectionLinkButton-icon,
+.main-collectionLinkButton-collectionLinkButton .main-collectionLinkButton-collectionLinkText,
+.main-createPlaylistButton-button {
+    opacity: 1;
+}
+
+// sidebar icons oldui
+.main-navBar-navBarLink[href="/lyrics-plus"] svg,
+.main-navBar-navBarLink[href="/new-releases"] svg {
+    stroke-width: 11px;
+    stroke: currentcolor;
+}
+// sidebar icons libx
+.main-yourLibraryX-navItem[data-id="/lyrics-plus"] svg,
+.main-yourLibraryX-navItem[data-id="/new-releases"] svg {
+    stroke: currentcolor;
+}
+
+// hide sideBar scrollbar
+.os-scrollbar:nth-child(6) .os-scrollbar-handle {
+    visibility: hidden;
+}
+
+// highlight sidebar item (main)
+.personal-library .main-collectionLinkButton-collectionLinkButton.main-collectionLinkButton-selected.active,
+.main-navBar-navBarItem .main-navBar-navBarLinkActive {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+
+// sidebar selected playlist
+.main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive:hover,
+.main-rootlist-rootlistItem .main-rootlist-rootlistItemLinkActive {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+// sidebar playlist names
+.main-rootlist-rootlistItem span {
+    font-weight: bold;
+}
+
+// sidebar divider invisible
+.LayoutResizer__resize-bar {
+    background: none;
+}
+
+// sidebar status icons
+.main-rootlist-statusIcons {
+    display: none;
+}

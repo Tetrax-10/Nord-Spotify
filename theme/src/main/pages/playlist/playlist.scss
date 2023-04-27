@@ -1,0 +1,308 @@
+@use "radio";
+
+// Hide playlist gradient top
+.main-entityHeader-backgroundColor {
+    display: none !important;
+}
+// Hide playlist gradient bottom
+.main-actionBarBackground-background {
+    display: none !important;
+}
+// remove gradient color on home screen
+.main-home-homeHeader {
+    display: none !important;
+}
+
+// small cover image in playlist row
+.main-trackList-rowImage {
+    border-radius: 5px !important;
+}
+
+// playlist big image shadow
+.main-entityHeader-shadow {
+    -webkit-box-shadow: none !important;
+    box-shadow: 0 5px 10px rgba(var(--spice-rgb-shadow), 1) !important;
+}
+
+// change playing icon color in playlist to theme color
+.main-trackList-playingIcon {
+    filter: sepia() saturate(90%) hue-rotate(170deg);
+}
+
+// change background color of selected row
+.main-trackList-trackListRow.main-trackList-selected,
+.main-trackList-trackListRow.main-trackList-selected:hover {
+    background-color: rgba(var(--spice-rgb-custom-main-secondary), 0.6) !important;
+}
+.main-trackList-trackListRow:focus-within,
+.main-trackList-trackListRow:hover {
+    background-color: rgba(var(--spice-rgb-custom-main-secondary), 0.4);
+}
+
+// When song is currently playing
+.main-trackList-active .main-type-mesto,
+.main-trackList-active .main-trackList-rowSubTitle,
+.main-trackList-active .main-trackList-rowSubTitle a,
+.main-trackList-active .main-trackList-rowMarker,
+.main-trackList-active .main-trackList-rowSectionVariable,
+.main-trackList-active .main-trackList-rowSectionVariable a,
+.main-trackList-active .main-trackList-rowSectionVariable span,
+.main-trackList-active .main-trackList-rowMarker,
+.main-trackList-active .main-trackList-rowDuration {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// artist name color change in all playlist
+.main-trackList-rowSubTitle a[href],
+.main-trackList-rowSubTitle,
+.main-trackList-rowSectionVariable a[href],
+.main-trackList-rowSectionVariable .ebHsEf {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// playlist tracks artist hover
+.main-trackList-rowSubTitle.standalone-ellipsis-one-line :hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+// change appearance of public/private playlist tag on top of playlist
+.main-entityHeader-headerText > .TypeElement-mestoBold-type {
+    border: 2px var(--spice-text) solid;
+    border-radius: 7px;
+    width: fit-content;
+    display: inline;
+    text-align: center;
+    padding: 3px 7px;
+}
+
+// title text area background color for editing playlist details
+.main-playlistEditDetailsModal-titleInput {
+    background: rgba(var(--spice-rgb-custom-main-secondary), 0.3) !important;
+}
+
+// description text area background color for editing playlist details
+.main-playlistEditDetailsModal-descriptionTextarea {
+    background: rgba(var(--spice-rgb-custom-main-secondary), 0.3) !important;
+}
+.main-playlistEditDetailsModal-description textarea {
+    border-radius: 10px;
+}
+
+// playlist details edit popup save button
+.main-playlistEditDetailsModal-save span:hover,
+.main-playlistEditDetailsModal-save span {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    color: var(--spice-text) !important;
+    border-radius: 10px !important;
+}
+
+// playlist tracks row rounded
+div.main-rootlist-wrapper > div:nth-child(2) > div :hover,
+div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active:hover,
+.main-trackList-trackListRow.main-trackList-trackListRowGrid.main-trackList-selected {
+    border-radius: 10px;
+}
+
+// current playing song color
+div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-rowTitle.standalone-ellipsis-one-line {
+    color: var(--spice-text);
+}
+
+// playlist collaborators popup profile pic
+.os-viewport-native-scrollbars-invisible .main-avatar-image {
+    border-radius: 8px !important;
+}
+
+// playlist collaborators popup author names hover color
+.V1By35exkhnkgbEeAQXN > a > span:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+// playlist collaborators popup Collaborator drop down
+.QIWSUTRvc_sCKCXhR1v4 {
+    color: var(--spice-text) !important;
+}
+
+// playlist collaborators popup
+// private/public playlist lock icon
+.TcErZJbTZpN8HIgWMd5n > div,
+// close button 
+.TcErZJbTZpN8HIgWMd5n > button {
+    color: var(--spice-text) !important;
+}
+
+// search bar in playlist page
+.x-filterBox-filterInput {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+    color: var(--spice-text);
+}
+// .x-filterBox-filterInput,
+.x-filterBox-filterInput::placeholder {
+    color: var(--spice-text);
+}
+
+// playlist page (collaborated) added by profile pic
+.main-trackList-addedBy .main-avatar-image,
+.main-trackList-trackListRow.main-trackList-trackListRowGrid .main-avatar-image {
+    border-radius: 8px !important;
+}
+
+// playlist page header icons (search and sort buttons)
+.x-contributorButton-ContributorButton,
+.main-actionBar-ActionBar.contentSpacing button {
+    color: var(--spice-text);
+}
+
+// explicit badge
+.main-tag-container[aria-label="Explicit"]:hover,
+.main-tag-container[aria-label="Explicit"] {
+    border-radius: 3.3px !important;
+    background-color: var(--spice-custom-subdued);
+}
+
+// download button color
+.x-downloadButton-button svg,
+// more button color 
+.main-moreButton-button svg,
+// collaborate button 
+.x-contributorButton-button svg,
+// collaborate button color on hover 
+.x-contributorButton-ContributorButton:hover {
+    color: var(--spice-custom-subdued);
+}
+
+// your library and playlist sort drop down
+.x-sortBox-sortDropdown {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+    color: var(--spice-text);
+    text-decoration: none !important;
+}
+
+// your library and playlist sort drop down selected item
+.main-contextMenu-menuItemButton:focus,
+.main-contextMenu-menuItemButton:hover {
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// your library and playlist small search button
+.x-filterBox-expandButton,
+.x-filterBox-expandButton:hover {
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
+}
+
+// your library and playlist small search button
+.x-filterBox-searchIconContainer,
+.x-filterBox-searchIcon {
+    color: var(--spice-text);
+}
+
+// playlist edit input and textarea
+.main-playlistEditDetailsModal-title input,
+.main-playlistEditDetailsModal-description textarea {
+    border: 0 !important;
+}
+
+// playlist edit input and textarea placeholder
+.main-playlistEditDetailsModal-title input::placeholder,
+.main-playlistEditDetailsModal-description textarea::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// playlist page big name padding
+.main-entityHeader-titleInner h1 {
+    margin: 0 !important;
+}
+
+// playlist page description
+.playlist-playlist-playlistDescription {
+    color: var(--spice-text);
+}
+
+// playlist page profile pic
+.main-entityHeader-metaData .main-avatar-image {
+    border-radius: 7px !important;
+}
+
+// search bar in playlist page (at end recommended songs)
+.playlist-inlineSearchBox-filterInputContainer > input {
+    display: flex;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.7) !important;
+    flex-direction: column;
+    border-radius: 10px !important;
+    border: 0 !important;
+    color: var(--spice-text) !important;
+    height: 40px !important;
+}
+.playlist-inlineSearchBox-filterInputContainer > input::placeholder {
+    color: var(--spice-custom-subdued) !important;
+}
+// search bar - search icon in left
+.playlist-inlineSearchBox-searchIcon {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// playlist page duration (clock icon)
+.main-trackList-column.main-trackList-durationHeader {
+    color: var(--spice-custom-subdued) !important;
+}
+
+// playlist page hours
+.main-entityHeader-metaDataText > span {
+    color: var(--spice-text);
+}
+
+// playlist page album name (local files)
+.main-trackList-rowSectionVariable .standalone-ellipsis-one-line {
+    color: var(--spice-custom-subdued) !important;
+    cursor: pointer;
+}
+
+// album name hover color
+.main-trackList-rowSectionVariable .standalone-ellipsis-one-line:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+.artist-popularTrackList-seeMore {
+    color: var(--spice-custom-subdued);
+}
+
+// enhanced star icon inside the button
+.eeRweB svg {
+    display: none;
+}
+
+// collaborated playlist author names
+.main-entityHeader-creatorButton {
+    font-weight: bold;
+    color: var(--spice-text);
+}
+.main-entityHeader-creatorButton:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+// Big Playlists helper
+.main-entityHeader-nonWrapped {
+    max-height: unset !important;
+}
+
+// playlist very few songs extra space below the songs
+.main-actionBarBackground-background {
+    height: -webkit-fill-available !important;
+    display: unset !important;
+    background-color: var(--spice-main) !important;
+    background-image: unset !important;
+}
+
+// drop down arrow color in playlist page title bar
+.main-trackList-arrow {
+    fill: var(--spice-custom-subdued);
+}
+
+// current playing song background
+div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
+    border-radius: 10px;
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.6);
+}

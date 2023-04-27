@@ -1,0 +1,34 @@
+// //////////// Experimental Feature ////////////
+
+// experimental feature popup
+.main-trackCreditsModal-header,
+.main-trackCreditsModal-mainSection {
+    background-color: var(--spice-main);
+}
+.main-trackCreditsModal-mainSection::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+// experimental feature seach bar
+input.search[placeholder="Search for a feature"] {
+    border-color: var(--spice-main);
+}
+input.search[placeholder="Search for a feature"]::placeholder {
+    color: var(--spice-custom-subdued);
+}
+
+// experimental feature seach bar icon outside
+.search-container svg {
+    color: var(--spice-text);
+}
+
+// experimental feature reset button
+.setting-row .reset {
+    color: var(--spice-text);
+}
+
+// search bar border
+.spicetify-exp-features input.search {
+    border-color: var(--spice-main) !important;
+}

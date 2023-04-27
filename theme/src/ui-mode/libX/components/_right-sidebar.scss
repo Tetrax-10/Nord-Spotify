@@ -1,0 +1,82 @@
+// right sidebar containers
+.Ai_McRq9wJEYK21w8nX_ {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+}
+
+//////////////////////////////////////// Lyrics ////////////////////////////////////////
+
+// right sidebar lyrics
+.gpDSOimnzH4zTJmE7UR5.I2WIloMMjsBeMaIS8H3v {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    --lyrics-color-active: var(--spice-text) !important;
+    --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.4) !important;
+    --lyrics-color-passed: rgba(var(--spice-rgb-text), 0.4) !important;
+    --lyrics-color-background: red !important;
+}
+
+// right sidebar lyrics fullscreen and close buttons
+.Psc33HXPyazZYAAr1tgz {
+    background: var(--spice-button-disabled) !important;
+    border-radius: 10px !important;
+    color: var(--spice-text) !important;
+}
+
+// right sidebar better spotify lyrics style
+.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
+    filter: blur(1.5px);
+    padding: 7px;
+}
+.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
+    filter: none;
+    padding: 12px;
+    font-size: 107%;
+}
+.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric {
+    filter: blur(1.5px);
+    padding: 7px;
+}
+.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
+    filter: none;
+    padding: 5px;
+}
+
+//////////////////////////////////////// Credits modal ////////////////////////////////////////
+
+// credited artists
+.TypeElement-mesto-textSubdued-type {
+    color: var(--spice-custom-subdued) !important;
+}
+
+//////////////////////////////////////// On tour ////////////////////////////////////////
+
+.Ai_McRq9wJEYK21w8nX_.IgTMXVbZtqtZwu3GZASd {
+    // show all
+    button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
+        color: var(--spice-custom-subdued);
+    }
+    // on tour time and location
+    .artist-artistOnTour-timeAndVenue.artist-artistOnTour-condensed {
+        color: var(--spice-custom-subdued);
+    }
+
+    // on tour time and location container
+    .uvIvZ4XqfEFs88BAPaI8:hover {
+        border-radius: 10px;
+        background-color: var(--spice-custom-main-secondary);
+    }
+}
+
+//////////////////////////////////////// Queue ////////////////////////////////////////
+
+.Ai_McRq9wJEYK21w8nX_.qbOrWcMUhSri1nPkZLQA {
+    // open queue
+    button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
+        color: var(--spice-custom-subdued);
+    }
+
+    // first song in queue container
+    div:nth-child(2):hover {
+        border-radius: 10px;
+        background-color: var(--spice-custom-main-secondary);
+    }
+}

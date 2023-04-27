@@ -1,0 +1,68 @@
+// enhance button, settings page buttons, find friends button
+// .fmWLzA,
+// enhanced button, settings page connect to facebook
+// .lbewzN,
+// settings page language change restart button
+button[class*="Button-sm-buttonSecondary-"],
+button[class*="Button-sm-buttonSecondary-"],
+.x-settings-restartAppButton {
+    border: none;
+    border-radius: 7px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    height: 40px;
+    padding: 10px;
+}
+
+// settings page connect to facebook button icon
+.Wrapper-sm-16-leading {
+    display: none;
+}
+
+// equalizer
+.x-settings-equalizerContainer {
+    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.5);
+    border-radius: 10px;
+}
+.main-dropDown-dropDown::-webkit-scrollbar {
+    display: none;
+}
+.main-dropDown-dropDown {
+    background-color: var(--spice-custom-main-soft-secondary);
+    color: var(--spice-text);
+}
+
+// equalizer reset button
+.x-settings-equalizerResetButton > button {
+    background-color: var(--spice-custom-main-secondary);
+}
+
+// settings input
+.x-settings-input::placeholder {
+    color: rgba(var(--spice-rgb-custom-subdued), 0.7);
+}
+
+// equalizer sliders color
+.x-settings-equalizerCanvasArea {
+    filter: sepia() saturate(90%) hue-rotate(170deg);
+}
+
+// settings page toggles bg
+input:checked ~ .x-toggle-indicatorWrapper,
+input ~ .x-toggle-indicatorWrapper {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+// settings page toggles bg on hover
+input:checked:hover ~ .x-toggle-indicatorWrapper,
+input:hover ~ .x-toggle-indicatorWrapper {
+    background-color: var(--spice-custom-selected-button) !important;
+}
+// settings page toggles round
+input:checked ~ .x-toggle-indicatorWrapper .x-toggle-indicator,
+input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
+    background-color: var(--spice-text);
+}
+
+// settings page custom settings heading color
+.main-shelf-title.main-type-cello {
+    color: var(--spice-text);
+}

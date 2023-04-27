@@ -1,0 +1,92 @@
+// .hTRqaN61SDG95erQGMmx = podcast page
+// ._OxEpxzAgJiTENfolVUN = your episodes page
+
+// episode rounded corner
+.hTRqaN61SDG95erQGMmx > div,
+._OxEpxzAgJiTENfolVUN > div {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+.hTRqaN61SDG95erQGMmx > div:hover,
+._OxEpxzAgJiTENfolVUN > div:hover {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+.hTRqaN61SDG95erQGMmx > hr,
+._OxEpxzAgJiTENfolVUN > hr {
+    display: none;
+}
+.hTRqaN61SDG95erQGMmx,
+._OxEpxzAgJiTENfolVUN {
+    padding: 20px;
+}
+
+// top episode in a podcast page
+.TT1tIewS2iI8Uz8kLuQB.te8hrsPnSvx9SUkzV0ME.WBxE9PQe96PpkE9RuTo5 {
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// podcast left side about heading
+.YJlizbhw6DBPHT9OYbdj > h3 {
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// podcast left side description
+.YJlizbhw6DBPHT9OYbdj .playlist-playlist-playlistDescription {
+    padding: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// podcast left side tag button below about section
+.nLNTsyonBwoRIzAv1AME span {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-soft-secondary);
+    height: 40px;
+    padding: 12px;
+}
+
+.nLNTsyonBwoRIzAv1AME span:hover {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+
+// hover buttons always visible in episodes container
+.DbMYFmOEEz9PH1h1zK9n button {
+    opacity: 1 !important;
+}
+
+// episodes play button
+.ButtonInner-sc-14ud5tc-0.hWpfOj.encore-bright-accent-set:hover,
+.ButtonInner-sc-14ud5tc-0.hWpfOj.encore-bright-accent-set,
+.ButtonInner-sc-14ud5tc-0.fLIdhT.encore-inverted-light-set:hover,
+.ButtonInner-sc-14ud5tc-0.fLIdhT.encore-inverted-light-set {
+    border-radius: 10px !important;
+    background-color: var(--spice-button) !important;
+}
+.main-playButton-PlayButton:hover {
+    background-color: unset !important;
+}
+
+// green episodes icon rounded corner
+.main-yourEpisodes-coverContainer {
+    border-radius: 10px;
+}
+
+// episode page podcast title link
+.main-entityHeader-subtitle.main-entityHeader-large.main-entityHeader-bold > a:hover {
+    color: var(--spice-custom-link-hover) !important;
+}
+
+// episode page date
+.qfYkuLpETFW3axnfMntO p,
+.main-actionBar-ActionBarRow p,
+// episode page duration 
+.qfYkuLpETFW3axnfMntO p > span,
+.main-actionBar-ActionBarRow p > span {
+    color: var(--spice-text);
+}

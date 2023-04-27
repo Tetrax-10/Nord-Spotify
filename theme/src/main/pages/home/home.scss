@@ -1,0 +1,47 @@
+// home page top extra padding above greeting
+.main-home-content {
+    padding-top: 15px;
+}
+
+// home page bottom extra padding
+.main-view-container__scroll-node-child {
+    padding-bottom: 0px;
+}
+
+// home page top six playlist bg color
+.view-homeShortcutsGrid-shortcut {
+    background-color: var(--spice-custom-main-soft-secondary) !important;
+    border-radius: 10px;
+}
+.view-homeShortcutsGrid-shortcut:focus-within,
+.view-homeShortcutsGrid-shortcut:hover,
+.view-homeShortcutsGrid-shortcut[data-context-menu-open="true"] {
+    background-color: var(--spice-custom-main-secondary) !important;
+}
+
+// home page top six playlist image border radius
+.view-homeShortcutsGrid-image {
+    border-radius: 0px !important;
+}
+
+// home page top six playlist image shadow
+.view-homeShortcutsGrid-imageWrapper {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+// home page each chart topic title height
+.main-shelf-titleWrapper h2 {
+    line-height: 1.2em;
+}
+
+// home page top extra padding above greeting
+// .main-home-content,
+.main-home-home {
+    padding-top: 0;
+}
+
+// charts topic name in home page
+.TypeElement-canon-textBase-type > a:hover {
+    color: var(--spice-custom-link-hover) !important;
+}

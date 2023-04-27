@@ -1,0 +1,135 @@
+.tetrax-settings-menu[app="Nord"] {
+    .popup-row {
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        &.search-div .col {
+            position: relative;
+        }
+        .col {
+            display: flex;
+            padding: 10px 0;
+            align-items: center;
+        }
+        .col.description {
+            float: left;
+            padding-right: 15px;
+        }
+        label.col.description {
+            margin-top: 7px;
+        }
+        .col.action {
+            float: right;
+        }
+        .div-title {
+            display: contents;
+            color: var(--spice-text);
+        }
+        .divider {
+            height: 2px;
+            border-width: 0;
+            background-color: var(--spice-button-disabled);
+        }
+        .space {
+            margin-bottom: 20px;
+            visibility: hidden;
+        }
+        .link {
+            font-size: 13px;
+            color: #59ce8f;
+        }
+        .little-space {
+            margin-bottom: 10px;
+        }
+        .inputbox {
+            padding: 10px;
+            border-radius: 15px;
+            border: 0;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+        }
+        .inputbox[type="color"] {
+            background-color: var(--spice-custom-main-secondary) !important;
+            padding: 0px;
+            border-radius: 5px !important;
+            border: none;
+            margin-right: 10px;
+        }
+        .inputbox[type="color"]::-webkit-color-swatch {
+            border-radius: 5px !important;
+            border: none;
+        }
+        .nord-search-container {
+            width: 100%;
+        }
+        .nord-search-icon {
+            position: absolute;
+            margin: 10px;
+        }
+        .nord-search {
+            padding: 10px 36px !important;
+            width: 100%;
+        }
+        select {
+            color: var(--spice-text);
+            background: rgba(var(--spice-rgb-shadow), 0.7);
+            border: 0;
+            height: 32px;
+        }
+        input.small-input {
+            padding: 5px !important;
+            border-radius: 6px !important;
+            right: 0px !important;
+            margin: 5px;
+        }
+    }
+
+    .no-arrow > summary {
+        list-style-type: none;
+    }
+    .display-none {
+        display: none !important;
+    }
+    button.checkbox {
+        align-items: center;
+        color: var(--spice-text);
+        cursor: pointer;
+        display: flex;
+        margin-inline-start: 12px;
+    }
+    button.checkbox.disabled {
+        color: rgba(var(--spice-rgb-text), 0.3);
+    }
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    button.login-button {
+        background-color: var(--spice-button);
+        border-radius: 8px;
+        border-style: none;
+        color: var(--spice-text);
+        cursor: pointer;
+        font-size: 14px;
+        height: 40px;
+        margin: 10px;
+        padding: 5px 10px;
+        text-align: center;
+    }
+    .small-button {
+        margin-right: 20px;
+    }
+    .green-btn {
+        background-color: #6bcb77 !important;
+        color: #25316d;
+    }
+    .red-btn {
+        background-color: #bf616a !important;
+    }
+    .green-text {
+        color: #6bcb77;
+    }
+    .red-text {
+        color: #bf616a;
+    }
+}

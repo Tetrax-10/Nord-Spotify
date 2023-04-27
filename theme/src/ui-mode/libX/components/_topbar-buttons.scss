@@ -1,0 +1,38 @@
+//////////////////////////////////////// Profile Button ////////////////////////////////////////
+
+// profile pic container
+button[class*="Button-md-24-buttonTertiary-condensedAll-"].Fxnb0xe6bL7I7W8V0p6C {
+    width: 40px;
+    height: 40px;
+    background-color: var(--spice-custom-main-secondary) !important;
+    border-radius: 10px !important;
+}
+
+// profile pic figure
+.main-avatar-avatar.pEG0W4wkbkrOYURhz82H {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+// profile pic image container
+.main-avatar-avatar.pEG0W4wkbkrOYURhz82H > div {
+    display: inline !important;
+}
+
+// profile pic image
+.main-avatar-avatar.pEG0W4wkbkrOYURhz82H > div > img {
+    border-radius: 20%;
+}
+
+//////////////////////////////////////// Toogle Buttons ////////////////////////////////////////
+
+// friend activity
+.IAyWaeDamLJLjxuPeVKw,
+// what's new feed
+.I4p8r1UNjIGk9yv3H2Ms {
+    border-radius: 10px;
+    color: var(--spice-text);
+    height: 38px;
+    width: 38px;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
