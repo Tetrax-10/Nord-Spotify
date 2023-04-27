@@ -3,14 +3,16 @@ name: Build and Publish Theme
 on:
     push:
         paths:
-            - README.md
             - LICENSE
+            - README.md
             - src/**
+            - theme/**
     pull_request:
         paths:
-            - README.md
             - LICENSE
+            - README.md
             - src/**
+            - theme/**
 
 jobs:
     build_and_publish:
