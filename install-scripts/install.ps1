@@ -26,8 +26,8 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     # Spicetify Themes path
     $themePath = "$spicePath\Themes"
 
-    $title    = 'Nord Spotify comes with two modes:'
-    $question = "Theme requires internet access. Updates the Theme automatically when there is a new update available`nOffline - Works without internet and thus gives better performance. Re-running this powershell script installs the latest update"
+    $title    = 'Nord comes with two modes:'
+    $question = "Auto Update mode - Theme requires internet access so it auto updates when ever there is a new update available`nOffline mode - Works without internet and thus gives better performance. To update the theme just run this script and choose Offline mode"
     $choices  = '&1. Auto Update', '&2. Offline'
 
     # remove old folders
@@ -69,7 +69,7 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
     Write-Host "Applying Theme" -ForegroundColor DarkCyan
     spicetify apply -q
 
-    Write-Host 'Nord Spotify installed successfully' -ForegroundColor Green
+    Write-Host 'Nord installed successfully' -ForegroundColor Green
 }
 else {
     Write-Host "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";

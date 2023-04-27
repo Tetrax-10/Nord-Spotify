@@ -4,33 +4,24 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
   $ErrorActionPreference = "Stop"
 
     # get Spicetify path
-    $spicePath = spicetify -c | Split-Path
-    # get spotify path
-    $spotifyPath = spicetify config spotify_path
-    # get xpui path
-    $xpuiPath = -join("$spotifyPath", "Apps\xpui")
+    $spicePath = spicetify path userdata
     # Spicetify Themes path
     $themePath = "$spicePath\Themes"
-    # Spicetify Extensions path
-    $extensionsPath = "$spicePath\Extensions"
 
-    # removing Nord Spotify
-    Write-Host "Removing Nord Spotify" -ForegroundColor DarkCyan
-    Remove-Item -Recurse -Force "$themePath\Nord-Spotify" -ErrorAction Ignore
-    Remove-Item -Recurse -Force "$xpuiPath\Nord-Spotify" -ErrorAction Ignore
-    Remove-Item -Force "$extensionsPath\injectNord.js" -ErrorAction Ignore
-    Remove-Item -Force "$extensionsPath\nord.js" -ErrorAction Ignore
+    # removing Nord
+    Write-Host "Removing Nord" -ForegroundColor DarkCyan
+    Remove-Item -Recurse -Force "$themePath\Nord" -ErrorAction Ignore
 
     # spicetify default theme
-    spicetify config extensions nord.js- -q
-    spicetify config current_theme " " color_scheme " " extensions injectNord.js- -q
+    spicetify config current_theme " " color_scheme " " -q
 
     Write-Host "Backing up Spotify" -ForegroundColor DarkCyan
     spicetify backup -q
 
+    Write-Host "Applying Config" -ForegroundColor DarkCyan
     spicetify apply -q
 
-    Write-Host "Nord Spotify Uninstalled Successfully" -ForegroundColor Green
+    Write-Host "Nord Uninstalled Successfully" -ForegroundColor Green
 }
 else {
     Write-Host "`nYour Powershell version is less than "; Write-Emphasized "$PSMinVersion";
