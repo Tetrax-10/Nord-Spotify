@@ -1,6 +1,6 @@
 import React from "react"
 
-import "./settingsMenu.scss"
+import "./SettingsMenu.scss"
 
 import Render from "../../components/Render/Render"
 import getSettingsMenuStructure from "./SettingsMenuStructure/SettingsMenuStructure"
