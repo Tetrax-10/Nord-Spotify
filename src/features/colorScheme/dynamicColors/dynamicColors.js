@@ -142,7 +142,6 @@ const DynamicColors = (() => {
             customSuccess: "#76BA99",
         }
 
-        colorPalette.shadow = chroma.mix(mixedMainColor, "#000000", 0.95).hex()
         colorPalette.main = colorPalette.player = colorPalette.card = mixedMainColor.hex()
         colorPalette.customMainSoftSecondary = colorPalette.notification = colorPalette.tabActive = mixedMainColor.brighten(0.23).hex()
         colorPalette.customMainSecondary = mixedMainColor.brighten(0.38).hex()
@@ -150,6 +149,7 @@ const DynamicColors = (() => {
         colorPalette.button = mixedMainColor.brighten(1.5).hex()
         colorPalette.buttonActive = mixedMainColor.brighten(1.8).hex()
         colorPalette.buttonDisabled = colorPalette.misc = mixedMainColor.brighten(0.6).hex()
+        colorPalette.shadow = chroma.mix(mixedMainColor, "#000000", 0.95).hex()
         colorPalette.text = colorPalette.subtext = mixedMainColor.brighten(2.3).hex()
         colorPalette.customSubdued = mixedMainColor.brighten(1.6).hex()
         colorPalette.customLinkHover = mixedMainColor.brighten(3).hex()
