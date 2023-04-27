@@ -3,13 +3,11 @@ name: Build and Publish Theme
 on:
     push:
         paths:
-            - assets/preview.png
             - README.md
             - LICENSE
             - src/**
     pull_request:
         paths:
-            - assets/preview.png
             - README.md
             - LICENSE
             - src/**
@@ -38,7 +36,7 @@ jobs:
               run: npm run build-local
 
             - name: Copy required files
-              run: mv -f dist/Nord assets/preview.png README.md LICENSE publish/
+              run: mv -f dist/Nord README.md LICENSE publish/
 
             - name: Publish theme
               uses: s0/git-publish-subdir-action@develop

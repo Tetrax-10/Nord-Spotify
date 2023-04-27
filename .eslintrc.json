@@ -35,6 +35,7 @@
         "react/jsx-key": "off",
         "no-prototype-builtins": "off",
         "no-inner-declarations": "off",
+        "no-extra-semi": "off",
         "react/jsx-no-undef": [
             "error",
             {
