@@ -122,18 +122,11 @@ function updateBannerImage() {
 }
 
 function handleSpotifyDefaultBanner() {
-    if (State.app.pageType == "artists" || State.app.pageType == "playlists") {
-        try {
-            const spotifyDefaultBanner = document.querySelector(".main-entityHeader-background")
+    if (State.app.pageType === "artists" || State.app.pageType === "playlists") {
+        const spotifyDefaultBanner = document.querySelector(".main-entityHeader-background")
 
-            if (State.app.changeStateSrc == "songchange") {
-                spotifyDefaultBanner.style.display = "none"
-            } else {
-                // spotifyDefaultBanner.style.display = "unset"
-            }
-        } catch (err) {
-            console.error(`Nord:warning: ${err}`)
-            // some times bigCoverArt will not be found
+        if (spotifyDefaultBanner && State.app.changeStateSrc === "songchange") {
+            spotifyDefaultBanner.style.display = "none"
         }
     }
 }
