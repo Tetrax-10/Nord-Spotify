@@ -51,7 +51,7 @@ const UiMode = (() => {
     }
 
     async function createUiModeOptions() {
-        Shared.uiModeOptions = { oldui: "Old UI" }
+        Shared.uiModeOptions = { oldui: "Stock" }
 
         if (await Api.app.laterThan("1.2.9")) {
             Shared.uiModeOptions.libx = "Library X"

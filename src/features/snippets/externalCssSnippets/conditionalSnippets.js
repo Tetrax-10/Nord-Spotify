@@ -7,7 +7,7 @@ const conditionalSnippets = {
     showTopBar: "showTopBar",
     hideMainItemSideBar: "hideMainItemSideBar",
     showMainItemSideBar: "showMainItemSideBar",
-    turnOnImmersiveView: "turnOnImmersiveView",
+    immersiveView: "immersiveView",
     bigBannerNew: "bigBannerNew",
     bigBannerOld: "bigBannerOld",
     bigBannerLibX: "bigBannerLibX",

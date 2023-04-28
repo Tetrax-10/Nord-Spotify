@@ -23,7 +23,7 @@ export default async function ImmersiveView() {
     function toogleImmersiveView(setIcon) {
         if (Shared.state.isImmersiveView) {
             // turn off Immersive view
-            Snippet.utils.removeClass(conditionalSnippets.turnOnImmersiveView)
+            Snippet.utils.removeClass(conditionalSnippets.immersiveView)
             Snippet.utils.injectClassDynamicUI(
                 null,
                 conditionalSnippets.bigBannerLibXImmersiveView,
@@ -33,7 +33,7 @@ export default async function ImmersiveView() {
             setIcon("fullscreen")
         } else {
             // turn on Immersive view
-            Snippet.utils.injectClass(conditionalSnippets.turnOnImmersiveView)
+            Snippet.utils.injectClass(conditionalSnippets.immersiveView)
             Snippet.utils.injectClassDynamicUI(
                 null,
                 conditionalSnippets.bigBannerLibXImmersiveView,
