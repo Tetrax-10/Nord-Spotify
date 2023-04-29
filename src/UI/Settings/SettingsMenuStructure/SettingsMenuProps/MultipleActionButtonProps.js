@@ -4,7 +4,7 @@ import LocalStorage from "../../../../localStorage/localStorage"
 import editCustomFontPopup from "./SettingsMenuEvents/PopupModals/EditCustomFont"
 import editWindowsControlsPopup from "./SettingsMenuEvents/PopupModals/editWindowsControls"
 
-export default function getSettingsMultipleActionButtonProps() {
+export default function getSettingsMenuMultipleActionButtonProps() {
     return {
         hideWindowsControls: {
             name: "Hide Windows Controls",

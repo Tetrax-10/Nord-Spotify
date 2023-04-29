@@ -8,9 +8,9 @@ export default async function MiniPopup({
     title = "",
     body = "",
     buttonName1 = "",
-    onClickHandler1 = undefined,
+    onClickHandler1 = () => {},
     buttonName2 = "",
-    onClickHandler2 = undefined,
+    onClickHandler2 = () => {},
 } = {}) {
     const MiniPopupComponent = () => (
         <>
@@ -23,14 +23,10 @@ export default async function MiniPopup({
                             {buttonName1 ? (
                                 <button
                                     className="mini-popup-secondary-button"
-                                    onClick={
-                                        onClickHandler1
-                                            ? () => {
-                                                  onClickHandler1()
-                                                  close()
-                                              }
-                                            : close
-                                    }
+                                    onClick={() => {
+                                        onClickHandler1()
+                                        close()
+                                    }}
                                 >
                                     {buttonName1}
                                 </button>
@@ -38,14 +34,10 @@ export default async function MiniPopup({
                             <button className="mini-popup-default-button">
                                 <span
                                     className="mini-popup-default-button-text encore-bright-accent-set"
-                                    onClick={
-                                        onClickHandler2
-                                            ? () => {
-                                                  onClickHandler2()
-                                                  close()
-                                              }
-                                            : close
-                                    }
+                                    onClick={() => {
+                                        onClickHandler2()
+                                        close()
+                                    }}
                                 >
                                     {buttonName2}
                                 </span>
@@ -65,15 +57,15 @@ export default async function MiniPopup({
 
     const modalOverlay = await Utils.dom.waitForElement(".tetrax-mini-popup > .GenericModal__overlay", 1000)
 
+    function close() {
+        reactModalPortal.remove()
+    }
+
     if (modalOverlay) {
         modalOverlay.onclick = (e) => {
             if (e.target === modalOverlay) {
                 close()
             }
         }
-    }
-
-    function close() {
-        reactModalPortal.remove()
     }
 }

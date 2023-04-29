@@ -6,7 +6,7 @@ import addColorSchemePopup from "./SettingsMenuEvents/PopupModals/AddColorScheme
 import editColorSchemePopup from "./SettingsMenuEvents/PopupModals/EditColorScheme"
 import UiMode from "../../../../features/uiMode/uiMode"
 
-export default function getSettingsDropdownProps() {
+export default function getSettingsMenuDropdownProps() {
     return {
         selectColorScheme: {
             name: "Color Scheme",

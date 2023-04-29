@@ -14,28 +14,9 @@ body {
             }
         }
 
-        &hideTopBar {
-            .main-topBar-background {
-                opacity: 0 !important;
-            }
-        }
-
-        &showTopBar {
-            .main-topBar-background {
-                // margin-right: -8px;
-                opacity: 1 !important;
-            }
-        }
-
         &hideMainItemSideBar {
             .Root__nav-bar > div:nth-child(1) {
                 display: none;
-            }
-        }
-
-        &showMainItemSideBar {
-            .Root__nav-bar > div:nth-child(1) {
-                display: block;
             }
         }
 

@@ -1,15 +1,17 @@
 export function injectSnippetClass(className) {
-    className = `nord-${className}`
-    if (!document.body.classList.contains(className)) {
-        document.body.classList.add(className)
+    if (typeof className === "object") {
+        document.body.classList.add(...className.map((className) => `nord-${className}`))
+        return
     }
+    document.body.classList.add(`nord-${className}`)
 }
 
 export function removeSnippetClass(className) {
-    className = `nord-${className}`
-    if (document.body.classList.contains(className)) {
-        document.body.classList.remove(className)
+    if (typeof className === "object") {
+        document.body.classList.remove(...className.map((className) => `nord-${className}`))
+        return
     }
+    document.body.classList.remove(`nord-${className}`)
 }
 
 export function injectConditionedSnippetClass(className, shouldEnable = true) {

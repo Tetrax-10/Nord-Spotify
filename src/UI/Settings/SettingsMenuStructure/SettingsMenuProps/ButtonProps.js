@@ -2,7 +2,7 @@ import backupSettingsMiniPopup from "./SettingsMenuEvents/MiniPopups/backupSetti
 import resetSettingsMiniPopup from "./SettingsMenuEvents/MiniPopups/resetSettings"
 import restoreSettingsMiniPopup from "./SettingsMenuEvents/MiniPopups/restoreSettings"
 
-export default function getSettingsButtonProps() {
+export default function getSettingsMenuButtonProps() {
     return {
         likeNord: {
             name: "Like on GitHub 👍",

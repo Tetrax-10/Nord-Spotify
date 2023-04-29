@@ -22,8 +22,6 @@ export async function injectAndStyleBanners() {
 
     LocalStorage.config.fitBannerImage ? (banner.style.backgroundSize = "contain") : (banner.style.backgroundSize = "cover")
 
-    showTopbarWhenBannerScrolledFully()
-
     return banner
 }
 
@@ -61,26 +59,6 @@ function showTopBar() {
 function hideTopBar() {
     Snippet.utils.removeClass(conditionalSnippets.showTopBar)
     Snippet.utils.injectClass(conditionalSnippets.hideTopBar)
-}
-
-function showTopbarWhenBannerScrolledFully() {
-    const observer = new MutationObserver((mutationsList) => {
-        if (State.app.isValidPage) {
-            for (const mutation of mutationsList) {
-                if (mutation.type === "attributes" && mutation.attributeName === "class") {
-                    const topBarContent = document.querySelector(".main-entityHeader-topbarContent")
-                    if (topBarContent.classList.contains("main-entityHeader-topbarContentFadeIn")) {
-                        showTopBar()
-                    } else {
-                        hideTopBar()
-                    }
-                }
-            }
-        }
-    })
-
-    const targetNode = document.querySelector(".Root__top-bar")
-    observer.observe(targetNode, { attributes: true, attributeFilter: ["class"], subtree: true, childList: true })
 }
 
 function hideOrShowTopbar() {

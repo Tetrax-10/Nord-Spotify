@@ -3,16 +3,29 @@
 
 const conditionalSnippets = {
     hidePageDetails: "hidePageDetails",
+
     hideTopBar: "hideTopBar",
     showTopBar: "showTopBar",
+
     hideMainItemSideBar: "hideMainItemSideBar",
-    showMainItemSideBar: "showMainItemSideBar",
+
     immersiveView: "immersiveView",
+    immersiveViewModLeft: "immersiveViewModLeft",
+    immersiveViewModRight: "immersiveViewModRight",
+    immersiveViewModBottom: "immersiveViewModBottom",
+    immersiveViewMouseOnLeft: "immersiveViewMouseOnLeft",
+    immersiveViewMouseOnRight: "immersiveViewMouseOnRight",
+    immersiveViewMouseOnBottom: "immersiveViewMouseOnBottom",
+    hideLeftSidebar: "hideLeftSidebar",
+    hideRightSidebar: "hideRightSidebar",
+    hidePlayer: "hidePlayer",
+
     bigBannerNew: "bigBannerNew",
     bigBannerOld: "bigBannerOld",
     bigBannerLibX: "bigBannerLibX",
     bigBannerOldImmersiveView: "bigBannerOldImmersiveView",
     bigBannerLibXImmersiveView: "bigBannerLibXImmersiveView",
+
     lyricsPlusNoBg: "lyricsPlusNoBg",
     hideOverlayBig: "hideOverlayBig",
     hideModalOverlay: "hideModalOverlay",

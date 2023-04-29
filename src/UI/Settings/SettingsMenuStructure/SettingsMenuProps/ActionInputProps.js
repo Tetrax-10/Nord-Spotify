@@ -3,7 +3,7 @@ import dynamicallyGeneratedCss from "../../../../features/snippets/dynamicallyGe
 import LocalStorage from "../../../../localStorage/localStorage"
 import Utils from "../../../../utils/utils"
 
-export default function getSettingsActionInputProps() {
+export default function getSettingsMenuActionInputProps() {
     return {
         fontSize: {
             name: "Font Size",

@@ -1,25 +1,27 @@
-import getSettingsDropdownProps from "./SettingsMenuProps/DropdownProps"
-import getSettingsActionInputProps from "./SettingsMenuProps/ActionInputProps"
-import getSettingsMultipleActionButtonProps from "./SettingsMenuProps/MultipleActionButtonProps"
-import LinkActionButtonProps from "./SettingsMenuProps/LinkActionButtonProps"
-import ActionButtonProps from "./SettingsMenuProps/ActionButtonProps"
-import getSettingsButtonProps from "./SettingsMenuProps/ButtonProps"
+import getSettingsMenuActionButtonProps from "./SettingsMenuProps/ActionButtonProps"
+import getSettingsMenuActionInputProps from "./SettingsMenuProps/ActionInputProps"
+import getSettingsMenuButtonProps from "./SettingsMenuProps/ButtonProps"
+import getSettingsMenuDropdownProps from "./SettingsMenuProps/DropdownProps"
+import getSettingsMenuLinkActionButtonProps from "./SettingsMenuProps/LinkActionButtonProps"
+import getSettingsMenuMultipleActionButtonProps from "./SettingsMenuProps/MultipleActionButtonProps"
 
 export default function getSettingsMenuStructure() {
-    const SettingsDropdownProps = getSettingsDropdownProps()
-    const SettingsMultipleActionButtonProps = getSettingsMultipleActionButtonProps()
-    const SettingsActionInputProps = getSettingsActionInputProps()
-    const ButtonProps = getSettingsButtonProps()
+    const ActionButtonProps = getSettingsMenuActionButtonProps()
+    const ActionInputProps = getSettingsMenuActionInputProps()
+    const ButtonProps = getSettingsMenuButtonProps()
+    const DropdownProps = getSettingsMenuDropdownProps()
+    const LinkActionButtonProps = getSettingsMenuLinkActionButtonProps()
+    const MultipleActionButtonProps = getSettingsMenuMultipleActionButtonProps()
 
     return [
         ["SearchBar", { placeholder: "Search for a feature" }],
         ["Heading", { name: "Settings" }],
-        ["Dropdown", SettingsDropdownProps.selectColorScheme],
-        ["Dropdown", SettingsDropdownProps.selectDynamicColorMode],
-        ["Dropdown", SettingsDropdownProps.uiMode],
-        ["MultipleActionButton", SettingsMultipleActionButtonProps.hideWindowsControls],
-        ["MultipleActionButton", SettingsMultipleActionButtonProps.customFont],
-        ["ActionInput", SettingsActionInputProps.fontSize],
+        ["Dropdown", DropdownProps.selectColorScheme],
+        ["Dropdown", DropdownProps.selectDynamicColorMode],
+        ["Dropdown", DropdownProps.uiMode],
+        ["MultipleActionButton", MultipleActionButtonProps.hideWindowsControls],
+        ["MultipleActionButton", MultipleActionButtonProps.customFont],
+        ["ActionInput", ActionInputProps.fontSize],
         ["Heading", { name: "Banners" }],
         ["LinkActionButton", LinkActionButtonProps.repositionBanner],
         ["ActionButton", ActionButtonProps.showBanner],
@@ -29,7 +31,7 @@ export default function getSettingsMenuStructure() {
         ["ActionButton", ActionButtonProps.changeCoverArtOnSongChange],
         ["ActionButton", ActionButtonProps.hideDefaultCoverArt],
         ["ActionButton", ActionButtonProps.hidePageDetails],
-        ["ActionInput", SettingsActionInputProps.bannerBlur],
+        ["ActionInput", ActionInputProps.bannerBlur],
         ["ActionButton", ActionButtonProps.fitBannerImage],
         ["Heading", { name: "Snippets" }],
         ["ActionButton", ActionButtonProps.hideHomePageRecommendation],
