@@ -143,7 +143,7 @@ Step 4 : Then Copy that Font Name and paste that in `Font Name` box in Nord and 
 
 # Install Theme
 
-## Get it on Spicetify Marketplace
+## Get it on Spicetify Marketplace (Not recommended ⚠️)
 
 Step 1 : Follow [Spicetify Marketplace](https://github.com/spicetify/spicetify-marketplace/wiki/Installation) Installation guide and install Marketplace.
 
@@ -153,7 +153,7 @@ Step 3 : Search `Nord` and click install buttton. Done!
 
 <br />
 
-## Installation Scripts
+## Installation Scripts (Recommended ✅)
 
 ### Windows Powershell
 
