@@ -7,8 +7,6 @@ const conditionalSnippets = {
     hideTopBar: "hideTopBar",
     showTopBar: "showTopBar",
 
-    hideMainItemSideBar: "hideMainItemSideBar",
-
     immersiveView: "immersiveView",
     immersiveViewModLeft: "immersiveViewModLeft",
     immersiveViewModRight: "immersiveViewModRight",

@@ -1,0 +1,5 @@
+.main-yourLibraryX-entryPoints:has(
+        ~ .main-yourLibraryX-library .main-yourLibraryX-libraryContainer:not([class*="main-yourLibraryX-libraryIsCollapsed"])
+    ) {
+    display: none;
+}

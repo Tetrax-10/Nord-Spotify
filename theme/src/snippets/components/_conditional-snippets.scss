@@ -14,12 +14,6 @@ body {
             }
         }
 
-        &hideMainItemSideBar {
-            .Root__nav-bar > div:nth-child(1) {
-                display: none;
-            }
-        }
-
         &immersiveView {
             .Root__nav-bar,
             .Root__now-playing-bar,

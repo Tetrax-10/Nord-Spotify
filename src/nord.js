@@ -10,7 +10,6 @@ import Snippet from "./features/snippets/snippets"
 import HideWindowsControls from "./features/hideWindowsControls/hideWindowsControls"
 import DynamicColors from "./features/colorScheme/dynamicColors/dynamicColors"
 import ColorScheme from "./features/colorScheme/colorScheme"
-import autoExpandLibX from "./features/autoExpandLibX/autoExpandLibX"
 import ImmersiveView from "./features/ImmersiveView/ImmersiveView"
 
 import Popup from "./ui/Popup/Popup"
@@ -28,7 +27,6 @@ export default async function nord() {
 
     NordApi.expose()
 
-    await autoExpandLibX()
     ImmersiveView()
 
     Snippet.init()
