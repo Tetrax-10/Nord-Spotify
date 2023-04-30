@@ -1,4 +1,4 @@
-import Popup from "../UI/Popup/Popup"
+import Popup from "../ui/Popup/Popup"
 import LocalStorage from "../localStorage/localStorage"
 import Api from "../services/api"
 import Utils from "../utils/utils"

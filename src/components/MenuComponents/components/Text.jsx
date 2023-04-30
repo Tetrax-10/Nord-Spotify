@@ -1,35 +1,38 @@
 import React from "react"
+import Render from "../../Render/Render"
 
-export default function Text({ children = "" } = {}) {
-    const hasHighlight = React.Children.toArray(children).some((child) => child.type && child.type.name === "Highlight")
+export default function Text({ children: content = [["", {}]] } = {}) {
+    const hasHighlight = JSON.stringify(content).includes('["Highlight",') // eslint-disable-line quotes
 
     return (
-        <>
+        <div className="popup-row">
             {hasHighlight ? (
-                <div className="popup-row">
-                    <p className="col description">
-                        <span>{children}</span>
-                    </p>
-                </div>
+                <span>
+                    <Render>{content}</Render>
+                </span>
             ) : (
-                <div className="popup-row">
-                    <p className="col description">{children}</p>
-                </div>
+                <Render>{content}</Render>
             )}
-        </>
+        </div>
     )
 }
 
-export function Highlight({ children: text = "", color = "red" } = {}) {
-    return <span className={color ? color + "-text" : ""}>{text}</span>
+export function Para({ children: content = "" } = {}) {
+    return <p className="col description">{content}</p>
 }
 
-export function Link({ url = "", children: text = "" } = {}) {
+export function Inline({ children: content = "" } = {}) {
+    return <span>{content}</span>
+}
+
+export function Highlight({ children: content = "", color = "red" } = {}) {
+    return <span className={color ? color + "-text" : ""}>{content}</span>
+}
+
+export function Link({ url = "", content = "" } = {}) {
     return (
-        <div className="popup-row">
-            <a className="link" href={url}>
-                {text}
-            </a>
-        </div>
+        <a className="link" href={url}>
+            {content}
+        </a>
     )
 }

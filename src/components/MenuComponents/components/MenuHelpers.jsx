@@ -33,30 +33,6 @@ export function Tooltip({ info = "", placement = "top", className = "", children
     )
 }
 
-export function Divider() {
-    return (
-        <div className="popup-row">
-            <hr className="divider"></hr>
-        </div>
-    )
-}
-
-export function LittleSpace() {
-    return (
-        <div className="popup-row">
-            <div className="little-space"></div>
-        </div>
-    )
-}
-
-export function Space() {
-    return (
-        <div className="popup-row">
-            <hr className="space"></hr>
-        </div>
-    )
-}
-
 export function ActionButtonWrapper({
     icon = "",
     info = "",

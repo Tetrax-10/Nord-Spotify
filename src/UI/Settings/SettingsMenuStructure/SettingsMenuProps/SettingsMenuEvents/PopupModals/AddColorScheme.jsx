@@ -5,18 +5,17 @@ import Shared from "../../../../../../shared/shared"
 import Popup from "../../../../../Popup/Popup"
 import LocalStorage from "../../../../../../localStorage/localStorage"
 import ColorScheme from "../../../../../../features/colorScheme/colorScheme"
-import MenuComponents from "../../../../../../components/MenuComponents/MenuComponents"
 
 export default function addColorSchemePopup() {
     // if user didnt change Based on dropdown use current color scheme
     LocalStorage.tempConfig.baseColorScheme = Shared.SpicetifyConfig.color_scheme
 
-    const TextProps = (
-        <MenuComponents.Text>
-            If you wanna save this Dynamic Theme just <MenuComponents.Highlight>Give it a name</MenuComponents.Highlight> and make sure{" "}
-            <MenuComponents.Highlight>Nord Dynamic is selected</MenuComponents.Highlight>
-        </MenuComponents.Text>
-    )
+    const TextProps = [
+        ["Inline", "If you wanna save this Dynamic Theme just "],
+        ["Highlight", "Give it a name"],
+        ["Inline", " and make sure "],
+        ["Highlight", "Nord Dynamic is selected"],
+    ]
 
     const InputProps = {
         name: "Color Scheme Name",

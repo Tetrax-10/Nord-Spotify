@@ -4,16 +4,14 @@ import "./EditColorScheme"
 
 import Popup from "../../../../../Popup/Popup"
 import Render from "../../../../../../components/Render/Render"
-import MenuComponents from "../../../../../../components/MenuComponents/MenuComponents"
 import CustomFont from "../callbacks/customFontEvents"
 
 export default function editCustomFontPopup() {
-    const info = (
-        <MenuComponents.Text>
-            If you have the font installed in your PC, then just enter the font's name else enter both font name and Google font URL
-        </MenuComponents.Text>
-    )
-    const link = <MenuComponents.Link url="https://github.com/Tetrax-10/Nord-Spotify#custom-fonts">Open step-by-step Tutorial</MenuComponents.Link>
+    const TextProps = [
+        ["Para", "If you have the font installed in your PC, then just enter the font's name else enter both font name and Google font URL"],
+        ["LittleSpace"],
+        ["Link", { content: "Open step-by-step Tutorial", url: "https://github.com/Tetrax-10/Nord-Spotify#custom-fonts" }],
+    ]
 
     const ActionInputProps = {
         customFontName: {
@@ -41,9 +39,7 @@ export default function editCustomFontPopup() {
     }
 
     const editCustomFontStructure = [
-        ["Text", info],
-        ["LittleSpace"],
-        ["Text", link],
+        ["Text", TextProps],
         ["ActionInput", ActionInputProps.customFontName],
         ["ActionInput", ActionInputProps.customFontURL],
         ["Button", ButtonProps.reset],

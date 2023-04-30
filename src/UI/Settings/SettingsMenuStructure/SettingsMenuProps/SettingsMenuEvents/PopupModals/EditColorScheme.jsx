@@ -3,22 +3,19 @@ import React from "react"
 import Shared from "../../../../../../shared/shared"
 import LocalStorage from "../../../../../../localStorage/localStorage"
 import Popup from "../../../../../Popup/Popup"
-import MenuComponents from "../../../../../../components/MenuComponents/MenuComponents"
 import Render from "../../../../../../components/Render/Render"
 import ColorScheme from "../../../../../../features/colorScheme/colorScheme"
 
 export default function editColorSchemePopup() {
-    const tutorial = (
-        <MenuComponents.Text>
-            You can use the color picker to pick the color or enter the hex values in the text box. No RBG or other color formats only Hex values
-        </MenuComponents.Text>
-    )
-
-    const example = (
-        <MenuComponents.Text>
-            Eg: <MenuComponents.Highlight color="red">#BF616A</MenuComponents.Highlight> (3/6 digits)
-        </MenuComponents.Text>
-    )
+    const TextProps = [
+        [
+            "Para",
+            "You can use the color picker to pick the color or enter the hex values in the text box. No RBG or other color formats only Hex values",
+        ],
+        ["Inline", "Eg: "],
+        ["Highlight", "#BF616A"],
+        ["Inline", " (3/6 digits)"],
+    ]
 
     const ButtonProps = {
         reset: {
@@ -47,8 +44,7 @@ export default function editColorSchemePopup() {
 
     const editColorSchemeStructure = [
         ["Heading", { name: "Tutorial" }],
-        ["Text", tutorial],
-        ["Text", example],
+        ["Text", TextProps],
         ["Divider"],
         ...Object.entries(LocalStorage.tempConfig.colorSchemes[Shared.SpicetifyConfig.color_scheme])
             .map(([field, value]) => {

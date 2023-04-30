@@ -13,9 +13,9 @@ import ColorScheme from "./features/colorScheme/colorScheme"
 import autoExpandLibX from "./features/autoExpandLibX/autoExpandLibX"
 import ImmersiveView from "./features/ImmersiveView/ImmersiveView"
 
-import Popup from "./UI/Popup/Popup"
+import Popup from "./ui/Popup/Popup"
 
-import SettingsMenu from "./UI/Settings/SettingsMenu"
+import SettingsMenu from "./ui/Settings/SettingsMenu"
 
 import Icons from "./icons/icons"
 import UiMode from "./features/uiMode/uiMode"

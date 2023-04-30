@@ -2,19 +2,16 @@ import React from "react"
 
 import Render from "../../../../../../components/Render/Render"
 import Popup from "../../../../../Popup/Popup"
-import MenuComponents from "../../../../../../components/MenuComponents/MenuComponents"
 import LocalStorage from "../../../../../../localStorage/localStorage"
 import dynamicallyGeneratedConditionalCss from "../../../../../../features/snippets/dynamicallyGeneratedSnippets/dynamicallyGeneratedConditionalCss/dynamicallyGeneratedConditionalCss"
 import HideWindowsControls from "../../../../../../features/hideWindowsControls/hideWindowsControls"
 
 export default function editWindowsControlsPopup() {
-    const info = (
-        <>
-            <MenuComponents.Text>1. First Edit Height and Width, values can also be in decimal</MenuComponents.Text>
-            <MenuComponents.Text>2. After the Height and Width are perfect, Now try adjusting Filter</MenuComponents.Text>
-            <MenuComponents.Text>Note: You can use decimals to be precise</MenuComponents.Text>
-        </>
-    )
+    const TextProps = [
+        ["Para", "1. First Edit Height and Width, values can also be in decimal"],
+        ["Para", "2. After the Height and Width are perfect, Now try adjusting Filter"],
+        ["Para", "Note: You can use decimals to be precise"],
+    ]
 
     const InputProps = {
         height: {
@@ -65,7 +62,7 @@ export default function editWindowsControlsPopup() {
 
     const editWindowsControlsStructure = [
         ["Heading", { name: "Tutorial" }],
-        ["Text", info],
+        ["Text", TextProps],
         ["Divider"],
         ["Input", InputProps.height],
         ["Input", InputProps.width],

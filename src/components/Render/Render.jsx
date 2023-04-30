@@ -36,7 +36,19 @@ export default function Render({ children: structure = [["", {}]] } = {}) {
                     case "Divider":
                         return <MenuComponents.Divider />
                     case "Text":
-                        return props
+                        return <MenuComponents.Text>{props}</MenuComponents.Text>
+                    case "Para":
+                        return <MenuComponents.Para>{props}</MenuComponents.Para>
+                    case "Inline":
+                        return <MenuComponents.Inline>{props}</MenuComponents.Inline>
+                    case "Highlight":
+                        if (typeof props === "string") {
+                            return <MenuComponents.Highlight>{props}</MenuComponents.Highlight>
+                        } else {
+                            return <MenuComponents.Highlight {...props} />
+                        }
+                    case "Link":
+                        return <MenuComponents.Link {...props} />
                     default:
                         console.error(`Nord: ${component} Components not found`)
                 }
