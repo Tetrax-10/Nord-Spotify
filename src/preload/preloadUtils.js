@@ -13,7 +13,7 @@ const PreloadUtils = (() => {
 
         const newUiState = expFeaturesData.enableNavAltExperiment2.value
 
-        return newUiState !== "DISABLED" ? true : false
+        return newUiState !== "DISABLED" && newUiState !== undefined ? true : false
     }
 
     async function isLibX() {
