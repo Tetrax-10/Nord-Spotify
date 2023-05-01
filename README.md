@@ -14,7 +14,9 @@ Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
 
 # Nord Screenshots
 
-## Library X UI (Supports from 1.2.9 to latest Spotify)
+## Library X
+
+Nord supports Library X from 1.2.9 to latest Spotify
 
 ![lib x home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/libx.png)
 
@@ -22,7 +24,7 @@ Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
 
 ![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/auto-expand-libx.png)
 
-### Immersive View
+### Immersive View on Library X
 
 ![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/immersive-view.png)
 
@@ -30,7 +32,9 @@ Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
 
 <br />
 
-## New UI (Supported till spotify [v1.2.2](https://upgrade.scdn.co/upgrade/client/win32-x86/spotify_installer-1.2.2.582.gfae9c59b-54.exe))
+## New UI
+
+Nord supports New UI only on Spotify [v1.2.2](https://upgrade.scdn.co/upgrade/client/win32-x86/spotify_installer-1.2.2.582.gfae9c59b-54.exe)
 
 ![artist 2](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/artist-2.png)
 
@@ -38,7 +42,9 @@ Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
 
 <br />
 
-## Old UI (Supports from 1.1.93 to latest Spotify)
+## Stock UI
+
+Nord supports Stock UI from 1.1.93 to latest Spotify
 
 ![old ui home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/old-ui-home.png)
 
