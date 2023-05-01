@@ -6,7 +6,7 @@
     function injectScript(src, id) {
         if (!document.body.classList.contains(id)) {
             const script = document.createElement("script")
-            script.id=id
+            script.id = id
             script.type = "text/javascript"
             script.src = src
             document.body.appendChild(script)
