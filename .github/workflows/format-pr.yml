@@ -21,6 +21,5 @@ jobs:
               uses: creyD/prettier_action@v4.3
               with:
                   prettier_options: --write .
-                  only_changed: true
-                  commit_message: "gh-actions: format code"
+                  same_commit: true
                   github_token: ${{ secrets.GITHUB_TOKEN }}
