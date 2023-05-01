@@ -2,7 +2,7 @@
 
 Nord Themed Spotify
 
-Wanna discuss or having issues? ping `@Tetrax-10` in Discord
+Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
 
 <a href="https://discord.gg/VnevqPp2Rr"><img src="https://img.shields.io/discord/842219447716151306?label=chat&logo=discord&logoColor=discord"></a>
 
