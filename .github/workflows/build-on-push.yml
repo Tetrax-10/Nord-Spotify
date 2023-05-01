@@ -17,7 +17,7 @@ jobs:
                   ref: ${{ github.head_ref }}
 
             - name: Format Repo
-              uses: .github/workflows/scripts/format/push.yml
+              uses: /scripts/format/push.yml
 
             - name: Build Theme
-              uses: .github/workflows/scripts/build.yml
+              uses: /scripts/build.yml
