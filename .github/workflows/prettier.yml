@@ -1,0 +1,26 @@
+name: Format code
+
+on:
+    pull_request:
+    push:
+        branches:
+            - master
+
+jobs:
+    format:
+        name: Setup Linux environment
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.head_ref }}
+                  fetch-depth: 0
+
+            - name: Prettify code
+              uses: creyD/prettier_action@v4.3
+              with:
+                  prettier_options: --write .
+                  commit_message: "gh-actions: prettify code"
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
