@@ -40,17 +40,15 @@ jobs:
               with:
                   node-version: 16.x
 
-            - name: Install theme dependencies
-              run: npm ci
-
-            - name: Create publish folder
-              run: mkdir publish
-
             - name: Build theme
-              run: npm run build-local
+              run: |
+                  npm ci
+                  npm run build-local
 
-            - name: Copy required files
-              run: mv -f dist/Nord README.md LICENSE publish/
+            - name: Prepare for deployment
+              run: |
+                  mkdir publish
+                  mv -f dist/Nord README.md LICENSE publish/
 
             - name: Deploy theme
               uses: s0/git-publish-subdir-action@develop
