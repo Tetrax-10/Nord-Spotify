@@ -40,6 +40,9 @@ jobs:
               with:
                   node-version: 16.x
 
+            - name: list files
+              run: ls
+
             - name: Install theme dependencies
               run: npm ci
 
