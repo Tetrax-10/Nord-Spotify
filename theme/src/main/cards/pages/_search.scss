@@ -1,5 +1,4 @@
 // search result top result download status
-// this selects previous element of main-heroCard-PlayButtonContainer
-div:has(+ .main-heroCard-PlayButtonContainer) {
+.main-heroCard-cardMetadata {
     display: none;
 }
