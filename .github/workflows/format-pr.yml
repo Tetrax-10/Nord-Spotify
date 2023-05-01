@@ -7,7 +7,7 @@ on:
 
 jobs:
     format:
-        name: Format Pull Request
+        name: Format code
         runs-on: ubuntu-latest
 
         steps:
@@ -17,9 +17,10 @@ jobs:
                   fetch-depth: 0
                   ref: ${{ github.head_ref }}
 
-            - name: Format code
+            - name: Prettify code
               uses: creyD/prettier_action@v4.3
               with:
                   prettier_options: --write .
                   same_commit: true
+                  only_changed: true
                   github_token: ${{ secrets.GITHUB_TOKEN }}
