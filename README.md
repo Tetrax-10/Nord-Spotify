@@ -11,7 +11,6 @@ Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
 <p align="left"><a href="#install-theme"><img src="https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/download-button.png" width="150px"></a></p>
 
 ---
-
 # Nord Screenshots
 
 ## Library X
@@ -78,7 +77,7 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 <br />
 
-# Snippets Support - Deeply Customizable
+# Useful Snippets
 
 ![snippets](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/snippets.png)
 
