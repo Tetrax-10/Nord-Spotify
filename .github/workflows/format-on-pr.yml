@@ -14,4 +14,4 @@ jobs:
                   ref: ${{ github.head_ref }}
 
             - name: Format
-              uses: ./.github/workflows/scripts/format/pr.yml
+              uses: ./.github/workflows/format-pr.yml

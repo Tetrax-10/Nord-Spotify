@@ -7,7 +7,7 @@ on:
 
 jobs:
     format:
-        uses: ./.github/workflows/scripts/format/push.yml
+        uses: ./.github/workflows/format-repo.yml
 
     build:
-        uses: ./.github/workflows/scripts/build.yml
+        uses: ./.github/workflows/build.yml
