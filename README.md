@@ -78,7 +78,7 @@ https://user-images.githubusercontent.com/75513645/206892576-9eb63934-f0e1-4411-
 
 <br />
 
-# Snippets Support - Deeply Customizable
+# Useful Snippets
 
 ![snippets](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/snippets.png)
 
