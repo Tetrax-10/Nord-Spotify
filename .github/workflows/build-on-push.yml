@@ -6,18 +6,8 @@ on:
             - master
 
 jobs:
-    format-and-build:
-        name: Format Repo and Build Theme
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
-                  ref: ${{ github.head_ref }}
+    format:
+        uses: ./.github/workflows/scripts/format/push.yml
 
-            - name: Format Repo
-              uses: ./.github/workflows/scripts/format/push.yml
-
-            - name: Build Theme
-              uses: ./.github/workflows/scripts/build.yml
+    build:
+        uses: ./.github/workflows/scripts/build.yml

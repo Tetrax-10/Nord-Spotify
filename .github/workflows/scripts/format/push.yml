@@ -12,12 +12,9 @@ jobs:
                   fetch-depth: 0
                   ref: ${{ github.head_ref }}
 
-            - name: List
-              run: ls
-
-            # - name: Format code
-            #   uses: creyD/prettier_action@v4.3
-            #   with:
-            #       prettier_options: --write .
-            #       same_commit: true
-            #       github_token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Format code
+              uses: creyD/prettier_action@v4.3
+              with:
+                  prettier_options: --write .
+                  same_commit: true
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
