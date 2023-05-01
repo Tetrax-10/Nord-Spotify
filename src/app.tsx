@@ -7,5 +7,6 @@ export default async function initNord() {
     }
 
     await preload()
+
     await nord()
 }
