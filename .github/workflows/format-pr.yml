@@ -1,10 +1,6 @@
-name: Format code
+name: Format Pull Request
 
-on:
-    pull_request:
-    push:
-        branches:
-            - master
+on: [pull_request]
 
 jobs:
     format:
@@ -15,8 +11,8 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v3
               with:
-                  ref: ${{ github.head_ref }}
                   fetch-depth: 0
+                  ref: ${{ github.head_ref }}
 
             - name: Prettify code
               uses: creyD/prettier_action@v4.3

@@ -1,4 +1,4 @@
-name: Build and Publish Theme
+name: Build and Deploy Theme
 
 on:
     push:
@@ -9,24 +9,31 @@ on:
             - README.md
             - src/**
             - theme/**
-    pull_request:
-        paths:
-            - LICENSE
-            - README.md
-            - src/**
-            - theme/**
 
 jobs:
-    build_and_publish:
-        name: Setup Linux environment
+    format:
+        name: Format code
         runs-on: ubuntu-latest
 
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
               with:
+                  fetch-depth: 0
                   ref: ${{ github.head_ref }}
 
+            - name: Prettify code
+              uses: creyD/prettier_action@v4.3
+              with:
+                  prettier_options: --write .
+                  same_commit: true
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    build_and_deploy:
+        name: Build and Deploy
+        needs: format
+
+        steps:
             - name: Install Node.js
               uses: actions/setup-node@v3
               with:
@@ -44,7 +51,7 @@ jobs:
             - name: Copy required files
               run: mv -f dist/Nord README.md LICENSE publish/
 
-            - name: Publish theme
+            - name: Deploy theme
               uses: s0/git-publish-subdir-action@develop
               env:
                   REPO: self
