@@ -1,18 +1,8 @@
 name: Build and Deploy Theme
 
-on:
-    push:
-        branches:
-            - master
-        paths:
-            - LICENSE
-            - README.md
-            - src/**
-            - theme/**
-
 jobs:
-    format:
-        name: Format code
+    build_and_deploy:
+        name: Build and Deploy Theme
         runs-on: ubuntu-latest
 
         steps:
@@ -22,26 +12,10 @@ jobs:
                   fetch-depth: 0
                   ref: ${{ github.head_ref }}
 
-            - name: Prettify code
-              uses: creyD/prettier_action@v4.3
-              with:
-                  prettier_options: --write .
-                  same_commit: true
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    build_and_deploy:
-        name: Build and Deploy
-        needs: format
-        runs-on: ubuntu-latest
-
-        steps:
             - name: Install Node.js
               uses: actions/setup-node@v3
               with:
                   node-version: 16.x
-
-            - name: list files
-              run: ls
 
             - name: Install theme dependencies
               run: npm ci

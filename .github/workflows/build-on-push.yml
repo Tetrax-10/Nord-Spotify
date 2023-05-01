@@ -1,0 +1,17 @@
+name: Build on Push
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    format-and-build:
+        name: Format Repo and Build Theme
+        runs-on: ubuntu-latest
+        steps:
+            - name: Format Repo
+              uses: ./scripts/format/push.yml
+
+            - name: Build Theme
+              uses: ./scripts/build.yml

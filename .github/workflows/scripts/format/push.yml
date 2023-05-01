@@ -1,10 +1,8 @@
-name: Format Pull Request
-
-on: [pull_request]
+name: Format Repo
 
 jobs:
     format:
-        name: Setup Linux environment
+        name: Format Repo
         runs-on: ubuntu-latest
 
         steps:
@@ -14,9 +12,9 @@ jobs:
                   fetch-depth: 0
                   ref: ${{ github.head_ref }}
 
-            - name: Prettify code
+            - name: Format code
               uses: creyD/prettier_action@v4.3
               with:
                   prettier_options: --write .
-                  commit_message: "gh-actions: prettify code"
+                  same_commit: true
                   github_token: ${{ secrets.GITHUB_TOKEN }}
