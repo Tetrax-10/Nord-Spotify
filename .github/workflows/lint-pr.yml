@@ -26,4 +26,4 @@ jobs:
               run: npm ci
 
             - name: Run eslint
-              run: eslint
+              run: eslint src
