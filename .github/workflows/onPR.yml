@@ -1,13 +1,13 @@
-name: Build and Deploy Theme
+name: Pull Request
 
 on:
-    push:
+    pull_request:
         branches:
             - master
 
 jobs:
     format:
-        name: Format repository
+        name: Format code
         runs-on: ubuntu-latest
 
         steps:
@@ -21,11 +21,12 @@ jobs:
               uses: creyD/prettier_action@v4.3
               with:
                   prettier_options: --write .
+                  only_changed: true
                   commit_message: "gh-actions: format code"
                   github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    build_and_deploy:
-        name: Build and Deploy Theme
+    lint:
+        name: Lint code
         runs-on: ubuntu-latest
         needs: format
 
@@ -41,20 +42,8 @@ jobs:
               with:
                   node-version: 16.x
 
-            - name: Build theme
-              run: |
-                  npm ci
-                  npm run build-local
+            - name: Install dependencies
+              run: npm ci
 
-            - name: Prepare for deployment
-              run: |
-                  mkdir publish
-                  mv -f dist/Nord README.md LICENSE publish/
-
-            - name: Deploy theme
-              uses: s0/git-publish-subdir-action@develop
-              env:
-                  REPO: self
-                  BRANCH: dist
-                  FOLDER: "publish"
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Run eslint
+              run: npm run lint
