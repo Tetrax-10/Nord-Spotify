@@ -21,7 +21,7 @@
     "rules": {
         "quotes": ["warn", "double"],
         "no-console": ["warn", { "allow": ["error"] }],
-        "no-unused-vars": "warn",
+        "no-unused-vars": "error",
         "no-alert": "error",
         "no-undef": "error",
         "object-shorthand": ["warn", "never"],
