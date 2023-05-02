@@ -22,6 +22,7 @@ export default function getSettingsMenuStructure() {
         ["MultipleActionButton", MultipleActionButtonProps.hideWindowsControls],
         ["MultipleActionButton", MultipleActionButtonProps.customFont],
         ["ActionInput", ActionInputProps.fontSize],
+        ["ActionButton", ActionButtonProps.autoExpandLibX],
         ["Heading", { name: "Banners" }],
         ["LinkActionButton", LinkActionButtonProps.repositionBanner],
         ["ActionButton", ActionButtonProps.showBanner],

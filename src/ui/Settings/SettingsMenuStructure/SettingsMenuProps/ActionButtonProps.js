@@ -7,6 +7,12 @@ import State from "../../../../state/state"
 
 export default function getSettingsMenuActionButtonProps() {
     return {
+        autoExpandLibX: {
+            name: "Auto Expand LibX",
+            info: "Auto Expand LibX on non collapse mode",
+            field: "autoExpandLibX",
+            onClickHandler: () => RegularSnippets.utils.toggle("autoExpandLibX"),
+        },
         showBanner: {
             name: "Show Banner",
             field: "showBanner",
