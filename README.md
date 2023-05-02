@@ -160,6 +160,7 @@ Step 3 : Search `Nord` and click install buttton. Done!
 <br />
 
 ## Install Scripts (Recommended ✅)
+
 ### Windows Powershell
 
 ```sh
