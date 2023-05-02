@@ -11,6 +11,7 @@ export default function getSettingsMenuActionButtonProps() {
             name: "Auto Expand LibX",
             info: "Auto Expand LibX on non collapse mode",
             field: "autoExpandLibX",
+            visibility: window.Nord.shared.isLibX ? true : false,
             onClickHandler: () => RegularSnippets.utils.toggle("autoExpandLibX"),
         },
         showBanner: {
