@@ -48,26 +48,26 @@ div[class*="Box-group-isInteractive-hasLeadingOrMedia"]:active::after {
 }
 
 // lib x minimized playlists <li>
-.qEiVyQ28VnOKb0LeijqL {
+.main-yourLibraryX-listItem {
     border-radius: 10px !important;
 }
 
 // lib x cover art rounded
-.qEiVyQ28VnOKb0LeijqL {
+.main-yourLibraryX-listItem {
     // local songs
     div:has( > svg),
     // all cover art except local songs
-    .g3kBhX1E4EYEC2NFhhxG {
+    .x-entityImage-xsmall {
         border-radius: 10px !important;
     }
 
     // libx folder bg
-    .g3kBhX1E4EYEC2NFhhxG .Ozitxbqs1vcOukDz3GDw {
+    .x-entityImage-xsmall .x-entityImage-imagePlaceholder {
         background-color: var(--spice-custom-main-soft-secondary);
     }
 
     // libx folder bg hover bg
-    &:hover .g3kBhX1E4EYEC2NFhhxG .Ozitxbqs1vcOukDz3GDw {
+    &:hover .x-entityImage-xsmall .x-entityImage-imagePlaceholder {
         background-color: var(--spice-custom-main-secondary);
     }
 }
@@ -82,7 +82,7 @@ div[class*="Box-group-isInteractive-hasLeadingOrMedia"]:active::after {
 }
 
 // libx playlist no shadow
-.vreceNX3ABcxyddeS83B {
+.x-entityImage-imageContainer {
     -webkit-box-shadow: unset !important;
     box-shadow: unset !important;
 }
