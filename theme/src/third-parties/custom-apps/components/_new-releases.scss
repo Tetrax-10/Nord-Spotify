@@ -8,3 +8,11 @@
     height: 40px;
     padding: 10px;
 }
+
+.new-releases-header + .main-gridContainer-gridContainer .main-card-card .main-card-closeButton {
+    background-color: rgba(var(--spice-rgb-shadow), 0.3);
+    border-radius: 10px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
