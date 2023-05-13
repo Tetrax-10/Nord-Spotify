@@ -3,3 +3,60 @@
     background-color: var(--spice-custom-main-soft-secondary) !important;
     border-radius: 10px !important;
 }
+
+// friend activity profile pic
+.main-buddyFeed-avatarContainer {
+    .main-buddyFeed-overlay {
+        border-radius: 8px;
+    }
+}
+
+// friend activity metadata
+.main-buddyFeed-activityMetadata {
+    // timestamp
+    .main-buddyFeed-timestamp {
+        color: var(--spice-custom-subdued) !important;
+    }
+
+    // bolded username
+    .main-buddyFeed-username a {
+        color: var(--spice-text) !important;
+
+        &:hover {
+            color: var(--spice-custom-link-hover) !important;
+        }
+    }
+
+    // song and artist name
+    .main-buddyFeed-artistAndTrackName {
+        // song • artist that dot
+        color: var(--spice-custom-subdued) !important;
+
+        // song and artist name
+        a {
+            color: var(--spice-custom-subdued) !important;
+
+            &:hover {
+                color: var(--spice-custom-link-hover) !important;
+            }
+        }
+    }
+
+    // album name
+    .main-buddyFeed-playbackContext {
+        // album name
+        .main-buddyFeed-playbackContextLink > span {
+            color: var(--spice-custom-subdued) !important;
+
+            &:hover {
+                color: var(--spice-custom-link-hover) !important;
+            }
+        }
+
+        // album icon
+        .main-buddyFeed-playbackContextIcon {
+            color: var(--spice-custom-subdued);
+            cursor: auto;
+        }
+    }
+}
