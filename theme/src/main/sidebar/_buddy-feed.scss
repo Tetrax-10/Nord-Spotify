@@ -1,7 +1,7 @@
 .main-buddyFeed-closeButton {
     color: var(--spice-text);
-    background-color: var(--spice-custom-main-soft-secondary) !important;
-    border-radius: 10px !important;
+    background-color: var(--spice-custom-main-soft-secondary);
+    border-radius: 10px;
 }
 
 // friend activity profile pic
@@ -15,29 +15,29 @@
 .main-buddyFeed-activityMetadata {
     // timestamp
     .main-buddyFeed-timestamp {
-        color: var(--spice-custom-subdued) !important;
+        color: var(--spice-custom-subdued);
     }
 
     // bolded username
     .main-buddyFeed-username a {
-        color: var(--spice-text) !important;
+        color: var(--spice-text);
 
         &:hover {
-            color: var(--spice-custom-link-hover) !important;
+            color: var(--spice-custom-link-hover);
         }
     }
 
     // song and artist name
     .main-buddyFeed-artistAndTrackName {
         // song • artist that dot
-        color: var(--spice-custom-subdued) !important;
+        color: var(--spice-custom-subdued);
 
         // song and artist name
         a {
-            color: var(--spice-custom-subdued) !important;
+            color: var(--spice-custom-subdued);
 
             &:hover {
-                color: var(--spice-custom-link-hover) !important;
+                color: var(--spice-custom-link-hover);
             }
         }
     }
@@ -46,10 +46,10 @@
     .main-buddyFeed-playbackContext {
         // album name
         .main-buddyFeed-playbackContextLink > span {
-            color: var(--spice-custom-subdued) !important;
+            color: var(--spice-custom-subdued);
 
             &:hover {
-                color: var(--spice-custom-link-hover) !important;
+                color: var(--spice-custom-link-hover);
             }
         }
 
