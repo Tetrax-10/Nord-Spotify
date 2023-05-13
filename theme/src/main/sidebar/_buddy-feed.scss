@@ -1,3 +1,11 @@
+// add friends button
+.main-buddyFeed-actions button[class*="Button-sm-16-buttonTertiary-iconOnly"] {
+    border-radius: 10px;
+    margin-right: 8px;
+    background-color: var(--spice-custom-main-soft-secondary);
+}
+
+// buddy feed close button
 .main-buddyFeed-closeButton {
     color: var(--spice-text);
     background-color: var(--spice-custom-main-soft-secondary);
