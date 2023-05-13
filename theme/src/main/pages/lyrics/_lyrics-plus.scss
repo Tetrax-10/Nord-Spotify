@@ -1,11 +1,29 @@
 // lyrics plus compact off better lyrics-plus style
-.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active {
-    padding: 15px;
-    filter: none;
-    font-size: 250%;
+
+// unsynced page
+.lyrics-lyricsContainer-UnsyncedLyricsPage .lyrics-lyricsContainer-LyricsLine {
+    letter-spacing: normal;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
-.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-LyricsLine {
-    padding: 15px;
-    filter: blur(1.5px);
-    font-size: 210%;
+
+// synced page
+.lyrics-lyricsContainer-LyricsContainer .lyrics-lyricsContainer-UnsyncedLyricsPage:has(> p[class="lyrics-lyricsContainer-LyricsLine"]) {
+    // inactive lyrics
+    .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active,
+    .lyrics-lyricsContainer-LyricsLine {
+        filter: blur(2px);
+        color: var(--lyrics-color-inactive);
+    }
+    // inactive lyrics on hover
+    .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active:hover,
+    .lyrics-lyricsContainer-LyricsLine:hover {
+        color: var(--lyrics-color-active);
+    }
+    // active lyrics
+    .lyrics-lyricsContainer-LyricsLine.lyrics-lyricsContainer-LyricsLine-active:has(+ p[class="lyrics-lyricsContainer-LyricsLine"]) {
+        filter: none;
+        font-size: calc(var(--lyrics-font-size) + 15px);
+        color: var(--lyrics-color-active);
+    }
 }

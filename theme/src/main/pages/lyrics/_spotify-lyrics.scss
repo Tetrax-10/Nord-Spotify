@@ -1,23 +1,21 @@
 // better spotify lyrics style
-.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
-    filter: blur(1.5px);
-    padding: 15px;
-    font-size: 110%;
+.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight,
+.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
+    filter: blur(2px);
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 36px;
 }
 .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
     filter: none;
-    padding: 20px;
-    font-size: 140%;
+    font-size: 51px;
 }
-.lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric {
-    filter: blur(1.5px);
-    padding: 15px;
-    font-size: 110%;
-}
+// unsynced lyrics
 .lyrics-lyrics-contentContainer .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
     filter: none;
-    padding: 10px;
-    font-size: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 36px;
 }
 
 // spotify lyrics background norded
