@@ -1,12 +1,12 @@
 // right sidebar containers
-.Ai_McRq9wJEYK21w8nX_ {
+.main-nowPlayingView-section {
     background-color: var(--spice-custom-main-soft-secondary) !important;
 }
 
 //////////////////////////////////////// Lyrics ////////////////////////////////////////
 
 // right sidebar lyrics
-.gpDSOimnzH4zTJmE7UR5.I2WIloMMjsBeMaIS8H3v {
+.main-nowPlayingView-sectionHeaderSpacing.main-nowPlayingView-lyricsGradient {
     background-color: var(--spice-custom-main-soft-secondary) !important;
     --lyrics-color-active: var(--spice-text) !important;
     --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.4) !important;
@@ -22,34 +22,44 @@
 }
 
 // right sidebar better spotify lyrics style
-.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
+.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
     filter: blur(1.5px);
     padding: 7px;
 }
-.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
+.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
     filter: none;
     padding: 12px;
     font-size: 107%;
 }
-.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric {
+.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric {
     filter: blur(1.5px);
     padding: 7px;
 }
-.hzUuLPdH48AzgQun5NYQ .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
+.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
     filter: none;
     padding: 5px;
+}
+
+// small lyrics container scrollbar (visible on hover)
+.main-nowPlayingView-lyricsContent::-webkit-scrollbar {
+    width: 8px;
+}
+.main-nowPlayingView-lyricsContent::-webkit-scrollbar-thumb {
+    width: 8px;
+    border-radius: 10px;
+    background-color: var(--spice-custom-main-secondary);
 }
 
 //////////////////////////////////////// Credits modal ////////////////////////////////////////
 
 // credited artists
-.TypeElement-mesto-textSubdued-type {
+.main-nowPlayingView-creditsGroup .TypeElement-mesto-textSubdued-type {
     color: var(--spice-custom-subdued) !important;
 }
 
 //////////////////////////////////////// On tour ////////////////////////////////////////
 
-.Ai_McRq9wJEYK21w8nX_.IgTMXVbZtqtZwu3GZASd {
+.main-nowPlayingView-section.IgTMXVbZtqtZwu3GZASd {
     // show all
     button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
         color: var(--spice-custom-subdued);
@@ -68,7 +78,7 @@
 
 //////////////////////////////////////// Queue ////////////////////////////////////////
 
-.Ai_McRq9wJEYK21w8nX_.qbOrWcMUhSri1nPkZLQA {
+.main-nowPlayingView-section.qbOrWcMUhSri1nPkZLQA {
     // open queue
     button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
         color: var(--spice-custom-subdued);
