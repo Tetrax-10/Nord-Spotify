@@ -1,3 +1,5 @@
+//////////////////////////////////////// Main ////////////////////////////////////////
+
 // libx sidebar your lib icon (minimized and expanded)
 button[class*="Button-md-24-buttonTertiary-iconOnly-condensed"],
 button[class*="Button-md-24-buttonTertiary-iconLeading-condensed"] {
@@ -97,6 +99,20 @@ span[class*="ChipInnerComponent-selected-isUsingKeyboard-secondary"] {
 .R7bnv14gXI2ndBOqFvCf > .main-playButton-PlayButton {
     right: 5px !important;
     bottom: 3px !important;
+}
+
+//////////////////////////////////////// Create playlist tutorial ////////////////////////////////////////
+
+// tutorial container
+.main-yourLibraryX-libraryRootlist > section.xi3ytXbuSuzCYy5LwjFu {
+    background-color: var(--spice-custom-main-soft-secondary);
+
+    span[class*="ButtonInner-sm"] {
+        background-color: var(--spice-button);
+    }
+    span[class*="ButtonInner-sm"]:hover {
+        background-color: var(--spice-button-active);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////
