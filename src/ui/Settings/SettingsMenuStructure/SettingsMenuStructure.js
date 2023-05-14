@@ -30,7 +30,6 @@ export default function getSettingsMenuStructure() {
         ["ActionButton", ActionButtonProps.bannersInLyricsPage],
         ["ActionButton", ActionButtonProps.songBannersOnly],
         ["ActionButton", ActionButtonProps.changeCoverArtOnSongChange],
-        ["ActionButton", ActionButtonProps.hideDefaultCoverArt],
         ["ActionButton", ActionButtonProps.hidePageDetails],
         ["ActionInput", ActionInputProps.bannerBlur],
         ["ActionButton", ActionButtonProps.fitBannerImage],

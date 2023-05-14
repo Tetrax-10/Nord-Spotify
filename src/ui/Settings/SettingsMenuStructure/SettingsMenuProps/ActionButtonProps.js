@@ -49,12 +49,6 @@ export default function getSettingsMenuActionButtonProps() {
             name: "Change Page's Banner On Song Change",
             field: "changeCoverArtOnSongChange",
         },
-        hideDefaultCoverArt: {
-            name: "Hide Page's Default Cover Art",
-            info: "Hide playlist cover art in playlist page",
-            field: "hideDefaultCoverArt",
-            onClickHandler: () => RegularSnippets.utils.toggle("hideDefaultCoverArt"),
-        },
         hidePageDetails: {
             name: "Hide Page's Details",
             info: "Hide playlist info in playlist page",

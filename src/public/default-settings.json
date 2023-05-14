@@ -20,7 +20,6 @@
     "bannersInLyricsPage": true,
     "songBannersOnly": false,
     "changeCoverArtOnSongChange": true,
-    "hideDefaultCoverArt": true,
     "hidePageDetails": false,
     "bannerBlur": false,
     "bannerBlurValue": "10",

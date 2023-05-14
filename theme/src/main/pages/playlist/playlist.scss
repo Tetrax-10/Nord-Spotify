@@ -306,3 +306,17 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
     border-radius: 10px;
     background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.6);
 }
+
+//////////////////////////////////////// Hide Default Cover art ////////////////////////////////////////
+
+// playlist, enhanced, liked page
+section .playlist-playlist-playlistImageContainer,
+// artist, album page
+section .main-entityHeader-imageContainer {
+    display: none;
+}
+
+.main-entityHeader-headerText {
+    position: absolute;
+    bottom: 25px;
+}
