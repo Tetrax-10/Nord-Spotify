@@ -4,9 +4,6 @@
 const conditionalSnippets = {
     hidePageDetails: "hidePageDetails",
 
-    hideTopBar: "hideTopBar",
-    showTopBar: "showTopBar",
-
     immersiveView: "immersiveView",
     immersiveViewModLeft: "immersiveViewModLeft",
     immersiveViewModRight: "immersiveViewModRight",

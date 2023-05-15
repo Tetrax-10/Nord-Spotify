@@ -39,7 +39,7 @@ const Banner = (() => {
         player.addEventListener("wheel", (event) => {
             if (document.querySelector(".volume-bar:hover")) return
 
-            if (player.matches(":hover") && State.app.isValidPage) {
+            if (player.matches(":hover") && State.app.isValidBannerPage) {
                 banner.style.transition = disableTransition
                 let delta = Math.sign(event.deltaY)
 

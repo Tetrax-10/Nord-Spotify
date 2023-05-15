@@ -67,9 +67,11 @@
 }
 
 // hide or show topbar (shows topbar when banner page is scrolled fully)
-.main-topBar-background {
-    opacity: 0 !important;
-}
-.main-topBar-background:has(~ .main-topBar-topbarContentWrapper .main-entityHeader-topbarContentFadeIn) {
-    opacity: 1 !important;
+body.nord-valid-banner-page {
+    .main-topBar-background {
+        opacity: 0 !important;
+    }
+    .main-topBar-background:has(~ .main-topBar-topbarContentWrapper .main-entityHeader-topbarContentFadeIn) {
+        opacity: 1 !important;
+    }
 }

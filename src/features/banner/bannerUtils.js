@@ -29,7 +29,6 @@ export async function injectBanner(rawData = Spicetify.Player) {
     if (State.app.changeStateSrc !== "songchange") {
         hideOrShowBanner()
         fixBannerPage()
-        hideOrShowTopbar()
     }
 
     await updateState(rawData)
@@ -48,24 +47,6 @@ export function updateBannerPosInConfig() {
         delete LocalStorage.config.bannerPosition[smallUri]
     } else {
         LocalStorage.config.bannerPosition[smallUri] = `${State.app.currentPos}`
-    }
-}
-
-function showTopBar() {
-    Snippet.utils.removeClass(conditionalSnippets.hideTopBar)
-    Snippet.utils.injectClass(conditionalSnippets.showTopBar)
-}
-
-function hideTopBar() {
-    Snippet.utils.removeClass(conditionalSnippets.showTopBar)
-    Snippet.utils.injectClass(conditionalSnippets.hideTopBar)
-}
-
-function hideOrShowTopbar() {
-    if (State.app.isValidPage) {
-        hideTopBar()
-    } else {
-        showTopBar()
     }
 }
 
@@ -211,7 +192,7 @@ function fixBannerPage() {
 export function hideOrShowBanner() {
     const banner = document.querySelector("#main-banner")
 
-    if (State.app.isValidPage && LocalStorage.config.showBanner) {
+    if (State.app.isValidBannerPage && LocalStorage.config.showBanner) {
         hideOrShowLyricsPageBanners()
         if (LocalStorage.config.fullPageBanner) {
             Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerNew, conditionalSnippets.bigBannerLibX, conditionalSnippets.bigBannerOld)

@@ -6,7 +6,7 @@ const State = (() => {
     const AppState = {
         path: undefined,
         isBannerPage: undefined,
-        isValidPage: undefined,
+        isValidBannerPage: undefined,
         pageType: undefined,
         uri: undefined,
         uid: undefined,
@@ -33,12 +33,16 @@ const State = (() => {
         AppState.islocal = Spicetify.Player.data.track.metadata.is_local === "true"
         AppState.image = Spicetify.Player.data.track.metadata.image_xlarge_url
         AppState.filterCSS = LocalStorage.config.bannerBlurValue == 0 ? "unset" : `blur(${LocalStorage.config.bannerBlurValue}px)`
+
+        stateUtils.updateDomClasses()
     }
 
     function onPageChange(event) {
         AppState.changeStateSrc = "pagechange"
         AppState.path = event.pathname
         AppState.pageType = stateUtils.pathToType()
+
+        stateUtils.updateDomClasses()
     }
 
     function onSongChange(event) {
