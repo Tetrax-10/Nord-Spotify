@@ -309,14 +309,16 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
 
 //////////////////////////////////////// Hide Default Cover art ////////////////////////////////////////
 
-// playlist, enhanced, liked page
-section .playlist-playlist-playlistImageContainer,
-// artist, album page
-section .main-entityHeader-imageContainer {
-    display: none;
-}
+body:not(:has(#main-banner[style*="display: none;"])) {
+    // playlist, enhanced, liked page
+    section .playlist-playlist-playlistImageContainer,
+    // artist, album page
+    section .main-entityHeader-imageContainer {
+        display: none;
+    }
 
-.main-entityHeader-headerText {
-    position: absolute;
-    bottom: 25px;
+    .main-entityHeader-headerText {
+        position: absolute;
+        bottom: 25px;
+    }
 }
