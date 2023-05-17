@@ -11,6 +11,8 @@ const PreloadUtils = (() => {
             return (await waitForElement(".nav-alt", 1000)) ? true : false
         }
 
+        if (expFeaturesData.enableNavAltExperiment2 === undefined) return false
+
         const newUiState = expFeaturesData.enableNavAltExperiment2.value
 
         return newUiState === "DISABLED" || newUiState === undefined ? false : true
@@ -20,6 +22,8 @@ const PreloadUtils = (() => {
         if (!Spicetify.RemoteConfigResolver) {
             return (await waitForElement("body.ylx", 1000)) ? true : false
         }
+
+        if (expFeaturesData.enableYLXSidebar === undefined) return false
 
         const libXState = expFeaturesData.enableYLXSidebar.value
 
