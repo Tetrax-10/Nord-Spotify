@@ -45,3 +45,8 @@
 .TypeElement-canon-textBase-type > a:hover {
     color: var(--spice-custom-link-hover) !important;
 }
+
+// hide home page scrollbar when home page recommendation is hidden
+body.nord-hideHomePageRecommendation .Root__main-view:has(.main-home-home) .os-scrollbar.os-scrollbar-vertical {
+    display: none;
+}
