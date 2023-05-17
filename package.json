@@ -15,9 +15,9 @@
     "scripts": {
         "format": "prettier --write .",
         "lint": "eslint src",
-        "start": "npm run spicetify-set-theme && npm run spicetify-apply && npm run watch",
-        "watch": "concurrently \"npm run spicetify-watch\" \"npm run watch-ext\" \"npm run watch-theme\" \"npm run watch-colors\"",
-        "build": "npm run build-ext && npm run build-theme && npm run build-colors && npm run spicetify-apply",
+        "start": "npm run watch",
+        "watch": "npm run spicetify-set-theme && npm run spicetify-apply && concurrently \"npm run spicetify-watch\" \"npm run watch-ext\" \"npm run watch-theme\" \"npm run watch-colors\"",
+        "build": "npm run spicetify-set-theme && npm run build-ext && npm run build-theme && npm run build-colors && npm run spicetify-apply",
         "build-local": "npm run build-ext:local && npm run build-theme:local && npm run build-colors:local",
         "watch-ext": "for /f usebackq %i in (`spicetify path -s folder`) do spicetify-creator --watch --out=%i",
         "build-ext": "for /f usebackq %i in (`spicetify path -s folder`) do spicetify-creator --out=%i",
