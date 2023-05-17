@@ -2,6 +2,16 @@ import Utils from "../utils/utils"
 
 const ExpFeatures = (() => {
     let expFeaturesData
+    let allAvailableSpotifyExpFeatures
+
+    async function init() {
+        if (Spicetify.RemoteConfigResolver) {
+            allAvailableSpotifyExpFeatures = Utils.utils.combineMapKeys(
+                Spicetify.RemoteConfigResolver.value.localConfiguration.values,
+                Spicetify.RemoteConfigResolver.value.remoteConfiguration.values
+            )
+        }
+    }
 
     function changeExpFeatures(featuresData = { enable: [], disable: [] }) {
         try {
@@ -27,13 +37,19 @@ const ExpFeatures = (() => {
                 feature = feature[0]
             }
 
-            if (expFeaturesData[feature] === undefined) return
+            if (!allAvailableSpotifyExpFeatures.includes(feature)) {
+                console.warn(`Nord:handled: exp feature ${feature} not found > from: \`setExpFseatures()\``)
+                return
+            }
+
+            expFeaturesData[feature] = expFeaturesData[feature] ?? { value: undefined }
 
             expFeaturesData[feature].value = value
         })
     }
 
     return {
+        init: init,
         change: changeExpFeatures,
     }
 })()

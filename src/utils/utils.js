@@ -165,6 +165,11 @@ const Utils = (() => {
         LocalStorage.utils.set("lyrics-plus:visual:noise", "false")
     }
 
+    function combineMapKeys(map1, map2) {
+        const keys = new Set([...map1.keys(), ...map2.keys()])
+        return Array.from(keys)
+    }
+
     return {
         path: { pathToURI: pathToURI, pathToUID: pathToUID, uriToUID: uriToUID },
         dom: {
@@ -182,6 +187,7 @@ const Utils = (() => {
             makeSmallUri: makeSmallUri,
             makeFullUri: makeFullUri, // not used
             unColorLyricsPlus: unColorLyricsPlus,
+            combineMapKeys: combineMapKeys,
         },
         json: { JSONToString: JSONToString, stringToJSON: stringToJSON },
     }

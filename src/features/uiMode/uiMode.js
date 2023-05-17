@@ -15,7 +15,7 @@ const UiMode = (() => {
                         "enableRightSidebar",
                         "enableRightSidebarTransitionAnimations",
                         "enableRightSidebarLyrics",
-                        "enableWhatsNewFeed",
+                        "enableRightSidebarCredits",
                     ],
                     disable: ["enableRightSidebarExtractedColors", ["enableNavAltExperiment2", "DISABLED"]],
                 }
@@ -23,26 +23,12 @@ const UiMode = (() => {
             case "newui":
                 features = {
                     enable: [["enableNavAltExperiment2", "ENABLED_CENTER"]],
-                    disable: [
-                        "enableYLXSidebar",
-                        "enableRightSidebar",
-                        "enableRightSidebarTransitionAnimations",
-                        "enableRightSidebarLyrics",
-                        "enableWhatsNewFeed",
-                    ],
+                    disable: ["enableYLXSidebar", "enableRightSidebar"],
                 }
                 break
             default:
                 features = {
-                    disable: [
-                        "enableYLXSidebar",
-                        "enableRightSidebar",
-                        "enableRightSidebarTransitionAnimations",
-                        "enableRightSidebarLyrics",
-                        "enableWhatsNewFeed",
-                        "enableRightSidebarExtractedColors",
-                        ["enableNavAltExperiment2", "DISABLED"],
-                    ],
+                    disable: ["enableYLXSidebar", "enableRightSidebar", ["enableNavAltExperiment2", "DISABLED"]],
                 }
                 break
         }

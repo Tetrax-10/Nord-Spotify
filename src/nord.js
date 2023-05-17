@@ -16,8 +16,10 @@ import Popup from "./ui/Popup/Popup"
 
 import SettingsMenu from "./ui/Settings/SettingsMenu"
 
-import Icons from "./icons/icons"
+import ExpFeatures from "./expFeatures/expFeatures"
 import UiMode from "./features/uiMode/uiMode"
+
+import Icons from "./icons/icons"
 
 export default async function nord() {
     Shared.SpicetifyConfig.color_scheme = LocalStorage.config.colorScheme
@@ -36,10 +38,13 @@ export default async function nord() {
     await ColorScheme.inject()
     await DynamicColors.inject()
 
-    if (Spicetify.RemoteConfigResolver !== undefined) {
-        await UiMode.createOptions()
-        UiMode.repairConfig()
-    }
+    setTimeout(async () => {
+        if (Spicetify.RemoteConfigResolver) {
+            ExpFeatures.init()
+            await UiMode.createOptions()
+            UiMode.repairConfig()
+        }
+    }, 300)
 
     const settingsButton = new Spicetify.Topbar.Button("Nord Settings", Icons.settings, () => {
         Popup.createModal({
