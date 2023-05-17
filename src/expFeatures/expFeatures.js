@@ -7,7 +7,9 @@ const ExpFeatures = (() => {
         try {
             expFeaturesData = JSON.parse(localStorage.getItem("spicetify-exp-features"))
         } catch (err) {
-            console.error(`Nord:handled: can't parse exp features; error: ${err}`)
+            console.error(
+                `Nord:handled: Can't parse exp features, but \`Spicetify.RemoteConfigResolver\` is found > from: \`ExpFeatures\` > error: ${err}`
+            )
             return
         }
 

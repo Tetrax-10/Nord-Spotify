@@ -3,7 +3,7 @@ const PreloadUtils = (() => {
     try {
         expFeaturesData = JSON.parse(localStorage.getItem("spicetify-exp-features"))
     } catch (err) {
-        console.error(`Nord:handled: can't parse exp features; error: ${err}`)
+        console.warn(`Nord:handled: Can't parse exp features, probability exp features was never turned on > from: \`PreloadUtils\` > error: ${err}`)
     }
 
     async function isNewUI() {

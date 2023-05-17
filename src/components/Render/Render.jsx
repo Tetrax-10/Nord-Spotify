@@ -50,7 +50,7 @@ export default function Render({ children: structure = [["", {}]] } = {}) {
                     case "Link":
                         return <MenuComponents.Link {...props} />
                     default:
-                        console.error(`Nord: ${component} Components not found`)
+                        console.error(`Nord:unexpected: ${component} components not found > from: \`Render()\``)
                 }
             })}
         </>

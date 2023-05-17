@@ -59,7 +59,7 @@ const LocalStorage = ((defaultSettings, localStorageKey) => {
             }
             throw ""
         } catch (err) {
-            console.error(`Nord:handled: ${err}`)
+            console.warn(`Nord:handled: ${localStorageKey}:settings not found so making one > from: \`initConfig()\` > error: ${err}`)
             return makeConfig({})
         }
     }

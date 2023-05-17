@@ -64,7 +64,7 @@ const DynamicColors = (() => {
 
             return colorPalette
         } catch (err) {
-            console.error(`Nord: ${err}`)
+            console.error(`Nord:unexpected: Can't create dynamic colors > from: \`createDynamicColors()\` > error: ${err}`)
         }
     }
 
@@ -126,7 +126,9 @@ const DynamicColors = (() => {
             let extractedColors = rawData.data.extractedColors[0]
             return { dark: extractedColors.colorDark.hex, light: extractedColors.colorLight.hex, raw: extractedColors.colorRaw.hex }
         } catch (err) {
-            console.error(`Nord: ${err}`)
+            console.error(
+                `Nord:unexpected: can't fetch dynamic color from Spotify API (atmosphere mode) > from: \`fetchDynamicColor()\` > error: ${err}`
+            )
         }
     }
 

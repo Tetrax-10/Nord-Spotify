@@ -20,7 +20,7 @@
     },
     "rules": {
         "quotes": ["warn", "double"],
-        "no-console": ["warn", { "allow": ["error"] }],
+        "no-console": ["warn", { "allow": ["error", "warn"] }],
         "no-unused-vars": "warn",
         "no-alert": "error",
         "no-undef": "error",

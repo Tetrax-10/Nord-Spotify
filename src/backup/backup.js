@@ -40,8 +40,10 @@ const Backup = (() => {
                 importData(data)
             }
         } catch (err) {
-            console.error(`Nord:handled: ${err}`)
-            Api.send.notification("Falied to Restore, backup data seems to be Corrupted!", true, 4000)
+            const errorMessage = "Failed to Restore, backup data seems to be Corrupted"
+
+            console.warn(`Nord:handled: ${errorMessage} > from: \`importSettings()\` > error: ${err}`)
+            Api.send.notification(errorMessage, true, 4000)
         }
     }
 

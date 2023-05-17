@@ -6,7 +6,6 @@ export function changeKeyBind(newKey, oldKey, shouldMap) {
             Spicetify.Keyboard.changeShortcut(newKey, oldKey)
         }
     } catch (err) {
-        console.error(`Nord: ${err}`)
-        // catch any error while changing shortcut
+        console.error(`Nord:unexpected: can't change keybind > from: \`changeKeyBind()\` > error: ${err}`)
     }
 }

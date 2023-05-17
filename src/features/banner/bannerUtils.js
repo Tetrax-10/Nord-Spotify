@@ -144,7 +144,7 @@ async function fetchBannerImage(rawData = Spicetify.Player) {
             return rawData.data.track.metadata.image_xlarge_url
         }
     } catch (err) {
-        console.error(`Nord: ${err}`)
+        console.error(`Nord:unexpected: Can't fetch banner image > from: \`fetchBannerImage()\` > error: ${err}`)
     }
 }
 

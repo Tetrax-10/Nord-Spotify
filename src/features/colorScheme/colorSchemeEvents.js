@@ -13,7 +13,7 @@ export function updateColor(field, hex) {
         hex = chroma(hex).hex().toUpperCase()
         update(hex.slice(0, 7)) // avoids transparent colors
     } catch (err) {
-        console.error(`Nord:handled: ${err}`)
+        console.warn(`Nord:handled: Not a hex value > from: \`updateColor()\` > error: ${err}`)
         hex = LocalStorage.config.colorSchemes[Shared.SpicetifyConfig.color_scheme][field].toUpperCase()
         update(hex)
     }
@@ -90,8 +90,10 @@ export async function importColorScheme() {
 
         refreshColorScheme()
     } catch (err) {
-        console.error(`Nord:handled: ${err}`)
-        Api.send.notification("Import failed, make sure you copied it correctly", true)
+        const errorMessage = "Import failed, make sure you copied it correctly"
+
+        console.warn(`Nord:handled: ${errorMessage} > from: \`importColorScheme()\` > error: ${err}`)
+        Api.send.notification(errorMessage, true)
     }
 }
 
