@@ -31,6 +31,10 @@
 .main-addButton-button svg {
     color: var(--spice-custom-subdued);
 }
+// Spicetify.Playbar.Widget active = true
+.main-addButton-button.main-addButton-active:not([aria-label]) svg {
+    color: var(--spice-custom-link-hover);
+}
 
 // fix like button color on click (animation color)
 #_R_G *:not([fill="none"]) {
