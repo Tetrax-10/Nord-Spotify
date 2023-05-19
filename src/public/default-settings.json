@@ -14,6 +14,7 @@
     "fontSizeBool": false,
     "fontSize": "100%",
     "autoExpandLibX": true,
+    "minimalistLibX": true,
 
     "showBanner": true,
     "fullPageBanner": true,

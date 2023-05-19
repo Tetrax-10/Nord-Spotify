@@ -8,11 +8,18 @@ import State from "../../../../state/state"
 export default function getSettingsMenuActionButtonProps() {
     return {
         autoExpandLibX: {
-            name: "Auto Expand LibX",
-            info: "Auto Expand LibX on non collapse mode",
+            name: "Auto Expand Library X",
+            info: "Auto Expand Library X on non collapse mode",
             field: "autoExpandLibX",
             visibility: window.Nord.shared.isLibX ? true : false,
             onClickHandler: () => RegularSnippets.utils.toggle("autoExpandLibX"),
+        },
+        minimalistLibX: {
+            name: "Minimalistic Library X",
+            info: "Hides sub titles in Library X",
+            field: "minimalistLibX",
+            visibility: window.Nord.shared.isLibX ? true : false,
+            onClickHandler: () => RegularSnippets.utils.toggle("minimalistLibX"),
         },
         showBanner: {
             name: "Show Banner",

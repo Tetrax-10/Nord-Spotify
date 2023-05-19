@@ -13,6 +13,7 @@ const RegularSnippets = (() => {
         "hoverTime",
         "centeredLyrics",
         "autoExpandLibX",
+        "minimalistLibX",
     ]
 
     function toggle(id) {
