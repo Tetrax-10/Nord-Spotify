@@ -40,6 +40,11 @@
 
 //////////////////////////////////////// Left Player ////////////////////////////////////////
 
+.main-trackInfo-name .TypeElement-mesto-textSubdued-type,
+.main-trackInfo-name .TypeElement-mesto-type {
+    color: var(--spice-text);
+}
+
 // artist name in player
 .main-trackInfo-artists,
 .main-trackInfo-artists > span > a {

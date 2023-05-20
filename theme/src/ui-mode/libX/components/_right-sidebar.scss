@@ -63,6 +63,7 @@
     // show all
     button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
         color: var(--spice-custom-subdued);
+        text-decoration: none;
     }
     // on tour time and location
     .artist-artistOnTour-timeAndVenue.artist-artistOnTour-condensed {
@@ -82,6 +83,7 @@
     // open queue
     button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
         color: var(--spice-custom-subdued);
+        text-decoration: none;
     }
 
     // first song in queue container
