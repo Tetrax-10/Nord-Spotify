@@ -10,6 +10,7 @@ const stateUtils = (() => {
             case "playlist":
             case "album":
             case "show":
+            case "episode":
                 State.app.isBannerPage = true
                 State.app.isValidBannerPage = true
                 return rootPath + "s"

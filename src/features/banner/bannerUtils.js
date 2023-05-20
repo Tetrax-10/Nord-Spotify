@@ -179,6 +179,7 @@ function fixBannerPage() {
         liked: "fixLikedSongsPage",
         folder: "fixFolderPage",
         shows: "fixShowsPage",
+        episodes: "fixEpisodesPage",
         local: "fixLocalPage",
     }
 

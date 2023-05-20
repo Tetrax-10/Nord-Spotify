@@ -312,6 +312,10 @@ div.main-rootlist-wrapper > div:nth-child(2) > div .main-trackList-active {
 body:not(:has(#main-banner[style*="display: none;"])) {
     // playlist, enhanced, liked page
     section .playlist-playlist-playlistImageContainer,
+    // shows page
+    .klz_XuZpllvTMzpJF1gw,
+    // episode page
+    .HaSbtEVJnxBsaJ5SRi0M,
     // artist, album page
     section .main-entityHeader-imageContainer {
         display: none;
