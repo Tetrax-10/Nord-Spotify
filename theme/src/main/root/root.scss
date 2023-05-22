@@ -35,6 +35,11 @@
 .main-addButton-button.main-addButton-active:not([aria-label]) svg {
     color: var(--spice-custom-link-hover);
 }
+// widget on disable
+.main-addButton-button.main-addButton-disabled,
+.main-addButton-disabled.control-button:hover {
+    cursor: auto !important;
+}
 
 // fix like button color on click (animation color)
 #_R_G *:not([fill="none"]) {
