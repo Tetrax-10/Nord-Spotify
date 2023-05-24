@@ -17,18 +17,12 @@ const UiMode = (() => {
                         "enableRightSidebarLyrics",
                         "enableRightSidebarCredits",
                     ],
-                    disable: ["enableRightSidebarExtractedColors", ["enableNavAltExperiment2", "DISABLED"]],
-                }
-                break
-            case "newui":
-                features = {
-                    enable: [["enableNavAltExperiment2", "ENABLED_CENTER"]],
-                    disable: ["enableYLXSidebar", "enableRightSidebar"],
+                    disable: ["enableRightSidebarExtractedColors"],
                 }
                 break
             default:
                 features = {
-                    disable: ["enableYLXSidebar", "enableRightSidebar", ["enableNavAltExperiment2", "DISABLED"]],
+                    disable: ["enableYLXSidebar", "enableRightSidebar"],
                 }
                 break
         }
@@ -42,17 +36,11 @@ const UiMode = (() => {
         if (await Api.app.laterThan("1.2.9")) {
             Shared.uiModeOptions.libx = "Library X"
         }
-
-        if ((await Api.app.laterThan("1.2.2")) && (await Api.app.earlierThan("1.2.3"))) {
-            Shared.uiModeOptions.newui = "New UI"
-        }
     }
 
     function repairConfig() {
         if (window.Nord.shared.isLibX) {
             LocalStorage.config.uiMode = "libx"
-        } else if (window.Nord.shared.isNewUI) {
-            LocalStorage.config.uiMode = "newui"
         } else {
             LocalStorage.config.uiMode = "oldui"
         }

@@ -5,9 +5,7 @@ import { injectConditionedSnippetClass, injectSnippetClass, injectSnippetClassDy
 
 const Snippet = (() => {
     function initSnippets() {
-        if (window.Nord.shared.isNewUI) {
-            injectSnippetClass("newUI")
-        } else if (window.Nord.shared.isLibX) {
+        if (window.Nord.shared.isLibX) {
             injectSnippetClass("libX")
         } else {
             injectSnippetClass("oldUI")

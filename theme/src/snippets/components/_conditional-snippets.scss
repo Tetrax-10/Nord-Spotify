@@ -33,16 +33,6 @@ body {
             }
         }
 
-        // Big Playlists
-        &bigBannerNew {
-            // Big Playlist
-            .main-entityHeader-nonWrapped,
-            // Big artist 
-            .main-entityHeader-background {
-                height: calc(100vh - 88px) !important;
-            }
-        }
-
         &bigBannerOld {
             // Big Playlist
             .main-entityHeader-nonWrapped,

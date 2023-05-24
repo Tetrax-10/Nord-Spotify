@@ -6,18 +6,6 @@ const PreloadUtils = (() => {
         console.warn(`Nord:handled: Can't parse exp features, probability exp features was never turned on > from: \`PreloadUtils\` > error: ${err}`)
     }
 
-    async function isNewUI() {
-        if (!Spicetify.RemoteConfigResolver) {
-            return (await waitForElement(".nav-alt", 1000)) ? true : false
-        }
-
-        if (expFeaturesData.enableNavAltExperiment2 === undefined) return false
-
-        const newUiState = expFeaturesData.enableNavAltExperiment2.value
-
-        return newUiState === "DISABLED" || newUiState === undefined ? false : true
-    }
-
     async function isLibX() {
         if (!Spicetify.RemoteConfigResolver) {
             return (await waitForElement("body.ylx", 1000)) ? true : false
@@ -63,7 +51,6 @@ const PreloadUtils = (() => {
     }
 
     return {
-        isNewUI: isNewUI,
         isLibX: isLibX,
     }
 })()

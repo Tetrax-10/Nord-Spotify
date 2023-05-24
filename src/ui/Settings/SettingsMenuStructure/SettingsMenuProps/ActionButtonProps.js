@@ -1,4 +1,5 @@
 import Banner from "../../../../features/banner/banner"
+import conditionalSnippets from "../../../../features/snippets/externalCssSnippets/conditionalSnippets"
 import RegularSnippets from "../../../../features/snippets/externalCssSnippets/regularSnippets"
 import JsSnippets from "../../../../features/snippets/jsSnippets/jsSnippets"
 import Snippet from "../../../../features/snippets/snippets"
@@ -31,9 +32,9 @@ export default function getSettingsMenuActionButtonProps() {
             field: "fullPageBanner",
             onClickHandler: () => {
                 if (LocalStorage.config.fullPageBanner && LocalStorage.config.showBanner) {
-                    Snippet.utils.injectClassDynamicUI("bigBannerNew", "bigBannerLibX", "bigBannerOld")
+                    Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerLibX, conditionalSnippets.bigBannerOld)
                 } else {
-                    Snippet.utils.injectClassDynamicUI("bigBannerNew", "bigBannerLibX", "bigBannerOld", false)
+                    Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerLibX, conditionalSnippets.bigBannerOld, false)
                 }
             },
         },

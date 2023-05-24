@@ -196,17 +196,12 @@ export function hideOrShowBanner() {
     if (State.app.isValidBannerPage && LocalStorage.config.showBanner) {
         hideOrShowLyricsPageBanners()
         if (LocalStorage.config.fullPageBanner) {
-            Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerNew, conditionalSnippets.bigBannerLibX, conditionalSnippets.bigBannerOld)
+            Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerLibX, conditionalSnippets.bigBannerOld)
         }
         Snippet.utils.injectConditionedClass(conditionalSnippets.hidePageDetails, LocalStorage.config.hidePageDetails)
         banner.style.display = "unset"
     } else {
-        Snippet.utils.injectClassDynamicUI(
-            conditionalSnippets.bigBannerNew,
-            conditionalSnippets.bigBannerLibX,
-            conditionalSnippets.bigBannerOld,
-            false
-        )
+        Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerLibX, conditionalSnippets.bigBannerOld, false)
         Snippet.utils.injectConditionedClass(conditionalSnippets.hidePageDetails, false)
         banner.style.display = "none"
     }

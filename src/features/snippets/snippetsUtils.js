@@ -18,10 +18,8 @@ export function injectConditionedSnippetClass(className, shouldEnable = true) {
     shouldEnable ? injectSnippetClass(className) : removeSnippetClass(className)
 }
 
-export function injectSnippetClassDynamicUI(classNameNewUI, classNameLibX, classNameOldUI, shouldEnable = true) {
-    if (window.Nord.shared.isNewUI && classNameNewUI) {
-        injectConditionedSnippetClass(classNameNewUI, shouldEnable)
-    } else if (window.Nord.shared.isLibX && classNameLibX) {
+export function injectSnippetClassDynamicUI(classNameLibX, classNameOldUI, shouldEnable = true) {
+    if (window.Nord.shared.isLibX && classNameLibX) {
         injectConditionedSnippetClass(classNameLibX, shouldEnable)
     } else if (classNameOldUI) {
         injectConditionedSnippetClass(classNameOldUI, shouldEnable)

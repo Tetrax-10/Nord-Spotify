@@ -16,12 +16,12 @@ const ImmersiveViewUtils = (() => {
 
     function turnOnImmersiveView() {
         Snippet.utils.injectClass(conditionalSnippets.immersiveView)
-        Snippet.utils.injectClassDynamicUI(null, conditionalSnippets.bigBannerLibXImmersiveView, conditionalSnippets.bigBannerOldImmersiveView, true)
+        Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerLibXImmersiveView, conditionalSnippets.bigBannerOldImmersiveView)
     }
 
     function turnOffImmersiveView() {
         Snippet.utils.removeClass(conditionalSnippets.immersiveView)
-        Snippet.utils.injectClassDynamicUI(null, conditionalSnippets.bigBannerLibXImmersiveView, conditionalSnippets.bigBannerOldImmersiveView, false)
+        Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerLibXImmersiveView, conditionalSnippets.bigBannerOldImmersiveView, false)
     }
 
     return {

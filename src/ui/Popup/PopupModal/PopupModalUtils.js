@@ -28,7 +28,7 @@ const PopupModalUtils = (() => {
             body: "Refresh to apply changes?",
             buttonName1: "Cancel",
             buttonName2: "Refresh",
-            onClickHandler2: () => location.reload(),
+            onClickHandler2: Utils.utils.forceReload,
         })
     }
 
