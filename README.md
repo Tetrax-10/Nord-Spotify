@@ -18,27 +18,17 @@ Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
 
 Nord supports Library X from 1.2.9 to latest Spotify
 
-![lib x home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/libx.png)
+![libx-home-page](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/nord/libx/libx-home-page.png)
 
 ### Auto Expand Library X
 
-![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/auto-expand-libx.png)
+![libx-expanded](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/nord/libx/libx-expanded.png)
 
 ### Immersive View on Library X
 
-![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/immersive-view.png)
+![immersive-view](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/nord/libx/immersive-view.png)
 
-![lib x ](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/immersive-view-2.png)
-
-<br />
-
-## New UI
-
-Nord supports New UI only on Spotify [v1.2.2](https://upgrade.scdn.co/upgrade/client/win32-x86/spotify_installer-1.2.2.582.gfae9c59b-54.exe)
-
-![artist 2](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/artist-2.png)
-
-![artist](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/artist.png)
+![immersive-view-2](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/nord/libx/immersive-view-2.png)
 
 <br />
 
@@ -46,27 +36,23 @@ Nord supports New UI only on Spotify [v1.2.2](https://upgrade.scdn.co/upgrade/cl
 
 Nord supports Stock UI from 1.1.93 to latest Spotify
 
-![old ui home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/old-ui-home.png)
+![old ui home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/nord/stock/stock-ui-home-page.png)
 
-![old ui](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/old-ui.png)
+![old ui](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/nord/stock/stock-ui-banner-page.png)
 
 <br />
 
 # Nord's Own Dynamic Theme Engine
 
-![home](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/home.png)
+![dynamic-home-page](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/dynamic/dynamic-home-page.png)
 
-![genre](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/genre.png)
+![dynamic-song-page](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/dynamic/dynamic-song-banner.png)
 
-![playlist](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/playlist.png)
+![dynamic-lyrics-page](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/dynamic/dynamic-lyrics-page.png)
 
-![search 2](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/search-2.png)
+![dynamic-search-page](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/dynamic/dynamic-search-page.png)
 
-![search](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/search.png)
-
-![spotify lyrics](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/spotify-lyrics.png)
-
-![lyrics plus](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/lyrics-plus.png)
+![dynamic-search-item](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/dynamic/dynamic-search-item.png)
 
 <br />
 
@@ -113,7 +99,7 @@ https://user-images.githubusercontent.com/75513645/201753268-2a1df86f-8815-452c-
 
 # Custom Fonts
 
-![Custom Fonts Preview](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/custom-fonts.png)
+![Custom Fonts Preview](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font/custom-fonts.png)
 
 <br />
 
@@ -131,19 +117,19 @@ You can use custom fonts in Nord remotely. [Google Fonts](https://fonts.google.c
 
 Step 1 : Choose a font and click the plus button at styles section at the end
 
-![plus button](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/plus-button.png)
+![plus button](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font/font-plus-button.png)
 
 Step 2 : Go to `selected families` and select `@import` Check Box
 
-![selected family](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/selected-family.png)
+![selected family](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font/font-selected-family.png)
 
 Step 3 : Then Copy that URL and paste that in `Font URL` box in Nord
 
-![font url](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font-url.png)
+![font url](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font/font-url.png)
 
 Step 4 : Then Copy that Font Name and paste that in `Font Name` box in Nord and click save
 
-![font name](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font-name.png)
+![font name](https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/font/font-name.png)
 
 <br />
 
