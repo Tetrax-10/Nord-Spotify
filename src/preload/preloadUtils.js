@@ -50,8 +50,18 @@ const PreloadUtils = (() => {
         })
     }
 
+    function shouldReloadToApplyExpFeatures() {
+        const isReloaded = localStorage.getItem("nord:isReloaded")
+        localStorage.setItem("nord:isReloaded", "false")
+
+        if (isReloaded === "true") {
+            setTimeout(() => location.reload(), 1500)
+        }
+    }
+
     return {
         isLibX: isLibX,
+        shouldReloadToApplyExpFeatures: shouldReloadToApplyExpFeatures,
     }
 })()
 

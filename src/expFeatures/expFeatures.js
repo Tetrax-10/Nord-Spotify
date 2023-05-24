@@ -27,6 +27,8 @@ const ExpFeatures = (() => {
         setExpFeatures(featuresData.disable ?? [], false)
 
         localStorage.setItem("spicetify-exp-features", JSON.stringify(expFeaturesData))
+        localStorage.setItem("nord:isReloaded", "true")
+
         Utils.utils.forceReload()
     }
 
