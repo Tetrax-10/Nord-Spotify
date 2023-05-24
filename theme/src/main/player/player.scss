@@ -153,3 +153,9 @@
 .main-trackInfo-name :hover > a {
     color: var(--spice-custom-link-hover) !important;
 }
+
+//////////////////////////////////////// Temporary player cover art fix ////////////////////////////////////////
+
+.main-nowPlayingWidget-nowPlaying {
+    display: -webkit-box;
+}
