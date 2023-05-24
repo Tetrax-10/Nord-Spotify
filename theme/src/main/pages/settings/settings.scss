@@ -61,8 +61,3 @@ input:checked ~ .x-toggle-indicatorWrapper .x-toggle-indicator,
 input ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
     background-color: var(--spice-text);
 }
-
-// settings page custom settings heading color
-.main-shelf-title.main-type-cello {
-    color: var(--spice-text);
-}

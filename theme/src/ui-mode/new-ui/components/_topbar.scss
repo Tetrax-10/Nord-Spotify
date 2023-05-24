@@ -1,25 +1,3 @@
-// home button
-.main-topBar-navLink {
-    border-radius: 10px;
-    height: 40px;
-    padding: 7px 16px;
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
-    color: var(--spice-text);
-}
-.main-topBar-navLink:hover {
-    background-color: rgba(var(--spice-rgb-custom-main-soft-secondary), 0.9);
-}
-
-// home button active icon
-.main-topBar-buttonActive .home-active-icon {
-    color: var(--spice-custom-subdued);
-}
-
-// top bar home button
-.main-topBar-center .main-topBar-button svg {
-    color: var(--spice-custom-subdued);
-}
-
 // top bar buttons
 .main-topBar-historyButtons {
     padding-left: 10px;
