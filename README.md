@@ -1,4 +1,4 @@
-# Nord (with Dynamic Theming) 
+# Nord (with Dynamic Theming)
 
 Nord Themed Spotify
 
