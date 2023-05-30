@@ -2,6 +2,10 @@
 
 Nord Themed Spotify
 
+Wanna discuss or having issues with Nord? Ping `@Tetrax-10` on Discord
+
+<p align="left"><a href="https://discord.gg/DaUbPmbDwr"><img src="https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/join-discord-button.png" width="150px"></a></p>
+
 ### Download Theme
 
 <p align="left"><a href="#install-theme"><img src="https://raw.githubusercontent.com/Tetrax-10/Nord-Spotify/master/assets/download-button.png" width="150px"></a></p>
