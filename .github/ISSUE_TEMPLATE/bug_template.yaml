@@ -1,5 +1,5 @@
 name: Bug Report
-description: Please dont ask for help. Only report bugs.
+description: Please dont ask for help. Only report bugs here.
 title: "[Bug] <title>"
 labels: ["bug"]
 assignees:
@@ -8,7 +8,7 @@ body:
     - type: markdown
       attributes:
           value: |
-              Thanks for taking the time to fill out this bug report!
+              Thanks for taking the time to fill out this bug report 💖.
     - type: textarea
       id: issue
       attributes:
