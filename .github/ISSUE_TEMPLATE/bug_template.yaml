@@ -1,0 +1,63 @@
+name: Bug Report
+description: Please dont ask for help. Only report bugs.
+title: "[Bug] <title>"
+labels: ["bug"]
+assignees:
+    - octocat
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to fill out this bug report!
+    - type: textarea
+      id: issue
+      attributes:
+          label: Whats the bug?
+          description: Explain the bug clearly with **SCREENSHOTS**
+          placeholder: |
+              1. I noticed this bug in this page...
+              2. Steps to trigger the bug...
+              3. ...
+              4. ![bug's image](https://www.github.com/bug_image.png)
+      validations:
+          required: true
+    - type: textarea
+      id: product-info
+      attributes:
+          label: "Product info:"
+          description: Please fill them correctly so I can reproduce your bug
+          placeholder: |
+              Spotify for Windows
+              1.2.12.902.g1924b088
+              Spicetify v2.9.0
+          value: |
+              Spicetify version :
+              Spotify version :
+      validations:
+          required: true
+    - type: textarea
+      id: config
+      attributes:
+          label: Your config-xpui.ini
+          description: Run `spicetify config-dir` to open config folder where you can find `config-xpui.ini` file.
+          placeholder: your config goes here
+      validations:
+          required: true
+    - type: dropdown
+      id: os
+      attributes:
+          label: OS
+          description: What OS are you using?
+          options:
+              - Windows
+              - Linux
+              - Mac
+      validations:
+          required: true
+    - type: checkboxes
+      id: terms
+      attributes:
+          label: I checked all issues and mine is different
+          options:
+              - label: Yes, I checked all issues
+                required: true

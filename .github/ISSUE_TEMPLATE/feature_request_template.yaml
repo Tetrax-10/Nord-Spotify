@@ -1,0 +1,30 @@
+name: Feature Request
+description: Suggest features that you believe will be useful for users.
+title: "[Feature Request] <title>"
+labels: ["enhancement"]
+assignees:
+    - octocat
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to suggest a new feature!s
+    - type: textarea
+      id: request
+      attributes:
+          label: "Explain the Feature:"
+          description: Explain the feature clearly if needed add reference images
+          placeholder: |
+              1. I have a idea...
+              2. It should work/look like this...
+              3. ...
+              4. ![reference image](https://www.github.com/reference_image.png)
+      validations:
+          required: true
+    - type: checkboxes
+      id: terms
+      attributes:
+          label: I checked all feature requests and mine is different
+          options:
+              - label: Yes, I checked all feature requests
+                required: true
