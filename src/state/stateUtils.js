@@ -71,6 +71,68 @@ const stateUtils = (() => {
         } else {
             Snippet.utils.removeClass("valid-banner-page")
         }
+
+        // inject page classes
+        if (State.app.pageType === "playlists") {
+            Snippet.utils.injectClass("page-playlists")
+        } else {
+            Snippet.utils.removeClass("page-playlists")
+        }
+        if (State.app.pageType === "albums") {
+            Snippet.utils.injectClass("page-albums")
+        } else {
+            Snippet.utils.removeClass("page-albums")
+        }
+        if (State.app.pageType === "shows") {
+            Snippet.utils.injectClass("page-shows")
+        } else {
+            Snippet.utils.removeClass("page-shows")
+        }
+        if (State.app.pageType === "episodes") {
+            Snippet.utils.injectClass("page-episodes")
+        } else {
+            Snippet.utils.removeClass("page-episodes")
+        }
+        if (State.app.pageType === "artists") {
+            Snippet.utils.injectClass("page-artists")
+        } else {
+            Snippet.utils.removeClass("page-artists")
+        }
+        if (State.app.pageType === "genre") {
+            Snippet.utils.injectClass("page-genre")
+        } else {
+            Snippet.utils.removeClass("page-genre")
+        }
+        if (State.app.pageType === "folder") {
+            Snippet.utils.injectClass("page-folder")
+        } else {
+            Snippet.utils.removeClass("page-folder")
+        }
+        if (State.app.pageType === "new-releases") {
+            Snippet.utils.injectClass("page-new-releases")
+        } else {
+            Snippet.utils.removeClass("page-new-releases")
+        }
+        if (State.app.pageType === "lyrics-plus") {
+            Snippet.utils.injectClass("page-lyrics-plus")
+        } else {
+            Snippet.utils.removeClass("page-lyrics-plus")
+        }
+        if (State.app.pageType === "lyrics") {
+            Snippet.utils.injectClass("page-lyrics")
+        } else {
+            Snippet.utils.removeClass("page-lyrics")
+        }
+        if (State.app.pageType === "liked") {
+            Snippet.utils.injectClass("page-liked")
+        } else {
+            Snippet.utils.removeClass("page-liked")
+        }
+        if (State.app.pageType === "local") {
+            Snippet.utils.injectClass("page-local")
+        } else {
+            Snippet.utils.removeClass("page-local")
+        }
     }
 
     return {

@@ -32,6 +32,17 @@
     background-color: var(--spice-custom-main-soft-secondary);
     border-radius: 10px;
 }
+// top bar buttons when beautiful lyrics is installed
+body.nord-page-lyrics,
+body.nord-page-lyrics-plus {
+    &.nord-beautifulLyrics {
+        .main-topBar-button,
+        .main-topBar-button:hover,
+        .main-topBar-historyButtons .main-topBar-button {
+            background-color: rgba(var(--spice-rgb-shadow), 0.7);
+        }
+    }
+}
 
 // top bar tabs
 // queue page
@@ -87,4 +98,35 @@ body.nord-valid-banner-page {
     height: 38px;
     width: 38px;
     background-color: var(--spice-custom-main-soft-secondary);
+}
+body.nord-page-lyrics,
+body.nord-page-lyrics-plus {
+    &.nord-beautifulLyrics {
+        // friend activity when beautiful lyrics is installed
+        .IAyWaeDamLJLjxuPeVKw,
+        // what's new feed when beautiful lyrics is installed
+        .I4p8r1UNjIGk9yv3H2Ms {
+            background-color: rgba(var(--spice-rgb-shadow), 0.7);
+        }
+    }
+}
+
+body.nord-page-lyrics,
+body.nord-page-lyrics-plus {
+    &.nord-beautifulLyrics.nord-libX {
+        // profile pic container when beautiful lyrics is installed
+        button[class*="Button-md-24-buttonTertiary-condensedAll-"].Fxnb0xe6bL7I7W8V0p6C {
+            background-color: rgba(var(--spice-rgb-shadow), 0.7) !important;
+        }
+    }
+}
+
+body.nord-page-lyrics,
+body.nord-page-lyrics-plus {
+    &.nord-beautifulLyrics {
+        // lyrics plus active tab background when beautiful lyrics is installed
+        .lyrics-tabBar-active {
+            background-color: rgba(var(--spice-rgb-shadow), 0.7);
+        }
+    }
 }

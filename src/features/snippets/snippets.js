@@ -11,6 +11,10 @@ const Snippet = (() => {
             injectSnippetClass("oldUI")
         }
 
+        if (window.Nord.shared.extensionList.beautifulLyrics) {
+            injectSnippetClass("beautifulLyrics")
+        }
+
         // inject regular snippets
         RegularSnippets.snippets.forEach((id) => RegularSnippets.utils.toggle(id))
 

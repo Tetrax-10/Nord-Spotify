@@ -15,6 +15,7 @@ export async function injectAndStyleBanners() {
     // inject preload banner
     const preBanner = document.createElement("img")
     preBanner.id = "preload-banner"
+    preBanner.style.display = "none"
     mainView.appendChild(preBanner)
 
     // inject banner css
@@ -193,7 +194,11 @@ function fixBannerPage() {
 export function hideOrShowBanner() {
     const banner = document.querySelector("#main-banner")
 
-    if (State.app.isValidBannerPage && LocalStorage.config.showBanner) {
+    if (
+        State.app.isValidBannerPage &&
+        LocalStorage.config.showBanner &&
+        !(window.Nord.shared.extensionList.beautifulLyrics && (State.app.pageType === "lyrics" || State.app.pageType === "lyrics-plus"))
+    ) {
         hideOrShowLyricsPageBanners()
         if (LocalStorage.config.fullPageBanner) {
             Snippet.utils.injectClassDynamicUI(conditionalSnippets.bigBannerLibX, conditionalSnippets.bigBannerOld)

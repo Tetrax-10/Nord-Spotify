@@ -122,9 +122,6 @@ body {
                 transition: background-image 0.5s, background-size 0.5s, background-position-y 2s, filter 0.5s ease-in-out;
                 display: none;
             }
-            #preload-banner {
-                display: none;
-            }
             // banner image overlay
             #main-banner:after,
             // artist image overlay

@@ -1,94 +1,151 @@
-// right sidebar containers
-.main-nowPlayingView-section {
-    background-color: var(--spice-custom-main-soft-secondary) !important;
-}
+body {
+    &.nord- {
+        &libX {
+            //////////////////////////////////////// Lyrics ////////////////////////////////////////
 
-//////////////////////////////////////// Lyrics ////////////////////////////////////////
+            // right sidebar lyrics
+            .main-nowPlayingView-sectionHeaderSpacing.main-nowPlayingView-lyricsGradient {
+                --lyrics-color-active: var(--spice-text) !important;
+                --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.4) !important;
+                --lyrics-color-passed: rgba(var(--spice-rgb-text), 0.4) !important;
+                --lyrics-color-background: var(--spice-main) !important;
+            }
 
-// right sidebar lyrics
-.main-nowPlayingView-sectionHeaderSpacing.main-nowPlayingView-lyricsGradient {
-    background-color: var(--spice-custom-main-soft-secondary) !important;
-    --lyrics-color-active: var(--spice-text) !important;
-    --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.4) !important;
-    --lyrics-color-passed: rgba(var(--spice-rgb-text), 0.4) !important;
-    --lyrics-color-background: red !important;
-}
+            // right sidebar lyrics fullscreen and close buttons
+            .Psc33HXPyazZYAAr1tgz {
+                border-radius: 10px;
+                color: var(--spice-text);
+            }
 
-// right sidebar lyrics fullscreen and close buttons
-.Psc33HXPyazZYAAr1tgz {
-    background: var(--spice-button-disabled) !important;
-    border-radius: 10px !important;
-    color: var(--spice-text) !important;
-}
+            // right sidebar better spotify lyrics style
+            .main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
+                filter: blur(1.5px);
+                padding: 7px;
+            }
+            .main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
+                filter: none;
+                padding: 12px;
+                font-size: 107%;
+            }
+            .main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric {
+                filter: blur(1.5px);
+                padding: 7px;
+            }
+            .main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
+                filter: none;
+                padding: 5px;
+            }
 
-// right sidebar better spotify lyrics style
-.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
-    filter: blur(1.5px);
-    padding: 7px;
-}
-.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-active {
-    filter: none;
-    padding: 12px;
-    font-size: 107%;
-}
-.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric {
-    filter: blur(1.5px);
-    padding: 7px;
-}
-.main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric.lyrics-lyricsContent-unsynced {
-    filter: none;
-    padding: 5px;
-}
+            // small lyrics container scrollbar (visible on hover)
+            .main-nowPlayingView-lyricsContent::-webkit-scrollbar {
+                width: 8px;
+            }
+            .main-nowPlayingView-lyricsContent::-webkit-scrollbar-thumb {
+                width: 8px;
+                border-radius: 10px;
+                background-color: var(--spice-custom-main-secondary);
+            }
 
-// small lyrics container scrollbar (visible on hover)
-.main-nowPlayingView-lyricsContent::-webkit-scrollbar {
-    width: 8px;
-}
-.main-nowPlayingView-lyricsContent::-webkit-scrollbar-thumb {
-    width: 8px;
-    border-radius: 10px;
-    background-color: var(--spice-custom-main-secondary);
-}
+            //////////////////////////////////////// Credits modal ////////////////////////////////////////
 
-//////////////////////////////////////// Credits modal ////////////////////////////////////////
+            // credited artists
+            .main-nowPlayingView-creditsGroup .TypeElement-mesto-textSubdued-type {
+                color: var(--spice-custom-subdued) !important;
+            }
 
-// credited artists
-.main-nowPlayingView-creditsGroup .TypeElement-mesto-textSubdued-type {
-    color: var(--spice-custom-subdued) !important;
-}
+            //////////////////////////////////////// On tour ////////////////////////////////////////
 
-//////////////////////////////////////// On tour ////////////////////////////////////////
+            .main-nowPlayingView-section.IgTMXVbZtqtZwu3GZASd {
+                // show all
+                button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
+                    color: var(--spice-custom-subdued);
+                    text-decoration: none;
+                }
+                // on tour time and location
+                .artist-artistOnTour-timeAndVenue.artist-artistOnTour-condensed {
+                    color: var(--spice-custom-subdued);
+                }
 
-.main-nowPlayingView-section.IgTMXVbZtqtZwu3GZASd {
-    // show all
-    button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
-        color: var(--spice-custom-subdued);
-        text-decoration: none;
+                // on tour time and location container
+                .uvIvZ4XqfEFs88BAPaI8:hover {
+                    border-radius: 10px;
+                }
+            }
+
+            //////////////////////////////////////// Queue ////////////////////////////////////////
+
+            .main-nowPlayingView-section.qbOrWcMUhSri1nPkZLQA {
+                // open queue
+                button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
+                    color: var(--spice-custom-subdued);
+                    text-decoration: none;
+                }
+
+                // first song in queue container
+                div:nth-child(2):hover {
+                    border-radius: 10px;
+                }
+            }
+        }
     }
-    // on tour time and location
-    .artist-artistOnTour-timeAndVenue.artist-artistOnTour-condensed {
-        color: var(--spice-custom-subdued);
-    }
+}
 
-    // on tour time and location container
-    .uvIvZ4XqfEFs88BAPaI8:hover {
-        border-radius: 10px;
-        background-color: var(--spice-custom-main-secondary);
+// when beautiful lyrics is installed
+body.nord-beautifulLyrics {
+    &.nord- {
+        &libX {
+            // right sidebar "show lyrics" button
+            .main-buddyFeed-content button[class*="Button-sm-buttonSecondary-"] {
+                background-color: unset;
+            }
+
+            // right sidebar lyrics fullscreen and close buttons
+            .Psc33HXPyazZYAAr1tgz {
+                background: var(--background-tinted-base);
+            }
+
+            // add friends button, close button
+            .main-buddyFeed-actions button[class*="Button-sm-16-buttonTertiary-iconOnly"] {
+                background-color: var(--background-tinted-base);
+            }
+        }
     }
 }
 
-//////////////////////////////////////// Queue ////////////////////////////////////////
+// when beautiful lyrics is not installed
+body:not(.nord-beautifulLyrics) {
+    &.nord- {
+        &libX {
+            // right sidebar containers when beautiful lyrics is not installed
+            .main-nowPlayingView-section {
+                background-color: var(--spice-custom-main-soft-secondary) !important;
+            }
 
-.main-nowPlayingView-section.qbOrWcMUhSri1nPkZLQA {
-    // open queue
-    button[class*="Button-textSubdued-sm-16-buttonTertiary-condensed"] {
-        color: var(--spice-custom-subdued);
-        text-decoration: none;
-    }
+            // right sidebar lyrics when beautiful lyrics is not installed
+            .main-nowPlayingView-sectionHeaderSpacing.main-nowPlayingView-lyricsGradient {
+                background-color: var(--spice-custom-main-soft-secondary) !important;
+            }
 
-    // first song in queue container
-    div:nth-child(2):hover {
-        border-radius: 10px;
-        background-color: var(--spice-custom-main-secondary);
+            // right sidebar lyrics fullscreen and close buttons
+            .Psc33HXPyazZYAAr1tgz {
+                background: var(--spice-button-disabled);
+            }
+
+            // on tour section
+            .main-nowPlayingView-section.IgTMXVbZtqtZwu3GZASd {
+                // on tour time and location container
+                .uvIvZ4XqfEFs88BAPaI8:hover {
+                    background-color: var(--spice-custom-main-secondary);
+                }
+            }
+
+            // queue section
+            .main-nowPlayingView-section.qbOrWcMUhSri1nPkZLQA {
+                // first song in queue container when beautiful lyrics is not installed
+                div:nth-child(2):hover {
+                    background-color: var(--spice-custom-main-secondary);
+                }
+            }
+        }
     }
 }

@@ -59,9 +59,15 @@ const PreloadUtils = (() => {
         }
     }
 
+    async function checkIfAnExtensionIsInstalled(name) {
+        const scriptElement = await waitForElement(`script[src*="${name}.js"]`, 1000)
+        return scriptElement ? true : false
+    }
+
     return {
         isLibX: isLibX,
         shouldReloadToApplyExpFeatures: shouldReloadToApplyExpFeatures,
+        checkIfAnExtensionIsInstalled: checkIfAnExtensionIsInstalled,
     }
 })()
 
