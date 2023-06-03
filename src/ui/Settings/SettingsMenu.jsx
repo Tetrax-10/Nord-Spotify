@@ -4,9 +4,12 @@ import "./SettingsMenu.scss"
 
 import Render from "../../components/Render/Render"
 import getSettingsMenuStructure from "./SettingsMenuStructure/SettingsMenuStructure"
+import injectDiscordServerLink from "./helper/joinDiscord"
 
 export default function SettingsMenu() {
     const SettingsMenuStructure = getSettingsMenuStructure()
+
+    injectDiscordServerLink()
 
     /* eslint-disable react/no-unknown-property */
     return (

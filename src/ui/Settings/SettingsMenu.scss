@@ -120,15 +120,23 @@
     }
     .green-btn {
         background-color: #6bcb77 !important;
-        color: #25316d;
+        color: #25316d !important;
     }
     .red-btn {
         background-color: #bf616a !important;
     }
     .green-text {
-        color: #6bcb77;
+        color: #6bcb77 !important;
     }
     .red-text {
-        color: #bf616a;
+        color: #bf616a !important;
+    }
+}
+
+.GenericModal[aria-label="Nord Settings"] .main-trackCreditsModal-header .tetrax-settings-discord-link {
+    color: var(--spice-custom-success);
+
+    &:hover {
+        color: var(--spice-custom-link-hover);
     }
 }
