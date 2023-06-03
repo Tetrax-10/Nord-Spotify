@@ -1,5 +1,10 @@
 .tetrax-settings-menu[app="Nord"] {
     .popup-row {
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
         &.search-div .col {
             position: relative;
         }
