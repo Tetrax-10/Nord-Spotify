@@ -5,10 +5,13 @@ export function hideWindowsControlsCSS() {
     body #nord-hideWindowsControls {
         height: ${LocalStorage.tempConfig.hideWindowsControlsValues.height}px;
         width: ${LocalStorage.tempConfig.hideWindowsControlsValues.width}px;
-        background-color: ${window.Nord.shared.isLibX ? "var(--spice-sidebar)" : "var(--spice-main)"};
+        backdrop-filter: brightness(${LocalStorage.tempConfig.hideWindowsControlsValues.filter});
         position: absolute;
-        filter: brightness(${LocalStorage.tempConfig.hideWindowsControlsValues.filter});
+        z-index: 10000;
         top: 0px;
         right: 0px;
+    }
+    html.fullscreen body #nord-hideWindowsControls {
+        z-index: 0;
     }`
 }
