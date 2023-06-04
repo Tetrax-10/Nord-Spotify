@@ -12,6 +12,7 @@ const UiMode = (() => {
                 features = {
                     enable: [
                         "enableYLXSidebar",
+                        "enableWhatsNewFeed",
                         "enableRightSidebar",
                         "enableRightSidebarTransitionAnimations",
                         "enableRightSidebarLyrics",
@@ -22,7 +23,7 @@ const UiMode = (() => {
                 break
             default:
                 features = {
-                    disable: ["enableYLXSidebar", "enableRightSidebar"],
+                    disable: ["enableYLXSidebar", "enableWhatsNewFeed", "enableRightSidebar"],
                 }
                 break
         }
