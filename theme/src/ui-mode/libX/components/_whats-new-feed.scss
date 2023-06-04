@@ -1,0 +1,54 @@
+// whats new feed container
+.main-whatsNewFeed-content {
+    // new feed card container
+    .main-whatsNewFeed-list {
+        margin-top: 0;
+
+        // earlier heading
+        .main-whatsNewFeed-listHeader {
+            margin-bottom: 10px;
+        }
+
+        // new feed card
+        .main-whatsNewFeed-listRow {
+            background-color: var(--spice-custom-main-soft-secondary) !important;
+            border-radius: 10px;
+            margin-bottom: 10px;
+
+            // hover border radius
+            &::after {
+                border-radius: 10px;
+            }
+
+            // action buttons - like, download, options, play button
+            .BottomArea {
+                margin-left: 10px;
+            }
+
+            // single, ep, album
+            .BottomArea:has(> span) {
+                margin-top: 10px;
+                margin-left: 7px;
+                border: 2px solid var(--spice-custom-selected-button);
+                border-radius: 7px;
+                width: fit-content;
+                display: inline;
+                text-align: center;
+                padding: 3px 7px;
+            }
+
+            .main-whatsNewFeed-listPlayButton {
+                .main-playButton-PlayButton button > span {
+                    background-color: var(--spice-button);
+                    border-radius: 10px !important;
+                }
+            }
+        }
+    }
+
+    // new feed card container bg on click
+    div[class*="BoxComponent-group-naked-isInteractive-hasFocus-hasLeadingOrMedia"]:active::after,
+    div[class*="BoxComponent-group-naked-isInteractive-hasLeadingOrMedia"]:active::after {
+        background-color: var(--spice-custom-main-secondary);
+    }
+}

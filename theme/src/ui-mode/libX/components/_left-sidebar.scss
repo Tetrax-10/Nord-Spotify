@@ -43,7 +43,7 @@ div[class*="BoxComponent-group-tinted-isInteractive-hasLeadingOrMedia"]:hover::a
     background: var(--spice-custom-main-soft-secondary) !important;
 }
 
-// lib x active playlist hover
+// lib x active playlist hover (onclick)
 div[class*="Box-group-isInteractive-hasFocus-hasLeadingOrMedia"]:active::after,
 div[class*="Box-group-isInteractive-hasLeadingOrMedia"]:active::after {
     background: var(--spice-custom-main-secondary) !important;
