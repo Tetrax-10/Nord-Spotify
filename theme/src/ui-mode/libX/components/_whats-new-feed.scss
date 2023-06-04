@@ -20,6 +20,33 @@
                 border-radius: 10px;
             }
 
+            // image area
+            .HeaderSideArea-hasBodyOrFooter {
+                // small cover art
+                .Image-image {
+                    border-radius: 8px;
+                }
+            }
+
+            // main text area
+            .HeaderArea {
+                // album, ep, single name
+                p > span > a[href*="/album/"] {
+                    &:hover {
+                        color: var(--spice-custom-link-hover);
+                    }
+                }
+
+                // artist names
+                .main-whatsNewFeed-listSubtitleLink {
+                    color: var(--spice-custom-subdued);
+
+                    &:hover {
+                        color: var(--spice-custom-link-hover);
+                    }
+                }
+            }
+
             // action buttons - like, download, options, play button
             .BottomArea {
                 margin-left: 10px;
@@ -37,6 +64,7 @@
                 padding: 3px 7px;
             }
 
+            // play button
             .main-whatsNewFeed-listPlayButton {
                 .main-playButton-PlayButton button > span {
                     background-color: var(--spice-button);
