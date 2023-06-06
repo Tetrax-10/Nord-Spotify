@@ -12,6 +12,6 @@ export function hideWindowsControlsCSS() {
         right: 0px;
     }
     html.fullscreen body #nord-hideWindowsControls {
-        z-index: 0;
+        z-index: -1;
     }`
 }
