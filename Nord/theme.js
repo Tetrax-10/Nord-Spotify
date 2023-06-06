@@ -17,7 +17,7 @@ var theme=(()=>{var O=Object.create,j=Object.defineProperty,F=Object.getOwnPrope
         right: 0px;
     }
     html.fullscreen body #nord-hideWindowsControls {
-        z-index: 0;
+        z-index: -1;
     }`}var h=(()=>{const a={hideWindowsControlsCSS:fe};return{snippets:a,utils:{inject:function(e,t=!0){var n=a[e]();t?u.dom.injectCSS(n,e):u.dom.removeInjectedElement(e)}}}})();function pe(e,t){f.tempConfig.hideWindowsControlsValues[e]=t,u.dom.removeInjectedElement("hideWindowsControlsCSS"),h.utils.inject("hideWindowsControlsCSS",!1),h.utils.inject("hideWindowsControlsCSS",f.config.hideWindowsControls)}var me={init:async function(){var e,t;await u.api.checkOS("Win")&&(e="nord-hideWindowsControls",(t=document.createElement("div")).id=e,document.body.appendChild(t),document.body.classList.add(e),h.utils.inject("hideWindowsControlsCSS",f.config.hideWindowsControls))},event:{update:pe}},ge=t(U()),he=t(U());function be(i){let l="";return Object.entries(i).forEach(([e,t])=>{var n,a,o,r;"Name"!==e&&("sidebar"===e&&(t=window.Nord.shared.isLibX?i.sidebar:i.main),n=ye(e,"--spice-"),e=ye(e,"--spice-rgb-"),[a,o,r]=we(t),l+=`
             ${n}: ${t};
             ${e}: ${a},${o},${r};
