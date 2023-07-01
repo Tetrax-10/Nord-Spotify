@@ -27,10 +27,10 @@
     --progress-bar-height: 6px;
     --progress-bar-radius: 0;
     // Color for fill
-    --fg-color: var(--spice-custom-selected-button);
-    --is-active-fg-color: var(--spice-custom-selected-button);
+    --fg-color: var(--spice-custom-selected-button) !important;
+    --is-active-fg-color: var(--spice-custom-selected-button) !important;
     // Color for background
-    --bg-color: var(--spice-custom-main-secondary)
+    --bg-color: var(--spice-custom-main-secondary) !important;
 }
 
 // Apply radius only to fill, and transition
